@@ -28,12 +28,12 @@ CREATE TABLE IF NOT EXISTS `gym`.`cliente` (
 ENGINE = InnoDB;
 
 INSERT INTO `cliente` VALUES
- (1, 'Maria', 'Fernandez Marco', 19, 1.70, 55.8),
- (2, 'Pepe', 'Angir Carmilo', 19, 1.70, 55.8),
- (3, 'Marcos', 'Angresola Rodriguez', 19, 1.70, 55.8),
- (4, 'Raquel', 'Munoz Esteve', 19, 1.70, 55.8),
- (5, 'Pepa', 'Gonzalez Rius', 19, 1.70, 55.8),
- (6, 'Jordi', 'Postigo Humedo', 19, 1.70, 55.8);
+ (1, 'Maria', 'Fernandez Marco', 19, 1.65, 50.0),
+ (2, 'Pepe', 'Angir Carmilo', 29, 1.75, 65.2),
+ (3, 'Marcos', 'Angresola Rodriguez', 39, 1.89, 70.8),
+ (4, 'Raquel', 'Munoz Esteve', 49, 1.80, 80.0),
+ (5, 'Pepa', 'Gonzalez Rius', 59, 1.70, 72.2),
+ (6, 'Jordi', 'Postigo Humedo', 9, 1.20, 38.0);
 
 -- -----------------------------------------------------
 -- Table `gym`.`ejercicio`
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `gym`.`ejercicio` (
   `nombreEjercicio` VARCHAR(255) COLLATE 'utf8mb3_bin' NOT NULL,
   `numeroSeries` INT NOT NULL,
   `numeroRepeticiones` INT NOT NULL,
-  `cargaKg` INT NULL DEFAULT NULL,
+  `cargaKg` INT NULL DEFAULT 0 NULL,
   PRIMARY KEY (`idEjercicio`))
 ENGINE = InnoDB;
 
@@ -53,7 +53,7 @@ INSERT INTO `ejercicio` VALUES
  (3, 'Extensión gemelos', 4, 10, 5),
  (4, 'Press banco', 4, 8, 5),
  (5, 'Peso muerto rumano', 4, 10, 5),
- (6, 'Elevacion piernas', 4, 20, NULL),
+ (6, 'Elevacion piernas', 4, 20, default),
  (7, 'Elevaciones laterales', 4, 8, 2),
  (8, 'Fondos tríceps', 4, 10, 4);
 

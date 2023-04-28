@@ -22,17 +22,16 @@ public class Cliente {
 	@Column(name = "edad")
 	private int edad;
 	@Column(name = "altura")
-	private int altura;
+	private double altura;
 	@Column(name = "peso")
-	private int peso;
+	private double peso;
 
 	public Cliente() {
 		super();
 	}
 
-	public Cliente(int idCliente, String nombreCliente, String apellidos, int edad, int altura, int peso) {
+	public Cliente(String nombreCliente, String apellidos, int edad, double altura, double peso) {
 		super();
-		this.idCliente = idCliente;
 		this.nombreCliente = nombreCliente;
 		this.apellidos = apellidos;
 		this.edad = edad;
@@ -40,7 +39,7 @@ public class Cliente {
 		this.peso = peso;
 	}
 
-	int getId() {
+	public int getId() {
 		return idCliente;
 	}
 
@@ -48,7 +47,7 @@ public class Cliente {
 		this.idCliente = idCliente;
 	}
 
-	String getNombreCliente() {
+	public String getNombreCliente() {
 		return nombreCliente;
 	}
 
@@ -56,7 +55,7 @@ public class Cliente {
 		this.nombreCliente = nombreCliente;
 	}
 
-	String getApellidos() {
+	public String getApellidos() {
 		return apellidos;
 	}
 
@@ -64,7 +63,7 @@ public class Cliente {
 		this.apellidos = apellidos;
 	}
 
-	int getEdad() {
+	public int getEdad() {
 		return edad;
 	}
 
@@ -72,19 +71,19 @@ public class Cliente {
 		this.edad = edad;
 	}
 
-	int getAltura() {
+	public double getAltura() {
 		return altura;
 	}
 
-	void setAltura(int altura) {
+	void setAltura(double altura) {
 		this.altura = altura;
 	}
 
-	int getPeso() {
+	public double getPeso() {
 		return peso;
 	}
 
-	void setPeso(int peso) {
+	void setPeso(double peso) {
 		this.peso = peso;
 	}
 

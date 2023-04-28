@@ -2,6 +2,7 @@ package com.hibernate.dao;
 
 import com.hibernate.model.Cliente;
 import com.hibernate.model.Ejercicio;
+import com.hibernate.model.Rutina;
 import com.hibernate.util.HibernateUtil;
 
 import java.util.List;
@@ -127,7 +128,7 @@ public class GymDAO {
 		}
 	}
 	
-	public List<Cliente> selectAllClientes() {
+	public static List<Cliente> selectAllClientes() {
 		Transaction transaction = null;
 		List<Cliente> clientes = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -141,8 +142,8 @@ public class GymDAO {
 		}
 		return clientes;
 	}
-
-	public List<Ejercicio> selectAllEjercicios() {
+	
+	public static List<Ejercicio> selectAllEjercicios() {
 		Transaction transaction = null;
 		List<Ejercicio> ejercicios = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -156,5 +157,20 @@ public class GymDAO {
 		}
 		return ejercicios;
 	}
-	
+	/*
+	public static List<Rutina> selectAllRutina() {
+		Transaction transaction = null;
+		List<Rutina> rutina = null;
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			transaction = session.beginTransaction();
+			rutina = session.createQuery("FROM Rutina", Rutina.class).getResultList();
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+		}
+		return rutina;
+	}
+	*/
 }

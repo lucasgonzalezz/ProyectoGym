@@ -22,22 +22,21 @@ public class Ejercicio {
 	@Column(name = "numeroRepeticiones")
 	private int numeroRepeticiones;
 	@Column(name = "cargaKg")
-	private int cargaKg;
+	private double cargaKg;
 
 	public Ejercicio() {
 		super();
 	}
 
-	public Ejercicio(int idEjercicio, String nombreEjercicio, int numeroSeries, int numeroRepeticiones, int cargaKg) {
+	public Ejercicio(String nombreEjercicio, int numeroSeries, int numeroRepeticiones, double cargaKg) {
 		super();
-		this.idEjercicio = idEjercicio;
 		this.nombreEjercicio = nombreEjercicio;
 		this.numeroSeries = numeroSeries;
 		this.numeroRepeticiones = numeroRepeticiones;
 		this.cargaKg = cargaKg;
 	}
 
-	int getIdEjercicio() {
+	public int getIdEjercicio() {
 		return idEjercicio;
 	}
 
@@ -45,7 +44,7 @@ public class Ejercicio {
 		this.idEjercicio = idEjercicio;
 	}
 
-	String getNombreEjercicio() {
+	public String getNombreEjercicio() {
 		return nombreEjercicio;
 	}
 
@@ -53,7 +52,7 @@ public class Ejercicio {
 		this.nombreEjercicio = nombreEjercicio;
 	}
 
-	int getNumeroSeries() {
+	public int getNumeroSeries() {
 		return numeroSeries;
 	}
 
@@ -61,7 +60,7 @@ public class Ejercicio {
 		this.numeroSeries = numeroSeries;
 	}
 
-	int getNumeroRepeticiones() {
+	public int getNumeroRepeticiones() {
 		return numeroRepeticiones;
 	}
 
@@ -69,11 +68,11 @@ public class Ejercicio {
 		this.numeroRepeticiones = numeroRepeticiones;
 	}
 
-	int getCargaKg() {
+	public double getCargaKg() {
 		return cargaKg;
 	}
 
-	void setCargaKg(int cargaKg) {
+	void setCargaKg(double cargaKg) {
 		this.cargaKg = cargaKg;
 	}
 
