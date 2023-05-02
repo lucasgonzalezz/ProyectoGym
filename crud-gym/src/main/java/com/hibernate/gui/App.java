@@ -72,10 +72,6 @@ public class App {
 		tableCliente = new JTable();
 		tableCliente.setBounds(81, 45, 1, 1);
 		frame.getContentPane().add(tableCliente);
-		JLabel lblAnillas = new JLabel("");
-		lblAnillas.setIcon(new ImageIcon(App.class.getResource("/img/anillitas.png")));
-		lblAnillas.setBounds(737, -150, 378, 446);
-		frame.getContentPane().add(lblAnillas);
 		
 		JLabel lblPesas = new JLabel("");
 		lblPesas.setIcon(new ImageIcon(App.class.getResource("/img/pesitas.png")));
@@ -107,14 +103,21 @@ public class App {
 			row[5] = cliente.getPeso();
 			modelCliente.addRow(row);
 		}
+		JLabel lblAnillas = new JLabel("");
+		lblAnillas.setIcon(new ImageIcon(App.class.getResource("/img/anillitas.png")));
+		lblAnillas.setBounds(730, -141, 378, 446);
+		frame.getContentPane().add(lblAnillas);
 
 		JTable tableCliente = new JTable(modelCliente);
 		tableCliente.setBounds(81, 45, 1, 1);
 		tableCliente.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 
 		JScrollPane scrollPaneCliente = new JScrollPane(tableCliente);
-		scrollPaneCliente.setBounds(23, 30, 406, 216);
+		scrollPaneCliente.setBounds(53, 44, 406, 216);
 		frame.getContentPane().add(scrollPaneCliente);
+		scrollPaneCliente.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 1, new java.awt.Color(221, 211, 211)));
+		scrollPaneCliente.setBackground(new Color(65,65,65));
+
 
 		/**
 		 * Tabla Ejercicio
@@ -145,7 +148,7 @@ public class App {
 		tableEjercicio.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		
 		JScrollPane scrollPaneEjercicio = new JScrollPane(tableEjercicio);
-		scrollPaneEjercicio.setBounds(762, 45, 290, 201);
+		scrollPaneEjercicio.setBounds(701, 442, 333, 224);
 		frame.getContentPane().add(scrollPaneEjercicio);
 		
 		JLabel lblFondo = new JLabel("");
