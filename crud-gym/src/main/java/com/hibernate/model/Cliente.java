@@ -43,7 +43,7 @@ public class Cliente {
 		return idCliente;
 	}
 
-	void setId(int idCliente) {
+	public void setId(int idCliente) {
 		this.idCliente = idCliente;
 	}
 
@@ -51,7 +51,7 @@ public class Cliente {
 		return nombreCliente;
 	}
 
-	void setNombreCliente(String nombreCliente) {
+	public void setNombreCliente(String nombreCliente) {
 		this.nombreCliente = nombreCliente;
 	}
 
@@ -59,7 +59,7 @@ public class Cliente {
 		return apellidos;
 	}
 
-	void setApellidos(String apellidos) {
+	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}
 
@@ -67,7 +67,7 @@ public class Cliente {
 		return edad;
 	}
 
-	void setEdad(int edad) {
+	public void setEdad(int edad) {
 		this.edad = edad;
 	}
 
@@ -75,7 +75,7 @@ public class Cliente {
 		return altura;
 	}
 
-	void setAltura(double altura) {
+	public void setAltura(double altura) {
 		this.altura = altura;
 	}
 
@@ -83,7 +83,7 @@ public class Cliente {
 		return peso;
 	}
 
-	void setPeso(double peso) {
+	public void setPeso(double peso) {
 		this.peso = peso;
 	}
 
