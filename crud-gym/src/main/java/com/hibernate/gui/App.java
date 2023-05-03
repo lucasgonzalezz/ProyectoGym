@@ -412,7 +412,7 @@ public class App {
 		lblFondo.setBounds(-15, 0, 1233, 819);
 		frame.getContentPane().add(lblFondo);
 		
-		JButton btnMostrarUsuarios = new JButton("Mostrar");
+		JButton btnMostrarUsuarios = new JButton("Mostrar Clientes");
 		btnMostrarUsuarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -423,7 +423,7 @@ public class App {
 		
 		btnMostrarUsuarios.doClick(); 
 		
-		JButton btnMostrarEjercicios = new JButton("Mostrar");
+		JButton btnMostrarEjercicios = new JButton("Mostrar Ejercicios");
 		btnMostrarEjercicios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
