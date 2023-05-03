@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.ImageIcon;
@@ -30,6 +31,8 @@ import java.awt.Font;
 import javax.swing.UIManager;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class App {
 
@@ -79,30 +82,23 @@ public class App {
 		frame.setBounds(100, 100, 1190, 838);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+
 		/**
 		 * Label con imagenes de fondo
 		 */
-		
-		JButton btnActualizarCliente = new JButton("  Actualizar");
-		btnActualizarCliente.setIcon(new ImageIcon(App.class.getResource("/img/actualizar.png")));
-		btnActualizarCliente.setFont(new Font("Dialog", Font.BOLD, 16));
-		btnActualizarCliente.setBackground(new Color(255, 140, 0));
-		btnActualizarCliente.setBounds(53, 393, 350, 48);
-		frame.getContentPane().add(btnActualizarCliente);
-		
+
 		JLabel lblClienteNombre = new JLabel("Nombre:");
 		lblClienteNombre.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblClienteNombre.setForeground(new Color(255, 140, 0));
 		lblClienteNombre.setBounds(53, 92, 117, 35);
 		frame.getContentPane().add(lblClienteNombre);
-		
+
 		JLabel lblTablaCliente = new JLabel("Cliente");
 		lblTablaCliente.setForeground(new Color(255, 140, 0));
 		lblTablaCliente.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 38));
 		lblTablaCliente.setBounds(147, 22, 183, 42);
 		frame.getContentPane().add(lblTablaCliente);
-		
+
 		JLabel lblTablaEjercicio = new JLabel("Ejercicio");
 		lblTablaEjercicio.setForeground(new Color(255, 140, 0));
 		lblTablaEjercicio.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 32));
@@ -151,29 +147,30 @@ public class App {
 		tableCliente.setBounds(81, 45, 1, 1);
 		tableCliente.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		tableCliente.setForeground(new Color(255, 102, 0));
-		tableCliente.setFont(new Font("Dialog", Font.BOLD , 12));
+		tableCliente.setFont(new Font("Dialog", Font.BOLD, 12));
 
 		JScrollPane scrollPaneCliente = new JScrollPane(tableCliente);
 		scrollPaneCliente.setOpaque(false);
 		scrollPaneCliente.setEnabled(false);
 		scrollPaneCliente.setBounds(53, 512, 350, 279);
 		frame.getContentPane().add(scrollPaneCliente);
-		scrollPaneCliente.setBorder(new SoftBevelBorder(BevelBorder.RAISED, new Color(255, 102, 0), new Color(255, 102, 0), new Color(255, 102, 0), new Color(255, 102, 0)));		
+		scrollPaneCliente.setBorder(new SoftBevelBorder(BevelBorder.RAISED, new Color(255, 102, 0),
+				new Color(255, 102, 0), new Color(255, 102, 0), new Color(255, 102, 0)));
 
 		/**
 		 * Tabla Ejercicio
 		 */
 
 		DefaultTableModel modelEjercicio = new DefaultTableModel();
-		
+
 		modelEjercicio.addColumn("ID");
 		modelEjercicio.addColumn("Nombre");
 		modelEjercicio.addColumn("Series");
 		modelEjercicio.addColumn("Repeticiones");
 		modelEjercicio.addColumn("KG");
-		
+
 		List<Ejercicio> listaEjercicios = GymDAO.selectAllEjercicios();
-		
+
 		for (Ejercicio ejercicio : listaEjercicios) {
 			Object[] row = new Object[5];
 			row[0] = ejercicio.getIdEjercicio();
@@ -183,209 +180,278 @@ public class App {
 			row[4] = ejercicio.getCargaKg();
 			modelEjercicio.addRow(row);
 		}
-		
+
 		JTable tableEjercicio = new JTable(modelEjercicio);
 		tableEjercicio.setBounds(471, 30, 1, 1);
 		tableEjercicio.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		tableEjercicio.setForeground(new Color(255, 102, 0));
-		tableEjercicio.setFont(new Font("Dialog", Font.BOLD , 12));
-		
+		tableEjercicio.setFont(new Font("Dialog", Font.BOLD, 12));
+
 		JScrollPane scrollPaneEjercicio = new JScrollPane(tableEjercicio);
 		scrollPaneEjercicio.setOpaque(false);
 		scrollPaneEjercicio.setBounds(801, 512, 349, 277);
 		frame.getContentPane().add(scrollPaneEjercicio);
-		scrollPaneEjercicio.setBorder(new SoftBevelBorder(BevelBorder.RAISED, new Color(255, 102, 0), new Color(255, 102, 0), new Color(255, 102, 0), new Color(255, 102, 0)));		
-		
+		scrollPaneEjercicio.setBorder(new SoftBevelBorder(BevelBorder.RAISED, new Color(255, 102, 0),
+				new Color(255, 102, 0), new Color(255, 102, 0), new Color(255, 102, 0)));
+
 		JLabel lblClienteApellidos = new JLabel("Apellidos:");
 		lblClienteApellidos.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblClienteApellidos.setForeground(new Color(255, 140, 0));
 		lblClienteApellidos.setBounds(53, 136, 117, 35);
 		frame.getContentPane().add(lblClienteApellidos);
+
+		JLabel lblClienteEdad = new JLabel("Edad:");
+		lblClienteEdad.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblClienteEdad.setForeground(new Color(255, 140, 0));
+		lblClienteEdad.setBounds(53, 183, 117, 35);
+		frame.getContentPane().add(lblClienteEdad);
+
+		JLabel lblClienteAltura = new JLabel("Altura:");
+		lblClienteAltura.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblClienteAltura.setForeground(new Color(255, 140, 0));
+		lblClienteAltura.setBounds(53, 230, 117, 35);
+		frame.getContentPane().add(lblClienteAltura);
+
+		JLabel lblClientePeso = new JLabel("Peso:");
+		lblClientePeso.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblClientePeso.setForeground(new Color(255, 140, 0));
+		lblClientePeso.setBounds(53, 277, 117, 35);
+		frame.getContentPane().add(lblClientePeso);
+
+		txtClienteNombre = new JTextField();
+		txtClienteNombre.setFont(new Font("Dialog", Font.BOLD, 14));
+		txtClienteNombre.setForeground(new Color(0, 0, 0));
+		txtClienteNombre.setBackground(new Color(255, 140, 0));
+		txtClienteNombre.setBorder(null);
+		txtClienteNombre.setBounds(154, 101, 244, 19);
+		frame.getContentPane().add(txtClienteNombre);
+		txtClienteNombre.setColumns(10);
+
+		txtClienteApellidos = new JTextField();
+		txtClienteApellidos.setFont(new Font("Dialog", Font.BOLD, 12));
+		txtClienteApellidos.setBackground(new Color(255, 140, 0));
+		txtClienteApellidos.setBorder(null);
+		txtClienteApellidos.setColumns(10);
+		txtClienteApellidos.setBounds(154, 145, 244, 19);
+		frame.getContentPane().add(txtClienteApellidos);
+
+		txtClienteEdad = new JTextField();
+		txtClienteEdad.setFont(new Font("Dialog", Font.BOLD, 12));
+		txtClienteEdad.setBorder(null);
+		txtClienteEdad.setBackground(new Color(255, 140, 0));
+		txtClienteEdad.setColumns(10);
+		txtClienteEdad.setBounds(154, 192, 244, 19);
+		frame.getContentPane().add(txtClienteEdad);
+
+		txtClienteAltura = new JTextField();
+		txtClienteAltura.setFont(new Font("Dialog", Font.BOLD, 12));
+		txtClienteAltura.setBackground(new Color(255, 140, 0));
+		txtClienteAltura.setBorder(null);
+		txtClienteAltura.setColumns(10);
+		txtClienteAltura.setBounds(154, 239, 244, 19);
+		frame.getContentPane().add(txtClienteAltura);
+
+		txtClientePeso = new JTextField();
+		txtClientePeso.setFont(new Font("Dialog", Font.BOLD, 12));
+		txtClientePeso.setBorder(null);
+		txtClientePeso.setBackground(new Color(255, 140, 0));
+		txtClientePeso.setColumns(10);
+		txtClientePeso.setBounds(154, 285, 244, 19);
+		frame.getContentPane().add(txtClientePeso);
+
+		JLabel lblClienteNombre_1 = new JLabel("Nombre:");
+		lblClienteNombre_1.setForeground(new Color(255, 140, 0));
+		lblClienteNombre_1.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblClienteNombre_1.setBounds(805, 92, 117, 35);
+		frame.getContentPane().add(lblClienteNombre_1);
+
+		textField = new JTextField();
+		textField.setForeground(Color.BLACK);
+		textField.setFont(new Font("Dialog", Font.BOLD, 14));
+		textField.setColumns(10);
+		textField.setBorder(null);
+		textField.setBackground(new Color(255, 140, 0));
+		textField.setBounds(906, 101, 244, 19);
+		frame.getContentPane().add(textField);
+
+		JLabel lblClienteApellidos_1 = new JLabel("Apellidos:");
+		lblClienteApellidos_1.setForeground(new Color(255, 140, 0));
+		lblClienteApellidos_1.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblClienteApellidos_1.setBounds(805, 136, 117, 35);
+		frame.getContentPane().add(lblClienteApellidos_1);
+
+		textField_1 = new JTextField();
+		textField_1.setFont(new Font("Dialog", Font.BOLD, 12));
+		textField_1.setColumns(10);
+		textField_1.setBorder(null);
+		textField_1.setBackground(new Color(255, 140, 0));
+		textField_1.setBounds(906, 145, 244, 19);
+		frame.getContentPane().add(textField_1);
+
+		JLabel lblClienteEdad_1 = new JLabel("Edad:");
+		lblClienteEdad_1.setForeground(new Color(255, 140, 0));
+		lblClienteEdad_1.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblClienteEdad_1.setBounds(805, 183, 117, 35);
+		frame.getContentPane().add(lblClienteEdad_1);
+
+		textField_2 = new JTextField();
+		textField_2.setFont(new Font("Dialog", Font.BOLD, 12));
+		textField_2.setColumns(10);
+		textField_2.setBorder(null);
+		textField_2.setBackground(new Color(255, 140, 0));
+		textField_2.setBounds(906, 192, 244, 19);
+		frame.getContentPane().add(textField_2);
+
+		textField_3 = new JTextField();
+		textField_3.setFont(new Font("Dialog", Font.BOLD, 12));
+		textField_3.setColumns(10);
+		textField_3.setBorder(null);
+		textField_3.setBackground(new Color(255, 140, 0));
+		textField_3.setBounds(906, 239, 244, 19);
+		frame.getContentPane().add(textField_3);
+
+		JLabel lblClienteEdad_1_1 = new JLabel("Edad:");
+		lblClienteEdad_1_1.setForeground(new Color(255, 140, 0));
+		lblClienteEdad_1_1.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblClienteEdad_1_1.setBounds(805, 230, 117, 35);
+		frame.getContentPane().add(lblClienteEdad_1_1);
+
+		JButton btnInsertarCliente = new JButton("  Insertar");
+		btnInsertarCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String nuevoNombre = "";
+				String nuevoApellido = "";
+				int nuevaEdad = 0;
+				double nuevaAltura = 0.0;
+				double nuevoPeso = 0.0;
+
+				nuevoNombre = txtClienteNombre.getText();
+				if (nuevoNombre.length() == 0) {
+					JOptionPane.showMessageDialog(null, "El campo nombre está vacío", "ERROR", 0);
+				}
+
+				nuevoApellido = txtClienteApellidos.getText();
+				if (nuevoApellido.length() == 0) {
+					JOptionPane.showMessageDialog(null, "El campo nombre está vacío", "ERROR", 0);
+				}
+
+				try {
+					nuevaEdad = Integer.parseInt(txtClienteEdad.getText());
+				} catch (ArithmeticException e) {
+					JOptionPane.showMessageDialog(null, "El dato pasado como edad no es númerico", "ERROR", 0);
+				} catch (NullPointerException e) {
+					JOptionPane.showMessageDialog(null, "El campo edad está vacío", "ERROR", 0);
+				}
+
+				try {
+					nuevaAltura = Double.parseDouble(txtClienteAltura.getText());
+				} catch (ArithmeticException e) {
+					JOptionPane.showMessageDialog(null, "El dato pasado como altura no es númerico", "ERROR", 0);
+					JOptionPane.showMessageDialog(null, "El campo altura está vacío", "ERROR", 0);
+				}
+
+				try {
+					nuevoPeso = Double.parseDouble(txtClientePeso.getText());
+				} catch (ArithmeticException e) {
+					JOptionPane.showMessageDialog(null, "El dato pasado como peso no es númerico", "ERROR", 0);
+					JOptionPane.showMessageDialog(null, "El campo peso está vacío", "ERROR", 0);
+				}
+
+				Cliente c = new Cliente(nuevoNombre, nuevoApellido, nuevaEdad, nuevaAltura, nuevoPeso);
+				GymDAO.insertCliente(c);
 				
-				JLabel lblClienteEdad = new JLabel("Edad:");
-				lblClienteEdad.setFont(new Font("Dialog", Font.BOLD, 16));
-				lblClienteEdad.setForeground(new Color(255, 140, 0));
-				lblClienteEdad.setBounds(53, 183, 117, 35);
-				frame.getContentPane().add(lblClienteEdad);
 				
-				JLabel lblClienteAltura = new JLabel("Altura:");
-				lblClienteAltura.setFont(new Font("Dialog", Font.BOLD, 16));
-				lblClienteAltura.setForeground(new Color(255, 140, 0));
-				lblClienteAltura.setBounds(53, 230, 117, 35);
-				frame.getContentPane().add(lblClienteAltura);
-				
-				JLabel lblClientePeso = new JLabel("Peso:");
-				lblClientePeso.setFont(new Font("Dialog", Font.BOLD, 16));
-				lblClientePeso.setForeground(new Color(255, 140, 0));
-				lblClientePeso.setBounds(53, 277, 117, 35);
-				frame.getContentPane().add(lblClientePeso);
-						
-						JButton btnInsertarCliente = new JButton("  Insertar");
-						btnInsertarCliente.setIcon(new ImageIcon(App.class.getResource("/img/guardar.png")));
-						btnInsertarCliente.setFont(new Font("Dialog", Font.BOLD, 16));
-						btnInsertarCliente.setBackground(new Color(255, 140, 0));
-						btnInsertarCliente.setBounds(53, 333, 350, 48);
-						frame.getContentPane().add(btnInsertarCliente);
-						
-						JButton btnEliminarCliente = new JButton("Eliminar");
-						btnEliminarCliente.setIcon(new ImageIcon(App.class.getResource("/img/eliminar.png")));
-						btnEliminarCliente.setBackground(new Color(255, 140, 0));
-						btnEliminarCliente.setFont(new Font("Dialog", Font.BOLD, 16));
-						btnEliminarCliente.setBounds(53, 453, 350, 48);
-						frame.getContentPane().add(btnEliminarCliente);
-								
-								txtClienteNombre = new JTextField();
-								txtClienteNombre.setFont(new Font("Dialog", Font.BOLD, 14));
-								txtClienteNombre.setForeground(new Color(0, 0, 0));
-								txtClienteNombre.setBackground(new Color(255, 140, 0));
-								txtClienteNombre.setBorder(null);
-								txtClienteNombre.setBounds(154, 101, 244, 19);
-								frame.getContentPane().add(txtClienteNombre);
-								txtClienteNombre.setColumns(10);
-										
-										txtClienteApellidos = new JTextField();
-										txtClienteApellidos.setFont(new Font("Dialog", Font.BOLD, 12));
-										txtClienteApellidos.setBackground(new Color(255, 140, 0));
-										txtClienteApellidos.setBorder(null);
-										txtClienteApellidos.setColumns(10);
-										txtClienteApellidos.setBounds(154, 145, 244, 19);
-										frame.getContentPane().add(txtClienteApellidos);
-										
-										txtClienteEdad = new JTextField();
-										txtClienteEdad.setFont(new Font("Dialog", Font.BOLD, 12));
-										txtClienteEdad.setBorder(null);
-										txtClienteEdad.setBackground(new Color(255, 140, 0));
-										txtClienteEdad.setColumns(10);
-										txtClienteEdad.setBounds(154, 192, 244, 19);
-										frame.getContentPane().add(txtClienteEdad);
-										
-										txtClienteAltura = new JTextField();
-										txtClienteAltura.setFont(new Font("Dialog", Font.BOLD, 12));
-										txtClienteAltura.setBackground(new Color(255, 140, 0));
-										txtClienteAltura.setBorder(null);
-										txtClienteAltura.setColumns(10);
-										txtClienteAltura.setBounds(154, 239, 244, 19);
-										frame.getContentPane().add(txtClienteAltura);
-										
-										txtClientePeso = new JTextField();
-										txtClientePeso.setFont(new Font("Dialog", Font.BOLD, 12));
-										txtClientePeso.setBorder(null);
-										txtClientePeso.setBackground(new Color(255, 140, 0));
-										txtClientePeso.setColumns(10);
-										txtClientePeso.setBounds(154, 285, 244, 19);
-										frame.getContentPane().add(txtClientePeso);
-												
-												JButton btnMostrarCliente = new JButton("Mostrar");
-												btnMostrarCliente.setBounds(53, 332, 350, 35);
-												frame.getContentPane().add(btnMostrarCliente);
-												
-												JButton btnEliminarEjercicio = new JButton("Eliminar");
-												btnEliminarEjercicio.setIcon(new ImageIcon(App.class.getResource("/img/eliminar.png")));
-												btnEliminarEjercicio.setFont(new Font("Dialog", Font.BOLD, 16));
-												btnEliminarEjercicio.setBackground(new Color(255, 140, 0));
-												btnEliminarEjercicio.setBounds(800, 454, 350, 48);
-												frame.getContentPane().add(btnEliminarEjercicio);
-												
-												JButton btnInsertarEjercicio = new JButton("  Insertar");
-												btnInsertarEjercicio.setIcon(new ImageIcon(App.class.getResource("/img/guardar.png")));
-												btnInsertarEjercicio.setFont(new Font("Dialog", Font.BOLD, 16));
-												btnInsertarEjercicio.setBackground(new Color(255, 140, 0));
-												btnInsertarEjercicio.setBounds(800, 333, 350, 48);
-												frame.getContentPane().add(btnInsertarEjercicio);
-												
-												JButton btnActualizarEjercicio = new JButton("  Actualizar");
-												btnActualizarEjercicio.setIcon(new ImageIcon(App.class.getResource("/img/actualizar.png")));
-												btnActualizarEjercicio.setFont(new Font("Dialog", Font.BOLD, 16));
-												btnActualizarEjercicio.setBackground(new Color(255, 140, 0));
-												btnActualizarEjercicio.setBounds(801, 393, 350, 48);
-												frame.getContentPane().add(btnActualizarEjercicio);
-														
-														JLabel lblClienteNombre_1 = new JLabel("Nombre:");
-														lblClienteNombre_1.setForeground(new Color(255, 140, 0));
-														lblClienteNombre_1.setFont(new Font("Dialog", Font.BOLD, 16));
-														lblClienteNombre_1.setBounds(805, 92, 117, 35);
-														frame.getContentPane().add(lblClienteNombre_1);
-														
-														textField = new JTextField();
-														textField.setForeground(Color.BLACK);
-														textField.setFont(new Font("Dialog", Font.BOLD, 14));
-														textField.setColumns(10);
-														textField.setBorder(null);
-														textField.setBackground(new Color(255, 140, 0));
-														textField.setBounds(906, 101, 244, 19);
-														frame.getContentPane().add(textField);
-														
-														JLabel lblClienteApellidos_1 = new JLabel("Apellidos:");
-														lblClienteApellidos_1.setForeground(new Color(255, 140, 0));
-														lblClienteApellidos_1.setFont(new Font("Dialog", Font.BOLD, 16));
-														lblClienteApellidos_1.setBounds(805, 136, 117, 35);
-														frame.getContentPane().add(lblClienteApellidos_1);
-														
-														textField_1 = new JTextField();
-														textField_1.setFont(new Font("Dialog", Font.BOLD, 12));
-														textField_1.setColumns(10);
-														textField_1.setBorder(null);
-														textField_1.setBackground(new Color(255, 140, 0));
-														textField_1.setBounds(906, 145, 244, 19);
-														frame.getContentPane().add(textField_1);
-														
-														JLabel lblClienteEdad_1 = new JLabel("Edad:");
-														lblClienteEdad_1.setForeground(new Color(255, 140, 0));
-														lblClienteEdad_1.setFont(new Font("Dialog", Font.BOLD, 16));
-														lblClienteEdad_1.setBounds(805, 183, 117, 35);
-														frame.getContentPane().add(lblClienteEdad_1);
-														
-														textField_2 = new JTextField();
-														textField_2.setFont(new Font("Dialog", Font.BOLD, 12));
-														textField_2.setColumns(10);
-														textField_2.setBorder(null);
-														textField_2.setBackground(new Color(255, 140, 0));
-														textField_2.setBounds(906, 192, 244, 19);
-														frame.getContentPane().add(textField_2);
-																
-																textField_3 = new JTextField();
-																textField_3.setFont(new Font("Dialog", Font.BOLD, 12));
-																textField_3.setColumns(10);
-																textField_3.setBorder(null);
-																textField_3.setBackground(new Color(255, 140, 0));
-																textField_3.setBounds(906, 239, 244, 19);
-																frame.getContentPane().add(textField_3);
-																
-																JLabel lblClienteEdad_1_1 = new JLabel("Edad:");
-																lblClienteEdad_1_1.setForeground(new Color(255, 140, 0));
-																lblClienteEdad_1_1.setFont(new Font("Dialog", Font.BOLD, 16));
-																lblClienteEdad_1_1.setBounds(805, 230, 117, 35);
-																frame.getContentPane().add(lblClienteEdad_1_1);
-																
-																		
-																		JLabel lblFondo = new JLabel("");
-																		lblFondo.setOpaque(true);
-																		lblFondo.setFont(new Font("Dialog", Font.BOLD, 14));
-																		lblFondo.setForeground(new Color(0, 0, 0));
-																		lblFondo.setIcon(new ImageIcon(App.class.getResource("/img/fondoGym.jpg")));
-																		lblFondo.setBounds(-15, 0, 1233, 819);
-																		frame.getContentPane().add(lblFondo);
+			}
+		});
+		btnInsertarCliente.setIcon(new ImageIcon(App.class.getResource("/img/guardar.png")));
+		btnInsertarCliente.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnInsertarCliente.setBackground(new Color(255, 140, 0));
+		btnInsertarCliente.setBounds(53, 333, 350, 48);
+		frame.getContentPane().add(btnInsertarCliente);
+
+		JButton btnEliminarCliente = new JButton("Eliminar");
+		btnEliminarCliente.setIcon(new ImageIcon(App.class.getResource("/img/eliminar.png")));
+		btnEliminarCliente.setBackground(new Color(255, 140, 0));
+		btnEliminarCliente.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnEliminarCliente.setBounds(53, 453, 350, 48);
+		frame.getContentPane().add(btnEliminarCliente);
+
+		JButton btnActualizarCliente = new JButton("  Actualizar");
+		btnActualizarCliente.setIcon(new ImageIcon(App.class.getResource("/img/actualizar.png")));
+		btnActualizarCliente.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnActualizarCliente.setBackground(new Color(255, 140, 0));
+		btnActualizarCliente.setBounds(53, 393, 350, 48);
+		frame.getContentPane().add(btnActualizarCliente);
 		
+		JButton btnInsertarEjercicio = new JButton("  Insertar");
+		btnInsertarEjercicio.setIcon(new ImageIcon(App.class.getResource("/img/guardar.png")));
+		btnInsertarEjercicio.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnInsertarEjercicio.setBackground(new Color(255, 140, 0));
+		btnInsertarEjercicio.setBounds(800, 333, 350, 48);
+		frame.getContentPane().add(btnInsertarEjercicio);
+		
+		JButton btnActualizarEjercicio = new JButton("  Actualizar");
+		btnActualizarEjercicio.setIcon(new ImageIcon(App.class.getResource("/img/actualizar.png")));
+		btnActualizarEjercicio.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnActualizarEjercicio.setBackground(new Color(255, 140, 0));
+		btnActualizarEjercicio.setBounds(801, 393, 350, 48);
+		frame.getContentPane().add(btnActualizarEjercicio);
+		
+		JButton btnEliminarEjercicio = new JButton("Eliminar");
+		btnEliminarEjercicio.setIcon(new ImageIcon(App.class.getResource("/img/eliminar.png")));
+		btnEliminarEjercicio.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnEliminarEjercicio.setBackground(new Color(255, 140, 0));
+		btnEliminarEjercicio.setBounds(800, 454, 350, 48);
+		frame.getContentPane().add(btnEliminarEjercicio);
+
+		JLabel lblFondo = new JLabel("");
+		lblFondo.setOpaque(true);
+		lblFondo.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblFondo.setForeground(new Color(0, 0, 0));
+		lblFondo.setIcon(new ImageIcon(App.class.getResource("/img/fondoGym.jpg")));
+		lblFondo.setBounds(-15, 0, 1233, 819);
+		frame.getContentPane().add(lblFondo);
+		
+		JButton btnMostrarUsuarios = new JButton("Mostrar");
+		btnMostrarUsuarios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		btnMostrarUsuarios.setBounds(430, 322, 117, 25);
+		frame.getContentPane().add(btnMostrarUsuarios);
+		
+		btnMostrarUsuarios.doClick(); 
+		
+		JButton btnMostrarEjercicios = new JButton("Mostrar");
+		btnMostrarEjercicios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnMostrarEjercicios.setBounds(674, 309, 117, 25);
+		frame.getContentPane().add(btnMostrarEjercicios);
+		
+		
+
 		/**
-		 * TABLA RELACIONADA ENTRE CLIENTE Y EJERCICIO
-		 * NECESARIO HACER JOIN
-		 * POSIBLE FORMATO:
-		 * SELECT * FROM Cliente c INNER JOIN Ejercicio e ON c.nombreCliente = txtFieldNombreClienteRelacionar AND e.nombreEjercicio = txtFieldNombreEjericcioRelacionar
-		 * también lo podríamos hacer la elección checkbox 
+		 * TABLA RELACIONADA ENTRE CLIENTE Y EJERCICIO NECESARIO HACER JOIN POSIBLE
+		 * FORMATO: SELECT * FROM Cliente c INNER JOIN Ejercicio e ON c.nombreCliente =
+		 * txtFieldNombreClienteRelacionar AND e.nombreEjercicio =
+		 * txtFieldNombreEjericcioRelacionar también lo podríamos hacer la elección
+		 * checkbox
 		 */
 		/*
-		tableEjercicioCliente = new JTable();
-		tableEjercicioCliente.setBounds(336, 201, 1, 1);
-		frame.getContentPane().add(tableEjercicioCliente);
-		
-		DefaultTableModel modelEjercicioCliente = new DefaultTableModel();
-		
-		modelEjercicioCliente.addColumn("Cliente");
-		modelEjercicioCliente.addColumn("Ejercicio");
-		
-		List<Rutina> listaRutina = GymDAO.
-		
-		*/
+		 * tableEjercicioCliente = new JTable(); tableEjercicioCliente.setBounds(336,
+		 * 201, 1, 1); frame.getContentPane().add(tableEjercicioCliente);
+		 * 
+		 * DefaultTableModel modelEjercicioCliente = new DefaultTableModel();
+		 * 
+		 * modelEjercicioCliente.addColumn("Cliente");
+		 * modelEjercicioCliente.addColumn("Ejercicio");
+		 * 
+		 * List<Rutina> listaRutina = GymDAO.
+		 * 
+		 */
 
 	}
 }
