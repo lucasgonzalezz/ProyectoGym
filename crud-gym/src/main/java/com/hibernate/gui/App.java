@@ -77,6 +77,10 @@ public class App {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
+		GymDAO gDAO = new GymDAO();
+		List<Cliente> listaCliente = null;
+		
 		frame = new JFrame();
 		frame.setBackground(new Color(255, 69, 0));
 		frame.setBounds(100, 100, 1190, 838);
@@ -86,6 +90,7 @@ public class App {
 		/**
 		 * Label con imagenes de fondo
 		 */
+		
 
 		JLabel lblClienteNombre = new JLabel("Nombre:");
 		lblClienteNombre.setFont(new Font("Dialog", Font.BOLD, 16));
@@ -193,6 +198,52 @@ public class App {
 		frame.getContentPane().add(scrollPaneEjercicio);
 		scrollPaneEjercicio.setBorder(new SoftBevelBorder(BevelBorder.RAISED, new Color(255, 102, 0),
 				new Color(255, 102, 0), new Color(255, 102, 0), new Color(255, 102, 0)));
+		
+		JButton btnMostrarUsuarios = new JButton("Mostrar Clientes");
+		btnMostrarUsuarios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				List<Cliente> listaClientes = null;
+				
+				modelCliente.setRowCount(0);
+				listaClientes = GymDAO.selectAllClientes();
+				for (int i = 0; i < listaClientes.size(); i++) {
+					Object[] row = new Object[6];
+					row[0] = listaClientes.get(i).getId();
+					row[1] = listaClientes.get(i).getNombreCliente();
+					row[2] = listaClientes.get(i).getApellidos();
+					row[3] = listaClientes.get(i).getEdad();
+					row[4] = listaClientes.get(i).getAltura();
+					row[5] = listaClientes.get(i).getPeso();
+					modelCliente.addRow(row);
+				}
+				
+				
+			}
+		});
+		btnMostrarUsuarios.setBounds(430, 322, 117, 25);
+		frame.getContentPane().add(btnMostrarUsuarios);
+		btnMostrarUsuarios.setVisible(false);
+
+		JButton btnMostrarEjercicios = new JButton("Mostrar Ejercicios");
+		btnMostrarEjercicios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				List<Ejercicio> listaEjercicios = null;
+				
+				modelEjercicio.setRowCount(0);
+				listaEjercicios = GymDAO.selectAllEjercicios();
+				for (int i = 0; i < listaEjercicios.size(); i++) {
+					Object[] row = new Object[5];
+					row[0] = listaEjercicios.get(i).getIdEjercicio();
+					row[1] = listaEjercicios.get(i).getNombreEjercicio();
+					row[2] = listaEjercicios.get(i).getNumeroSeries();
+					row[3] = listaEjercicios.get(i).getNumeroRepeticiones();
+					row[4] = listaEjercicios.get(i).getCargaKg();
+					modelEjercicio.addRow(row);
+				}
+			}
+		});
+		btnMostrarEjercicios.setBounds(674, 309, 117, 25);
+		frame.getContentPane().add(btnMostrarEjercicios);
 
 		JLabel lblClienteApellidos = new JLabel("Apellidos:");
 		lblClienteApellidos.setFont(new Font("Dialog", Font.BOLD, 16));
@@ -335,6 +386,8 @@ public class App {
 					JOptionPane.showMessageDialog(null, "El campo nombre está vacío", "ERROR", 0);
 				}
 
+				
+				
 				try {
 					nuevaEdad = Integer.parseInt(txtClienteEdad.getText());
 				} catch (ArithmeticException e) {
@@ -359,8 +412,13 @@ public class App {
 
 				Cliente c = new Cliente(nuevoNombre, nuevoApellido, nuevaEdad, nuevaAltura, nuevoPeso);
 				GymDAO.insertCliente(c);
+				btnMostrarUsuarios.doClick();
 				
-				
+				txtClienteNombre.setText("");
+				txtClienteApellidos.setText("");
+				txtClienteEdad.setText("");
+				txtClienteAltura.setText("");
+				txtClientePeso.setText("");
 			}
 		});
 		btnInsertarCliente.setIcon(new ImageIcon(App.class.getResource("/img/guardar.png")));
@@ -369,34 +427,125 @@ public class App {
 		btnInsertarCliente.setBounds(53, 333, 350, 48);
 		frame.getContentPane().add(btnInsertarCliente);
 
+		JButton btnActualizarCliente = new JButton("  Actualizar");
+		btnActualizarCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String nombreActualizar;
+				String apellidosActualizar;
+				int edadActualizar = 0;
+				double alturaActualizar = 0;
+				double pesoActualizar = 0;
+				
+				nombreActualizar = txtClienteNombre.getText();
+				if (nombreActualizar.length() == 0) {
+					JOptionPane.showMessageDialog(null, "El campo nombre está vacío", "ERROR", 0);
+				}
+
+				apellidosActualizar = txtClienteApellidos.getText();
+				if (apellidosActualizar.length() == 0) {
+					JOptionPane.showMessageDialog(null, "El campo nombre está vacío", "ERROR", 0);
+				}
+
+				try {
+					edadActualizar = Integer.parseInt(txtClienteEdad.getText());
+				} catch (ArithmeticException e) {
+					JOptionPane.showMessageDialog(null, "El dato pasado como edad no es númerico", "ERROR", 0);
+				} catch (NullPointerException e) {
+					JOptionPane.showMessageDialog(null, "El campo edad está vacío", "ERROR", 0);
+				}
+
+				try {
+					alturaActualizar = Double.parseDouble(txtClienteAltura.getText());
+				} catch (ArithmeticException e) {
+					JOptionPane.showMessageDialog(null, "El dato pasado como altura no es númerico", "ERROR", 0);
+					JOptionPane.showMessageDialog(null, "El campo altura está vacío", "ERROR", 0);
+				}
+
+				try {
+					pesoActualizar = Double.parseDouble(txtClientePeso.getText());
+				} catch (ArithmeticException e) {
+					JOptionPane.showMessageDialog(null, "El dato pasado como peso no es númerico", "ERROR", 0);
+					JOptionPane.showMessageDialog(null, "El campo peso está vacío", "ERROR", 0);
+				}
+				
+				Cliente c = new Cliente(nombreActualizar, apellidosActualizar, edadActualizar, alturaActualizar, pesoActualizar);
+				GymDAO.updateCliente(c);
+				btnMostrarUsuarios.doClick();
+			}
+		});
+		btnActualizarCliente.setIcon(new ImageIcon(App.class.getResource("/img/actualizar.png")));
+		btnActualizarCliente.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnActualizarCliente.setBackground(new Color(255, 140, 0));
+		btnActualizarCliente.setBounds(53, 393, 350, 48);
+		frame.getContentPane().add(btnActualizarCliente);
+
 		JButton btnEliminarCliente = new JButton("Eliminar");
+		btnEliminarCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String nombreEliminar;
+				String apellidosEliminar;
+				int edadEliminar = 0;
+				double alturaEliminar = 0;
+				double pesoEliminar = 0;
+				
+				nombreEliminar = txtClienteNombre.getText();
+				if (nombreEliminar.length() == 0) {
+					JOptionPane.showMessageDialog(null, "El campo nombre está vacío", "ERROR", 0);
+				}
+
+				apellidosEliminar = txtClienteApellidos.getText();
+				if (apellidosEliminar.length() == 0) {
+					JOptionPane.showMessageDialog(null, "El campo nombre está vacío", "ERROR", 0);
+				}
+
+				try {
+					edadEliminar = Integer.parseInt(txtClienteEdad.getText());
+				} catch (ArithmeticException e) {
+					JOptionPane.showMessageDialog(null, "El dato pasado como edad no es númerico", "ERROR", 0);
+				} catch (NullPointerException e) {
+					JOptionPane.showMessageDialog(null, "El campo edad está vacío", "ERROR", 0);
+				}
+
+				try {
+					alturaEliminar = Double.parseDouble(txtClienteAltura.getText());
+				} catch (ArithmeticException e) {
+					JOptionPane.showMessageDialog(null, "El dato pasado como altura no es númerico", "ERROR", 0);
+					JOptionPane.showMessageDialog(null, "El campo altura está vacío", "ERROR", 0);
+				}
+
+				try {
+					pesoEliminar = Double.parseDouble(txtClientePeso.getText());
+				} catch (ArithmeticException e) {
+					JOptionPane.showMessageDialog(null, "El dato pasado como peso no es númerico", "ERROR", 0);
+					JOptionPane.showMessageDialog(null, "El campo peso está vacío", "ERROR", 0);
+				}
+				/**
+				Cliente c = new Cliente(nombreEliminar, apellidosEliminar, edadEliminar, alturaEliminar, pesoEliminar);
+				int eliminar = GymDAO.selectClienteById(c);
+				GymDAO.deleteCliente(eliminar);
+				btnMostrarUsuarios.doClick();*/
+			}
+		});
 		btnEliminarCliente.setIcon(new ImageIcon(App.class.getResource("/img/eliminar.png")));
 		btnEliminarCliente.setBackground(new Color(255, 140, 0));
 		btnEliminarCliente.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnEliminarCliente.setBounds(53, 453, 350, 48);
 		frame.getContentPane().add(btnEliminarCliente);
 
-		JButton btnActualizarCliente = new JButton("  Actualizar");
-		btnActualizarCliente.setIcon(new ImageIcon(App.class.getResource("/img/actualizar.png")));
-		btnActualizarCliente.setFont(new Font("Dialog", Font.BOLD, 16));
-		btnActualizarCliente.setBackground(new Color(255, 140, 0));
-		btnActualizarCliente.setBounds(53, 393, 350, 48);
-		frame.getContentPane().add(btnActualizarCliente);
-		
 		JButton btnInsertarEjercicio = new JButton("  Insertar");
 		btnInsertarEjercicio.setIcon(new ImageIcon(App.class.getResource("/img/guardar.png")));
 		btnInsertarEjercicio.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnInsertarEjercicio.setBackground(new Color(255, 140, 0));
 		btnInsertarEjercicio.setBounds(800, 333, 350, 48);
 		frame.getContentPane().add(btnInsertarEjercicio);
-		
+
 		JButton btnActualizarEjercicio = new JButton("  Actualizar");
 		btnActualizarEjercicio.setIcon(new ImageIcon(App.class.getResource("/img/actualizar.png")));
 		btnActualizarEjercicio.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnActualizarEjercicio.setBackground(new Color(255, 140, 0));
 		btnActualizarEjercicio.setBounds(801, 393, 350, 48);
 		frame.getContentPane().add(btnActualizarEjercicio);
-		
+
 		JButton btnEliminarEjercicio = new JButton("Eliminar");
 		btnEliminarEjercicio.setIcon(new ImageIcon(App.class.getResource("/img/eliminar.png")));
 		btnEliminarEjercicio.setFont(new Font("Dialog", Font.BOLD, 16));
@@ -411,27 +560,6 @@ public class App {
 		lblFondo.setIcon(new ImageIcon(App.class.getResource("/img/fondoGym.jpg")));
 		lblFondo.setBounds(-15, 0, 1233, 819);
 		frame.getContentPane().add(lblFondo);
-		
-		JButton btnMostrarUsuarios = new JButton("Mostrar Clientes");
-		btnMostrarUsuarios.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-			}
-		});
-		btnMostrarUsuarios.setBounds(430, 322, 117, 25);
-		frame.getContentPane().add(btnMostrarUsuarios);
-		
-		btnMostrarUsuarios.doClick(); 
-		
-		JButton btnMostrarEjercicios = new JButton("Mostrar Ejercicios");
-		btnMostrarEjercicios.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnMostrarEjercicios.setBounds(674, 309, 117, 25);
-		frame.getContentPane().add(btnMostrarEjercicios);
-		
-		
 
 		/**
 		 * TABLA RELACIONADA ENTRE CLIENTE Y EJERCICIO NECESARIO HACER JOIN POSIBLE
