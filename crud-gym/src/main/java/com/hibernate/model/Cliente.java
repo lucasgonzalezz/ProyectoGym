@@ -39,11 +39,11 @@ public class Cliente {
 		this.peso = peso;
 	}
 
-	public int getId() {
+	public int getIdCliente() {
 		return idCliente;
 	}
 
-	public void setId(int idCliente) {
+	public void setIdCliente(int idCliente) {
 		this.idCliente = idCliente;
 	}
 

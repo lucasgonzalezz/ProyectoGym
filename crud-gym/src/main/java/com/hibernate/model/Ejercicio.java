@@ -40,7 +40,7 @@ public class Ejercicio {
 		return idEjercicio;
 	}
 
-	void setIdEjercicio(int idEjercicio) {
+	public void setIdEjercicio(int idEjercicio) {
 		this.idEjercicio = idEjercicio;
 	}
 
@@ -48,7 +48,7 @@ public class Ejercicio {
 		return nombreEjercicio;
 	}
 
-	void setNombreEjercicio(String nombreEjercicio) {
+	public void setNombreEjercicio(String nombreEjercicio) {
 		this.nombreEjercicio = nombreEjercicio;
 	}
 
@@ -56,7 +56,7 @@ public class Ejercicio {
 		return numeroSeries;
 	}
 
-	void setNumeroSeries(int numeroSeries) {
+	public void setNumeroSeries(int numeroSeries) {
 		this.numeroSeries = numeroSeries;
 	}
 
@@ -64,7 +64,7 @@ public class Ejercicio {
 		return numeroRepeticiones;
 	}
 
-	void setNumeroRepeticiones(int numeroRepeticiones) {
+	public void setNumeroRepeticiones(int numeroRepeticiones) {
 		this.numeroRepeticiones = numeroRepeticiones;
 	}
 
@@ -72,7 +72,7 @@ public class Ejercicio {
 		return cargaKg;
 	}
 
-	void setCargaKg(double cargaKg) {
+	public void setCargaKg(double cargaKg) {
 		this.cargaKg = cargaKg;
 	}
 
