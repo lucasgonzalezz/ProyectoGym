@@ -14,6 +14,8 @@ import javax.swing.table.TableModel;
 import com.hibernate.dao.GymDAO;
 import com.hibernate.model.Cliente;
 import com.hibernate.model.Ejercicio;
+import com.hibernate.model.Rutina;
+
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
 import java.awt.Font;
@@ -57,6 +59,7 @@ public class App {
 	double ejercicioCarga = 0.0;
 
 	GymDAO gymDAO = new GymDAO();
+	private JTable tableRutina;
 
 	/**
 	 * Launch the application.
@@ -788,7 +791,61 @@ public class App {
 		btnEliminarEjercicio.setBackground(new Color(255, 140, 0));
 		btnEliminarEjercicio.setBounds(1204, 436, 513, 48);
 		frame.getContentPane().add(btnEliminarEjercicio);
+		
+		/*
+		 *  Tabla Rutina
+		 */
+		
+		DefaultTableModel modelRutina = new DefaultTableModel();
+		
+		modelRutina.addColumn("Cliente");
+		modelRutina.addColumn("Ejercicio");
+		
+		List<Rutina> listaRutina = GymDAO.selectAllRutina();
+		
+		for (Rutina rutina : listaRutina) {
+			Object[] row = new Object[2];
+			row[0] = rutina.getNombreCliente();
+			row[1] = rutina.getNombreEjercicio();
+			modelRutina.addRow(row);
+		}
+		
+		JScrollPane scrollPaneRutina = new JScrollPane();
+		scrollPaneRutina.setOpaque(false);
+		scrollPaneRutina.setEnabled(false);
+		scrollPaneRutina.setBorder(new SoftBevelBorder(BevelBorder.RAISED, new Color(255, 102, 0),
+				new Color(255, 102, 0), new Color(255, 102, 0), new Color(255, 102, 0)));
+		scrollPaneRutina.setBounds(730, 512, 350, 279);
+		frame.getContentPane().add(scrollPaneRutina);
+		
+		tableRutina = new JTable(modelRutina);
+		scrollPaneRutina.setViewportView(tableRutina);
 
+		JButton btnMostrarRutina = new JButton("");
+		btnMostrarRutina.setOpaque(false);
+		btnMostrarRutina.setBorderPainted(false);
+		btnMostrarRutina.setBorder(null);
+		btnMostrarRutina.setVisible(false);
+		btnMostrarRutina.setFont(new Font("Dialog", Font.BOLD, 14));
+		btnMostrarRutina.setBackground(UIManager.getColor("Button.background"));
+		btnMostrarRutina.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				modelRutina.setRowCount(0);
+				
+				List<Rutina> listaRutina = GymDAO.selectAllRutina();
+				
+				for (Rutina rutina : listaRutina) {
+					Object[] row = new Object[2];
+					row[0] = rutina.getNombreCliente();
+					row[1] = rutina.getNombreEjercicio();
+					modelRutina.addRow(row);
+				}
+				
+			}
+		});
+		btnMostrarRutina.setBounds(846, 478, 89, 23);
+		frame.getContentPane().add(btnMostrarRutina);
+		
 		/**
 		 * JLabel del Fondo.
 		 */
@@ -800,26 +857,6 @@ public class App {
 		lblFondo.setIcon(new ImageIcon(App.class.getResource("/img/fondoGym.jpg")));
 		lblFondo.setBounds(0, -30, 1825, 864);
 		frame.getContentPane().add(lblFondo);
-
-		/**
-		 * TABLA RELACIONADA ENTRE CLIENTE Y EJERCICIO NECESARIO HACER JOIN POSIBLE
-		 * FORMATO: SELECT * FROM Cliente c INNER JOIN Ejercicio e ON c.nombreCliente =
-		 * txtFieldNombreClienteRelacionar AND e.nombreEjercicio =
-		 * txtFieldNombreEjericcioRelacionar también lo podríamos hacer la elección
-		 * checkbox
-		 */
-		/*
-		 * tableEjercicioCliente = new JTable(); tableEjercicioCliente.setBounds(336,
-		 * 201, 1, 1); frame.getContentPane().add(tableEjercicioCliente);
-		 * 
-		 * DefaultTableModel modelEjercicioCliente = new DefaultTableModel();
-		 * 
-		 * modelEjercicioCliente.addColumn("Cliente");
-		 * modelEjercicioCliente.addColumn("Ejercicio");
-		 * 
-		 * List<Rutina> listaRutina = GymDAO.
-		 * 
-		 */
 
 	}
 }

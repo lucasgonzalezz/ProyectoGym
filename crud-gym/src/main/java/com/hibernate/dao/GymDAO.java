@@ -5,6 +5,11 @@ import com.hibernate.model.Ejercicio;
 import com.hibernate.model.Rutina;
 import com.hibernate.util.HibernateUtil;
 
+import jakarta.persistence.TypedQuery;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -28,7 +33,7 @@ public class GymDAO {
 		}
 		return c;
 	}
-	
+
 	public static Ejercicio selectEjercicioById(int id) {
 
 		Transaction transaction = null;
@@ -58,7 +63,7 @@ public class GymDAO {
 			}
 		}
 	}
-	
+
 	public static void insertEjercicio(Ejercicio e) {
 		Transaction transaction = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -84,7 +89,7 @@ public class GymDAO {
 			}
 		}
 	}
-	
+
 	public static void updateEjercicio(Ejercicio e) {
 		Transaction transaction = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -127,7 +132,7 @@ public class GymDAO {
 			}
 		}
 	}
-	
+
 	public static List<Cliente> selectAllClientes() {
 		Transaction transaction = null;
 		List<Cliente> clientes = null;
@@ -142,7 +147,7 @@ public class GymDAO {
 		}
 		return clientes;
 	}
-	
+
 	public static List<Ejercicio> selectAllEjercicios() {
 		Transaction transaction = null;
 		List<Ejercicio> ejercicios = null;
@@ -157,13 +162,26 @@ public class GymDAO {
 		}
 		return ejercicios;
 	}
-	/*
+
 	public static List<Rutina> selectAllRutina() {
 		Transaction transaction = null;
-		List<Rutina> rutina = null;
+		List<Rutina> rutina = new ArrayList<>();
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
-			rutina = session.createQuery("FROM Rutina", Rutina.class).getResultList();
+			
+			String hql = "SELECT c.nombreCliente, e.nombreEjercicio FROM Cliente c INNER JOIN Ejercicio e";
+			
+			TypedQuery<Object[]> hqlQuery = session.createQuery(hql, Object[].class);
+			
+			List<Object[]> results = hqlQuery.getResultList();
+			
+			for (Object[] result: results){
+				Rutina r = new Rutina();
+				r.setNombreCliente((String) result[0]);
+				r.setNombreEjercicio((String) result [1]);
+				rutina.add(r);
+			}
+			
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {
@@ -172,5 +190,5 @@ public class GymDAO {
 		}
 		return rutina;
 	}
-	*/
+
 }

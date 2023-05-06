@@ -15,10 +15,13 @@ public class Rutina {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "fk_idCliente")
 	private int idCliente;
+	private String nombreCliente;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "fk_idEjercicio")
 	private int idEjercicio;
+	private String nombreEjercicio;
 
 	public Rutina() {
 		super();
@@ -30,7 +33,7 @@ public class Rutina {
 		this.idEjercicio = idEjercicio;
 	}
 
-	int getIdCliente() {
+	public int getIdCliente() {
 		return idCliente;
 	}
 
@@ -38,12 +41,28 @@ public class Rutina {
 		this.idCliente = idCliente;
 	}
 
-	int getIdEjercicio() {
+	public int getIdEjercicio() {
 		return idEjercicio;
 	}
 
 	void setIdEjercicio(int idEjercicio) {
 		this.idEjercicio = idEjercicio;
+	}
+	
+	public String getNombreCliente() {
+		return nombreCliente;
+	}
+
+	public void setNombreCliente(String nombreCliente) {
+		this.nombreCliente = nombreCliente;
+	}
+	
+	public String getNombreEjercicio() {
+		return nombreEjercicio;
+	}
+
+	public void setNombreEjercicio(String nombreEjercicio) {
+		this.nombreEjercicio = nombreEjercicio;
 	}
 
 }
