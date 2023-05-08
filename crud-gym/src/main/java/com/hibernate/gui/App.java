@@ -27,9 +27,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * App: Principal.
+ * 
+ * @author Lucas & Laura
+ * @version 08/05/2023
+ *
+ */
+
 public class App {
 
-	private JFrame frame;
+	private JFrame frmQuitagrasas;
 
 	private JTextField txtClienteNombre;
 	private JTextField txtClienteApellidos;
@@ -69,7 +77,7 @@ public class App {
 			public void run() {
 				try {
 					App window = new App();
-					window.frame.setVisible(true);
+					window.frmQuitagrasas.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -89,11 +97,12 @@ public class App {
 	 */
 	private void initialize() {
 
-		frame = new JFrame();
-		frame.setBackground(new Color(255, 69, 0));
-		frame.setBounds(100, 100, 1756, 858);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmQuitagrasas = new JFrame();
+		frmQuitagrasas.setTitle("QuitaGrasas 3000");
+		frmQuitagrasas.setBackground(new Color(255, 69, 0));
+		frmQuitagrasas.setBounds(100, 100, 1756, 858);
+		frmQuitagrasas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmQuitagrasas.getContentPane().setLayout(null);
 
 		/**
 		 * Jlabel del Cliente.
@@ -103,43 +112,43 @@ public class App {
 		lblClienteNombre.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblClienteNombre.setForeground(new Color(255, 140, 0));
 		lblClienteNombre.setBounds(28, 92, 117, 35);
-		frame.getContentPane().add(lblClienteNombre);
+		frmQuitagrasas.getContentPane().add(lblClienteNombre);
 
 		JLabel lblTablaCliente = new JLabel("Cliente");
 		lblTablaCliente.setForeground(new Color(255, 140, 0));
 		lblTablaCliente.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 42));
 		lblTablaCliente.setBounds(235, 22, 153, 42);
-		frame.getContentPane().add(lblTablaCliente);
+		frmQuitagrasas.getContentPane().add(lblTablaCliente);
 
 		JLabel lblTablaEjercicio = new JLabel("Ejercicio");
 		lblTablaEjercicio.setForeground(new Color(255, 140, 0));
-		lblTablaEjercicio.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 38));
+		lblTablaEjercicio.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 42));
 		lblTablaEjercicio.setBounds(1411, 23, 183, 42);
-		frame.getContentPane().add(lblTablaEjercicio);
+		frmQuitagrasas.getContentPane().add(lblTablaEjercicio);
 
 		JLabel lblClienteApellidos = new JLabel("Apellidos:");
 		lblClienteApellidos.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblClienteApellidos.setForeground(new Color(255, 140, 0));
 		lblClienteApellidos.setBounds(28, 136, 117, 35);
-		frame.getContentPane().add(lblClienteApellidos);
+		frmQuitagrasas.getContentPane().add(lblClienteApellidos);
 
 		JLabel lblClienteEdad = new JLabel("Edad:");
 		lblClienteEdad.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblClienteEdad.setForeground(new Color(255, 140, 0));
 		lblClienteEdad.setBounds(28, 183, 117, 35);
-		frame.getContentPane().add(lblClienteEdad);
+		frmQuitagrasas.getContentPane().add(lblClienteEdad);
 
 		JLabel lblClienteAltura = new JLabel("Altura:");
 		lblClienteAltura.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblClienteAltura.setForeground(new Color(255, 140, 0));
 		lblClienteAltura.setBounds(28, 230, 117, 35);
-		frame.getContentPane().add(lblClienteAltura);
+		frmQuitagrasas.getContentPane().add(lblClienteAltura);
 
 		JLabel lblClientePeso = new JLabel("Peso:");
 		lblClientePeso.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblClientePeso.setForeground(new Color(255, 140, 0));
 		lblClientePeso.setBounds(28, 277, 117, 35);
-		frame.getContentPane().add(lblClientePeso);
+		frmQuitagrasas.getContentPane().add(lblClientePeso);
 
 		/**
 		 * TextField del Cliente.
@@ -150,8 +159,8 @@ public class App {
 		txtClienteNombre.setForeground(new Color(0, 0, 0));
 		txtClienteNombre.setBackground(new Color(255, 140, 0));
 		txtClienteNombre.setBorder(null);
-		txtClienteNombre.setBounds(129, 101, 433, 19);
-		frame.getContentPane().add(txtClienteNombre);
+		txtClienteNombre.setBounds(129, 101, 458, 19);
+		frmQuitagrasas.getContentPane().add(txtClienteNombre);
 		txtClienteNombre.setColumns(10);
 
 		txtClienteApellidos = new JTextField();
@@ -159,32 +168,32 @@ public class App {
 		txtClienteApellidos.setBackground(new Color(255, 140, 0));
 		txtClienteApellidos.setBorder(null);
 		txtClienteApellidos.setColumns(10);
-		txtClienteApellidos.setBounds(129, 145, 433, 19);
-		frame.getContentPane().add(txtClienteApellidos);
+		txtClienteApellidos.setBounds(129, 145, 458, 19);
+		frmQuitagrasas.getContentPane().add(txtClienteApellidos);
 
 		txtClienteEdad = new JTextField();
 		txtClienteEdad.setFont(new Font("Dialog", Font.BOLD, 14));
 		txtClienteEdad.setBorder(null);
 		txtClienteEdad.setBackground(new Color(255, 140, 0));
 		txtClienteEdad.setColumns(10);
-		txtClienteEdad.setBounds(129, 192, 433, 19);
-		frame.getContentPane().add(txtClienteEdad);
+		txtClienteEdad.setBounds(129, 192, 458, 19);
+		frmQuitagrasas.getContentPane().add(txtClienteEdad);
 
 		txtClienteAltura = new JTextField();
 		txtClienteAltura.setFont(new Font("Dialog", Font.BOLD, 14));
 		txtClienteAltura.setBackground(new Color(255, 140, 0));
 		txtClienteAltura.setBorder(null);
 		txtClienteAltura.setColumns(10);
-		txtClienteAltura.setBounds(129, 239, 433, 19);
-		frame.getContentPane().add(txtClienteAltura);
+		txtClienteAltura.setBounds(129, 239, 458, 19);
+		frmQuitagrasas.getContentPane().add(txtClienteAltura);
 
 		txtClientePeso = new JTextField();
 		txtClientePeso.setFont(new Font("Dialog", Font.BOLD, 14));
 		txtClientePeso.setBorder(null);
 		txtClientePeso.setBackground(new Color(255, 140, 0));
 		txtClientePeso.setColumns(10);
-		txtClientePeso.setBounds(129, 285, 433, 19);
-		frame.getContentPane().add(txtClientePeso);
+		txtClientePeso.setBounds(129, 285, 458, 19);
+		frmQuitagrasas.getContentPane().add(txtClientePeso);
 
 		txtClienteId = new JTextField();
 		txtClienteId.setVisible(false);
@@ -195,7 +204,7 @@ public class App {
 		txtClienteId.setBorder(null);
 		txtClienteId.setBackground(new Color(255, 140, 0));
 		txtClienteId.setBounds(398, 22, 244, 19);
-		frame.getContentPane().add(txtClienteId);
+		frmQuitagrasas.getContentPane().add(txtClienteId);
 
 		/**
 		 * Tabla del Cliente.
@@ -240,13 +249,13 @@ public class App {
 		tableCliente.setBounds(81, 45, 1, 1);
 		tableCliente.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		tableCliente.setForeground(new Color(255, 102, 0));
-		tableCliente.setFont(new Font("Dialog", Font.BOLD, 12));
+		tableCliente.setFont(new Font("Dialog", Font.BOLD, 14));
 
 		JScrollPane scrollPaneCliente = new JScrollPane(tableCliente);
 		scrollPaneCliente.setOpaque(false);
 		scrollPaneCliente.setEnabled(false);
-		scrollPaneCliente.setBounds(28, 512, 534, 279);
-		frame.getContentPane().add(scrollPaneCliente);
+		scrollPaneCliente.setBounds(28, 512, 559, 279);
+		frmQuitagrasas.getContentPane().add(scrollPaneCliente);
 		scrollPaneCliente.setBorder(new SoftBevelBorder(BevelBorder.RAISED, new Color(255, 102, 0),
 				new Color(255, 102, 0), new Color(255, 102, 0), new Color(255, 102, 0)));
 
@@ -282,8 +291,8 @@ public class App {
 				}
 			}
 		});
-		btnMostrarClientes.setBounds(413, 333, 174, 48);
-		frame.getContentPane().add(btnMostrarClientes);
+		btnMostrarClientes.setBounds(663, 264, 153, 48);
+		frmQuitagrasas.getContentPane().add(btnMostrarClientes);
 
 		/**
 		 * Botón para insertar un nuevo cliente en la BD.
@@ -340,8 +349,8 @@ public class App {
 		btnInsertarCliente.setIcon(new ImageIcon(App.class.getResource("/img/guardar.png")));
 		btnInsertarCliente.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnInsertarCliente.setBackground(new Color(255, 140, 0));
-		btnInsertarCliente.setBounds(28, 333, 534, 48);
-		frame.getContentPane().add(btnInsertarCliente);
+		btnInsertarCliente.setBounds(28, 333, 559, 48);
+		frmQuitagrasas.getContentPane().add(btnInsertarCliente);
 
 		/**
 		 * Botón para actualizar un cliente en la BD.
@@ -405,8 +414,8 @@ public class App {
 		btnActualizarCliente.setIcon(new ImageIcon(App.class.getResource("/img/actualizar.png")));
 		btnActualizarCliente.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnActualizarCliente.setBackground(new Color(255, 140, 0));
-		btnActualizarCliente.setBounds(28, 393, 534, 48);
-		frame.getContentPane().add(btnActualizarCliente);
+		btnActualizarCliente.setBounds(28, 393, 559, 48);
+		frmQuitagrasas.getContentPane().add(btnActualizarCliente);
 
 		/**
 		 * Botón para eliminar un cliente en la BD.
@@ -462,8 +471,8 @@ public class App {
 		btnEliminarCliente.setIcon(new ImageIcon(App.class.getResource("/img/eliminar.png")));
 		btnEliminarCliente.setBackground(new Color(255, 140, 0));
 		btnEliminarCliente.setFont(new Font("Dialog", Font.BOLD, 16));
-		btnEliminarCliente.setBounds(28, 453, 534, 48);
-		frame.getContentPane().add(btnEliminarCliente);
+		btnEliminarCliente.setBounds(28, 453, 559, 48);
+		frmQuitagrasas.getContentPane().add(btnEliminarCliente);
 
 		/**
 		 * JLabel del Ejercicio.
@@ -472,26 +481,26 @@ public class App {
 		JLabel lblEjercicioNombre = new JLabel("Nombre:");
 		lblEjercicioNombre.setForeground(new Color(255, 140, 0));
 		lblEjercicioNombre.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblEjercicioNombre.setBounds(1203, 92, 117, 35);
-		frame.getContentPane().add(lblEjercicioNombre);
+		lblEjercicioNombre.setBounds(1169, 102, 549, 35);
+		frmQuitagrasas.getContentPane().add(lblEjercicioNombre);
 
 		JLabel lblEjercicioNumSeries = new JLabel("Nº Series:");
 		lblEjercicioNumSeries.setForeground(new Color(255, 140, 0));
 		lblEjercicioNumSeries.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblEjercicioNumSeries.setBounds(1203, 153, 117, 35);
-		frame.getContentPane().add(lblEjercicioNumSeries);
+		lblEjercicioNumSeries.setBounds(1169, 163, 549, 35);
+		frmQuitagrasas.getContentPane().add(lblEjercicioNumSeries);
 
 		JLabel lblRepeticiones = new JLabel("Repeticiones:");
 		lblRepeticiones.setForeground(new Color(255, 140, 0));
 		lblRepeticiones.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblRepeticiones.setBounds(1203, 213, 140, 35);
-		frame.getContentPane().add(lblRepeticiones);
+		lblRepeticiones.setBounds(1169, 223, 549, 35);
+		frmQuitagrasas.getContentPane().add(lblRepeticiones);
 
 		JLabel lblEjercicioCarga = new JLabel("Cargar (kg):");
 		lblEjercicioCarga.setForeground(new Color(255, 140, 0));
 		lblEjercicioCarga.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblEjercicioCarga.setBounds(1207, 267, 117, 35);
-		frame.getContentPane().add(lblEjercicioCarga);
+		lblEjercicioCarga.setBounds(1169, 277, 545, 35);
+		frmQuitagrasas.getContentPane().add(lblEjercicioCarga);
 
 		/**
 		 * TextField del Ejercicio.
@@ -503,32 +512,32 @@ public class App {
 		txtEjercicioNombre.setColumns(10);
 		txtEjercicioNombre.setBorder(null);
 		txtEjercicioNombre.setBackground(new Color(255, 140, 0));
-		txtEjercicioNombre.setBounds(1327, 98, 390, 19);
-		frame.getContentPane().add(txtEjercicioNombre);
+		txtEjercicioNombre.setBounds(1293, 108, 425, 19);
+		frmQuitagrasas.getContentPane().add(txtEjercicioNombre);
 
 		txtEjercicioNumSeries = new JTextField();
 		txtEjercicioNumSeries.setFont(new Font("Dialog", Font.BOLD, 14));
 		txtEjercicioNumSeries.setColumns(10);
 		txtEjercicioNumSeries.setBorder(null);
 		txtEjercicioNumSeries.setBackground(new Color(255, 140, 0));
-		txtEjercicioNumSeries.setBounds(1327, 162, 390, 19);
-		frame.getContentPane().add(txtEjercicioNumSeries);
+		txtEjercicioNumSeries.setBounds(1293, 172, 425, 19);
+		frmQuitagrasas.getContentPane().add(txtEjercicioNumSeries);
 
 		txtEjercicioRepeticiones = new JTextField();
 		txtEjercicioRepeticiones.setFont(new Font("Dialog", Font.BOLD, 14));
 		txtEjercicioRepeticiones.setColumns(10);
 		txtEjercicioRepeticiones.setBorder(null);
 		txtEjercicioRepeticiones.setBackground(new Color(255, 140, 0));
-		txtEjercicioRepeticiones.setBounds(1327, 220, 390, 19);
-		frame.getContentPane().add(txtEjercicioRepeticiones);
+		txtEjercicioRepeticiones.setBounds(1293, 230, 425, 19);
+		frmQuitagrasas.getContentPane().add(txtEjercicioRepeticiones);
 
 		txtEjercicioCarga = new JTextField();
 		txtEjercicioCarga.setFont(new Font("Dialog", Font.BOLD, 14));
 		txtEjercicioCarga.setColumns(10);
 		txtEjercicioCarga.setBorder(null);
 		txtEjercicioCarga.setBackground(new Color(255, 140, 0));
-		txtEjercicioCarga.setBounds(1327, 276, 390, 19);
-		frame.getContentPane().add(txtEjercicioCarga);
+		txtEjercicioCarga.setBounds(1293, 286, 425, 19);
+		frmQuitagrasas.getContentPane().add(txtEjercicioCarga);
 
 		txtEjercicioId = new JTextField();
 		txtEjercicioId.setOpaque(false);
@@ -539,7 +548,7 @@ public class App {
 		txtEjercicioId.setBorder(null);
 		txtEjercicioId.setBackground(new Color(255, 140, 0));
 		txtEjercicioId.setBounds(663, 22, 244, 19);
-		frame.getContentPane().add(txtEjercicioId);
+		frmQuitagrasas.getContentPane().add(txtEjercicioId);
 
 		/**
 		 * Tabla del Ejercicio.
@@ -581,12 +590,12 @@ public class App {
 		tableEjercicio.setBounds(471, 30, 1, 1);
 		tableEjercicio.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		tableEjercicio.setForeground(new Color(255, 102, 0));
-		tableEjercicio.setFont(new Font("Dialog", Font.BOLD, 12));
+		tableEjercicio.setFont(new Font("Dialog", Font.BOLD, 14));
 
 		JScrollPane scrollPaneEjercicio = new JScrollPane(tableEjercicio);
 		scrollPaneEjercicio.setOpaque(false);
-		scrollPaneEjercicio.setBounds(1202, 501, 515, 277);
-		frame.getContentPane().add(scrollPaneEjercicio);
+		scrollPaneEjercicio.setBounds(1169, 512, 549, 277);
+		frmQuitagrasas.getContentPane().add(scrollPaneEjercicio);
 		scrollPaneEjercicio.setBorder(new SoftBevelBorder(BevelBorder.RAISED, new Color(255, 102, 0),
 				new Color(255, 102, 0), new Color(255, 102, 0), new Color(255, 102, 0)));
 
@@ -621,8 +630,8 @@ public class App {
 				}
 			}
 		});
-		btnMostrarEjercicios.setBounds(616, 333, 174, 48);
-		frame.getContentPane().add(btnMostrarEjercicios);
+		btnMostrarEjercicios.setBounds(943, 264, 153, 48);
+		frmQuitagrasas.getContentPane().add(btnMostrarEjercicios);
 
 		/**
 		 * Botón para insertar un ejercicio en la BD.
@@ -672,8 +681,8 @@ public class App {
 		btnInsertarEjercicio.setIcon(new ImageIcon(App.class.getResource("/img/guardar.png")));
 		btnInsertarEjercicio.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnInsertarEjercicio.setBackground(new Color(255, 140, 0));
-		btnInsertarEjercicio.setBounds(1203, 313, 514, 48);
-		frame.getContentPane().add(btnInsertarEjercicio);
+		btnInsertarEjercicio.setBounds(1169, 333, 548, 48);
+		frmQuitagrasas.getContentPane().add(btnInsertarEjercicio);
 
 		/**
 		 * Botón para actualizar un ejercicio en la BD.
@@ -730,8 +739,8 @@ public class App {
 		btnActualizarEjercicio.setIcon(new ImageIcon(App.class.getResource("/img/actualizar.png")));
 		btnActualizarEjercicio.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnActualizarEjercicio.setBackground(new Color(255, 140, 0));
-		btnActualizarEjercicio.setBounds(1204, 373, 513, 48);
-		frame.getContentPane().add(btnActualizarEjercicio);
+		btnActualizarEjercicio.setBounds(1170, 393, 547, 48);
+		frmQuitagrasas.getContentPane().add(btnActualizarEjercicio);
 
 		/**
 		 * Botón para eliminar un ejercicio en la BD.
@@ -789,36 +798,45 @@ public class App {
 		btnEliminarEjercicio.setIcon(new ImageIcon(App.class.getResource("/img/eliminar.png")));
 		btnEliminarEjercicio.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnEliminarEjercicio.setBackground(new Color(255, 140, 0));
-		btnEliminarEjercicio.setBounds(1204, 436, 513, 48);
-		frame.getContentPane().add(btnEliminarEjercicio);
-		
+		btnEliminarEjercicio.setBounds(1170, 453, 547, 48);
+		frmQuitagrasas.getContentPane().add(btnEliminarEjercicio);
+
 		/*
-		 *  Tabla Rutina
+		 * Tabla Rutina.
+		 * 
 		 */
 		
+		JLabel lblRutina = new JLabel("Rutina");
+		lblRutina.setForeground(new Color(255, 140, 0));
+		lblRutina.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 42));
+		lblRutina.setBounds(812, 22, 153, 42);
+		frmQuitagrasas.getContentPane().add(lblRutina);
+
 		DefaultTableModel modelRutina = new DefaultTableModel();
-		
+
 		modelRutina.addColumn("Cliente");
 		modelRutina.addColumn("Ejercicio");
-		
+
 		List<Rutina> listaRutina = GymDAO.selectAllRutina();
-		
+
 		for (Rutina rutina : listaRutina) {
 			Object[] row = new Object[2];
 			row[0] = rutina.getNombreCliente();
 			row[1] = rutina.getNombreEjercicio();
 			modelRutina.addRow(row);
 		}
-		
+
 		JScrollPane scrollPaneRutina = new JScrollPane();
 		scrollPaneRutina.setOpaque(false);
 		scrollPaneRutina.setEnabled(false);
 		scrollPaneRutina.setBorder(new SoftBevelBorder(BevelBorder.RAISED, new Color(255, 102, 0),
 				new Color(255, 102, 0), new Color(255, 102, 0), new Color(255, 102, 0)));
-		scrollPaneRutina.setBounds(730, 512, 350, 279);
-		frame.getContentPane().add(scrollPaneRutina);
-		
+		scrollPaneRutina.setBounds(663, 333, 433, 458);
+		frmQuitagrasas.getContentPane().add(scrollPaneRutina);
+
 		tableRutina = new JTable(modelRutina);
+		tableRutina.setForeground(new Color(255, 102, 0));
+		tableRutina.setFont(new Font("Dialog", Font.BOLD, 14));
 		scrollPaneRutina.setViewportView(tableRutina);
 
 		JButton btnMostrarRutina = new JButton("");
@@ -827,24 +845,32 @@ public class App {
 		btnMostrarRutina.setBorder(null);
 		btnMostrarRutina.setVisible(false);
 		btnMostrarRutina.setFont(new Font("Dialog", Font.BOLD, 14));
+		btnMostrarRutina.setBounds(844, 267, 63, 45);
 		btnMostrarRutina.setBackground(UIManager.getColor("Button.background"));
 		btnMostrarRutina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				modelRutina.setRowCount(0);
-				
+
 				List<Rutina> listaRutina = GymDAO.selectAllRutina();
-				
+
 				for (Rutina rutina : listaRutina) {
 					Object[] row = new Object[2];
 					row[0] = rutina.getNombreCliente();
 					row[1] = rutina.getNombreEjercicio();
 					modelRutina.addRow(row);
 				}
-				
+
 			}
 		});
-		btnMostrarRutina.setBounds(846, 478, 89, 23);
-		frame.getContentPane().add(btnMostrarRutina);
+
+		/**
+		 * JLabel del Logo.
+		 */
+
+		JLabel lblLogo = new JLabel("");
+		lblLogo.setIcon(new ImageIcon(App.class.getResource("/img/log.png")));
+		lblLogo.setBounds(755, 101, 257, 211);
+		frmQuitagrasas.getContentPane().add(lblLogo);
 		
 		/**
 		 * JLabel del Fondo.
@@ -855,8 +881,7 @@ public class App {
 		lblFondo.setFont(new Font("Dialog", Font.BOLD, 14));
 		lblFondo.setForeground(new Color(0, 0, 0));
 		lblFondo.setIcon(new ImageIcon(App.class.getResource("/img/fondoGym.jpg")));
-		lblFondo.setBounds(0, -30, 1825, 864);
-		frame.getContentPane().add(lblFondo);
-
+		lblFondo.setBounds(0, -30, 1750, 867);
+		frmQuitagrasas.getContentPane().add(lblFondo);
 	}
 }

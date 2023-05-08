@@ -1,5 +1,12 @@
 package com.hibernate.util;
 
+/**
+ * 
+ * @author Lucas & Laura
+ * @version 08/05/2023
+ *
+ */
+
 import java.util.Properties;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
