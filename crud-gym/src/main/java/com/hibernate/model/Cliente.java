@@ -1,10 +1,14 @@
 package com.hibernate.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 /**
@@ -33,7 +37,13 @@ public class Cliente {
 	private double altura;
 	@Column(name = "peso")
 	private double peso;
+	/*
+	@ManyToMany(mappedBy = "clientes")
+	private List<Ejercicio> ejercicios = new ArrayList<>();
 
+	@ManyToMany(mappedBy = "clientes")
+	private List<Rutina> rutinas = new ArrayList<>();
+*/
 	/**
 	 * Constructor.
 	 */

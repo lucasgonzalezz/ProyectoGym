@@ -240,13 +240,19 @@ public class GymDAO {
 	 * @return rutina: Nombre del cliente junto con el ejercicio que debe realizar.
 	 */
 
+	@SuppressWarnings("unchecked")
 	public static List<Rutina> selectAllRutina() {
 		Transaction transaction = null;
 		List<Rutina> rutina = new ArrayList<>();
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+		Session session = null;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
 			transaction = session.beginTransaction();
 
-			String hql = "SELECT c.nombreCliente, e.nombreEjercicio FROM Cliente c INNER JOIN Ejercicio e";
+			String hql = "SELECT c.idCliente, e.idEjercicio, r.repeticionesReales, r.diaSemana FROM Cliente c "
+					+ "INNER JOIN Rutina r ON c.idCliente = r.idCliente "
+					+ "INNER JOIN Ejercicio e ON e.idEjercicio = r.idEjercicio "
+					+ "WHERE r.repeticionesReales <> 0 AND r.diaSemana IS NOT NULL";
 
 			TypedQuery<Object[]> hqlQuery = session.createQuery(hql, Object[].class);
 
@@ -254,8 +260,10 @@ public class GymDAO {
 
 			for (Object[] result : results) {
 				Rutina r = new Rutina();
-				r.setNombreCliente((String) result[0]);
-				r.setNombreEjercicio((String) result[1]);
+				r.setCliente((List<Cliente>) result[0]);
+				r.setEjercicio((List<Ejercicio>) result[1]);
+				r.setRepeticionesReales((int) result[2]);
+				r.setDiaSemana((String) result[3]);
 				rutina.add(r);
 			}
 
@@ -263,6 +271,10 @@ public class GymDAO {
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
+			}
+		} finally {
+			if (session != null) {
+				session.close();
 			}
 		}
 		return rutina;

@@ -1,5 +1,8 @@
 package com.hibernate.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Ejercicio: Datos del ejercicio.
  * 
@@ -13,6 +16,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -31,7 +35,13 @@ public class Ejercicio {
 	private int numeroRepeticiones;
 	@Column(name = "cargaKg")
 	private double cargaKg;
+	/*
+	 @ManyToMany(mappedBy = "ejercicios")
+	  private List<Cliente> clientes = new ArrayList<>();
 
+	  @ManyToMany(mappedBy = "ejercicios")
+	  private List<Rutina> rutinas = new ArrayList<>();
+*/
 	/**
 	 * Constructor.
 	 */

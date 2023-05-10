@@ -1,5 +1,8 @@
 package com.hibernate.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Rutina: Datos de la rutina.
  * 
@@ -13,22 +16,33 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+
+import jakarta.persistence.JoinColumn;
 
 @Entity
 @Table(name = "rutina")
 public class Rutina {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "fk_idCliente")
-	private int idCliente;
-	private String nombreCliente;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idRutina;
+	@Column(name = "repeticionesReales")
+	private int repeticionesReales;
+	@Column(name = "diaSemana")
+	private String diaSemana;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "fk_idEjercicio")
-	private int idEjercicio;
+	@ManyToMany
+	@JoinTable(name = "Rutina_Ejercicio", joinColumns = @JoinColumn(name = "fk_idEjercicio"), inverseJoinColumns = @JoinColumn(name = "fk_idCliente"))
+	private List<Cliente> clientes = new ArrayList<>();
+
+	@ManyToMany
+	@JoinTable(name = "Rutina_Cliente", joinColumns = @JoinColumn(name = "fk_idCliente"), inverseJoinColumns = @JoinColumn(name = "fk_idEjercicio"))
+	private List<Ejercicio> ejercicios = new ArrayList<>();
+
+	private String nombreCliente;
 	private String nombreEjercicio;
 
 	/**
@@ -46,10 +60,12 @@ public class Rutina {
 	 * @param idEjercicio
 	 */
 
-	public Rutina(int idCliente, int idEjercicio) {
+	public Rutina(List<Cliente> clientes, List<Ejercicio> ejercicios, int repeticionesReales, String diaSemana) {
 		super();
-		this.idCliente = idCliente;
-		this.idEjercicio = idEjercicio;
+		this.clientes = clientes;
+		this.ejercicios = ejercicios;
+		this.repeticionesReales = repeticionesReales;
+		this.diaSemana = diaSemana;
 	}
 
 	/**
@@ -58,18 +74,19 @@ public class Rutina {
 	 * @return idCliente: Devuelve el ID del cliente.
 	 */
 
-	public int getIdCliente() {
-		return idCliente;
+	public List<Cliente> getCliente() {
+		return clientes;
 	}
 
 	/**
 	 * Setter.
+	 * @param clientes 
 	 * 
 	 * @param idCliente: Establece el valor de ID del cliente.
 	 */
 
-	void setIdCliente(int idCliente) {
-		this.idCliente = idCliente;
+	public void setCliente(List<Cliente> clientes) {
+		this.clientes = clientes;
 	}
 
 	/**
@@ -78,8 +95,8 @@ public class Rutina {
 	 * @return idEjercicio: Devuelve el ID del ejercicio.
 	 */
 
-	public int getIdEjercicio() {
-		return idEjercicio;
+	public List<Ejercicio> getEjercicio() {
+		return ejercicios;
 	}
 
 	/**
@@ -88,8 +105,8 @@ public class Rutina {
 	 * @param idEjercicio: Establece el valor de ID del ejercicio.
 	 */
 
-	void setIdEjercicio(int idEjercicio) {
-		this.idEjercicio = idEjercicio;
+	public void setEjercicio(List<Ejercicio> ejercicios) {
+		this.ejercicios = ejercicios;
 	}
 
 	/**
@@ -130,6 +147,46 @@ public class Rutina {
 
 	public void setNombreEjercicio(String nombreEjercicio) {
 		this.nombreEjercicio = nombreEjercicio;
+	}
+	
+	/**
+	 * Getter.
+	 * 
+	 * @return repeticionesReales: Devuelve el número de repeticones reales que ha realizado.
+	 */
+
+	public int getRepeticionesReales() {
+		return repeticionesReales;
+	}
+
+	/**
+	 * Setter.
+	 * 
+	 * @param repeticionesReales: Establece el número real de repeticiones que ha realizado.
+	 */
+
+	public void setRepeticionesReales(int repeticionesReales) {
+		this.repeticionesReales = repeticionesReales;
+	}
+	
+	/**
+	 * Getter.
+	 * 
+	 * @return diaSemana: Devuelve el día de la semana.
+	 */
+
+	public String getDiaSemana() {
+		return diaSemana;
+	}
+
+	/**
+	 * Setter.
+	 * 
+	 * @param diaSemana: Establece el día de la semana.
+	 */
+
+	public void setDiaSemana(String diaSemana) {
+		this.diaSemana = diaSemana;
 	}
 
 }
