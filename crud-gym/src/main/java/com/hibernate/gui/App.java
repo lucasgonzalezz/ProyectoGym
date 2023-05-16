@@ -11,10 +11,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import com.hibernate.dao.GymDAO;
+
+import org.hibernate.Session;
+
+import com.hibernate.dao.DAOCliente;
+import com.hibernate.dao.DAOEjercicio;
 import com.hibernate.model.Cliente;
 import com.hibernate.model.Ejercicio;
-import com.hibernate.model.Rutina;
+import com.hibernate.util.HibernateUtil;
 
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
@@ -59,9 +63,11 @@ public class App {
 	int ejercicioRepeticiones = 0;
 	double ejercicioCarga = 0.0;
 
-	GymDAO gymDAO = new GymDAO();
+	DAOCliente clienteDAO = new DAOCliente();
+	DAOEjercicio ejercicioDAO = new DAOEjercicio();
 	private JTable tableRutina;
-	private JTextField txtRepeticionesReales;
+	private JTextField txtClienteRutina;
+	private JTextField txtEjercicioRutina;
 
 	/**
 	 * Launch the application.
@@ -101,51 +107,55 @@ public class App {
 		 * Jlabel del Cliente.
 		 */
 		
+		txtEjercicioRutina = new JTextField();
+		txtEjercicioRutina.setForeground(Color.BLACK);
+		txtEjercicioRutina.setFont(new Font("Dialog", Font.BOLD, 14));
+		txtEjercicioRutina.setColumns(10);
+		txtEjercicioRutina.setBorder(null);
+		txtEjercicioRutina.setBackground(new Color(255, 140, 0));
+		txtEjercicioRutina.setBounds(812, 164, 268, 19);
+		frame.getContentPane().add(txtEjercicioRutina);
+		
+		txtClienteRutina = new JTextField();
+		txtClienteRutina.setForeground(Color.BLACK);
+		txtClienteRutina.setFont(new Font("Dialog", Font.BOLD, 14));
+		txtClienteRutina.setColumns(10);
+		txtClienteRutina.setBorder(null);
+		txtClienteRutina.setBackground(new Color(255, 140, 0));
+		txtClienteRutina.setBounds(812, 118, 273, 19);
+		frame.getContentPane().add(txtClienteRutina);
+
 		JLabel lblClienteRutina = new JLabel("Cliente:");
 		lblClienteRutina.setForeground(new Color(255, 140, 0));
 		lblClienteRutina.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblClienteRutina.setBounds(730, 80, 89, 15);
+		lblClienteRutina.setBounds(730, 119, 89, 15);
 		frame.getContentPane().add(lblClienteRutina);
-		
-		JComboBox comboBoxClienteRutina = new JComboBox();
-		comboBoxClienteRutina.setBounds(929, 75, 151, 24);
-		frame.getContentPane().add(comboBoxClienteRutina);
-		
+
 		JLabel lblEjercicioRutina = new JLabel("Ejercicio:");
 		lblEjercicioRutina.setForeground(new Color(255, 140, 0));
 		lblEjercicioRutina.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblEjercicioRutina.setBounds(730, 129, 89, 15);
+		lblEjercicioRutina.setBounds(730, 168, 89, 15);
 		frame.getContentPane().add(lblEjercicioRutina);
-		
-		JComboBox comboBoxEjercicioRutina = new JComboBox();
-		comboBoxEjercicioRutina.setBounds(929, 124, 151, 24);
-		frame.getContentPane().add(comboBoxEjercicioRutina);
-		
-		JLabel lblRepeticionesReales = new JLabel("Repeticiones:");
-		lblRepeticionesReales.setForeground(new Color(255, 140, 0));
-		lblRepeticionesReales.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblRepeticionesReales.setBounds(730, 168, 140, 15);
-		frame.getContentPane().add(lblRepeticionesReales);
-		
-		txtRepeticionesReales = new JTextField();
-		txtRepeticionesReales.setColumns(10);
-		txtRepeticionesReales.setBounds(929, 163, 151, 24);
-		frame.getContentPane().add(txtRepeticionesReales);
-		
-		JLabel lblDiaSemana = new JLabel("Dia:");
-		lblDiaSemana.setForeground(new Color(255, 140, 0));
-		lblDiaSemana.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblDiaSemana.setBounds(730, 208, 89, 15);
-		frame.getContentPane().add(lblDiaSemana);
-		
-		JComboBox comboBoxDiaSemana = new JComboBox();
-		comboBoxDiaSemana.setBounds(929, 203, 151, 24);
-		frame.getContentPane().add(comboBoxDiaSemana);
-		
+
 		JButton btnInsertarRutina = new JButton("  Insertar");
+		btnInsertarRutina.setForeground(Color.BLACK);
+		btnInsertarRutina.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnInsertarRutina.setBackground(new Color(255, 153, 0));
+		btnInsertarRutina.setBorder(null);
+		btnInsertarRutina.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				Cliente c = DAOCliente.selectClienteById(txtClienteRutina.getText());
+				Ejercicio e = DAOEjercicio.selectEjercicioById(txtEjercicioRutina.getText());
+
+				c.anyadirEjercicio(e);
+				DAOCliente.updateCliente(c);
+
+			}
+		});
 		btnInsertarRutina.setBounds(730, 247, 350, 48);
 		frame.getContentPane().add(btnInsertarRutina);
-		
+
 		JLabel lblRutina = new JLabel("Rutina");
 		lblRutina.setForeground(new Color(255, 140, 0));
 		lblRutina.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 42));
@@ -263,7 +273,7 @@ public class App {
 		modelCliente.addColumn("Altura");
 		modelCliente.addColumn("Peso");
 
-		List<Cliente> listaClientes = GymDAO.selectAllClientes();
+		List<Cliente> listaClientes = DAOCliente.selectAllClientes();
 
 		for (Cliente cliente : listaClientes) {
 			Object[] row = new Object[6];
@@ -284,6 +294,7 @@ public class App {
 				TableModel modelCliente = tableCliente.getModel();
 				txtClienteId.setText(modelCliente.getValueAt(index, 0).toString());
 				txtClienteNombre.setText(modelCliente.getValueAt(index, 1).toString());
+				txtClienteRutina.setText(modelCliente.getValueAt(index, 1).toString());
 				txtClienteApellidos.setText(modelCliente.getValueAt(index, 2).toString());
 				txtClienteEdad.setText(modelCliente.getValueAt(index, 3).toString());
 				txtClienteAltura.setText(modelCliente.getValueAt(index, 4).toString());
@@ -322,7 +333,7 @@ public class App {
 			public void actionPerformed(ActionEvent arg0) {
 				modelCliente.setRowCount(0);
 
-				List<Cliente> listaClientes = GymDAO.selectAllClientes();
+				List<Cliente> listaClientes = DAOCliente.selectAllClientes();
 				for (Cliente clientes : listaClientes) {
 					Object[] row = new Object[6];
 					row[0] = clientes.getIdCliente();
@@ -379,7 +390,7 @@ public class App {
 
 				Cliente c = new Cliente(clienteNombre, clienteApellido, clienteEdad, clienteAltura, clientePeso);
 
-				GymDAO.insertCliente(c);
+				DAOCliente.insertCliente(c);
 
 				btnMostrarClientes.doClick();
 
@@ -436,7 +447,7 @@ public class App {
 				}
 
 				clienteId = Integer.parseInt(txtClienteId.getText());
-				Cliente c = GymDAO.selectClienteById(clienteId);
+				Cliente c = DAOCliente.selectClienteById(clienteId);
 
 				c.setNombreCliente(clienteNombre);
 				c.setApellidos(clienteApellido);
@@ -444,7 +455,7 @@ public class App {
 				c.setAltura(clienteAltura);
 				c.setPeso(clientePeso);
 
-				GymDAO.updateCliente(c);
+				DAOCliente.updateCliente(c);
 
 				btnMostrarClientes.doClick();
 
@@ -501,7 +512,7 @@ public class App {
 				}
 
 				clienteId = Integer.parseInt(txtClienteId.getText());
-				GymDAO.deleteCliente(clienteId);
+				DAOCliente.deleteCliente(clienteId);
 
 				btnMostrarClientes.doClick();
 
@@ -602,7 +613,7 @@ public class App {
 		modelEjercicio.addColumn("Repeticiones");
 		modelEjercicio.addColumn("KG");
 
-		List<Ejercicio> listaEjercicios = GymDAO.selectAllEjercicios();
+		List<Ejercicio> listaEjercicios = DAOEjercicio.selectAllEjercicios();
 
 		for (Ejercicio ejercicio : listaEjercicios) {
 			Object[] row = new Object[5];
@@ -634,7 +645,7 @@ public class App {
 
 		JScrollPane scrollPaneEjercicio = new JScrollPane(tableEjercicio);
 		scrollPaneEjercicio.setOpaque(false);
-		scrollPaneEjercicio.setBounds(1202, 501, 515, 277);
+		scrollPaneEjercicio.setBounds(1202, 512, 515, 277);
 		frame.getContentPane().add(scrollPaneEjercicio);
 		scrollPaneEjercicio.setBorder(new SoftBevelBorder(BevelBorder.RAISED, new Color(255, 102, 0),
 				new Color(255, 102, 0), new Color(255, 102, 0), new Color(255, 102, 0)));
@@ -658,7 +669,7 @@ public class App {
 			public void actionPerformed(ActionEvent arg0) {
 				modelEjercicio.setRowCount(0);
 
-				List<Ejercicio> listaEjercicios = GymDAO.selectAllEjercicios();
+				List<Ejercicio> listaEjercicios = DAOEjercicio.selectAllEjercicios();
 				for (Ejercicio ejercicios : listaEjercicios) {
 					Object[] row = new Object[5];
 					row[0] = ejercicios.getIdEjercicio();
@@ -708,7 +719,7 @@ public class App {
 				}
 
 				Ejercicio e = new Ejercicio(ejercicioNombre, ejercicioNumSeries, ejercicioRepeticiones, ejercicioCarga);
-				GymDAO.insertEjercicio(e);
+				DAOEjercicio.insertEjercicio(e);
 
 				btnMostrarEjercicios.doClick();
 
@@ -759,14 +770,14 @@ public class App {
 				}
 
 				ejercicioId = Integer.parseInt(txtEjercicioId.getText());
-				Ejercicio e = GymDAO.selectEjercicioById(ejercicioId);
+				Ejercicio e = DAOEjercicio.selectEjercicioById(ejercicioId);
 
 				e.setNombreEjercicio(ejercicioNombre);
 				e.setNumeroSeries(ejercicioNumSeries);
 				e.setNumeroRepeticiones(ejercicioRepeticiones);
 				e.setCargaKg(ejercicioCarga);
 
-				GymDAO.updateEjercicio(e);
+				DAOEjercicio.updateEjercicio(e);
 
 				btnMostrarEjercicios.doClick();
 
@@ -817,7 +828,7 @@ public class App {
 				}
 
 				ejercicioId = Integer.parseInt(txtEjercicioId.getText());
-				Ejercicio e = GymDAO.selectEjercicioById(ejercicioId);
+				Ejercicio e = DAOEjercicio.selectEjercicioById(ejercicioId);
 
 				e.setNombreEjercicio(ejercicioNombre);
 				e.setNumeroSeries(ejercicioNumSeries);
@@ -825,7 +836,7 @@ public class App {
 				e.setCargaKg(ejercicioCarga);
 
 				ejercicioId = Integer.parseInt(txtEjercicioId.getText());
-				GymDAO.deleteEjercicio(ejercicioId);
+				DAOEjercicio.deleteEjercicio(ejercicioId);
 
 				btnMostrarEjercicios.doClick();
 
@@ -840,30 +851,32 @@ public class App {
 		btnEliminarEjercicio.setBackground(new Color(255, 140, 0));
 		btnEliminarEjercicio.setBounds(1204, 436, 513, 48);
 		frame.getContentPane().add(btnEliminarEjercicio);
-		
+
 		/*
-		 *  Tabla Rutina.
+		 * Tabla Rutina.
 		 */
-		
-		
+
 		DefaultTableModel modelRutina = new DefaultTableModel();
-		
+
 		modelRutina.addColumn("Cliente");
 		modelRutina.addColumn("Ejercicio");
-		modelRutina.addColumn("Repeticiones Reales");
-		modelRutina.addColumn("Dia Semana");
-		
-		List<Rutina> listaRutina = GymDAO.selectAllRutina();
-		
-		for (Rutina rutina : listaRutina) {
-			Object[] row = new Object[4];
-			row[0] = rutina.getCliente();
-			row[1] = rutina.getEjercicio();
-			row[2] = rutina.getRepeticionesReales();
-			row[3] = rutina.getDiaSemana();
-			modelRutina.addRow(row);
+
+		modelRutina.setRowCount(0);
+		List<Cliente> clientes = DAOCliente.selectAllClientes();
+
+		for (Cliente c : clientes) {
+			List<Ejercicio> ejercicioCliente = c.getEjercicios();
+
+			for (Ejercicio ejer : ejercicioCliente) {
+				Object[] row = new Object[2];
+
+				row[0] = c.getNombreCliente();
+				row[1] = ejer.getNombreEjercicio();
+				modelRutina.addRow(row);
+			}
+
 		}
-		
+
 		JScrollPane scrollPaneRutina = new JScrollPane();
 		scrollPaneRutina.setOpaque(false);
 		scrollPaneRutina.setEnabled(false);
@@ -871,7 +884,7 @@ public class App {
 				new Color(255, 102, 0), new Color(255, 102, 0), new Color(255, 102, 0)));
 		scrollPaneRutina.setBounds(730, 314, 350, 477);
 		frame.getContentPane().add(scrollPaneRutina);
-		
+
 		tableRutina = new JTable(modelRutina);
 		scrollPaneRutina.setViewportView(tableRutina);
 
@@ -885,23 +898,12 @@ public class App {
 		btnMostrarRutina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				modelRutina.setRowCount(0);
-				
-				List<Rutina> listaRutina = GymDAO.selectAllRutina();
-				
-				for (Rutina rutina : listaRutina) {
-					Object[] row = new Object[4];
-					row[0] = rutina.getCliente();
-					row[1] = rutina.getEjercicio();
-					row[2] = rutina.getRepeticionesReales();
-					row[3] = rutina.getDiaSemana();
-					modelRutina.addRow(row);
-				}
-				
+
 			}
 		});
 		btnMostrarRutina.setBounds(846, 478, 89, 23);
 		frame.getContentPane().add(btnMostrarRutina);
-		
+
 		/**
 		 * JLabel del Fondo.
 		 */

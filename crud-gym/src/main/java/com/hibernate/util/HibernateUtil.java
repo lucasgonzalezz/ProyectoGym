@@ -15,7 +15,6 @@ import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 import com.hibernate.model.Cliente;
 import com.hibernate.model.Ejercicio;
-import com.hibernate.model.Rutina;
 
 public class HibernateUtil {
 
@@ -37,8 +36,7 @@ public class HibernateUtil {
 
 				configuration.setProperties(settings);
 
-				configuration.addAnnotatedClass(Cliente.class);
-				configuration.addAnnotatedClass(Rutina.class);
+				configuration.addAnnotatedClass(Cliente.class);;
 				configuration.addAnnotatedClass(Ejercicio.class);
 
 				ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()

@@ -3,13 +3,18 @@ package com.hibernate.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.JoinColumn;
 
 /**
  * Cliente: Datos del cliente.
@@ -37,13 +42,16 @@ public class Cliente {
 	private double altura;
 	@Column(name = "peso")
 	private double peso;
-	/*
-	@ManyToMany(mappedBy = "clientes")
-	private List<Ejercicio> ejercicios = new ArrayList<>();
-
-	@ManyToMany(mappedBy = "clientes")
-	private List<Rutina> rutinas = new ArrayList<>();
-*/
+	
+	@Fetch(FetchMode.JOIN)
+	@ManyToMany    //(cascade = CascadeType.ALL)
+	@JoinTable(
+			name="cliente_ejercicio",  //Se crea automaticamente...
+			joinColumns = @JoinColumn(name = "idCliente"),
+		    inverseJoinColumns = @JoinColumn(name = "idEjercicio")
+			  )
+	private List<Ejercicio> ejercicios=new ArrayList<Ejercicio>();
+	
 	/**
 	 * Constructor.
 	 */
@@ -189,6 +197,24 @@ public class Cliente {
 
 	public void setPeso(double peso) {
 		this.peso = peso;
+	}
+	
+	public List<Ejercicio> getEjercicios() {
+		return ejercicios;
+	}
+
+	public void setEjercicios(List<Ejercicio> ejercicios) {
+		this.ejercicios = ejercicios;
+	}
+	
+	public void anyadirEjercicio(Ejercicio e) {
+		this.ejercicios.add(e);
+		e.getClientes().add(this);
+	}
+	
+	public void quitarEjercicio(Ejercicio e) {
+		this.ejercicios.remove(e);
+		e.getClientes().remove(this);
 	}
 
 }
