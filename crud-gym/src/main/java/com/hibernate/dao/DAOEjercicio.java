@@ -21,6 +21,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 public class DAOEjercicio {
 
@@ -128,4 +129,22 @@ public class DAOEjercicio {
 		return ejercicios;
 	}
 
+	public static Ejercicio selectEjercicio(String ejer) {
+
+		Transaction transaction = null;
+		Ejercicio e = null;
+
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			transaction = session.beginTransaction();
+			Query<Ejercicio> query = session.createQuery("FROM Ejercicio WHERE nombreEjercicio=:ejercicio", Ejercicio.class);
+			query.setParameter("ejercicio", ejer);
+			e = query.uniqueResult();
+		} catch (Exception e1) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+		}
+		return e;
+	}
+	
 }

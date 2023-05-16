@@ -7,9 +7,16 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Color;
+import java.awt.Component;
+
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
 import org.hibernate.Session;
@@ -26,6 +33,8 @@ import java.awt.Font;
 import javax.swing.UIManager;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
@@ -95,6 +104,7 @@ public class App {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	@SuppressWarnings("serial")
 	private void initialize() {
 
 		frame = new JFrame();
@@ -109,97 +119,78 @@ public class App {
 		
 		txtEjercicioRutina = new JTextField();
 		txtEjercicioRutina.setForeground(Color.BLACK);
-		txtEjercicioRutina.setFont(new Font("Dialog", Font.BOLD, 14));
+		txtEjercicioRutina.setFont(new Font("Dialog", Font.BOLD, 16));
 		txtEjercicioRutina.setColumns(10);
 		txtEjercicioRutina.setBorder(null);
 		txtEjercicioRutina.setBackground(new Color(255, 140, 0));
-		txtEjercicioRutina.setBounds(812, 164, 268, 19);
+		txtEjercicioRutina.setBounds(758, 150, 352, 19);
 		frame.getContentPane().add(txtEjercicioRutina);
 		
 		txtClienteRutina = new JTextField();
 		txtClienteRutina.setForeground(Color.BLACK);
-		txtClienteRutina.setFont(new Font("Dialog", Font.BOLD, 14));
+		txtClienteRutina.setFont(new Font("Dialog", Font.BOLD, 16));
 		txtClienteRutina.setColumns(10);
 		txtClienteRutina.setBorder(null);
 		txtClienteRutina.setBackground(new Color(255, 140, 0));
-		txtClienteRutina.setBounds(812, 118, 273, 19);
+		txtClienteRutina.setBounds(758, 101, 352, 19);
 		frame.getContentPane().add(txtClienteRutina);
 
 		JLabel lblClienteRutina = new JLabel("Cliente:");
 		lblClienteRutina.setForeground(new Color(255, 140, 0));
-		lblClienteRutina.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblClienteRutina.setBounds(730, 119, 89, 15);
+		lblClienteRutina.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblClienteRutina.setBounds(663, 102, 89, 15);
 		frame.getContentPane().add(lblClienteRutina);
 
 		JLabel lblEjercicioRutina = new JLabel("Ejercicio:");
 		lblEjercicioRutina.setForeground(new Color(255, 140, 0));
-		lblEjercicioRutina.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblEjercicioRutina.setBounds(730, 168, 89, 15);
+		lblEjercicioRutina.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblEjercicioRutina.setBounds(663, 151, 89, 15);
 		frame.getContentPane().add(lblEjercicioRutina);
-
-		JButton btnInsertarRutina = new JButton("  Insertar");
-		btnInsertarRutina.setForeground(Color.BLACK);
-		btnInsertarRutina.setFont(new Font("Dialog", Font.BOLD, 16));
-		btnInsertarRutina.setBackground(new Color(255, 153, 0));
-		btnInsertarRutina.setBorder(null);
-		btnInsertarRutina.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-
-				Cliente c = DAOCliente.selectClienteById(txtClienteRutina.getText());
-				Ejercicio e = DAOEjercicio.selectEjercicioById(txtEjercicioRutina.getText());
-
-				c.anyadirEjercicio(e);
-				DAOCliente.updateCliente(c);
-
-			}
-		});
-		btnInsertarRutina.setBounds(730, 247, 350, 48);
-		frame.getContentPane().add(btnInsertarRutina);
-
+		
 		JLabel lblRutina = new JLabel("Rutina");
 		lblRutina.setForeground(new Color(255, 140, 0));
-		lblRutina.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 42));
-		lblRutina.setBounds(828, 22, 163, 42);
+		lblRutina.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 56));
+		lblRutina.setBounds(783, 21, 199, 54);
 		frame.getContentPane().add(lblRutina);
 
 		JLabel lblClienteNombre = new JLabel("Nombre:");
-		lblClienteNombre.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblClienteNombre.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblClienteNombre.setForeground(new Color(255, 140, 0));
 		lblClienteNombre.setBounds(28, 92, 117, 35);
 		frame.getContentPane().add(lblClienteNombre);
 
 		JLabel lblTablaCliente = new JLabel("Cliente");
 		lblTablaCliente.setForeground(new Color(255, 140, 0));
-		lblTablaCliente.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 42));
-		lblTablaCliente.setBounds(235, 22, 196, 42);
+		lblTablaCliente.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 56));
+		lblTablaCliente.setBounds(218, 21, 199, 55);
 		frame.getContentPane().add(lblTablaCliente);
 
 		JLabel lblTablaEjercicio = new JLabel("Ejercicio");
 		lblTablaEjercicio.setForeground(new Color(255, 140, 0));
-		lblTablaEjercicio.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 38));
-		lblTablaEjercicio.setBounds(1411, 23, 183, 42);
+		lblTablaEjercicio.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 56));
+		lblTablaEjercicio.setBounds(1369, 13, 257, 70);
 		frame.getContentPane().add(lblTablaEjercicio);
 
 		JLabel lblClienteApellidos = new JLabel("Apellidos:");
-		lblClienteApellidos.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblClienteApellidos.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblClienteApellidos.setForeground(new Color(255, 140, 0));
 		lblClienteApellidos.setBounds(28, 136, 117, 35);
 		frame.getContentPane().add(lblClienteApellidos);
 
 		JLabel lblClienteEdad = new JLabel("Edad:");
-		lblClienteEdad.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblClienteEdad.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblClienteEdad.setForeground(new Color(255, 140, 0));
 		lblClienteEdad.setBounds(28, 183, 117, 35);
 		frame.getContentPane().add(lblClienteEdad);
 
 		JLabel lblClienteAltura = new JLabel("Altura:");
-		lblClienteAltura.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblClienteAltura.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblClienteAltura.setForeground(new Color(255, 140, 0));
 		lblClienteAltura.setBounds(28, 230, 117, 35);
 		frame.getContentPane().add(lblClienteAltura);
 
 		JLabel lblClientePeso = new JLabel("Peso:");
-		lblClientePeso.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblClientePeso.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblClientePeso.setForeground(new Color(255, 140, 0));
 		lblClientePeso.setBounds(28, 277, 117, 35);
 		frame.getContentPane().add(lblClientePeso);
@@ -209,7 +200,7 @@ public class App {
 		 */
 
 		txtClienteNombre = new JTextField();
-		txtClienteNombre.setFont(new Font("Dialog", Font.BOLD, 14));
+		txtClienteNombre.setFont(new Font("Dialog", Font.BOLD, 16));
 		txtClienteNombre.setForeground(new Color(0, 0, 0));
 		txtClienteNombre.setBackground(new Color(255, 140, 0));
 		txtClienteNombre.setBorder(null);
@@ -218,7 +209,7 @@ public class App {
 		txtClienteNombre.setColumns(10);
 
 		txtClienteApellidos = new JTextField();
-		txtClienteApellidos.setFont(new Font("Dialog", Font.BOLD, 12));
+		txtClienteApellidos.setFont(new Font("Dialog", Font.BOLD, 16));
 		txtClienteApellidos.setBackground(new Color(255, 140, 0));
 		txtClienteApellidos.setBorder(null);
 		txtClienteApellidos.setColumns(10);
@@ -226,7 +217,7 @@ public class App {
 		frame.getContentPane().add(txtClienteApellidos);
 
 		txtClienteEdad = new JTextField();
-		txtClienteEdad.setFont(new Font("Dialog", Font.BOLD, 14));
+		txtClienteEdad.setFont(new Font("Dialog", Font.BOLD, 16));
 		txtClienteEdad.setBorder(null);
 		txtClienteEdad.setBackground(new Color(255, 140, 0));
 		txtClienteEdad.setColumns(10);
@@ -234,7 +225,7 @@ public class App {
 		frame.getContentPane().add(txtClienteEdad);
 
 		txtClienteAltura = new JTextField();
-		txtClienteAltura.setFont(new Font("Dialog", Font.BOLD, 14));
+		txtClienteAltura.setFont(new Font("Dialog", Font.BOLD, 16));
 		txtClienteAltura.setBackground(new Color(255, 140, 0));
 		txtClienteAltura.setBorder(null);
 		txtClienteAltura.setColumns(10);
@@ -242,7 +233,7 @@ public class App {
 		frame.getContentPane().add(txtClienteAltura);
 
 		txtClientePeso = new JTextField();
-		txtClientePeso.setFont(new Font("Dialog", Font.BOLD, 14));
+		txtClientePeso.setFont(new Font("Dialog", Font.BOLD, 16));
 		txtClientePeso.setBorder(null);
 		txtClientePeso.setBackground(new Color(255, 140, 0));
 		txtClientePeso.setColumns(10);
@@ -264,8 +255,13 @@ public class App {
 		 * Tabla del Cliente.
 		 */
 
-		DefaultTableModel modelCliente = new DefaultTableModel();
-
+		DefaultTableModel modelCliente = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Hacer que todas las celdas no sean editables
+            }
+        };
+        
 		modelCliente.addColumn("ID");
 		modelCliente.addColumn("Nombre");
 		modelCliente.addColumn("Apellidos");
@@ -304,15 +300,43 @@ public class App {
 		tableCliente.setBounds(81, 45, 1, 1);
 		tableCliente.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		tableCliente.setForeground(new Color(255, 102, 0));
-		tableCliente.setFont(new Font("Dialog", Font.BOLD, 12));
+		tableCliente.setFont(new Font("Dialog", Font.BOLD, 16));
+		
+		tableCliente.setRowHeight(25);
+		
+		TableColumnModel columnModel = tableCliente.getColumnModel();
+		TableColumn column0 = columnModel.getColumn(0);
+        column0.setPreferredWidth(20);
+        TableColumn column1 = columnModel.getColumn(1);
+        column1.setPreferredWidth(100);
+        TableColumn column2 = columnModel.getColumn(2);
+        column2.setPreferredWidth(180);
+        TableColumn column3 = columnModel.getColumn(3);
+        column3.setPreferredWidth(45);
+        TableColumn column4 = columnModel.getColumn(4);
+        column4.setPreferredWidth(45);
+        TableColumn column5 = columnModel.getColumn(5);
+        column5.setPreferredWidth(45);
+        
+        DefaultTableCellRenderer cellRenderer = (DefaultTableCellRenderer) tableCliente.getDefaultRenderer(Object.class);
+        cellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        
+        JTableHeader header = tableCliente.getTableHeader();
+        header.setPreferredSize(new java.awt.Dimension(header.getWidth(), 35));
+        
+        DefaultTableCellRenderer headerRenderer = new DefaultTableCellRenderer();
+        headerRenderer.setBackground(new Color(255, 102, 0));
+        headerRenderer.setForeground(Color.BLACK);
+        headerRenderer.setFont(headerRenderer.getFont().deriveFont(Font.BOLD, 16));
+        headerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        header.setDefaultRenderer(headerRenderer);
 
 		JScrollPane scrollPaneCliente = new JScrollPane(tableCliente);
 		scrollPaneCliente.setOpaque(false);
 		scrollPaneCliente.setEnabled(false);
-		scrollPaneCliente.setBounds(28, 512, 534, 279);
+		scrollPaneCliente.setBounds(28, 524, 534, 284);
 		frame.getContentPane().add(scrollPaneCliente);
-		scrollPaneCliente.setBorder(new SoftBevelBorder(BevelBorder.RAISED, new Color(255, 102, 0),
-				new Color(255, 102, 0), new Color(255, 102, 0), new Color(255, 102, 0)));
+		scrollPaneCliente.setBorder(null);
 
 		/**
 		 * Botones del Cliente.
@@ -354,6 +378,7 @@ public class App {
 		 */
 
 		JButton btnInsertarCliente = new JButton("  Insertar");
+		btnInsertarCliente.setForeground(Color.BLACK);
 		btnInsertarCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -402,7 +427,7 @@ public class App {
 			}
 		});
 		btnInsertarCliente.setIcon(new ImageIcon(App.class.getResource("/img/guardar.png")));
-		btnInsertarCliente.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnInsertarCliente.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnInsertarCliente.setBackground(new Color(255, 140, 0));
 		btnInsertarCliente.setBounds(28, 333, 534, 48);
 		frame.getContentPane().add(btnInsertarCliente);
@@ -411,7 +436,8 @@ public class App {
 		 * Botón para actualizar un cliente en la BD.
 		 */
 
-		JButton btnActualizarCliente = new JButton("  Actualizar");
+		JButton btnActualizarCliente = new JButton(" Actualizar");
+		btnActualizarCliente.setForeground(Color.BLACK);
 		btnActualizarCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -467,7 +493,7 @@ public class App {
 			}
 		});
 		btnActualizarCliente.setIcon(new ImageIcon(App.class.getResource("/img/actualizar.png")));
-		btnActualizarCliente.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnActualizarCliente.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnActualizarCliente.setBackground(new Color(255, 140, 0));
 		btnActualizarCliente.setBounds(28, 393, 534, 48);
 		frame.getContentPane().add(btnActualizarCliente);
@@ -476,7 +502,8 @@ public class App {
 		 * Botón para eliminar un cliente en la BD.
 		 */
 
-		JButton btnEliminarCliente = new JButton("Eliminar");
+		JButton btnEliminarCliente = new JButton(" Eliminar");
+		btnEliminarCliente.setForeground(Color.BLACK);
 		btnEliminarCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -525,7 +552,7 @@ public class App {
 		});
 		btnEliminarCliente.setIcon(new ImageIcon(App.class.getResource("/img/eliminar.png")));
 		btnEliminarCliente.setBackground(new Color(255, 140, 0));
-		btnEliminarCliente.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnEliminarCliente.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnEliminarCliente.setBounds(28, 453, 534, 48);
 		frame.getContentPane().add(btnEliminarCliente);
 
@@ -535,59 +562,59 @@ public class App {
 
 		JLabel lblEjercicioNombre = new JLabel("Nombre:");
 		lblEjercicioNombre.setForeground(new Color(255, 140, 0));
-		lblEjercicioNombre.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblEjercicioNombre.setBounds(1203, 92, 117, 35);
+		lblEjercicioNombre.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblEjercicioNombre.setBounds(1203, 102, 117, 35);
 		frame.getContentPane().add(lblEjercicioNombre);
 
 		JLabel lblEjercicioNumSeries = new JLabel("Nº Series:");
 		lblEjercicioNumSeries.setForeground(new Color(255, 140, 0));
-		lblEjercicioNumSeries.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblEjercicioNumSeries.setBounds(1203, 153, 117, 35);
+		lblEjercicioNumSeries.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblEjercicioNumSeries.setBounds(1203, 163, 117, 35);
 		frame.getContentPane().add(lblEjercicioNumSeries);
 
 		JLabel lblRepeticiones = new JLabel("Repeticiones:");
 		lblRepeticiones.setForeground(new Color(255, 140, 0));
-		lblRepeticiones.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblRepeticiones.setBounds(1203, 213, 140, 35);
+		lblRepeticiones.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblRepeticiones.setBounds(1203, 223, 140, 35);
 		frame.getContentPane().add(lblRepeticiones);
 
 		JLabel lblEjercicioCarga = new JLabel("Cargar (kg):");
 		lblEjercicioCarga.setForeground(new Color(255, 140, 0));
-		lblEjercicioCarga.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblEjercicioCarga.setBounds(1207, 267, 117, 35);
+		lblEjercicioCarga.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblEjercicioCarga.setBounds(1207, 277, 117, 35);
 		frame.getContentPane().add(lblEjercicioCarga);
 
 		txtEjercicioNombre = new JTextField();
 		txtEjercicioNombre.setForeground(Color.BLACK);
-		txtEjercicioNombre.setFont(new Font("Dialog", Font.BOLD, 14));
+		txtEjercicioNombre.setFont(new Font("Dialog", Font.BOLD, 16));
 		txtEjercicioNombre.setColumns(10);
 		txtEjercicioNombre.setBorder(null);
 		txtEjercicioNombre.setBackground(new Color(255, 140, 0));
-		txtEjercicioNombre.setBounds(1327, 98, 390, 19);
+		txtEjercicioNombre.setBounds(1338, 108, 379, 19);
 		frame.getContentPane().add(txtEjercicioNombre);
 
 		txtEjercicioNumSeries = new JTextField();
-		txtEjercicioNumSeries.setFont(new Font("Dialog", Font.BOLD, 14));
+		txtEjercicioNumSeries.setFont(new Font("Dialog", Font.BOLD, 16));
 		txtEjercicioNumSeries.setColumns(10);
 		txtEjercicioNumSeries.setBorder(null);
 		txtEjercicioNumSeries.setBackground(new Color(255, 140, 0));
-		txtEjercicioNumSeries.setBounds(1327, 162, 390, 19);
+		txtEjercicioNumSeries.setBounds(1338, 172, 379, 19);
 		frame.getContentPane().add(txtEjercicioNumSeries);
 
 		txtEjercicioRepeticiones = new JTextField();
-		txtEjercicioRepeticiones.setFont(new Font("Dialog", Font.BOLD, 14));
+		txtEjercicioRepeticiones.setFont(new Font("Dialog", Font.BOLD, 16));
 		txtEjercicioRepeticiones.setColumns(10);
 		txtEjercicioRepeticiones.setBorder(null);
 		txtEjercicioRepeticiones.setBackground(new Color(255, 140, 0));
-		txtEjercicioRepeticiones.setBounds(1327, 220, 390, 19);
+		txtEjercicioRepeticiones.setBounds(1338, 230, 379, 19);
 		frame.getContentPane().add(txtEjercicioRepeticiones);
 
 		txtEjercicioCarga = new JTextField();
-		txtEjercicioCarga.setFont(new Font("Dialog", Font.BOLD, 14));
+		txtEjercicioCarga.setFont(new Font("Dialog", Font.BOLD, 16));
 		txtEjercicioCarga.setColumns(10);
 		txtEjercicioCarga.setBorder(null);
 		txtEjercicioCarga.setBackground(new Color(255, 140, 0));
-		txtEjercicioCarga.setBounds(1327, 276, 390, 19);
+		txtEjercicioCarga.setBounds(1338, 286, 379, 19);
 		frame.getContentPane().add(txtEjercicioCarga);
 
 		txtEjercicioId = new JTextField();
@@ -605,7 +632,12 @@ public class App {
 		 * Tabla del Ejercicio.
 		 */
 
-		DefaultTableModel modelEjercicio = new DefaultTableModel();
+		DefaultTableModel modelEjercicio = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Hacer que todas las celdas no sean editables
+            }
+        };
 
 		modelEjercicio.addColumn("ID");
 		modelEjercicio.addColumn("Nombre");
@@ -632,7 +664,8 @@ public class App {
 				int indexEjercicio = tableEjercicio.getSelectedRow();
 				TableModel modelEjercicio = tableEjercicio.getModel();
 				txtEjercicioId.setText(modelEjercicio.getValueAt(indexEjercicio, 0).toString());
-				txtEjercicioNombre.setText(modelEjercicio.getValueAt(indexEjercicio, 1).toString());
+				txtEjercicioNombre.setText(modelEjercicio.getValueAt(indexEjercicio, 1).toString()); 
+				txtEjercicioRutina.setText(modelEjercicio.getValueAt(indexEjercicio, 1).toString()); 
 				txtEjercicioNumSeries.setText(modelEjercicio.getValueAt(indexEjercicio, 2).toString());
 				txtEjercicioRepeticiones.setText(modelEjercicio.getValueAt(indexEjercicio, 3).toString());
 				txtEjercicioCarga.setText(modelEjercicio.getValueAt(indexEjercicio, 4).toString());
@@ -641,14 +674,40 @@ public class App {
 		tableEjercicio.setBounds(471, 30, 1, 1);
 		tableEjercicio.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		tableEjercicio.setForeground(new Color(255, 102, 0));
-		tableEjercicio.setFont(new Font("Dialog", Font.BOLD, 12));
+		tableEjercicio.setFont(new Font("Dialog", Font.BOLD, 16));
 
+		tableEjercicio.setRowHeight(25);
+		
+		TableColumnModel columnModelEjercicio = tableEjercicio.getColumnModel();
+		TableColumn column1Ejer = columnModelEjercicio.getColumn(0);
+		column1Ejer.setPreferredWidth(20);
+        TableColumn column2Ejer = columnModelEjercicio.getColumn(1);
+        column2Ejer.setPreferredWidth(175);
+        TableColumn column3Ejer = columnModelEjercicio.getColumn(2);
+        column3Ejer.setPreferredWidth(30);
+        TableColumn column4Ejer = columnModelEjercicio.getColumn(3);
+        column4Ejer.setPreferredWidth(100);
+        TableColumn column5Ejer = columnModelEjercicio.getColumn(4);
+        column5Ejer.setPreferredWidth(20);
+        
+        DefaultTableCellRenderer cellRendererEjercicio = (DefaultTableCellRenderer) tableEjercicio.getDefaultRenderer(Object.class);
+        cellRendererEjercicio.setHorizontalAlignment(SwingConstants.CENTER);
+        
+        JTableHeader headerEjercicio = tableEjercicio.getTableHeader();
+        headerEjercicio.setPreferredSize(new java.awt.Dimension(headerEjercicio.getWidth(), 35));
+        
+        DefaultTableCellRenderer headerRendererEjercicio = new DefaultTableCellRenderer();
+        headerRendererEjercicio.setBackground(new Color(255, 102, 0));
+        headerRendererEjercicio.setForeground(Color.BLACK);
+        headerRendererEjercicio.setFont(headerRendererEjercicio.getFont().deriveFont(Font.BOLD, 16));
+        headerRendererEjercicio.setHorizontalAlignment(SwingConstants.CENTER);
+        headerEjercicio.setDefaultRenderer(headerRendererEjercicio);
+		
 		JScrollPane scrollPaneEjercicio = new JScrollPane(tableEjercicio);
 		scrollPaneEjercicio.setOpaque(false);
-		scrollPaneEjercicio.setBounds(1202, 512, 515, 277);
+		scrollPaneEjercicio.setBounds(1203, 524, 515, 284);
 		frame.getContentPane().add(scrollPaneEjercicio);
-		scrollPaneEjercicio.setBorder(new SoftBevelBorder(BevelBorder.RAISED, new Color(255, 102, 0),
-				new Color(255, 102, 0), new Color(255, 102, 0), new Color(255, 102, 0)));
+		scrollPaneEjercicio.setBorder(null);
 
 		/**
 		 * Botones del Ejercicio.
@@ -689,6 +748,7 @@ public class App {
 		 */
 
 		JButton btnInsertarEjercicio = new JButton("  Insertar");
+		btnInsertarEjercicio.setForeground(Color.BLACK);
 		btnInsertarEjercicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -730,9 +790,9 @@ public class App {
 			}
 		});
 		btnInsertarEjercicio.setIcon(new ImageIcon(App.class.getResource("/img/guardar.png")));
-		btnInsertarEjercicio.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnInsertarEjercicio.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnInsertarEjercicio.setBackground(new Color(255, 140, 0));
-		btnInsertarEjercicio.setBounds(1203, 313, 514, 48);
+		btnInsertarEjercicio.setBounds(1203, 333, 514, 48);
 		frame.getContentPane().add(btnInsertarEjercicio);
 
 		/**
@@ -740,6 +800,7 @@ public class App {
 		 */
 
 		JButton btnActualizarEjercicio = new JButton("  Actualizar");
+		btnActualizarEjercicio.setForeground(Color.BLACK);
 		btnActualizarEjercicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -788,9 +849,9 @@ public class App {
 			}
 		});
 		btnActualizarEjercicio.setIcon(new ImageIcon(App.class.getResource("/img/actualizar.png")));
-		btnActualizarEjercicio.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnActualizarEjercicio.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnActualizarEjercicio.setBackground(new Color(255, 140, 0));
-		btnActualizarEjercicio.setBounds(1204, 373, 513, 48);
+		btnActualizarEjercicio.setBounds(1203, 394, 513, 48);
 		frame.getContentPane().add(btnActualizarEjercicio);
 
 		/**
@@ -798,6 +859,7 @@ public class App {
 		 */
 
 		JButton btnEliminarEjercicio = new JButton("Eliminar");
+		btnEliminarEjercicio.setForeground(Color.BLACK);
 		btnEliminarEjercicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -847,16 +909,21 @@ public class App {
 			}
 		});
 		btnEliminarEjercicio.setIcon(new ImageIcon(App.class.getResource("/img/eliminar.png")));
-		btnEliminarEjercicio.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnEliminarEjercicio.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnEliminarEjercicio.setBackground(new Color(255, 140, 0));
-		btnEliminarEjercicio.setBounds(1204, 436, 513, 48);
+		btnEliminarEjercicio.setBounds(1203, 454, 513, 48);
 		frame.getContentPane().add(btnEliminarEjercicio);
 
 		/*
 		 * Tabla Rutina.
 		 */
 
-		DefaultTableModel modelRutina = new DefaultTableModel();
+		DefaultTableModel modelRutina = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Hacer que todas las celdas no sean editables
+            }
+        };
 
 		modelRutina.addColumn("Cliente");
 		modelRutina.addColumn("Ejercicio");
@@ -880,12 +947,20 @@ public class App {
 		JScrollPane scrollPaneRutina = new JScrollPane();
 		scrollPaneRutina.setOpaque(false);
 		scrollPaneRutina.setEnabled(false);
-		scrollPaneRutina.setBorder(new SoftBevelBorder(BevelBorder.RAISED, new Color(255, 102, 0),
-				new Color(255, 102, 0), new Color(255, 102, 0), new Color(255, 102, 0)));
-		scrollPaneRutina.setBounds(730, 314, 350, 477);
+		scrollPaneRutina.setBorder(null);
+		scrollPaneRutina.setBounds(662, 331, 448, 477);
 		frame.getContentPane().add(scrollPaneRutina);
 
 		tableRutina = new JTable(modelRutina);
+		tableRutina.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int index = tableRutina.getSelectedRow();
+				TableModel modelRutina = tableRutina.getModel();
+				txtClienteRutina.setText(modelRutina.getValueAt(index, 0).toString());
+				txtEjercicioRutina.setText(modelRutina.getValueAt(index, 1).toString());
+			}
+		});
 		scrollPaneRutina.setViewportView(tableRutina);
 
 		JButton btnMostrarRutina = new JButton("");
@@ -898,22 +973,86 @@ public class App {
 		btnMostrarRutina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				modelRutina.setRowCount(0);
+				List<Cliente> clientes = DAOCliente.selectAllClientes();
 
+				for (Cliente c : clientes) {
+					List<Ejercicio> ejercicioCliente = c.getEjercicios();
+
+					for (Ejercicio ejer : ejercicioCliente) {
+						Object[] row = new Object[2];
+
+						row[0] = c.getNombreCliente();
+						row[1] = ejer.getNombreEjercicio();
+						modelRutina.addRow(row);
+					}
+
+				}
 			}
 		});
 		btnMostrarRutina.setBounds(846, 478, 89, 23);
 		frame.getContentPane().add(btnMostrarRutina);
+		
+		DefaultTableCellRenderer cellRendererRutina = (DefaultTableCellRenderer) tableRutina.getDefaultRenderer(Object.class);
+		cellRendererRutina.setHorizontalAlignment(SwingConstants.CENTER);
+        
+        JTableHeader headerRutina = tableRutina.getTableHeader();
+        headerRutina.setPreferredSize(new java.awt.Dimension(headerRutina.getWidth(), 35));
+        
+        DefaultTableCellRenderer headerRendererRutina = new DefaultTableCellRenderer();
+        headerRendererRutina.setBackground(new Color(255, 102, 0));
+        headerRendererRutina.setForeground(Color.BLACK);
+        headerRendererRutina.setFont(headerRendererRutina.getFont().deriveFont(Font.BOLD, 16));
+        headerRendererRutina.setHorizontalAlignment(SwingConstants.CENTER);
+        headerRutina.setDefaultRenderer(headerRendererRutina);
+		
+		JButton btnAsignarRutina = new JButton("  Asignar");
+		btnAsignarRutina.setForeground(Color.BLACK);
+		btnAsignarRutina.setIcon(new ImageIcon(App.class.getResource("/img/asignar.png")));
+		btnAsignarRutina.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Cliente c = DAOCliente.selectCliente(txtClienteRutina.getText());
+				Ejercicio e = DAOEjercicio.selectEjercicio(txtEjercicioRutina.getText());
 
+				c.anyadirEjercicio(e);
+				DAOCliente.updateCliente(c);
+				
+				btnMostrarRutina.doClick();
+			}
+		});
+		btnAsignarRutina.setFont(new Font("Dialog", Font.BOLD, 20));
+		btnAsignarRutina.setBackground(new Color(255, 140, 0));
+		btnAsignarRutina.setBounds(663, 192, 447, 48);
+		frame.getContentPane().add(btnAsignarRutina);
+
+		JButton btnEliminarRutina = new JButton(" Eliminar");
+		btnEliminarRutina.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Cliente c = DAOCliente.selectCliente(txtClienteRutina.getText());
+				Ejercicio e = DAOEjercicio.selectEjercicio(txtEjercicioRutina.getText());
+
+				c.quitarEjercicio(e);;
+				DAOCliente.updateCliente(c);
+				
+				btnMostrarRutina.doClick();
+			}
+		});
+		btnEliminarRutina.setForeground(Color.BLACK);
+		btnEliminarRutina.setIcon(new ImageIcon(App.class.getResource("/img/eliminar.png")));
+		btnEliminarRutina.setFont(new Font("Dialog", Font.BOLD, 20));
+		btnEliminarRutina.setBackground(new Color(255, 140, 0));
+		btnEliminarRutina.setBounds(663, 264, 451, 48);
+		frame.getContentPane().add(btnEliminarRutina);
+		
 		/**
 		 * JLabel del Fondo.
 		 */
 
 		JLabel lblFondo = new JLabel("");
 		lblFondo.setOpaque(true);
-		lblFondo.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblFondo.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblFondo.setForeground(new Color(0, 0, 0));
 		lblFondo.setIcon(new ImageIcon(App.class.getResource("/img/fondoGym.jpg")));
-		lblFondo.setBounds(0, -30, 1825, 864);
+		lblFondo.setBounds(0, -31, 1825, 864);
 		frame.getContentPane().add(lblFondo);
 
 	}

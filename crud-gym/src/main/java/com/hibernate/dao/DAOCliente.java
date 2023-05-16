@@ -21,6 +21,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 public class DAOCliente {
 
@@ -128,6 +129,23 @@ public class DAOCliente {
 		return clientes;
 	}
 
+	public static Cliente selectCliente(String nom) {
+
+		Transaction transaction = null;
+		Cliente c = null;
+
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			transaction = session.beginTransaction();
+			Query<Cliente> query = session.createQuery("FROM Cliente WHERE nombreCliente=:nombre", Cliente.class);
+			query.setParameter("nombre", nom);
+			c = query.uniqueResult();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+		}
+		return c;
+	}
 
 
 }
