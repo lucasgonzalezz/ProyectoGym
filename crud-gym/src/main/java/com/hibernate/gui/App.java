@@ -7,43 +7,31 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import java.awt.Color;
-import java.awt.Component;
-
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
-
-import org.hibernate.Session;
-
 import com.hibernate.dao.DAOCliente;
 import com.hibernate.dao.DAOEjercicio;
 import com.hibernate.model.Cliente;
 import com.hibernate.model.Ejercicio;
-import com.hibernate.util.HibernateUtil;
-
-import javax.swing.border.SoftBevelBorder;
-import javax.swing.border.BevelBorder;
 import java.awt.Font;
 import javax.swing.UIManager;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JComboBox;
 
 public class App {
 
-	private JFrame frame;
+	private JFrame frmGym;
 
 	private JTextField txtClienteNombre;
 	private JTextField txtClienteApellidos;
@@ -86,7 +74,7 @@ public class App {
 			public void run() {
 				try {
 					App window = new App();
-					window.frame.setVisible(true);
+					window.frmGym.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -107,29 +95,34 @@ public class App {
 	@SuppressWarnings("serial")
 	private void initialize() {
 
-		frame = new JFrame();
-		frame.setBackground(new Color(255, 69, 0));
-		frame.setBounds(100, 100, 1756, 858);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmGym = new JFrame();
+		frmGym.setTitle("El Gym de L&L");
+		frmGym.setResizable(true);
+		frmGym.setBackground(new Color(255, 69, 0));
+		frmGym.setBounds(100, 100, 1756, 858);
+		frmGym.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmGym.getContentPane().setLayout(null);
+		frmGym.setSize(1760, 860);
 
 		txtEjercicioRutina = new JTextField();
+		txtEjercicioRutina.setEditable(false);
 		txtEjercicioRutina.setForeground(Color.BLACK);
 		txtEjercicioRutina.setFont(new Font("Dialog", Font.BOLD, 16));
 		txtEjercicioRutina.setColumns(10);
 		txtEjercicioRutina.setBorder(null);
 		txtEjercicioRutina.setBackground(new Color(255, 140, 0));
 		txtEjercicioRutina.setBounds(775, 150, 335, 19);
-		frame.getContentPane().add(txtEjercicioRutina);
+		frmGym.getContentPane().add(txtEjercicioRutina);
 
 		txtClienteRutina = new JTextField();
+		txtClienteRutina.setEditable(false);
 		txtClienteRutina.setForeground(Color.BLACK);
 		txtClienteRutina.setFont(new Font("Dialog", Font.BOLD, 16));
 		txtClienteRutina.setColumns(10);
 		txtClienteRutina.setBorder(null);
 		txtClienteRutina.setBackground(new Color(255, 140, 0));
 		txtClienteRutina.setBounds(775, 101, 335, 19);
-		frame.getContentPane().add(txtClienteRutina);
+		frmGym.getContentPane().add(txtClienteRutina);
 
 		JButton btnVaciarRutina = new JButton("");
 		btnVaciarRutina.addActionListener(new ActionListener() {
@@ -142,68 +135,68 @@ public class App {
 		btnVaciarRutina.setBackground(new Color(0, 0, 0));
 		btnVaciarRutina.setBorder(null);
 		btnVaciarRutina.setIcon(new ImageIcon(App.class.getResource("/img/vaciar.png")));
-		btnVaciarRutina.setBounds(985, 21, 73, 54);
-		frame.getContentPane().add(btnVaciarRutina);
+		btnVaciarRutina.setBounds(959, 21, 73, 54);
+		frmGym.getContentPane().add(btnVaciarRutina);
 
 		JLabel lblClienteRutina = new JLabel("Cliente:");
 		lblClienteRutina.setForeground(new Color(255, 140, 0));
 		lblClienteRutina.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblClienteRutina.setBounds(663, 102, 89, 15);
-		frame.getContentPane().add(lblClienteRutina);
+		frmGym.getContentPane().add(lblClienteRutina);
 
 		JLabel lblEjercicioRutina = new JLabel("Ejercicio:");
 		lblEjercicioRutina.setForeground(new Color(255, 140, 0));
 		lblEjercicioRutina.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblEjercicioRutina.setBounds(663, 151, 117, 15);
-		frame.getContentPane().add(lblEjercicioRutina);
+		frmGym.getContentPane().add(lblEjercicioRutina);
 
 		JLabel lblRutina = new JLabel("Rutina");
 		lblRutina.setForeground(new Color(255, 140, 0));
 		lblRutina.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 56));
 		lblRutina.setBounds(783, 21, 230, 54);
-		frame.getContentPane().add(lblRutina);
+		frmGym.getContentPane().add(lblRutina);
 
 		JLabel lblClienteNombre = new JLabel("Nombre:");
 		lblClienteNombre.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblClienteNombre.setForeground(new Color(255, 140, 0));
 		lblClienteNombre.setBounds(28, 92, 117, 35);
-		frame.getContentPane().add(lblClienteNombre);
+		frmGym.getContentPane().add(lblClienteNombre);
 
 		JLabel lblTablaCliente = new JLabel("Cliente");
 		lblTablaCliente.setForeground(new Color(255, 140, 0));
 		lblTablaCliente.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 56));
-		lblTablaCliente.setBounds(218, 21, 222, 55);
-		frame.getContentPane().add(lblTablaCliente);
+		lblTablaCliente.setBounds(205, 21, 222, 55);
+		frmGym.getContentPane().add(lblTablaCliente);
 
 		JLabel lblTablaEjercicio = new JLabel("Ejercicio");
 		lblTablaEjercicio.setForeground(new Color(255, 140, 0));
 		lblTablaEjercicio.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 56));
 		lblTablaEjercicio.setBounds(1369, 13, 292, 70);
-		frame.getContentPane().add(lblTablaEjercicio);
+		frmGym.getContentPane().add(lblTablaEjercicio);
 
 		JLabel lblClienteApellidos = new JLabel("Apellidos:");
 		lblClienteApellidos.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblClienteApellidos.setForeground(new Color(255, 140, 0));
 		lblClienteApellidos.setBounds(28, 136, 117, 35);
-		frame.getContentPane().add(lblClienteApellidos);
+		frmGym.getContentPane().add(lblClienteApellidos);
 
 		JLabel lblClienteEdad = new JLabel("Edad:");
 		lblClienteEdad.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblClienteEdad.setForeground(new Color(255, 140, 0));
 		lblClienteEdad.setBounds(28, 183, 117, 35);
-		frame.getContentPane().add(lblClienteEdad);
+		frmGym.getContentPane().add(lblClienteEdad);
 
 		JLabel lblClienteAltura = new JLabel("Altura:");
 		lblClienteAltura.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblClienteAltura.setForeground(new Color(255, 140, 0));
 		lblClienteAltura.setBounds(28, 230, 117, 35);
-		frame.getContentPane().add(lblClienteAltura);
+		frmGym.getContentPane().add(lblClienteAltura);
 
 		JLabel lblClientePeso = new JLabel("Peso:");
 		lblClientePeso.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblClientePeso.setForeground(new Color(255, 140, 0));
 		lblClientePeso.setBounds(28, 277, 117, 35);
-		frame.getContentPane().add(lblClientePeso);
+		frmGym.getContentPane().add(lblClientePeso);
 
 		/**
 		 * TextField del Cliente.
@@ -215,7 +208,7 @@ public class App {
 		txtClienteNombre.setBackground(new Color(255, 140, 0));
 		txtClienteNombre.setBorder(null);
 		txtClienteNombre.setBounds(138, 101, 424, 19);
-		frame.getContentPane().add(txtClienteNombre);
+		frmGym.getContentPane().add(txtClienteNombre);
 		txtClienteNombre.setColumns(10);
 
 		txtClienteApellidos = new JTextField();
@@ -225,7 +218,7 @@ public class App {
 		txtClienteApellidos.setBorder(null);
 		txtClienteApellidos.setColumns(10);
 		txtClienteApellidos.setBounds(138, 145, 424, 19);
-		frame.getContentPane().add(txtClienteApellidos);
+		frmGym.getContentPane().add(txtClienteApellidos);
 
 		txtClienteEdad = new JTextField();
 		txtClienteEdad.setForeground(Color.BLACK);
@@ -234,7 +227,7 @@ public class App {
 		txtClienteEdad.setBackground(new Color(255, 140, 0));
 		txtClienteEdad.setColumns(10);
 		txtClienteEdad.setBounds(138, 192, 424, 19);
-		frame.getContentPane().add(txtClienteEdad);
+		frmGym.getContentPane().add(txtClienteEdad);
 
 		txtClienteAltura = new JTextField();
 		txtClienteAltura.setForeground(Color.BLACK);
@@ -243,7 +236,7 @@ public class App {
 		txtClienteAltura.setBorder(null);
 		txtClienteAltura.setColumns(10);
 		txtClienteAltura.setBounds(138, 239, 424, 19);
-		frame.getContentPane().add(txtClienteAltura);
+		frmGym.getContentPane().add(txtClienteAltura);
 
 		txtClientePeso = new JTextField();
 		txtClientePeso.setForeground(Color.BLACK);
@@ -252,7 +245,7 @@ public class App {
 		txtClientePeso.setBackground(new Color(255, 140, 0));
 		txtClientePeso.setColumns(10);
 		txtClientePeso.setBounds(138, 285, 424, 19);
-		frame.getContentPane().add(txtClientePeso);
+		frmGym.getContentPane().add(txtClientePeso);
 
 		txtClienteId = new JTextField();
 		txtClienteId.setVisible(false);
@@ -263,25 +256,25 @@ public class App {
 		txtClienteId.setBorder(null);
 		txtClienteId.setBackground(new Color(255, 140, 0));
 		txtClienteId.setBounds(398, 22, 244, 19);
-		frame.getContentPane().add(txtClienteId);
+		frmGym.getContentPane().add(txtClienteId);
 
 		JButton btnVaciarCliente = new JButton("");
 		btnVaciarCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				txtClienteId.setText("");
 				txtClienteNombre.setText("");
 				txtClienteApellidos.setText("");
 				txtClienteEdad.setText("");
 				txtClienteAltura.setText("");
 				txtClientePeso.setText("");
-				txtClienteId.setText("");
 			}
 		});
 		btnVaciarCliente.setOpaque(false);
 		btnVaciarCliente.setBackground(new Color(0, 0, 0));
 		btnVaciarCliente.setBorder(null);
 		btnVaciarCliente.setIcon(new ImageIcon(App.class.getResource("/img/vaciar.png")));
-		btnVaciarCliente.setBounds(437, 21, 73, 54);
-		frame.getContentPane().add(btnVaciarCliente);
+		btnVaciarCliente.setBounds(391, 21, 73, 54);
+		frmGym.getContentPane().add(btnVaciarCliente);
 
 		/**
 		 * Tabla del Cliente.
@@ -369,7 +362,7 @@ public class App {
 		scrollPaneCliente.setOpaque(false);
 		scrollPaneCliente.setEnabled(false);
 		scrollPaneCliente.setBounds(28, 524, 534, 284);
-		frame.getContentPane().add(scrollPaneCliente);
+		frmGym.getContentPane().add(scrollPaneCliente);
 		scrollPaneCliente.setBorder(null);
 
 		/**
@@ -405,7 +398,7 @@ public class App {
 			}
 		});
 		btnMostrarClientes.setBounds(593, 333, 59, 48);
-		frame.getContentPane().add(btnMostrarClientes);
+		frmGym.getContentPane().add(btnMostrarClientes);
 
 		/**
 		 * Botón para insertar un nuevo cliente en la BD.
@@ -420,77 +413,85 @@ public class App {
 
 				clienteNombre = txtClienteNombre.getText();
 				if (clienteNombre.length() == 0) {
-					JOptionPane.showMessageDialog(null, "El campo NOMBRE está vacío", "ERROR",
-							JOptionPane.ERROR_MESSAGE);
-					camposValidos = false;
+				    JOptionPane.showMessageDialog(null, "El campo NOMBRE está vacío", "ERROR",
+				            JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
 				} else if (clienteNombre.matches(".*\\d.*")) {
-					JOptionPane.showMessageDialog(null, "El campo NOMBRE no debe contener números", "ERROR",
-							JOptionPane.ERROR_MESSAGE);
-					camposValidos = false;
+				    JOptionPane.showMessageDialog(null, "El campo NOMBRE no debe contener números", "ERROR",
+				            JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else if (!clienteNombre.matches("[a-zA-ZñÑáéíóúÁÉÍÓÚ\\s]+")) {
+				    JOptionPane.showMessageDialog(null, "El campo NOMBRE no debe contener caracteres especiales", "ERROR",
+				            JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
 				}
 
 				clienteApellido = txtClienteApellidos.getText();
 				if (clienteApellido.length() == 0) {
-					JOptionPane.showMessageDialog(null, "El campo APELLIDOS está vacío", "ERROR",
-							JOptionPane.ERROR_MESSAGE);
-					camposValidos = false;
+				    JOptionPane.showMessageDialog(null, "El campo APELLIDOS está vacío", "ERROR",
+				            JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
 				} else if (clienteApellido.matches(".*\\d.*")) {
-					JOptionPane.showMessageDialog(null, "El campo APELLIDOS no debe contener números", "ERROR",
-							JOptionPane.ERROR_MESSAGE);
-					camposValidos = false;
+				    JOptionPane.showMessageDialog(null, "El campo APELLIDOS no debe contener números", "ERROR",
+				            JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else if (!clienteApellido.matches("[a-zA-ZñÑáéíóúÁÉÍÓÚ\\s]+")) {
+				    JOptionPane.showMessageDialog(null, "El campo APELLIDOS no debe contener caracteres especiales", "ERROR",
+				            JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
 				}
 
 				String edadTexto = txtClienteEdad.getText();
 				if (edadTexto.length() == 0) {
-					JOptionPane.showMessageDialog(null, "El campo EDAD está vacío", "ERROR", JOptionPane.ERROR_MESSAGE);
-					camposValidos = false;
+				    JOptionPane.showMessageDialog(null, "El campo EDAD está vacío", "ERROR", JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
 				} else if (!edadTexto.matches("[0-9]+")) {
-					JOptionPane.showMessageDialog(null, "El dato introducido en el campo EDAD es incorrecto", "ERROR",
-							JOptionPane.ERROR_MESSAGE);
-					camposValidos = false;
+				    JOptionPane.showMessageDialog(null, "El dato introducido en el campo EDAD es incorrecto", "ERROR", JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else if (!edadTexto.matches("\\d+")) {
+				    JOptionPane.showMessageDialog(null, "El dato introducido en el campo EDAD contiene símbolos", "ERROR", JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
 				} else {
-					clienteEdad = Integer.parseInt(edadTexto);
-					if (clienteEdad < 16 || clienteEdad > 90) {
-						JOptionPane.showMessageDialog(null,
-								"El dato introducido en el campo EDAD está fuera del rango permitido (16 - 90)",
-								"ERROR", JOptionPane.ERROR_MESSAGE);
-						camposValidos = false;
-					}
+				    clienteEdad = Integer.parseInt(edadTexto);
+				    if (clienteEdad < 16 || clienteEdad > 90) {
+				        JOptionPane.showMessageDialog(null, "El dato introducido en el campo EDAD está fuera del rango permitido (16 - 90)", "ERROR", JOptionPane.ERROR_MESSAGE);
+				        camposValidos = false;
+				    }
 				}
 
 				String alturaTexto = txtClienteAltura.getText();
 				if (alturaTexto.length() == 0) {
-					JOptionPane.showMessageDialog(null, "El campo ALTURA está vacío", "ERROR",
-							JOptionPane.ERROR_MESSAGE);
-					camposValidos = false;
+				    JOptionPane.showMessageDialog(null, "El campo ALTURA está vacío", "ERROR", JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else if (!alturaTexto.matches("[0-9.]+")) {
+				    JOptionPane.showMessageDialog(null, "El dato introducido en el campo ALTURA es incorrecto", "ERROR", JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
 				} else {
-					double altura = Double.parseDouble(alturaTexto);
-					if (altura < 1 || altura > 3) {
-						JOptionPane.showMessageDialog(null,
-								"El dato introducido en el campo ALTURA está fuera del rango permitido (1 - 3)",
-								"ERROR", JOptionPane.ERROR_MESSAGE);
-						camposValidos = false;
-					} else {
-						clienteAltura = altura;
-					}
+				    double altura = Double.parseDouble(alturaTexto);
+				    if (altura < 1 || altura > 3) {
+				        JOptionPane.showMessageDialog(null, "El dato introducido en el campo ALTURA está fuera del rango permitido (1 - 3)", "ERROR", JOptionPane.ERROR_MESSAGE);
+				        camposValidos = false;
+				    } else {
+				        clienteAltura = altura;
+				    }
 				}
 
 				String pesoTexto = txtClientePeso.getText();
 				if (pesoTexto.length() == 0) {
-					JOptionPane.showMessageDialog(null, "El campo PESO está vacío", "ERROR", JOptionPane.ERROR_MESSAGE);
-					camposValidos = false;
-				} else if (!pesoTexto.matches("[0-9]+")) {
-					JOptionPane.showMessageDialog(null, "El dato introducido en el campo PESO es incorrecto", "ERROR",
-							JOptionPane.ERROR_MESSAGE);
-					camposValidos = false;
+				    JOptionPane.showMessageDialog(null, "El campo PESO está vacío", "ERROR", JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else if (!pesoTexto.matches("^\\d+(\\.\\d+)?$")) {
+				    JOptionPane.showMessageDialog(null, "El dato introducido en el campo PESO es incorrecto", "ERROR",
+				            JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
 				} else {
-					clientePeso = Double.parseDouble(pesoTexto);
-					if (clientePeso < 45 || clientePeso > 300) {
-						JOptionPane.showMessageDialog(null,
-								"El dato introducido en el campo PESO está fuera del rango permitido (45 - 300)",
-								"ERROR", JOptionPane.ERROR_MESSAGE);
-						camposValidos = false;
-					}
+				    clientePeso = Double.parseDouble(pesoTexto);
+				    if (clientePeso < 45 || clientePeso > 300) {
+				        JOptionPane.showMessageDialog(null,
+				                "El dato introducido en el campo PESO está fuera del rango permitido (45 - 300)",
+				                "ERROR", JOptionPane.ERROR_MESSAGE);
+				        camposValidos = false;
+				    }
 				}
 
 				if (camposValidos) {
@@ -512,7 +513,7 @@ public class App {
 		btnInsertarCliente.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnInsertarCliente.setBackground(new Color(255, 140, 0));
 		btnInsertarCliente.setBounds(28, 333, 534, 48);
-		frame.getContentPane().add(btnInsertarCliente);
+		frmGym.getContentPane().add(btnInsertarCliente);
 
 		/**
 		 * Botón para actualizar un cliente en la BD.
@@ -523,62 +524,112 @@ public class App {
 		btnActualizarCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
+
+				boolean camposValidos = true;
+
 				clienteNombre = txtClienteNombre.getText();
 				if (clienteNombre.length() == 0) {
-					JOptionPane.showMessageDialog(null, "El campo nombre está vacío", "ERROR", 0);
+				    JOptionPane.showMessageDialog(null, "El campo NOMBRE está vacío", "ERROR",
+				            JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else if (clienteNombre.matches(".*\\d.*")) {
+				    JOptionPane.showMessageDialog(null, "El campo NOMBRE no debe contener números", "ERROR",
+				            JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else if (!clienteNombre.matches("[a-zA-ZñÑáéíóúÁÉÍÓÚ\\s]+")) {
+				    JOptionPane.showMessageDialog(null, "El campo NOMBRE no debe contener caracteres especiales", "ERROR",
+				            JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
 				}
 
 				clienteApellido = txtClienteApellidos.getText();
 				if (clienteApellido.length() == 0) {
-					JOptionPane.showMessageDialog(null, "El campo apellidos está vacío", "ERROR", 0);
+				    JOptionPane.showMessageDialog(null, "El campo APELLIDOS está vacío", "ERROR",
+				            JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else if (clienteApellido.matches(".*\\d.*")) {
+				    JOptionPane.showMessageDialog(null, "El campo APELLIDOS no debe contener números", "ERROR",
+				            JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else if (!clienteApellido.matches("[a-zA-ZñÑáéíóúÁÉÍÓÚ\\s]+")) {
+				    JOptionPane.showMessageDialog(null, "El campo APELLIDOS no debe contener caracteres especiales", "ERROR",
+				            JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
 				}
 
-				try {
-					clienteEdad = Integer.parseInt(txtClienteEdad.getText());
-				} catch (NumberFormatException e) {
-					JOptionPane.showMessageDialog(null, "El campo edad está vacío o el dato introducido es incorrecto",
-							"ERROR", 0);
+				String edadTexto = txtClienteEdad.getText();
+				if (edadTexto.length() == 0) {
+				    JOptionPane.showMessageDialog(null, "El campo EDAD está vacío", "ERROR", JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else if (!edadTexto.matches("[0-9]+")) {
+				    JOptionPane.showMessageDialog(null, "El dato introducido en el campo EDAD es incorrecto", "ERROR", JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else if (!edadTexto.matches("\\d+")) {
+				    JOptionPane.showMessageDialog(null, "El dato introducido en el campo EDAD contiene símbolos", "ERROR", JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else {
+				    clienteEdad = Integer.parseInt(edadTexto);
+				    if (clienteEdad < 16 || clienteEdad > 90) {
+				        JOptionPane.showMessageDialog(null, "El dato introducido en el campo EDAD está fuera del rango permitido (16 - 90)", "ERROR", JOptionPane.ERROR_MESSAGE);
+				        camposValidos = false;
+				    }
 				}
 
-				try {
-					clienteAltura = Double.parseDouble(txtClienteAltura.getText());
-				} catch (NumberFormatException e) {
-					JOptionPane.showMessageDialog(null,
-							"El campo altura está vacío o el dato introducido es incorrecto", "ERROR", 0);
+				String alturaTexto = txtClienteAltura.getText();
+				if (alturaTexto.length() == 0) {
+				    JOptionPane.showMessageDialog(null, "El campo ALTURA está vacío", "ERROR", JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else if (!alturaTexto.matches("[0-9.]+")) {
+				    JOptionPane.showMessageDialog(null, "El dato introducido en el campo ALTURA es incorrecto", "ERROR", JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else {
+				    double altura = Double.parseDouble(alturaTexto);
+				    if (altura < 1 || altura > 3) {
+				        JOptionPane.showMessageDialog(null, "El dato introducido en el campo ALTURA está fuera del rango permitido (1 - 3)", "ERROR", JOptionPane.ERROR_MESSAGE);
+				        camposValidos = false;
+				    } else {
+				        clienteAltura = altura;
+				    }
 				}
 
-				try {
-					clientePeso = Double.parseDouble(txtClientePeso.getText());
-				} catch (NumberFormatException e) {
-					JOptionPane.showMessageDialog(null,
-							"El campo cliente está vacío o el dato introducido es incorrecto", "ERROR", 0);
+				String pesoTexto = txtClientePeso.getText();
+				if (pesoTexto.length() == 0) {
+				    JOptionPane.showMessageDialog(null, "El campo PESO está vacío", "ERROR", JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else if (!pesoTexto.matches("^\\d+(\\.\\d+)?$")) {
+				    JOptionPane.showMessageDialog(null, "El dato introducido en el campo PESO es incorrecto", "ERROR",
+				            JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else {
+				    clientePeso = Double.parseDouble(pesoTexto);
+				    if (clientePeso < 45 || clientePeso > 300) {
+				        JOptionPane.showMessageDialog(null,
+				                "El dato introducido en el campo PESO está fuera del rango permitido (45 - 300)",
+				                "ERROR", JOptionPane.ERROR_MESSAGE);
+				        camposValidos = false;
+				    }
 				}
 
-				clienteId = Integer.parseInt(txtClienteId.getText());
-				Cliente c = DAOCliente.selectClienteById(clienteId);
+				if (camposValidos) {
+					Cliente c = new Cliente(clienteNombre, clienteApellido, clienteEdad, clienteAltura, clientePeso);
 
-				c.setNombreCliente(clienteNombre);
-				c.setApellidos(clienteApellido);
-				c.setEdad(clienteEdad);
-				c.setAltura(clienteAltura);
-				c.setPeso(clientePeso);
+					DAOCliente.insertCliente(c);
 
-				DAOCliente.updateCliente(c);
+					btnMostrarClientes.doClick();
 
-				btnMostrarClientes.doClick();
-
-				txtClienteNombre.setText("");
-				txtClienteApellidos.setText("");
-				txtClienteEdad.setText("");
-				txtClienteAltura.setText("");
-				txtClientePeso.setText("");
+					txtClienteNombre.setText("");
+					txtClienteApellidos.setText("");
+					txtClienteEdad.setText("");
+					txtClienteAltura.setText("");
+					txtClientePeso.setText("");
+				}
 			}
 		});
 		btnActualizarCliente.setIcon(new ImageIcon(App.class.getResource("/img/actualizar.png")));
 		btnActualizarCliente.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnActualizarCliente.setBackground(new Color(255, 140, 0));
 		btnActualizarCliente.setBounds(28, 393, 534, 48);
-		frame.getContentPane().add(btnActualizarCliente);
+		frmGym.getContentPane().add(btnActualizarCliente);
 
 		/**
 		 * Botón para eliminar un cliente en la BD.
@@ -589,54 +640,112 @@ public class App {
 		btnEliminarCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
+
+				boolean camposValidos = true;
+
 				clienteNombre = txtClienteNombre.getText();
 				if (clienteNombre.length() == 0) {
-					JOptionPane.showMessageDialog(null, "El campo nombre está vacío", "ERROR", 0);
+				    JOptionPane.showMessageDialog(null, "El campo NOMBRE está vacío", "ERROR",
+				            JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else if (clienteNombre.matches(".*\\d.*")) {
+				    JOptionPane.showMessageDialog(null, "El campo NOMBRE no debe contener números", "ERROR",
+				            JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else if (!clienteNombre.matches("[a-zA-ZñÑáéíóúÁÉÍÓÚ\\s]+")) {
+				    JOptionPane.showMessageDialog(null, "El campo NOMBRE no debe contener caracteres especiales", "ERROR",
+				            JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
 				}
 
 				clienteApellido = txtClienteApellidos.getText();
 				if (clienteApellido.length() == 0) {
-					JOptionPane.showMessageDialog(null, "El campo apellidos está vacío", "ERROR", 0);
+				    JOptionPane.showMessageDialog(null, "El campo APELLIDOS está vacío", "ERROR",
+				            JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else if (clienteApellido.matches(".*\\d.*")) {
+				    JOptionPane.showMessageDialog(null, "El campo APELLIDOS no debe contener números", "ERROR",
+				            JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else if (!clienteApellido.matches("[a-zA-ZñÑáéíóúÁÉÍÓÚ\\s]+")) {
+				    JOptionPane.showMessageDialog(null, "El campo APELLIDOS no debe contener caracteres especiales", "ERROR",
+				            JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
 				}
 
-				try {
-					clienteEdad = Integer.parseInt(txtClienteEdad.getText());
-				} catch (NumberFormatException e) {
-					JOptionPane.showMessageDialog(null, "El campo edad está vacío o el dato introducido es incorrecto",
-							"ERROR", 0);
+				String edadTexto = txtClienteEdad.getText();
+				if (edadTexto.length() == 0) {
+				    JOptionPane.showMessageDialog(null, "El campo EDAD está vacío", "ERROR", JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else if (!edadTexto.matches("[0-9]+")) {
+				    JOptionPane.showMessageDialog(null, "El dato introducido en el campo EDAD es incorrecto", "ERROR", JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else if (!edadTexto.matches("\\d+")) {
+				    JOptionPane.showMessageDialog(null, "El dato introducido en el campo EDAD contiene símbolos", "ERROR", JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else {
+				    clienteEdad = Integer.parseInt(edadTexto);
+				    if (clienteEdad < 16 || clienteEdad > 90) {
+				        JOptionPane.showMessageDialog(null, "El dato introducido en el campo EDAD está fuera del rango permitido (16 - 90)", "ERROR", JOptionPane.ERROR_MESSAGE);
+				        camposValidos = false;
+				    }
 				}
 
-				try {
-					clienteAltura = Double.parseDouble(txtClienteAltura.getText());
-				} catch (NumberFormatException e) {
-					JOptionPane.showMessageDialog(null,
-							"El campo altura está vacío o el dato introducido es incorrecto", "ERROR", 0);
+				String alturaTexto = txtClienteAltura.getText();
+				if (alturaTexto.length() == 0) {
+				    JOptionPane.showMessageDialog(null, "El campo ALTURA está vacío", "ERROR", JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else if (!alturaTexto.matches("[0-9.]+")) {
+				    JOptionPane.showMessageDialog(null, "El dato introducido en el campo ALTURA es incorrecto", "ERROR", JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else {
+				    double altura = Double.parseDouble(alturaTexto);
+				    if (altura < 1 || altura > 3) {
+				        JOptionPane.showMessageDialog(null, "El dato introducido en el campo ALTURA está fuera del rango permitido (1 - 3)", "ERROR", JOptionPane.ERROR_MESSAGE);
+				        camposValidos = false;
+				    } else {
+				        clienteAltura = altura;
+				    }
 				}
 
-				try {
-					clientePeso = Double.parseDouble(txtClientePeso.getText());
-				} catch (NumberFormatException e) {
-					JOptionPane.showMessageDialog(null,
-							"El campo cliente está vacío o el dato introducido es incorrecto", "ERROR", 0);
+				String pesoTexto = txtClientePeso.getText();
+				if (pesoTexto.length() == 0) {
+				    JOptionPane.showMessageDialog(null, "El campo PESO está vacío", "ERROR", JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else if (!pesoTexto.matches("^\\d+(\\.\\d+)?$")) {
+				    JOptionPane.showMessageDialog(null, "El dato introducido en el campo PESO es incorrecto", "ERROR",
+				            JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else {
+				    clientePeso = Double.parseDouble(pesoTexto);
+				    if (clientePeso < 45 || clientePeso > 300) {
+				        JOptionPane.showMessageDialog(null,
+				                "El dato introducido en el campo PESO está fuera del rango permitido (45 - 300)",
+				                "ERROR", JOptionPane.ERROR_MESSAGE);
+				        camposValidos = false;
+				    }
 				}
 
-				clienteId = Integer.parseInt(txtClienteId.getText());
-				DAOCliente.deleteCliente(clienteId);
+				if (camposValidos) {
+					Cliente c = new Cliente(clienteNombre, clienteApellido, clienteEdad, clienteAltura, clientePeso);
 
-				btnMostrarClientes.doClick();
+					DAOCliente.insertCliente(c);
 
-				txtClienteNombre.setText("");
-				txtClienteApellidos.setText("");
-				txtClienteEdad.setText("");
-				txtClienteAltura.setText("");
-				txtClientePeso.setText("");
+					btnMostrarClientes.doClick();
+
+					txtClienteNombre.setText("");
+					txtClienteApellidos.setText("");
+					txtClienteEdad.setText("");
+					txtClienteAltura.setText("");
+					txtClientePeso.setText("");
+				}
 			}
 		});
 		btnEliminarCliente.setIcon(new ImageIcon(App.class.getResource("/img/eliminar.png")));
 		btnEliminarCliente.setBackground(new Color(255, 140, 0));
 		btnEliminarCliente.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnEliminarCliente.setBounds(28, 453, 534, 48);
-		frame.getContentPane().add(btnEliminarCliente);
+		frmGym.getContentPane().add(btnEliminarCliente);
 
 		/**
 		 * JLabel del Ejercicio.
@@ -646,25 +755,25 @@ public class App {
 		lblEjercicioNombre.setForeground(new Color(255, 140, 0));
 		lblEjercicioNombre.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblEjercicioNombre.setBounds(1203, 102, 117, 35);
-		frame.getContentPane().add(lblEjercicioNombre);
+		frmGym.getContentPane().add(lblEjercicioNombre);
 
 		JLabel lblEjercicioNumSeries = new JLabel("Nº Series:");
 		lblEjercicioNumSeries.setForeground(new Color(255, 140, 0));
 		lblEjercicioNumSeries.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblEjercicioNumSeries.setBounds(1203, 163, 117, 35);
-		frame.getContentPane().add(lblEjercicioNumSeries);
+		frmGym.getContentPane().add(lblEjercicioNumSeries);
 
 		JLabel lblRepeticiones = new JLabel("Repeticiones:");
 		lblRepeticiones.setForeground(new Color(255, 140, 0));
 		lblRepeticiones.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblRepeticiones.setBounds(1203, 223, 140, 35);
-		frame.getContentPane().add(lblRepeticiones);
+		frmGym.getContentPane().add(lblRepeticiones);
 
 		JLabel lblEjercicioCarga = new JLabel("Cargar (kg):");
 		lblEjercicioCarga.setForeground(new Color(255, 140, 0));
 		lblEjercicioCarga.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblEjercicioCarga.setBounds(1207, 277, 136, 35);
-		frame.getContentPane().add(lblEjercicioCarga);
+		frmGym.getContentPane().add(lblEjercicioCarga);
 
 		txtEjercicioNombre = new JTextField();
 		txtEjercicioNombre.setForeground(Color.BLACK);
@@ -673,7 +782,7 @@ public class App {
 		txtEjercicioNombre.setBorder(null);
 		txtEjercicioNombre.setBackground(new Color(255, 140, 0));
 		txtEjercicioNombre.setBounds(1361, 108, 356, 19);
-		frame.getContentPane().add(txtEjercicioNombre);
+		frmGym.getContentPane().add(txtEjercicioNombre);
 
 		txtEjercicioNumSeries = new JTextField();
 		txtEjercicioNumSeries.setForeground(Color.BLACK);
@@ -682,7 +791,7 @@ public class App {
 		txtEjercicioNumSeries.setBorder(null);
 		txtEjercicioNumSeries.setBackground(new Color(255, 140, 0));
 		txtEjercicioNumSeries.setBounds(1361, 172, 356, 19);
-		frame.getContentPane().add(txtEjercicioNumSeries);
+		frmGym.getContentPane().add(txtEjercicioNumSeries);
 
 		txtEjercicioRepeticiones = new JTextField();
 		txtEjercicioRepeticiones.setForeground(Color.BLACK);
@@ -691,7 +800,7 @@ public class App {
 		txtEjercicioRepeticiones.setBorder(null);
 		txtEjercicioRepeticiones.setBackground(new Color(255, 140, 0));
 		txtEjercicioRepeticiones.setBounds(1361, 230, 356, 19);
-		frame.getContentPane().add(txtEjercicioRepeticiones);
+		frmGym.getContentPane().add(txtEjercicioRepeticiones);
 
 		txtEjercicioCarga = new JTextField();
 		txtEjercicioCarga.setForeground(Color.BLACK);
@@ -700,7 +809,7 @@ public class App {
 		txtEjercicioCarga.setBorder(null);
 		txtEjercicioCarga.setBackground(new Color(255, 140, 0));
 		txtEjercicioCarga.setBounds(1361, 286, 356, 19);
-		frame.getContentPane().add(txtEjercicioCarga);
+		frmGym.getContentPane().add(txtEjercicioCarga);
 
 		txtEjercicioId = new JTextField();
 		txtEjercicioId.setOpaque(false);
@@ -711,24 +820,24 @@ public class App {
 		txtEjercicioId.setBorder(null);
 		txtEjercicioId.setBackground(new Color(255, 140, 0));
 		txtEjercicioId.setBounds(663, 22, 244, 19);
-		frame.getContentPane().add(txtEjercicioId);
+		frmGym.getContentPane().add(txtEjercicioId);
 
 		JButton btnVaciarEjercicio = new JButton("");
 		btnVaciarEjercicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				txtEjercicioId.setText("");
 				txtEjercicioNombre.setText("");
 				txtEjercicioNumSeries.setText("");
 				txtEjercicioRepeticiones.setText("");
 				txtEjercicioCarga.setText("");
-				txtEjercicioId.setText("");
 			}
 		});
 		btnVaciarEjercicio.setOpaque(false);
 		btnVaciarEjercicio.setBackground(new Color(0, 0, 0));
 		btnVaciarEjercicio.setBorder(null);
 		btnVaciarEjercicio.setIcon(new ImageIcon(App.class.getResource("/img/vaciar.png")));
-		btnVaciarEjercicio.setBounds(1628, 21, 73, 54);
-		frame.getContentPane().add(btnVaciarEjercicio);
+		btnVaciarEjercicio.setBounds(1599, 21, 73, 54);
+		frmGym.getContentPane().add(btnVaciarEjercicio);
 
 		/**
 		 * Tabla del Ejercicio.
@@ -810,7 +919,7 @@ public class App {
 		JScrollPane scrollPaneEjercicio = new JScrollPane(tableEjercicio);
 		scrollPaneEjercicio.setOpaque(false);
 		scrollPaneEjercicio.setBounds(1203, 524, 515, 284);
-		frame.getContentPane().add(scrollPaneEjercicio);
+		frmGym.getContentPane().add(scrollPaneEjercicio);
 		scrollPaneEjercicio.setBorder(null);
 
 		/**
@@ -845,7 +954,7 @@ public class App {
 			}
 		});
 		btnMostrarEjercicios.setBounds(1122, 333, 59, 48);
-		frame.getContentPane().add(btnMostrarEjercicios);
+		frmGym.getContentPane().add(btnMostrarEjercicios);
 
 		/**
 		 * Botón para insertar un ejercicio en la BD.
@@ -856,48 +965,88 @@ public class App {
 		btnInsertarEjercicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
+				boolean camposValidos = true;
+				
 				ejercicioNombre = txtEjercicioNombre.getText();
 				if (ejercicioNombre.length() == 0) {
-					JOptionPane.showMessageDialog(null, "El campo nombre está vacío", "ERROR", 0);
+				    JOptionPane.showMessageDialog(null, "El campo NOMBRE está vacío", "ERROR",
+				            JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else if (ejercicioNombre.matches(".*\\d.*")) {
+				    JOptionPane.showMessageDialog(null, "El campo NOMBRE no debe contener números", "ERROR",
+				            JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else if (!ejercicioNombre.matches("[a-zA-ZñÑáéíóúÁÉÍÓÚ\\s]+")) {
+				    JOptionPane.showMessageDialog(null, "El campo NOMBRE no debe contener caracteres especiales", "ERROR",
+				            JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
 				}
 
-				try {
-					ejercicioNumSeries = Integer.parseInt(txtEjercicioNumSeries.getText());
-				} catch (NumberFormatException e) {
-					JOptionPane.showMessageDialog(null, "El campo edad está vacío o el dato introducido es incorrecto",
-							"ERROR", 0);
+				String ejercicioNumSeriesStr = txtEjercicioNumSeries.getText();
+				if (ejercicioNumSeriesStr.length() == 0) {
+				    JOptionPane.showMessageDialog(null, "El campo NUMERO SERIES está vacío", "ERROR", JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else if (!ejercicioNumSeriesStr.matches("[0-9]+")) {
+				    JOptionPane.showMessageDialog(null, "El dato introducido en el campo NUMERO SERIES es incorrecto", "ERROR", JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else if (!ejercicioNumSeriesStr.matches("\\d+")) {
+				    JOptionPane.showMessageDialog(null, "El dato introducido en el campo NUMERO SERIES contiene símbolos", "ERROR", JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				}
+				ejercicioNumSeries = Integer.parseInt(txtEjercicioNumSeries.getText());
+
+				String ejercicioRepeticionesStr = txtEjercicioRepeticiones.getText();
+				if (ejercicioRepeticionesStr.length() == 0) {
+				    JOptionPane.showMessageDialog(null, "El campo REPETICIONES está vacío", "ERROR", JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else if (!ejercicioRepeticionesStr.matches("\\d+")) {
+				    JOptionPane.showMessageDialog(null, "El dato introducido en el campo REPETICIONES contiene símbolos", "ERROR", JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else {
+				    try {
+				        ejercicioRepeticiones = Integer.parseInt(ejercicioRepeticionesStr);
+				    } catch (NumberFormatException e) {
+				        JOptionPane.showMessageDialog(null, "El dato introducido en el campo REPETICIONES no es válido", "ERROR", JOptionPane.ERROR_MESSAGE);
+				        camposValidos = false;
+				    }
 				}
 
-				try {
-					ejercicioRepeticiones = Integer.parseInt(txtEjercicioRepeticiones.getText());
-				} catch (NumberFormatException e) {
-					JOptionPane.showMessageDialog(null, "El campo edad está vacío o el dato introducido es incorrecto",
-							"ERROR", 0);
+				String ejercicioCargaStr = txtEjercicioCarga.getText();
+				if (ejercicioCargaStr.length() == 0) {
+				    JOptionPane.showMessageDialog(null, "El campo CARGA está vacío", "ERROR", JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else if (!ejercicioCargaStr.matches("^\\d+(\\.\\d+)?$")) {
+				    JOptionPane.showMessageDialog(null, "El dato introducido en el campo CARGA es incorrecto", "ERROR",
+				            JOptionPane.ERROR_MESSAGE);
+				    camposValidos = false;
+				} else {
+				    try {
+				        ejercicioCarga = Double.parseDouble(ejercicioCargaStr);
+				    } catch (NumberFormatException e) {
+				        JOptionPane.showMessageDialog(null, "El dato introducido en el campo CARGA es incorrecto", "ERROR",
+				                JOptionPane.ERROR_MESSAGE);
+				        camposValidos = false;
+				    }
 				}
 
-				try {
-					ejercicioCarga = Double.parseDouble(txtEjercicioCarga.getText());
-				} catch (NumberFormatException e) {
-					JOptionPane.showMessageDialog(null,
-							"El campo altura está vacío o el dato introducido es incorrecto", "ERROR", 0);
+				if (camposValidos) {
+					Ejercicio e = new Ejercicio(ejercicioNombre, ejercicioNumSeries, ejercicioRepeticiones, ejercicioCarga);
+					DAOEjercicio.insertEjercicio(e);
+
+					btnMostrarEjercicios.doClick();
+
+					txtEjercicioNombre.setText("");
+					txtEjercicioNumSeries.setText("");
+					txtEjercicioRepeticiones.setText("");
+					txtEjercicioCarga.setText("");
 				}
-
-				Ejercicio e = new Ejercicio(ejercicioNombre, ejercicioNumSeries, ejercicioRepeticiones, ejercicioCarga);
-				DAOEjercicio.insertEjercicio(e);
-
-				btnMostrarEjercicios.doClick();
-
-				txtEjercicioNombre.setText("");
-				txtEjercicioNumSeries.setText("");
-				txtEjercicioRepeticiones.setText("");
-				txtEjercicioCarga.setText("");
 			}
 		});
 		btnInsertarEjercicio.setIcon(new ImageIcon(App.class.getResource("/img/guardar.png")));
 		btnInsertarEjercicio.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnInsertarEjercicio.setBackground(new Color(255, 140, 0));
 		btnInsertarEjercicio.setBounds(1203, 333, 514, 48);
-		frame.getContentPane().add(btnInsertarEjercicio);
+		frmGym.getContentPane().add(btnInsertarEjercicio);
 
 		/**
 		 * Botón para actualizar un ejercicio en la BD.
@@ -956,7 +1105,7 @@ public class App {
 		btnActualizarEjercicio.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnActualizarEjercicio.setBackground(new Color(255, 140, 0));
 		btnActualizarEjercicio.setBounds(1203, 394, 513, 48);
-		frame.getContentPane().add(btnActualizarEjercicio);
+		frmGym.getContentPane().add(btnActualizarEjercicio);
 
 		/**
 		 * Botón para eliminar un ejercicio en la BD.
@@ -1016,7 +1165,7 @@ public class App {
 		btnEliminarEjercicio.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnEliminarEjercicio.setBackground(new Color(255, 140, 0));
 		btnEliminarEjercicio.setBounds(1203, 454, 513, 48);
-		frame.getContentPane().add(btnEliminarEjercicio);
+		frmGym.getContentPane().add(btnEliminarEjercicio);
 
 		/*
 		 * Tabla Rutina.
@@ -1053,7 +1202,7 @@ public class App {
 		scrollPaneRutina.setEnabled(false);
 		scrollPaneRutina.setBorder(null);
 		scrollPaneRutina.setBounds(662, 331, 448, 477);
-		frame.getContentPane().add(scrollPaneRutina);
+		frmGym.getContentPane().add(scrollPaneRutina);
 
 		tableRutina = new JTable(modelRutina);
 		tableRutina.setFont(new Font("Dialog", Font.BOLD, 16));
@@ -1098,7 +1247,7 @@ public class App {
 			}
 		});
 		btnMostrarRutina.setBounds(846, 478, 89, 23);
-		frame.getContentPane().add(btnMostrarRutina);
+		frmGym.getContentPane().add(btnMostrarRutina);
 
 		DefaultTableCellRenderer cellRendererRutina = (DefaultTableCellRenderer) tableRutina
 				.getDefaultRenderer(Object.class);
@@ -1132,7 +1281,7 @@ public class App {
 		btnAsignarRutina.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnAsignarRutina.setBackground(new Color(255, 140, 0));
 		btnAsignarRutina.setBounds(663, 192, 447, 48);
-		frame.getContentPane().add(btnAsignarRutina);
+		frmGym.getContentPane().add(btnAsignarRutina);
 
 		JButton btnEliminarRutina = new JButton(" Eliminar");
 		btnEliminarRutina.addActionListener(new ActionListener() {
@@ -1152,7 +1301,7 @@ public class App {
 		btnEliminarRutina.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnEliminarRutina.setBackground(new Color(255, 140, 0));
 		btnEliminarRutina.setBounds(663, 264, 451, 48);
-		frame.getContentPane().add(btnEliminarRutina);
+		frmGym.getContentPane().add(btnEliminarRutina);
 
 		/**
 		 * JLabel del Fondo.
@@ -1164,7 +1313,7 @@ public class App {
 		lblFondo.setForeground(new Color(0, 0, 0));
 		lblFondo.setIcon(new ImageIcon(App.class.getResource("/img/fondoGym.jpg")));
 		lblFondo.setBounds(0, -31, 1825, 864);
-		frame.getContentPane().add(lblFondo);
+		frmGym.getContentPane().add(lblFondo);
 
 	}
 }
