@@ -213,7 +213,8 @@ public class Cliente {
 	}
 	
 	public void quitarEjercicio(Ejercicio e) {
-		this.ejercicios.remove(e);
+		
+		this.ejercicios.removeIf(ejercicio -> (e.getIdEjercicio()==ejercicio.getIdEjercicio()));
 		e.getClientes().remove(this);
 	}
 
