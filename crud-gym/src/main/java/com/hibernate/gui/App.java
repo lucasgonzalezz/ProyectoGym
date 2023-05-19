@@ -28,6 +28,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JComboBox;
 
 public class App {
 
@@ -65,6 +66,7 @@ public class App {
 	private JTable tableRutina;
 	private JTextField txtClienteRutina;
 	private JTextField txtEjercicioRutina;
+	private JTextField txtGrupoMuscular;
 
 	/**
 	 * Launch the application.
@@ -103,6 +105,31 @@ public class App {
 		frmGym.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmGym.getContentPane().setLayout(null);
 		frmGym.setSize(1760, 860);
+		
+		JLabel lblGrupoMuscularRutina = new JLabel("Grupo Muscular:");
+		lblGrupoMuscularRutina.setForeground(new Color(255, 140, 0));
+		lblGrupoMuscularRutina.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblGrupoMuscularRutina.setBounds(663, 193, 136, 15);
+		frmGym.getContentPane().add(lblGrupoMuscularRutina);
+		
+		JComboBox comboBoxGrupoMuscular = new JComboBox();
+		comboBoxGrupoMuscular.setBounds(785, 189, 325, 24);
+		frmGym.getContentPane().add(comboBoxGrupoMuscular);
+		
+		JLabel lblGrupoMuscular = new JLabel("Grupo Muscular:");
+		lblGrupoMuscular.setForeground(new Color(255, 140, 0));
+		lblGrupoMuscular.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblGrupoMuscular.setBounds(1203, 241, 168, 35);
+		frmGym.getContentPane().add(lblGrupoMuscular);
+		
+		txtGrupoMuscular = new JTextField();
+		txtGrupoMuscular.setForeground(Color.BLACK);
+		txtGrupoMuscular.setFont(new Font("Dialog", Font.BOLD, 16));
+		txtGrupoMuscular.setColumns(10);
+		txtGrupoMuscular.setBorder(null);
+		txtGrupoMuscular.setBackground(new Color(255, 140, 0));
+		txtGrupoMuscular.setBounds(1379, 246, 348, 19);
+		frmGym.getContentPane().add(txtGrupoMuscular);
 
 		txtEjercicioRutina = new JTextField();
 		txtEjercicioRutina.setEditable(false);
@@ -760,19 +787,19 @@ public class App {
 		JLabel lblEjercicioNumSeries = new JLabel("Nº Series:");
 		lblEjercicioNumSeries.setForeground(new Color(255, 140, 0));
 		lblEjercicioNumSeries.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblEjercicioNumSeries.setBounds(1203, 163, 117, 35);
+		lblEjercicioNumSeries.setBounds(1203, 136, 117, 35);
 		frmGym.getContentPane().add(lblEjercicioNumSeries);
 
 		JLabel lblRepeticiones = new JLabel("Repeticiones:");
 		lblRepeticiones.setForeground(new Color(255, 140, 0));
 		lblRepeticiones.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblRepeticiones.setBounds(1203, 223, 140, 35);
+		lblRepeticiones.setBounds(1203, 176, 140, 35);
 		frmGym.getContentPane().add(lblRepeticiones);
 
 		JLabel lblEjercicioCarga = new JLabel("Cargar (kg):");
 		lblEjercicioCarga.setForeground(new Color(255, 140, 0));
 		lblEjercicioCarga.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblEjercicioCarga.setBounds(1207, 277, 136, 35);
+		lblEjercicioCarga.setBounds(1203, 206, 136, 35);
 		frmGym.getContentPane().add(lblEjercicioCarga);
 
 		txtEjercicioNombre = new JTextField();
@@ -790,7 +817,7 @@ public class App {
 		txtEjercicioNumSeries.setColumns(10);
 		txtEjercicioNumSeries.setBorder(null);
 		txtEjercicioNumSeries.setBackground(new Color(255, 140, 0));
-		txtEjercicioNumSeries.setBounds(1361, 172, 356, 19);
+		txtEjercicioNumSeries.setBounds(1361, 145, 356, 19);
 		frmGym.getContentPane().add(txtEjercicioNumSeries);
 
 		txtEjercicioRepeticiones = new JTextField();
@@ -799,7 +826,7 @@ public class App {
 		txtEjercicioRepeticiones.setColumns(10);
 		txtEjercicioRepeticiones.setBorder(null);
 		txtEjercicioRepeticiones.setBackground(new Color(255, 140, 0));
-		txtEjercicioRepeticiones.setBounds(1361, 230, 356, 19);
+		txtEjercicioRepeticiones.setBounds(1361, 183, 356, 19);
 		frmGym.getContentPane().add(txtEjercicioRepeticiones);
 
 		txtEjercicioCarga = new JTextField();
@@ -808,7 +835,7 @@ public class App {
 		txtEjercicioCarga.setColumns(10);
 		txtEjercicioCarga.setBorder(null);
 		txtEjercicioCarga.setBackground(new Color(255, 140, 0));
-		txtEjercicioCarga.setBounds(1361, 286, 356, 19);
+		txtEjercicioCarga.setBounds(1369, 214, 348, 19);
 		frmGym.getContentPane().add(txtEjercicioCarga);
 
 		txtEjercicioId = new JTextField();
@@ -1280,7 +1307,7 @@ public class App {
 		});
 		btnAsignarRutina.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnAsignarRutina.setBackground(new Color(255, 140, 0));
-		btnAsignarRutina.setBounds(663, 192, 447, 48);
+		btnAsignarRutina.setBounds(663, 217, 447, 48);
 		frmGym.getContentPane().add(btnAsignarRutina);
 
 		JButton btnEliminarRutina = new JButton(" Eliminar");
@@ -1300,7 +1327,7 @@ public class App {
 		btnEliminarRutina.setIcon(new ImageIcon(App.class.getResource("/img/eliminar.png")));
 		btnEliminarRutina.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnEliminarRutina.setBackground(new Color(255, 140, 0));
-		btnEliminarRutina.setBounds(663, 264, 451, 48);
+		btnEliminarRutina.setBounds(663, 269, 447, 48);
 		frmGym.getContentPane().add(btnEliminarRutina);
 
 		/**

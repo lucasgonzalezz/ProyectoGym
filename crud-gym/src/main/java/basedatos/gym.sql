@@ -40,6 +40,7 @@ INSERT INTO `cliente` VALUES
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gym`.`ejercicio` (
   `idEjercicio` INT NOT NULL AUTO_INCREMENT,
+  `tipoMuscular` VARCHAR(255) NOT NULL,
   `nombreEjercicio` VARCHAR(255) COLLATE 'utf8mb3_bin' NOT NULL,
   `numeroSeries` INT NOT NULL,
   `numeroRepeticiones` INT NOT NULL,
@@ -48,15 +49,16 @@ CREATE TABLE IF NOT EXISTS `gym`.`ejercicio` (
 ENGINE = InnoDB;
 
 INSERT INTO `ejercicio` VALUES
- (1, 'Sentadillas con barra', 4, 8, 5),
- (2, 'Prensa máquina', 4, 8, 5),
- (3, 'Extensión gemelos', 4, 10, 5),
- (4, 'Press banco', 4, 8, 5),
- (5, 'Peso muerto rumano', 4, 10, 5),
- (6, 'Elevacion piernas', 4, 20, default),
- (7, 'Elevaciones laterales', 4, 8, 2),
- (8, 'Fondos tríceps', 4, 10, 4);
-
+ (1, 'Hombros','Press militar', 4, 8, 5),
+ (2, 'Espalda', 'Dominadas', 5, 20, DEFAULT),
+ (3, 'Espalda', 'Remo', 4, 10, 3),
+ (4, 'Pectoral', 'Press banca', 6, 10, 20),
+ (5, 'Cuádriceps', 'Sentadillas', 5, 15, 3),
+ (6, 'Femorales', 'Peso muerto', 5, 10, 20),
+ (7, 'Bíceps', 'Curl de bícps con barra Z', 5, 15, 10),
+ (8, 'Tríceps', 'Press francés con barra Z', 5, 15, 10);
+ 
+/*
 -- -----------------------------------------------------
 -- Table `gym`.`rutina`
 -- -----------------------------------------------------
@@ -77,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `gym`.`rutina` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
+*/
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
