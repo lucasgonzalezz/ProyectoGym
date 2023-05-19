@@ -8,18 +8,9 @@ package com.hibernate.dao;
  *
  */
 
-import com.hibernate.model.Cliente;
-import com.hibernate.model.Ejercicio;
 import com.hibernate.model.Entrenador;
 import com.hibernate.util.HibernateUtil;
-
-import jakarta.persistence.TypedQuery;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -36,18 +27,18 @@ public class DAOEntrenador {
 	public static Entrenador selectEntrenadorById(int id) {
 
 		Transaction transaction = null;
-		Entrenador e = null;
+		Entrenador ent = null;
 
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
-			e = session.get(Entrenador.class, id);
+			ent = session.get(Entrenador.class, id);
 			transaction.commit();
 		} catch (Exception e1) {
 			if (transaction != null) {
 				transaction.rollback();
 			}
 		}
-		return e;
+		return ent;
 	}
 
 	/**
@@ -56,11 +47,11 @@ public class DAOEntrenador {
 	 * @param e: Objeto ejercicio con todos sus atributos.
 	 */
 
-	public static void insertEntrenador(Entrenador e) {
+	public static void insertEntrenador(Entrenador ent) {
 		Transaction transaction = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
-			session.persist(e);
+			session.persist(ent);
 			transaction.commit();
 		} catch (Exception e1) {
 			if (transaction != null) {
@@ -75,11 +66,11 @@ public class DAOEntrenador {
 	 * @param e: Objeto ejercicio con todos sus atributos.
 	 */
 
-	public static void updateEntrenador(Entrenador e) {
+	public static void updateEntrenador(Entrenador ent) {
 		Transaction transaction = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
-			session.merge(e);
+			session.merge(ent);
 			transaction.commit();
 		} catch (Exception e1) {
 			if (transaction != null) {
@@ -96,11 +87,11 @@ public class DAOEntrenador {
 
 	public static void deleteEntrenador(int id) {
 		Transaction transaction = null;
-		Entrenador e = null;
+		Entrenador ent = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
-			e = session.get(Entrenador.class, id);
-			session.remove(e);
+			ent = session.get(Entrenador.class, id);
+			session.remove(ent);
 			transaction.commit();
 		} catch (Exception e1) {
 			if (transaction != null) {
@@ -133,19 +124,19 @@ public class DAOEntrenador {
 	public static Entrenador selectEntrenador(String entre) {
 
 		Transaction transaction = null;
-		Entrenador e = null;
+		Entrenador ent = null;
 
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
 			Query<Entrenador> query = session.createQuery("FROM Entrenador WHERE nombreEntrenador=:entrenador", Entrenador.class);
 			query.setParameter("entrenador", entre);
-			e = query.uniqueResult();
+			ent = query.uniqueResult();
 		} catch (Exception e1) {
 			if (transaction != null) {
 				transaction.rollback();
 			}
 		}
-		return e;
+		return ent;
 	}
 	
 }

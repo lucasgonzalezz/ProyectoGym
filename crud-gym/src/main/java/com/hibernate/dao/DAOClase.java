@@ -1,6 +1,12 @@
 package com.hibernate.dao;
 
 import com.hibernate.model.Clase;
+import com.hibernate.model.Cliente;
+import com.hibernate.util.HibernateUtil;
+import java.util.List;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 /**
  * GymDAO: Contiene todas la acciones contra la BD.
@@ -10,20 +16,6 @@ import com.hibernate.model.Clase;
  *
  */
 
-import com.hibernate.model.Cliente;
-import com.hibernate.model.Ejercicio;
-import com.hibernate.util.HibernateUtil;
-
-import jakarta.persistence.TypedQuery;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
 public class DAOClase {
 
@@ -37,18 +29,18 @@ public class DAOClase {
 	public static Clase selectClaseById(int id) {
 
 		Transaction transaction = null;
-		Clase c = null;
+		Clase cla = null;
 
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
-			c = session.get(Clase.class, id);
+			cla = session.get(Clase.class, id);
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
 			}
 		}
-		return c;
+		return cla;
 	}
 
 	/**
@@ -57,11 +49,11 @@ public class DAOClase {
 	 * @param c: Objeto cliente con todos sus atributos.
 	 */
 
-	public static void insertClase(Clase c) {
+	public static void insertClase(Clase cla) {
 		Transaction transaction = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
-			session.persist(c);
+			session.persist(cla);
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {
@@ -76,11 +68,11 @@ public class DAOClase {
 	 * @param c: Objeto cliente con todos sus atributos.
 	 */
 
-	public static void updateClase(Clase c) {
+	public static void updateClase(Clase cla) {
 		Transaction transaction = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
-			session.merge(c);
+			session.merge(cla);
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {
@@ -97,11 +89,11 @@ public class DAOClase {
 
 	public static void deleteClase(int id) {
 		Transaction transaction = null;
-		Cliente c = null;
+		Cliente cla = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
-			c = session.get(Cliente.class, id);
-			session.remove(c);
+			cla = session.get(Cliente.class, id);
+			session.remove(cla);
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {
@@ -134,19 +126,19 @@ public class DAOClase {
 	public static Clase selectClase(String nom) {
 
 		Transaction transaction = null;
-		Clase c = null;
+		Clase cla = null;
 
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
 			Query<Clase> query = session.createQuery("FROM Clase WHERE nombreClase=:nombre", Clase.class);
 			query.setParameter("nombre", nom);
-			c = query.uniqueResult();
+			cla = query.uniqueResult();
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
 			}
 		}
-		return c;
+		return cla;
 	}
 
 }

@@ -3,8 +3,7 @@ package com.hibernate.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+
 
 /**
  * Ejercicio: Datos del ejercicio.
@@ -19,9 +18,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -41,14 +37,8 @@ public class Ejercicio {
 	@Column(name = "cargaKg")
 	private double cargaKg;
 	
-	@Fetch(FetchMode.JOIN)	
-	@ManyToMany   //(cascade = CascadeType.ALL)
-	@JoinTable(
-			name = "cliente_ejercicio", 
-			joinColumns = @JoinColumn(name = "idEjercicio"),
-            inverseJoinColumns = @JoinColumn(name = "idCliente")
-			  )
 	private List<Cliente> clientes=new ArrayList<Cliente>();
+	
 	/**
 	 * Constructor.
 	 */
@@ -193,5 +183,7 @@ public class Ejercicio {
 		this.clientes.remove(c);
 		c.getEjercicios().remove(this);
 	}
+	
+	
 
 }
