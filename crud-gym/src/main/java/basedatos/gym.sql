@@ -15,6 +15,19 @@ CREATE SCHEMA IF NOT EXISTS `gym` ;
 USE `gym` ;
 
 -- -----------------------------------------------------
+-- Table `gym`.`clase`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `gym`.`clase` (
+  `idClase` INT NOT NULL AUTO_INCREMENT,
+  `nombreClase` VARCHAR(60) NOT NULL,
+  `lugar` VARCHAR(60) NOT NULL,
+  `tope` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`idClase`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
+
+-- -----------------------------------------------------
 -- Table `gym`.`cliente`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gym`.`cliente` (
@@ -80,6 +93,19 @@ CREATE TABLE IF NOT EXISTS `gym`.`rutina` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 */
+
+-- -----------------------------------------------------
+-- Table `gym`.`entrenador`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `gym`.`entrenador` (
+  `idEntrenador` INT NOT NULL AUTO_INCREMENT,
+  `apellidos` VARCHAR(120) NOT NULL,
+  `edad` VARCHAR(60) NOT NULL,
+  `titulacion` VARCHAR(60) NOT NULL,
+  PRIMARY KEY (`idEntrenador`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

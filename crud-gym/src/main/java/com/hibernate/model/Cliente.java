@@ -43,13 +43,6 @@ public class Cliente {
 	@Column(name = "peso")
 	private double peso;
 	
-	@Fetch(FetchMode.JOIN)
-	@ManyToMany    //(cascade = CascadeType.ALL)
-	@JoinTable(
-			name="cliente_ejercicio",  //Se crea automaticamente...
-			joinColumns = @JoinColumn(name = "idCliente"),
-		    inverseJoinColumns = @JoinColumn(name = "idEjercicio")
-			  )
 	private List<Ejercicio> ejercicios=new ArrayList<Ejercicio>();
 	
 	/**

@@ -101,7 +101,7 @@ public class App {
 		frmGym.setTitle("El Gym de L&L");
 		frmGym.setResizable(true);
 		frmGym.setBackground(new Color(255, 69, 0));
-		frmGym.setBounds(100, 100, 1756, 858);
+		frmGym.setBounds(500, 500, 2500, 1500);
 		frmGym.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmGym.getContentPane().setLayout(null);
 		frmGym.setSize(1760, 860);
