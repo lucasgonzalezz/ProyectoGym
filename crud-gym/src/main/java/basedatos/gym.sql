@@ -27,6 +27,11 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_unicode_ci;
 
+INSERT INTO `clase` VALUES
+ (1, 'Zumba', 'Sala 01', 25),
+ (2, 'Pilates', 'Sala Especial 1', 50),
+ (3, 'Punchimba', 'Exterior 1', 10);
+
 -- -----------------------------------------------------
 -- Table `gym`.`cliente`
 -- -----------------------------------------------------
@@ -99,13 +104,20 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gym`.`entrenador` (
   `idEntrenador` INT NOT NULL AUTO_INCREMENT,
-  `apellidos` VARCHAR(120) NOT NULL,
+  `nombreEntrenador` VARCHAR(60) NOT NULL,
+  `apellidosEntrenador` VARCHAR(120) NOT NULL,
   `edad` VARCHAR(60) NOT NULL,
   `titulacion` VARCHAR(60) NOT NULL,
   PRIMARY KEY (`idEntrenador`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_unicode_ci;
+
+INSERT INTO `entrenador` VALUES
+ (1, 'Maria', 'Fernandez Marco', 19, 'Entrenador Personal'),
+ (2, 'Pepe', 'Angir Carmilo', 29, 'Magisterio'),
+ (3, 'Marcos', 'Angresola Rodriguez', 39, 'Nada'),
+ (4, 'Raquel', 'Munoz Esteve', 49, 'Entrenador Personal');
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
