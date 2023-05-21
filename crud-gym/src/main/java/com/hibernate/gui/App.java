@@ -65,6 +65,7 @@ public class App {
 
 	DAOCliente clienteDAO = new DAOCliente();
 	DAOEjercicio ejercicioDAO = new DAOEjercicio();
+	DAOEntrenador entrenadorDAO = new DAOEntrenador();
 	private JTable tableRutina;
 	private JTextField txtClienteRutina;
 	private JTextField txtEjercicioRutina;
@@ -80,7 +81,6 @@ public class App {
 	private JTextField txtTopeClase;
 	private JTextField txtEjercicioId;
 	private JTextField txtClienteId;
-	private JTable tableEntrenador;
 	private JTextField txtEntrenadorId;
 
 	/**
@@ -1692,7 +1692,7 @@ public class App {
 		lblFondo.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblFondo.setForeground(new Color(0, 0, 0));
 		lblFondo.setIcon(new ImageIcon(App.class.getResource("/img/fondoGymDef.jpg")));
-		lblFondo.setBounds(0, -65, 1825, 1486);
+		lblFondo.setBounds(0, -65, 1825, 1434);
 		frmGym.getContentPane().add(lblFondo);
 
 	}
