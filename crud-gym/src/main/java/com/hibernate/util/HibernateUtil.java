@@ -13,8 +13,11 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
+
+import com.hibernate.model.Clase;
 import com.hibernate.model.Cliente;
 import com.hibernate.model.Ejercicio;
+import com.hibernate.model.Entrenador;
 
 public class HibernateUtil {
 
@@ -38,6 +41,8 @@ public class HibernateUtil {
 
 				configuration.addAnnotatedClass(Cliente.class);;
 				configuration.addAnnotatedClass(Ejercicio.class);
+				configuration.addAnnotatedClass(Entrenador.class);
+				configuration.addAnnotatedClass(Clase.class);
 
 				ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 						.applySettings(configuration.getProperties()).build();
