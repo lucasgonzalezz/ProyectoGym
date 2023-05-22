@@ -104,6 +104,7 @@ public class App {
 	private JTextField txtEntrenadorId;
 	private JTextField txtClaseId;
 	private JTable table;
+	private JTable tableImpartirClase;
 
 	/**
 	 * Launch the application.
@@ -141,7 +142,7 @@ public class App {
 		frmGym.setBounds(500, 500, 2500, 1500);
 		frmGym.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmGym.getContentPane().setLayout(null);
-		frmGym.setSize(1758, 1408);
+		frmGym.setSize(1763, 1230);
 		
 		txtClaseId = new JTextField();
 		txtClaseId.setHorizontalAlignment(SwingConstants.CENTER);
@@ -626,6 +627,44 @@ public class App {
 		scrollImpartirClase.setBorder(null);
 		scrollImpartirClase.setBounds(663, 984, 448, 376);
 		frmGym.getContentPane().add(scrollImpartirClase);
+		
+		DefaultTableModel modelImpartirClase = new DefaultTableModel() {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false; // Hacer que todas las celdas no sean editables
+			}
+		};
+
+		modelImpartirClase.addColumn("Entrenador");
+		modelImpartirClase.addColumn("Clase");
+
+		modelImpartirClase.setRowCount(0);
+		List<Entrenador> entrenadores = DAOEntrenador.selectAllEntrenadores();
+
+		for (Entrenador e : entrenadores) {
+			List<Clase> claseEntrenador = e.getClases();
+
+			for (Clase c : claseEntrenador) {
+				Object[] row = new Object[2];
+
+				row[0] = e.getNombreEntrenador();
+				row[1] = c.getNombreClase();
+				modelImpartirClase.addRow(row);
+			}
+
+		}
+		
+		tableImpartirClase = new JTable();
+		tableImpartirClase.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int index = tableRutina.getSelectedRow();
+				TableModel modelRutina = tableRutina.getModel();
+				txtEntreadorImpartirClase.setText(modelRutina.getValueAt(index, 0).toString());
+				txtClaseImpartirClase.setText(modelRutina.getValueAt(index, 1).toString());				
+			}
+		});
+		scrollImpartirClase.setColumnHeaderView(tableImpartirClase);
 
 		txtEntreadorImpartirClase = new JTextField();
 		txtEntreadorImpartirClase.setForeground(Color.BLACK);

@@ -39,6 +39,14 @@ public class Clase {
 	@Column(name = "nombreClase")
 	private String nombreClase;
 	
+	@Fetch(FetchMode.JOIN)	
+	@ManyToMany   //(cascade = CascadeType.ALL)
+	@JoinTable(
+			name = "entrenador_clase", 
+			joinColumns = @JoinColumn(name = "idClase"),
+            inverseJoinColumns = @JoinColumn(name = "idEntrenador")
+			  )
+	private List<Entrenador> entrenadores=new ArrayList<Entrenador>();	
 	/**
 	 * Constructor.
 	 */
@@ -95,5 +103,24 @@ public class Clase {
 	public void setNombreClase(String nombreClase) {
 		this.nombreClase = nombreClase;
 	}	
+	
+
+	public List<Entrenador> getEntrenador() {
+		return entrenadores;
+	}
+	
+	public void setEntrenador(List<Entrenador> entrenadores) {
+		this.entrenadores = entrenadores;
+	}
+	
+	public void anyadirEntrenador(Entrenador e) {
+		this.entrenadores.add(e);
+		e.getClases().add(this);
+	}
+	
+	public void quitarEntrenador(Entrenador e) {
+		this.entrenadores.removeIf(entrenador -> (e.getIdEntrenador()==entrenador.getIdEntrenador()));
+		e.getClases().remove(this);
+	}
 
 }
