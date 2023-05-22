@@ -632,12 +632,6 @@ public class App {
 		lblEntreadorImpartirClase.setBounds(663, 778, 108, 15);
 		frmGym.getContentPane().add(lblEntreadorImpartirClase);
 
-		JScrollPane scrollImpartirClase = new JScrollPane();
-		scrollImpartirClase.setOpaque(false);
-		scrollImpartirClase.setEnabled(false);
-		scrollImpartirClase.setBorder(null);
-		scrollImpartirClase.setBounds(663, 984, 448, 376);
-		frmGym.getContentPane().add(scrollImpartirClase);
 		
 		DefaultTableModel modelImpartirClase = new DefaultTableModel() {
 			@Override
@@ -665,18 +659,29 @@ public class App {
 
 		}
 		
-		tableImpartirClase = new JTable();
+		JScrollPane scrollImpartirClase = new JScrollPane();
+		scrollImpartirClase.setOpaque(false);
+		scrollImpartirClase.setEnabled(false);
+		scrollImpartirClase.setBorder(null);
+		scrollImpartirClase.setBounds(663, 984, 448, 376);
+		frmGym.getContentPane().add(scrollImpartirClase);
+		
+		tableImpartirClase = new JTable(modelImpartirClase);
+		tableImpartirClase.setFont(new Font("Dialog", Font.BOLD, 16));
+		tableImpartirClase.setShowVerticalLines(false);
+		tableImpartirClase.setRowHeight(25);
+		tableImpartirClase.setForeground(new Color(255, 102, 0));
 		tableImpartirClase.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int index = tableRutina.getSelectedRow();
-				TableModel modelRutina = tableRutina.getModel();
-				txtEntreadorImpartirClase.setText(modelRutina.getValueAt(index, 0).toString());
-				txtClaseImpartirClase.setText(modelRutina.getValueAt(index, 1).toString());				
+				int indexImpartirClase = tableImpartirClase.getSelectedRow();
+				TableModel modelImpartirClase = tableImpartirClase.getModel();
+				txtEntreadorImpartirClase.setText(modelImpartirClase.getValueAt(indexImpartirClase, 0).toString());
+				txtClaseImpartirClase.setText(modelImpartirClase.getValueAt(indexImpartirClase, 1).toString());				
 			}
 		});
 		scrollImpartirClase.setColumnHeaderView(tableImpartirClase);
-
+		
 		txtEntreadorImpartirClase = new JTextField();
 		txtEntreadorImpartirClase.setForeground(Color.BLACK);
 		txtEntreadorImpartirClase.setFont(new Font("Dialog", Font.BOLD, 16));
@@ -715,7 +720,7 @@ public class App {
 		});
 		btnMostrarImpartirClase.setBounds(846, 478, 89, 23);
 		frmGym.getContentPane().add(btnMostrarImpartirClase);
-
+		
 		JButton btnAsignarClase = new JButton("  Asignar");
 		btnAsignarClase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
