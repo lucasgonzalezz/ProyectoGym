@@ -608,6 +608,17 @@ public class App {
 		frmGym.getContentPane().add(lblClaseImpartirClase);
 
 		JButton btnEliminarImpartirClase = new JButton(" Eliminar");
+		btnEliminarImpartirClase.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Entrenador entr = DAOEntrenador.selectEntrenador(txtEntreadorImpartirClase.getText());
+				Clase c = DAOClase.selectClase(txtClaseImpartirClase.getText());
+
+				c.quitarEntrenador(entr);
+				DAOClase.updateClase(c);
+
+				btnEliminarImpartirClase.doClick();
+			}
+		});
 		btnEliminarImpartirClase.setIcon(new ImageIcon(App.class.getResource("/img/eliminar.png")));
 		btnEliminarImpartirClase.setForeground(Color.BLACK);
 		btnEliminarImpartirClase.setFont(new Font("Dialog", Font.BOLD, 20));
@@ -675,8 +686,48 @@ public class App {
 		txtEntreadorImpartirClase.setBackground(new Color(255, 140, 0));
 		txtEntreadorImpartirClase.setBounds(787, 777, 323, 19);
 		frmGym.getContentPane().add(txtEntreadorImpartirClase);
+		
+		JButton btnMostrarImpartirClase = new JButton("");
+		btnMostrarImpartirClase.setOpaque(false);
+		btnMostrarImpartirClase.setBorderPainted(false);
+		btnMostrarImpartirClase.setBorder(null);
+		btnMostrarImpartirClase.setVisible(false);
+		btnMostrarImpartirClase.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnMostrarImpartirClase.setBackground(UIManager.getColor("Button.background"));
+		btnMostrarImpartirClase.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				modelImpartirClase.setRowCount(0);
+				List<Entrenador> entrenadores = DAOEntrenador.selectAllEntrenadores();
+
+				for (Entrenador entr : entrenadores) {
+					List<Clase> entrenadorClase = entr.getClases();
+
+					for (Clase c : entrenadorClase) {
+						Object[] row = new Object[2];
+
+						row[0] = entr.getNombreEntrenador();
+						row[1] = c.getNombreClase();
+						modelImpartirClase.addRow(row);
+					}
+
+				}
+			}
+		});
+		btnMostrarImpartirClase.setBounds(846, 478, 89, 23);
+		frmGym.getContentPane().add(btnMostrarImpartirClase);
 
 		JButton btnAsignarClase = new JButton("  Asignar");
+		btnAsignarClase.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Entrenador entr = DAOEntrenador.selectEntrenador(txtEntreadorImpartirClase.getText());
+				Clase c = DAOClase.selectClase(txtClaseImpartirClase.getText());
+
+				c.anyadirEntrenador(entr);
+				DAOClase.updateClase(c);
+
+				btnMostrarImpartirClase.doClick();
+			}
+		});
 		btnAsignarClase.setIcon(new ImageIcon(App.class.getResource("/img/asignar.png")));
 		btnAsignarClase.setForeground(Color.BLACK);
 		btnAsignarClase.setFont(new Font("Dialog", Font.BOLD, 20));
