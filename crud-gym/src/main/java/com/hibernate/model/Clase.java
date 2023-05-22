@@ -57,9 +57,8 @@ public class Clase {
 	 * @param peso
 	 */
 
-	public Clase(int idClase, String lugar, int tope, String nombreClase) {
+	public Clase(String lugar, int tope, String nombreClase) {
 		super();
-		this.idClase = idClase;
 		this.lugar = lugar;
 		this.tope = tope;
 		this.nombreClase = nombreClase;

@@ -89,11 +89,11 @@ public class DAOClase {
 
 	public static void deleteClase(int id) {
 		Transaction transaction = null;
-		Cliente cla = null;
+		Clase clase = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
-			cla = session.get(Cliente.class, id);
-			session.remove(cla);
+			clase = session.get(Clase.class, id);
+			session.remove(clase);
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {
