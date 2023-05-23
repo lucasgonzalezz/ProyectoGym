@@ -151,7 +151,7 @@ public class App {
 		frmGym.setBounds(500, 500, 2500, 1500);
 		frmGym.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmGym.getContentPane().setLayout(null);
-		frmGym.setSize(1763, 1230);
+		frmGym.setSize(1744, 1408);
 
 		DefaultTableModel modelEntrenador = new DefaultTableModel() {
 			@Override
@@ -225,9 +225,58 @@ public class App {
 		headerRendererEntrenador.setFont(headerRendererEntrenador.getFont().deriveFont(Font.BOLD, 16));
 		headerRendererEntrenador.setHorizontalAlignment(SwingConstants.CENTER);
 		headerEntrenador.setDefaultRenderer(headerRendererEntrenador);
+		
+		JLabel lblContraseña = new JLabel("Contraseña:");
+		lblContraseña.setBounds(28, 943, 117, 14);
+		lblContraseña.setVisible(false);
+		
+		JLabel lblNombreEntrenadorRegistro = new JLabel("Nombre:");
+		lblNombreEntrenadorRegistro.setVisible(false);
+		lblNombreEntrenadorRegistro.setForeground(new Color(255, 140, 0));
+		lblNombreEntrenadorRegistro.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblNombreEntrenadorRegistro.setBounds(662, 87, 102, 14);
+		
+		JLabel lblContraseñaEntrenadorRegistro = new JLabel("Contraseña:");
+		lblContraseñaEntrenadorRegistro.setVisible(false);
+		
+		JLabel lblRecuadro = new JLabel("");
+		lblRecuadro.setVisible(false);
+		lblRecuadro.setIcon(new ImageIcon(App.class.getResource("/img/_C75617__5_-removebg-preview (4).png")));
+		lblRecuadro.setBounds(540, -49, 568, 500);
+		frmGym.getContentPane().add(lblRecuadro);
+		lblContraseñaEntrenadorRegistro.setForeground(new Color(255, 140, 0));
+		lblContraseñaEntrenadorRegistro.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblContraseñaEntrenadorRegistro.setBounds(662, 302, 114, 14);
+		frmGym.getContentPane().add(lblContraseñaEntrenadorRegistro);
+		
+		JLabel lblTitulacionEntrenadorRegistro = new JLabel("Titulación:");
+		lblTitulacionEntrenadorRegistro.setVisible(false);
+		lblTitulacionEntrenadorRegistro.setForeground(new Color(255, 140, 0));
+		lblTitulacionEntrenadorRegistro.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblTitulacionEntrenadorRegistro.setBounds(662, 251, 93, 14);
+		frmGym.getContentPane().add(lblTitulacionEntrenadorRegistro);
+		
+		JLabel lblEdadEntrenadorRegistro = new JLabel("Edad:");
+		lblEdadEntrenadorRegistro.setVisible(false);
+		lblEdadEntrenadorRegistro.setForeground(new Color(255, 140, 0));
+		lblEdadEntrenadorRegistro.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblEdadEntrenadorRegistro.setBounds(662, 196, 93, 14);
+		frmGym.getContentPane().add(lblEdadEntrenadorRegistro);
+		
+		JLabel lblApellidosEntrenadorRegistro = new JLabel("Apellidos:");
+		lblApellidosEntrenadorRegistro.setVisible(false);
+		lblApellidosEntrenadorRegistro.setForeground(new Color(255, 140, 0));
+		lblApellidosEntrenadorRegistro.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblApellidosEntrenadorRegistro.setBounds(662, 146, 102, 14);
+		frmGym.getContentPane().add(lblApellidosEntrenadorRegistro);
+
+		frmGym.getContentPane().add(lblNombreEntrenadorRegistro);
+		lblContraseña.setForeground(new Color(255, 140, 0));
+		lblContraseña.setFont(new Font("Dialog", Font.BOLD, 18));
+		frmGym.getContentPane().add(lblContraseña);
 
 		txtContraseñaUsuarioLogin = new JTextField();
-		txtContraseñaUsuarioLogin.setBounds(550, 413, 114, 19);
+		txtContraseñaUsuarioLogin.setBounds(55, 330, 114, 19);
 		frmGym.getContentPane().add(txtContraseñaUsuarioLogin);
 		txtContraseñaUsuarioLogin.setColumns(10);
 		txtContraseñaUsuarioLogin.setColumns(10);
@@ -240,7 +289,7 @@ public class App {
 		txtContraseñaUsuarioLogin.setBounds(138, 400, 424, 19);
 
 		txtNombreUsuarioLogin = new JTextField();
-		txtNombreUsuarioLogin.setBounds(391, 362, 114, 19);
+		txtNombreUsuarioLogin.setBounds(89, 143, 114, 19);
 		frmGym.getContentPane().add(txtNombreUsuarioLogin);
 		txtNombreUsuarioLogin.setColumns(10);
 		txtNombreUsuarioLogin.setVisible(false);
@@ -252,9 +301,10 @@ public class App {
 		txtNombreUsuarioLogin.setBounds(138, 300, 424, 19);
 
 		JScrollPane scrollPaneEntrenador = new JScrollPane(tableEntrenador);
+		scrollPaneEntrenador.setVisible(false);
 		scrollPaneEntrenador.setOpaque(false);
 		scrollPaneEntrenador.setEnabled(false);
-		scrollPaneEntrenador.setBounds(28, 1114, 534, 246);
+		scrollPaneEntrenador.setBounds(28, 1155, 534, 205);
 		frmGym.getContentPane().add(scrollPaneEntrenador);
 		scrollPaneEntrenador.setBorder(null);
 
@@ -291,7 +341,7 @@ public class App {
 		txtContraseñaEntrenadorRegistro.setColumns(10);
 		txtContraseñaEntrenadorRegistro.setBorder(null);
 		txtContraseñaEntrenadorRegistro.setBackground(new Color(255, 140, 0));
-		txtContraseñaEntrenadorRegistro.setBounds(502, 200, 250, 19);
+		txtContraseñaEntrenadorRegistro.setBounds(780, 300, 293, 19);
 		frmGym.getContentPane().add(txtContraseñaEntrenadorRegistro);
 
 		txtTitulacionEntrenadorRegistro = new JTextField();
@@ -301,7 +351,7 @@ public class App {
 		txtTitulacionEntrenadorRegistro.setColumns(10);
 		txtTitulacionEntrenadorRegistro.setBorder(null);
 		txtTitulacionEntrenadorRegistro.setBackground(new Color(255, 140, 0));
-		txtTitulacionEntrenadorRegistro.setBounds(484, 169, 250, 19);
+		txtTitulacionEntrenadorRegistro.setBounds(780, 242, 293, 19);
 		frmGym.getContentPane().add(txtTitulacionEntrenadorRegistro);
 
 		txtEdadEntrenadorRegistro = new JTextField();
@@ -311,7 +361,7 @@ public class App {
 		txtEdadEntrenadorRegistro.setColumns(10);
 		txtEdadEntrenadorRegistro.setBorder(null);
 		txtEdadEntrenadorRegistro.setBackground(new Color(255, 140, 0));
-		txtEdadEntrenadorRegistro.setBounds(418, 113, 250, 19);
+		txtEdadEntrenadorRegistro.setBounds(780, 191, 293, 19);
 		frmGym.getContentPane().add(txtEdadEntrenadorRegistro);
 
 		txtApellidosEntrenadorRegistro = new JTextField();
@@ -321,7 +371,7 @@ public class App {
 		txtApellidosEntrenadorRegistro.setColumns(10);
 		txtApellidosEntrenadorRegistro.setBorder(null);
 		txtApellidosEntrenadorRegistro.setBackground(new Color(255, 140, 0));
-		txtApellidosEntrenadorRegistro.setBounds(408, 82, 250, 19);
+		txtApellidosEntrenadorRegistro.setBounds(780, 141, 293, 19);
 		frmGym.getContentPane().add(txtApellidosEntrenadorRegistro);
 
 		txtNombreEntrenadorRegistro = new JTextField();
@@ -331,7 +381,7 @@ public class App {
 		txtNombreEntrenadorRegistro.setColumns(10);
 		txtNombreEntrenadorRegistro.setBorder(null);
 		txtNombreEntrenadorRegistro.setBackground(new Color(255, 140, 0));
-		txtNombreEntrenadorRegistro.setBounds(500, 40, 250, 19);
+		txtNombreEntrenadorRegistro.setBounds(780, 85, 293, 19);
 		frmGym.getContentPane().add(txtNombreEntrenadorRegistro);
 
 		txtContraseña = new JTextField();
@@ -341,7 +391,7 @@ public class App {
 		txtContraseña.setColumns(10);
 		txtContraseña.setBorder(null);
 		txtContraseña.setBackground(new Color(255, 140, 0));
-		txtContraseña.setBounds(457, 735, 203, 19);
+		txtContraseña.setBounds(138, 938, 424, 19);
 		frmGym.getContentPane().add(txtContraseña);
 
 		txtClaseId = new JTextField();
@@ -509,6 +559,7 @@ public class App {
 		headerClase.setDefaultRenderer(headerRendererClase);
 
 		JScrollPane scrollPaneClase = new JScrollPane(tableClase);
+		scrollPaneClase.setVisible(false);
 		scrollPaneClase.setOpaque(false);
 		scrollPaneClase.setBorder(null);
 		scrollPaneClase.setBounds(1203, 1112, 515, 244);
@@ -708,6 +759,7 @@ public class App {
 		frmGym.getContentPane().add(btnActualizarClase);
 
 		JButton btnEliminarClase = new JButton("Eliminar");
+		btnEliminarClase.setVisible(false);
 		btnEliminarClase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -1108,7 +1160,7 @@ public class App {
 		btnInsertarEntrenador.setForeground(Color.BLACK);
 		btnInsertarEntrenador.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnInsertarEntrenador.setBackground(new Color(255, 140, 0));
-		btnInsertarEntrenador.setBounds(28, 935, 534, 48);
+		btnInsertarEntrenador.setBounds(28, 978, 534, 48);
 		frmGym.getContentPane().add(btnInsertarEntrenador);
 
 		JButton btnActualizarEntrenador = new JButton(" Actualizar");
@@ -1211,10 +1263,11 @@ public class App {
 		btnActualizarEntrenador.setForeground(Color.BLACK);
 		btnActualizarEntrenador.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnActualizarEntrenador.setBackground(new Color(255, 140, 0));
-		btnActualizarEntrenador.setBounds(28, 995, 534, 48);
+		btnActualizarEntrenador.setBounds(28, 1038, 534, 48);
 		frmGym.getContentPane().add(btnActualizarEntrenador);
 
 		JButton btnEliminarEntrenador = new JButton(" Eliminar");
+		btnEliminarEntrenador.setVisible(false);
 		btnEliminarEntrenador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -1313,7 +1366,7 @@ public class App {
 		btnEliminarEntrenador.setForeground(Color.BLACK);
 		btnEliminarEntrenador.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnEliminarEntrenador.setBackground(new Color(255, 140, 0));
-		btnEliminarEntrenador.setBounds(28, 1053, 534, 48);
+		btnEliminarEntrenador.setBounds(28, 1096, 534, 48);
 		frmGym.getContentPane().add(btnEliminarEntrenador);
 
 		JLabel lblEntrenadorTitulacion = new JLabel("Titulación:");
@@ -2587,7 +2640,7 @@ public class App {
 		scrollPaneRutina.setOpaque(false);
 		scrollPaneRutina.setEnabled(false);
 		scrollPaneRutina.setBorder(null);
-		scrollPaneRutina.setBounds(663, 385, 447, 306);
+		scrollPaneRutina.setBounds(651, 391, 447, 323);
 		frmGym.getContentPane().add(scrollPaneRutina);
 
 		tableRutina = new JTable(modelRutina);
@@ -2691,9 +2744,18 @@ public class App {
 		btnEliminarRutina.setBounds(663, 226, 447, 48);
 		frmGym.getContentPane().add(btnEliminarRutina);
 
-		JButton btnConfirmarLogin = new JButton("Confirmar Login");
+		JButton btnConfirmarLogin = new JButton("");
+		btnConfirmarLogin.setOpaque(false);
+		btnConfirmarLogin.setContentAreaFilled(false);
+		btnConfirmarLogin.setBorderPainted(false);
+		btnConfirmarLogin.setIcon(new ImageIcon(App.class.getResource("/img/tic (1).png")));
 
-		JButton btnConfirmarRegistro = new JButton("Confirmar Registro");
+		JButton btnConfirmarRegistro = new JButton("");
+		btnConfirmarRegistro.setOpaque(false);
+		btnConfirmarRegistro.setContentAreaFilled(false);
+		btnConfirmarRegistro.setBorderPainted(false);
+		btnConfirmarRegistro.setIcon(new ImageIcon(App.class.getResource("/img/2-removebg-preview (1) (1).png")));
+
 
 		btnConfirmarRegistro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -2723,12 +2785,27 @@ public class App {
 			}
 		});
 		btnConfirmarRegistro.setVisible(false);
-		btnConfirmarRegistro.setBounds(574, 236, 178, 25);
+		btnConfirmarRegistro.setBounds(756, 374, 230, 70);
 		frmGym.getContentPane().add(btnConfirmarRegistro);
 
-		JButton btnLogin = new JButton("Login");
+		JButton btnLogin = new JButton("");
+		btnLogin.setOpaque(false);
+		btnLogin.setContentAreaFilled(false);
+		btnLogin.setBorderPainted(false);
+		btnLogin.setIcon(new ImageIcon(App.class.getResource("/img/1-removebg-preview (1).png")));
+		btnLogin.setBackground(Color.RED); // Establecer el color de fondo
+		btnLogin.setForeground(Color.WHITE); // Establecer el color del texto
+		btnLogin.setFont(new Font("Arial", Font.BOLD, 14)); // Establecer la fuente y el tamaño del texto
+		btnLogin.setFocusPainted(false); // Eliminar el efecto de enfoque al hacer clic
+		btnLogin.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20)); // Establecer el espacio interno del botón
 
-		JButton btnRegistrarse = new JButton("Registrarse");
+        //
+
+		JButton btnRegistrarse = new JButton("");
+		btnRegistrarse.setOpaque(false);
+		btnRegistrarse.setContentAreaFilled(false);
+		btnRegistrarse.setBorderPainted(false);
+		btnRegistrarse.setIcon(new ImageIcon(App.class.getResource("/img/2-removebg-preview (1).png")));
 		btnRegistrarse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				txtNombreEntrenadorRegistro.setVisible(true);
@@ -2736,7 +2813,14 @@ public class App {
 				txtEdadEntrenadorRegistro.setVisible(true);
 				txtTitulacionEntrenadorRegistro.setVisible(true);
 				txtContraseñaEntrenadorRegistro.setVisible(true);
-
+				
+				lblNombreEntrenadorRegistro.setVisible(true);
+				lblApellidosEntrenadorRegistro.setVisible(true);
+				lblEdadEntrenadorRegistro.setVisible(true);
+				lblTitulacionEntrenadorRegistro.setVisible(true);
+				lblContraseñaEntrenadorRegistro.setVisible(true);
+				lblRecuadro.setVisible(true);
+				
 				btnLogin.setVisible(false);
 				btnRegistrarse.setVisible(false);
 				btnConfirmarRegistro.setVisible(true);
@@ -2754,18 +2838,146 @@ public class App {
 			}
 		});
 
-		btnRegistrarse.setBounds(675, 3, 117, 25);
+		btnRegistrarse.setBounds(418, 86, 374, 133);
 		frmGym.getContentPane().add(btnRegistrarse);
-		btnLogin.setBounds(550, 12, 117, 25);
+		btnLogin.setBounds(926, 82, 464, 160);
 		frmGym.getContentPane().add(btnLogin);
 
+		DAOEntrenador daoEntrenador = new DAOEntrenador();
+
+		
 		btnConfirmarLogin.setVisible(false);
 		btnConfirmarLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				Entrenador ent = DAOEntrenador.selectEntrenadorByUserAndPasswd(txtNombreUsuarioLogin.getText(),
+			public void actionPerformed(ActionEvent e) {
+				Entrenador ent = daoEntrenador.selectEntrenadorByUserAndPasswd(txtNombreUsuarioLogin.getText(),
 						txtContraseñaUsuarioLogin.getText());
 
-				if (ent == null) {
+				if (txtNombreUsuarioLogin.getText().equals("root") && txtContraseñaUsuarioLogin.getText().equals("123")) {
+
+					JOptionPane.showMessageDialog(null, "Bienvenido root", "Acceso Correcto",
+							JOptionPane.ERROR_MESSAGE);
+
+					txtNombreUsuarioLogin.setVisible(false);
+					txtContraseñaUsuarioLogin.setVisible(false);
+
+					btnConfirmarLogin.setVisible(false);
+
+					lblTablaCliente.setVisible(true);
+					lblClienteId.setVisible(true);
+					lblClienteNombre.setVisible(true);
+					lblClienteApellidos.setVisible(true);
+					lblClienteEdad.setVisible(true);
+					lblClienteAltura.setVisible(true);
+					lblClientePeso.setVisible(true);
+
+					txtClienteId.setVisible(true);
+					txtClienteNombre.setVisible(true);
+					txtClienteApellidos.setVisible(true);
+					txtClienteEdad.setVisible(true);
+					txtClienteAltura.setVisible(true);
+					txtClientePeso.setVisible(true);
+
+					btnVaciarCliente.setVisible(true);
+					btnInsertarCliente.setVisible(true);
+					btnActualizarCliente.setVisible(true);
+					btnEliminarCliente.setVisible(true);
+
+					scrollPaneCliente.setVisible(true);
+					tableCliente.setVisible(true);
+
+					lblRutina.setVisible(true);
+					lblClienteRutina.setVisible(true);
+					lblEjercicioRutina.setVisible(true);
+
+					txtClienteRutina.setVisible(true);
+					txtEjercicioRutina.setVisible(true);
+
+					btnVaciarRutina.setVisible(true);
+					btnAsignarRutina.setVisible(true);
+					btnEliminarRutina.setVisible(true);
+
+					lblFiltrar.setVisible(true);
+					lblGrupoMuscularRutina.setVisible(true);
+					comboBoxGrupoMuscular.setVisible(true);
+
+					scrollPaneRutina.setVisible(true);
+					tableRutina.setVisible(true);
+
+					lblEjercicioId.setVisible(true);
+					lblEjercicioNombre.setVisible(true);
+					lblEjercicioNumSeries.setVisible(true);
+					lblRepeticiones.setVisible(true);
+					lblEjercicioCarga.setVisible(true);
+					lblGrupoMuscular.setVisible(true);
+
+					txtEjercicioId.setVisible(true);
+					txtEjercicioNombre.setVisible(true);
+					txtEjercicioNumSeries.setVisible(true);
+					txtEjercicioRepeticiones.setVisible(true);
+					txtEjercicioCarga.setVisible(true);
+					txtGrupoMuscular.setVisible(true);
+
+					btnVaciarEjercicio.setVisible(true);
+					btnInsertarEjercicio.setVisible(true);
+					btnActualizarEjercicio.setVisible(true);
+					btnEliminarEjercicio.setVisible(true);
+
+					scrollPaneEjercicio.setVisible(true);
+					tableEjercicio.setVisible(true);
+
+					lblEntrenador.setVisible(true);
+
+					txtEntrenadorId.setVisible(true);
+					txtEntrenadorNombre.setVisible(true);
+					txtEntrenadorApellidos.setVisible(true);
+					txtEntrenadorEdad.setVisible(true);
+					txtEntrenadorTitulacion.setVisible(true);
+					txtContraseña.setVisible(true);
+
+					lblEntrenadorId.setVisible(true);
+					lblEntrenadorNombre.setVisible(true);
+					lblEntrenadorApellidos.setVisible(true);
+					lblEntrenadorEdad.setVisible(true);
+					lblEntrenadorTitulacion.setVisible(true);
+
+					btnInsertarEntrenador.setVisible(true);
+					btnActualizarEntrenador.setVisible(true);
+					btnEliminarEntrenador.setVisible(true);
+
+					scrollPaneEntrenador.setVisible(true);
+					tableEntrenador.setVisible(true);
+
+					lblImpartirClase.setVisible(true);
+					lblEntreadorImpartirClase.setVisible(true);
+					lblClaseImpartirClase.setVisible(true);
+
+					txtEntreadorImpartirClase.setVisible(true);
+					txtClaseImpartirClase.setVisible(true);
+
+					btnAsignarClase.setVisible(true);
+
+					scrollImpartirClase.setVisible(true);
+					tableImpartirClase.setVisible(true);
+
+					lblClase.setVisible(true);
+					lblClaseId.setVisible(true);
+					lblNombreClase.setVisible(true);
+					lblLugarClase.setVisible(true);
+					lblTopeClase.setVisible(true);
+
+					txtClaseId.setVisible(true);
+					txtNombreClase.setVisible(true);
+					txtLugarClase.setVisible(true);
+					txtTopeClase.setVisible(true);
+
+					btnInsertarClase.setVisible(true);
+					btnActualizarClase.setVisible(true);
+					btnEliminarClase.setVisible(true);
+
+					scrollPaneClase.setVisible(true);
+					tableClase.setVisible(true);
+
+				} else if (ent == null) {
 
 					txtNombreUsuarioLogin.setVisible(false);
 					txtContraseñaUsuarioLogin.setVisible(false);
@@ -2779,10 +2991,7 @@ public class App {
 					txtContraseñaEntrenadorRegistro.setVisible(true);
 
 					btnConfirmarRegistro.setVisible(true);
-
-				} else if (txtNombreUsuarioLogin.getText().equals("root")
-						&& txtContraseñaUsuarioLogin.getText().equals("123")) {
-
+					
 				} else {
 					JOptionPane.showMessageDialog(null, "Bienvenid@ querid@ entrenador/a", "Acceso Correcto",
 							JOptionPane.ERROR_MESSAGE);
@@ -2814,14 +3023,14 @@ public class App {
 
 					scrollPaneCliente.setVisible(true);
 					tableCliente.setVisible(true);
-					
+
 					lblRutina.setVisible(true);
 					lblClienteRutina.setVisible(true);
 					lblEjercicioRutina.setVisible(true);
-					
+
 					txtClienteRutina.setVisible(true);
 					txtEjercicioRutina.setVisible(true);
-					
+
 					btnVaciarRutina.setVisible(true);
 					btnAsignarRutina.setVisible(true);
 					btnEliminarRutina.setVisible(true);
@@ -2829,72 +3038,72 @@ public class App {
 					lblFiltrar.setVisible(true);
 					lblGrupoMuscularRutina.setVisible(true);
 					comboBoxGrupoMuscular.setVisible(true);
-					
+
 					scrollPaneRutina.setVisible(true);
 					tableRutina.setVisible(true);
-					
+
 					lblEjercicioId.setVisible(true);
 					lblEjercicioNombre.setVisible(true);
 					lblEjercicioNumSeries.setVisible(true);
 					lblRepeticiones.setVisible(true);
 					lblEjercicioCarga.setVisible(true);
 					lblGrupoMuscular.setVisible(true);
-					
+
 					txtEjercicioId.setVisible(true);
 					txtEjercicioNombre.setVisible(true);
 					txtEjercicioNumSeries.setVisible(true);
 					txtEjercicioRepeticiones.setVisible(true);
 					txtEjercicioCarga.setVisible(true);
 					txtGrupoMuscular.setVisible(true);
-					
+
 					btnVaciarEjercicio.setVisible(true);
 					btnInsertarEjercicio.setVisible(true);
 					btnActualizarEjercicio.setVisible(true);
 					btnEliminarEjercicio.setVisible(true);
-					
+
 					scrollPaneEjercicio.setVisible(true);
 					tableEjercicio.setVisible(true);
-					
+
 					lblEntrenador.setVisible(true);
-					
+
 					txtEntrenadorId.setVisible(true);
 					txtEntrenadorNombre.setVisible(true);
 					txtEntrenadorApellidos.setVisible(true);
 					txtEntrenadorEdad.setVisible(true);
 					txtEntrenadorTitulacion.setVisible(true);
 					txtContraseña.setVisible(true);
-					
+
 					lblEntrenadorId.setVisible(true);
 					lblEntrenadorNombre.setVisible(true);
 					lblEntrenadorApellidos.setVisible(true);
 					lblEntrenadorEdad.setVisible(true);
 					lblEntrenadorTitulacion.setVisible(true);
-					
+
 					btnInsertarEntrenador.setVisible(true);
 					btnActualizarEntrenador.setVisible(true);
 					btnEliminarEntrenador.setVisible(true);
-					
+
 					scrollPaneEntrenador.setVisible(true);
 					tableEntrenador.setVisible(true);
-					
+
 					lblImpartirClase.setVisible(true);
 					lblEntreadorImpartirClase.setVisible(true);
 					lblClaseImpartirClase.setVisible(true);
-					
+
 					txtEntreadorImpartirClase.setVisible(true);
 					txtClaseImpartirClase.setVisible(true);
-					
+
 					btnAsignarClase.setVisible(true);
-					
+
 					scrollImpartirClase.setVisible(true);
 					tableImpartirClase.setVisible(true);
-					
+
 					lblClase.setVisible(true);
 					lblClaseId.setVisible(true);
 					lblNombreClase.setVisible(true);
 					lblLugarClase.setVisible(true);
 					lblTopeClase.setVisible(true);
-					
+
 					txtClaseId.setVisible(true);
 					txtNombreClase.setVisible(true);
 					txtLugarClase.setVisible(true);
@@ -2909,7 +3118,7 @@ public class App {
 				}
 			}
 		});
-		btnConfirmarLogin.setBounds(574, 273, 178, 25);
+		btnConfirmarLogin.setBounds(572, 477, 108, 79);
 		frmGym.getContentPane().add(btnConfirmarLogin);
 
 		/**
@@ -2917,11 +3126,12 @@ public class App {
 		 */
 
 		JLabel lblFondo = new JLabel("");
+		lblFondo.setBackground(Color.BLACK);
 		lblFondo.setOpaque(true);
 		lblFondo.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblFondo.setForeground(new Color(0, 0, 0));
 		lblFondo.setIcon(new ImageIcon(App.class.getResource("/img/fondoGymDef.jpg")));
-		lblFondo.setBounds(0, -65, 1825, 1434);
+		lblFondo.setBounds(-19, -199, 1825, 1859);
 		frmGym.getContentPane().add(lblFondo);
 
 	}

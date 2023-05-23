@@ -142,22 +142,18 @@ public class DAOEntrenador {
 		return ent;
 	}
 
-	public static Entrenador selectEntrenadorByUserAndPasswd(String nombre, String contraseña) {
-		
-		Entrenador ent = null;
+	public Entrenador selectEntrenadorByUserAndPasswd(String nombre, String contraseña) {
 
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			Query<Entrenador> query = session.createQuery(
 					"FROM Entrenador WHERE nombreEntrenador = :entrenador AND contraseña = :contra", Entrenador.class);
 			query.setParameter("entrenador", nombre);
 			query.setParameter("contra", contraseña);
-			ent = query.uniqueResult();
-
+			Entrenador ent = query.uniqueResult();
+			return ent;
 		} catch (Exception e1) {
-			return null;
 		}
-		return ent;
-
+		return null;
 	}
 
 }
