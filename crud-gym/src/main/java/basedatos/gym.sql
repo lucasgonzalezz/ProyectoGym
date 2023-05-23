@@ -108,15 +108,16 @@ CREATE TABLE IF NOT EXISTS `gym`.`entrenador` (
   `apellidosEntrenador` VARCHAR(120) NOT NULL,
   `edad` INT NOT NULL,
   `titulacion` VARCHAR(60) NOT NULL,
+  `contraseña` VARCHAR(60) NOT NULL,
   PRIMARY KEY (`idEntrenador`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_unicode_ci;
 
 INSERT INTO `entrenador` VALUES
- (1, 'Maria', 'Fernandez Marco', 19, 'Entrenador'),
- (2, 'Pepe', 'Angir Carmilo', 29, 'Entrenador'),
- (3, 'Marcos', 'Angresola Rodriguez', 39, 'Entrenador');
+ (1, 'Maria', 'Fernandez Marco', 19, 'Entrenador', '132'),
+ (2, 'Pepe', 'Angir Carmilo', 29, 'Entrenador', '132'),
+ (3, 'Marcos', 'Angresola Rodriguez', 39, 'Entrenador', '132');
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

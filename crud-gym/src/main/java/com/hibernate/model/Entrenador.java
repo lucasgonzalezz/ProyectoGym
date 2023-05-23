@@ -40,6 +40,8 @@ public class Entrenador {
 	private int edad;
 	@Column(name = "titulacion")
 	private String titulacion;
+	@Column(name = "contraseña")
+	private String contraseña;
 	
 	@Fetch(FetchMode.JOIN)	
 	@ManyToMany   //(cascade = CascadeType.ALL)
@@ -67,12 +69,13 @@ public class Entrenador {
 	 * @param peso
 	 */
 
-	public Entrenador(String nombreEntrenador, String apellidosEntrenador, int edad, String titulacion) {
+	public Entrenador(String nombreEntrenador, String apellidosEntrenador, int edad, String titulacion, String contraseña) {
 		super();
 		this.nombreEntrenador = nombreEntrenador;
 		this.apellidosEntrenador = apellidosEntrenador;
 		this.edad = edad;
 		this.titulacion = titulacion;
+		this.contraseña = contraseña;
 	}	
 	
 	public int getIdEntrenador() {
@@ -115,6 +118,14 @@ public class Entrenador {
 		this.titulacion = titulacion;
 	}
 	
+	public String getContraseña() {
+		return contraseña;
+	}
+
+	public void setContraseña(String contraseña) {
+		this.contraseña = contraseña;
+	}
+
 	public List<Clase> getClases() {
 		return clases;
 	}
