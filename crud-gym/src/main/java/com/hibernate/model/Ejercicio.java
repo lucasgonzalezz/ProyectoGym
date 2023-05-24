@@ -16,8 +16,6 @@ import org.hibernate.annotations.FetchMode;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.JoinColumn;
@@ -31,6 +29,8 @@ public class Ejercicio {
 	@Id
 	@Column(name = "idEjercicio",  updatable = false)
 	private int idEjercicio;
+	@Column(name = "tipoMuscular")
+	private String tipoMuscular;
 	@Column(name = "nombreEjercicio")
 	private String nombreEjercicio;
 	@Column(name = "numeroSeries")
@@ -59,14 +59,16 @@ public class Ejercicio {
 	/**
 	 * Constructor.
 	 * 
+	 * @param tipoMuscular
 	 * @param nombreEjercicio
 	 * @param numeroSeries
 	 * @param numeroRepeticiones
 	 * @param cargaKg
 	 */
 
-	public Ejercicio(String nombreEjercicio, int numeroSeries, int numeroRepeticiones, double cargaKg) {
+	public Ejercicio(String tipoMuscular, String nombreEjercicio, int numeroSeries, int numeroRepeticiones, double cargaKg) {
 		super();
+		this.tipoMuscular = tipoMuscular;
 		this.nombreEjercicio = nombreEjercicio;
 		this.numeroSeries = numeroSeries;
 		this.numeroRepeticiones = numeroRepeticiones;
@@ -91,6 +93,25 @@ public class Ejercicio {
 
 	public void setIdEjercicio(int idEjercicio) {
 		this.idEjercicio = idEjercicio;
+	}
+	
+	/**
+	 * Getter.
+	 * 
+	 * @return tipoMuscular: Devuelve el tipo muscular.
+	 */
+	
+	public String getTipoMuscular() {
+		return tipoMuscular;
+	}
+	
+	/**
+	 * Setter.
+	 * 
+	 * @param tipoMuscular: Establece el valor del tipo muscular
+	 */
+	public void setTipoMuscular(String tipoMuscular) {
+		this.tipoMuscular = tipoMuscular;
 	}
 
 	/**

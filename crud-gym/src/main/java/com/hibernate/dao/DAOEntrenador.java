@@ -1,7 +1,5 @@
 package com.hibernate.dao;
 
-import com.hibernate.model.Cliente;
-
 /**
  * GymDAO: Contiene todas la acciones contra la BD.
  * 

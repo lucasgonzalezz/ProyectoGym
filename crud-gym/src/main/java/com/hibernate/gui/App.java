@@ -1,7 +1,10 @@
 package com.hibernate.gui;
 
 import java.awt.EventQueue;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -16,6 +19,9 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
+
+import org.hibernate.Session;
+
 import com.hibernate.dao.DAOClase;
 import com.hibernate.dao.DAOCliente;
 import com.hibernate.dao.DAOEjercicio;
@@ -24,6 +30,8 @@ import com.hibernate.model.Clase;
 import com.hibernate.model.Cliente;
 import com.hibernate.model.Ejercicio;
 import com.hibernate.model.Entrenador;
+import com.hibernate.util.HibernateUtil;
+
 import java.awt.Font;
 import javax.swing.UIManager;
 import javax.swing.JButton;
@@ -61,6 +69,7 @@ public class App {
 	double clienteAltura = 0.0;
 	double clientePeso = 0.0;
 
+	String grupoMuscular = "";
 	String ejercicioNombre = "";
 	int ejercicioNumSeries = 0;
 	int ejercicioRepeticiones = 0;
@@ -1005,7 +1014,7 @@ public class App {
 		JScrollPane scrollPaneEjercicio = new JScrollPane(tableEjercicio);
 		scrollPaneEjercicio.setVisible(false);
 		scrollPaneEjercicio.setOpaque(false);
-		scrollPaneEjercicio.setBounds(1202, 456, 515, 235);
+		scrollPaneEjercicio.setBounds(1203, 576, 515, 232);
 		frmGym.getContentPane().add(scrollPaneEjercicio);
 		scrollPaneEjercicio.setBorder(null);
 
@@ -1087,11 +1096,7 @@ public class App {
 		 * Botón para mostrar los ejercicio de la BD en la tabla.
 		 */
 
-		JButton btnMostrarEjercicios = new JButton("");
-		btnMostrarEjercicios.setOpaque(false);
-		btnMostrarEjercicios.setBorderPainted(false);
-		btnMostrarEjercicios.setBorder(null);
-		btnMostrarEjercicios.setVisible(false);
+		JButton btnMostrarEjercicios = new JButton("Mostrar todos los ejercicios");
 		btnMostrarEjercicios.setFont(new Font("Dialog", Font.BOLD, 14));
 		btnMostrarEjercicios.setBackground(UIManager.getColor("Button.background"));
 		btnMostrarEjercicios.addActionListener(new ActionListener() {
@@ -1110,311 +1115,13 @@ public class App {
 				}
 			}
 		});
-		btnMostrarEjercicios.setBounds(1122, 333, 59, 48);
+		btnMostrarEjercicios.setBounds(1204, 543, 238, 22);
 		frmGym.getContentPane().add(btnMostrarEjercicios);
-
-		/**
-		 * Botón para insertar un ejercicio en la BD.
-		 */
-
-		JButton btnInsertarEjercicio = new JButton("  Insertar");
-		btnInsertarEjercicio.setVisible(false);
-		btnInsertarEjercicio.setForeground(Color.BLACK);
-		btnInsertarEjercicio.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-
-				boolean camposValidos = true;
-
-				ejercicioNombre = txtEjercicioNombre.getText();
-				if (ejercicioNombre.length() == 0) {
-					JOptionPane.showMessageDialog(null, "El campo NOMBRE está vacío", "ERROR",
-							JOptionPane.ERROR_MESSAGE);
-					camposValidos = false;
-				} else if (ejercicioNombre.matches(".*\\d.*")) {
-					JOptionPane.showMessageDialog(null, "El campo NOMBRE no debe contener números", "ERROR",
-							JOptionPane.ERROR_MESSAGE);
-					camposValidos = false;
-				} else if (!ejercicioNombre.matches("[a-zA-ZñÑáéíóúÁÉÍÓÚ\\s]+")) {
-					JOptionPane.showMessageDialog(null, "El campo NOMBRE no debe contener caracteres especiales",
-							"ERROR", JOptionPane.ERROR_MESSAGE);
-					camposValidos = false;
-				}
-
-				String ejercicioNumSeriesStr = txtEjercicioNumSeries.getText();
-				if (ejercicioNumSeriesStr.length() == 0) {
-					JOptionPane.showMessageDialog(null, "El campo NUMERO SERIES está vacío", "ERROR",
-							JOptionPane.ERROR_MESSAGE);
-					camposValidos = false;
-				} else if (!ejercicioNumSeriesStr.matches("[0-9]+")) {
-					JOptionPane.showMessageDialog(null, "El dato introducido en el campo NUMERO SERIES es incorrecto",
-							"ERROR", JOptionPane.ERROR_MESSAGE);
-					camposValidos = false;
-				} else if (!ejercicioNumSeriesStr.matches("\\d+")) {
-					JOptionPane.showMessageDialog(null,
-							"El dato introducido en el campo NUMERO SERIES contiene símbolos", "ERROR",
-							JOptionPane.ERROR_MESSAGE);
-					camposValidos = false;
-				}
-				ejercicioNumSeries = Integer.parseInt(txtEjercicioNumSeries.getText());
-
-				String ejercicioRepeticionesStr = txtEjercicioRepeticiones.getText();
-				if (ejercicioRepeticionesStr.length() == 0) {
-					JOptionPane.showMessageDialog(null, "El campo REPETICIONES está vacío", "ERROR",
-							JOptionPane.ERROR_MESSAGE);
-					camposValidos = false;
-				} else if (!ejercicioRepeticionesStr.matches("\\d+")) {
-					JOptionPane.showMessageDialog(null,
-							"El dato introducido en el campo REPETICIONES contiene símbolos", "ERROR",
-							JOptionPane.ERROR_MESSAGE);
-					camposValidos = false;
-				} else {
-					try {
-						ejercicioRepeticiones = Integer.parseInt(ejercicioRepeticionesStr);
-					} catch (NumberFormatException e) {
-						JOptionPane.showMessageDialog(null, "El dato introducido en el campo REPETICIONES no es válido",
-								"ERROR", JOptionPane.ERROR_MESSAGE);
-						camposValidos = false;
-					}
-				}
-
-				String ejercicioCargaStr = txtEjercicioCarga.getText();
-				if (ejercicioCargaStr.length() == 0) {
-					JOptionPane.showMessageDialog(null, "El campo CARGA está vacío", "ERROR",
-							JOptionPane.ERROR_MESSAGE);
-					camposValidos = false;
-				} else if (!ejercicioCargaStr.matches("^\\d+(\\.\\d+)?$")) {
-					JOptionPane.showMessageDialog(null, "El dato introducido en el campo CARGA es incorrecto", "ERROR",
-							JOptionPane.ERROR_MESSAGE);
-					camposValidos = false;
-				} else {
-					try {
-						ejercicioCarga = Double.parseDouble(ejercicioCargaStr);
-					} catch (NumberFormatException e) {
-						JOptionPane.showMessageDialog(null, "El dato introducido en el campo CARGA es incorrecto",
-								"ERROR", JOptionPane.ERROR_MESSAGE);
-						camposValidos = false;
-					}
-				}
-
-				if (camposValidos) {
-					Ejercicio e = new Ejercicio(ejercicioNombre, ejercicioNumSeries, ejercicioRepeticiones,
-							ejercicioCarga);
-					DAOEjercicio.insertEjercicio(e);
-
-					btnMostrarEjercicios.doClick();
-
-					txtEjercicioNombre.setText("");
-					txtEjercicioNumSeries.setText("");
-					txtEjercicioRepeticiones.setText("");
-					txtEjercicioCarga.setText("");
-				}
-			}
-		});
-		btnInsertarEjercicio.setIcon(new ImageIcon(App.class.getResource("/img/guardar.png")));
-		btnInsertarEjercicio.setFont(new Font("Dialog", Font.BOLD, 20));
-		btnInsertarEjercicio.setBackground(new Color(255, 140, 0));
-		btnInsertarEjercicio.setBounds(1203, 277, 514, 48);
-		frmGym.getContentPane().add(btnInsertarEjercicio);
-
-		/**
-		 * Botón para actualizar un ejercicio en la BD.
-		 */
-
-		JButton btnActualizarEjercicio = new JButton("  Actualizar");
-		btnActualizarEjercicio.setVisible(false);
-		btnActualizarEjercicio.setForeground(Color.BLACK);
-		btnActualizarEjercicio.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-
-				ejercicioNombre = txtEjercicioNombre.getText();
-				if (ejercicioNombre.length() == 0) {
-					JOptionPane.showMessageDialog(null, "El campo nombre está vacío", "ERROR", 0);
-				}
-
-				try {
-					ejercicioNumSeries = Integer.parseInt(txtEjercicioNumSeries.getText());
-				} catch (NumberFormatException e) {
-					JOptionPane.showMessageDialog(null, "El campo edad está vacío o el dato introducido es incorrecto",
-							"ERROR", 0);
-				}
-
-				try {
-					ejercicioRepeticiones = Integer.parseInt(txtEjercicioRepeticiones.getText());
-				} catch (NumberFormatException e) {
-					JOptionPane.showMessageDialog(null, "El campo edad está vacío o el dato introducido es incorrecto",
-							"ERROR", 0);
-				}
-
-				try {
-					ejercicioCarga = Double.parseDouble(txtEjercicioCarga.getText());
-				} catch (NumberFormatException e) {
-					JOptionPane.showMessageDialog(null,
-							"El campo altura está vacío o el dato introducido es incorrecto", "ERROR", 0);
-				}
-
-				ejercicioId = Integer.parseInt(txtEjercicioId.getText());
-				Ejercicio e = DAOEjercicio.selectEjercicioById(ejercicioId);
-
-				e.setNombreEjercicio(ejercicioNombre);
-				e.setNumeroSeries(ejercicioNumSeries);
-				e.setNumeroRepeticiones(ejercicioRepeticiones);
-				e.setCargaKg(ejercicioCarga);
-
-				DAOEjercicio.updateEjercicio(e);
-
-				btnMostrarEjercicios.doClick();
-
-				txtEjercicioNombre.setText("");
-				txtEjercicioNumSeries.setText("");
-				txtEjercicioRepeticiones.setText("");
-				txtEjercicioCarga.setText("");
-			}
-		});
-		btnActualizarEjercicio.setIcon(new ImageIcon(App.class.getResource("/img/actualizar.png")));
-		btnActualizarEjercicio.setFont(new Font("Dialog", Font.BOLD, 20));
-		btnActualizarEjercicio.setBackground(new Color(255, 140, 0));
-		btnActualizarEjercicio.setBounds(1203, 334, 513, 48);
-		frmGym.getContentPane().add(btnActualizarEjercicio);
-
-		/**
-		 * Botón para eliminar un ejercicio en la BD.
-		 */
-
-		JButton btnEliminarEjercicio = new JButton("Eliminar");
-		btnEliminarEjercicio.setVisible(false);
-		btnEliminarEjercicio.setForeground(Color.BLACK);
-		btnEliminarEjercicio.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-
-				ejercicioNombre = txtEjercicioNombre.getText();
-				if (ejercicioNombre.length() == 0) {
-					JOptionPane.showMessageDialog(null, "El campo nombre está vacío", "ERROR", 0);
-				}
-
-				try {
-					ejercicioNumSeries = Integer.parseInt(txtEjercicioNumSeries.getText());
-				} catch (NumberFormatException e) {
-					JOptionPane.showMessageDialog(null, "El campo edad está vacío o el dato introducido es incorrecto",
-							"ERROR", 0);
-				}
-
-				try {
-					ejercicioRepeticiones = Integer.parseInt(txtEjercicioRepeticiones.getText());
-				} catch (NumberFormatException e) {
-					JOptionPane.showMessageDialog(null, "El campo edad está vacío o el dato introducido es incorrecto",
-							"ERROR", 0);
-				}
-
-				try {
-					ejercicioCarga = Double.parseDouble(txtEjercicioCarga.getText());
-				} catch (NumberFormatException e) {
-					JOptionPane.showMessageDialog(null,
-							"El campo altura está vacío o el dato introducido es incorrecto", "ERROR", 0);
-				}
-
-				ejercicioId = Integer.parseInt(txtEjercicioId.getText());
-				Ejercicio e = DAOEjercicio.selectEjercicioById(ejercicioId);
-
-				e.setNombreEjercicio(ejercicioNombre);
-				e.setNumeroSeries(ejercicioNumSeries);
-				e.setNumeroRepeticiones(ejercicioRepeticiones);
-				e.setCargaKg(ejercicioCarga);
-
-				ejercicioId = Integer.parseInt(txtEjercicioId.getText());
-				DAOEjercicio.deleteEjercicio(ejercicioId);
-
-				btnMostrarEjercicios.doClick();
-
-				txtEjercicioNombre.setText("");
-				txtEjercicioNumSeries.setText("");
-				txtEjercicioRepeticiones.setText("");
-				txtEjercicioCarga.setText("");
-			}
-		});
-		btnEliminarEjercicio.setIcon(new ImageIcon(App.class.getResource("/img/eliminar.png")));
-		btnEliminarEjercicio.setFont(new Font("Dialog", Font.BOLD, 20));
-		btnEliminarEjercicio.setBackground(new Color(255, 140, 0));
-		btnEliminarEjercicio.setBounds(1203, 393, 513, 48);
-		frmGym.getContentPane().add(btnEliminarEjercicio);
-
-		/*
-		 * JLabel de Rutina.
-		 */
-
-		JLabel lblRutina = new JLabel("Rutina");
-		lblRutina.setVisible(false);
-		lblRutina.setForeground(new Color(255, 140, 0));
-		lblRutina.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 56));
-		lblRutina.setBounds(756, 11, 230, 54);
-		frmGym.getContentPane().add(lblRutina);
-
-		JLabel lblFiltrar = new JLabel("Filtrar");
-		lblFiltrar.setVisible(false);
-		lblFiltrar.setForeground(new Color(255, 140, 0));
-		lblFiltrar.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 42));
-		lblFiltrar.setBounds(822, 285, 136, 54);
-		frmGym.getContentPane().add(lblFiltrar);
-
-		JLabel lblClienteRutina = new JLabel("Cliente:");
-		lblClienteRutina.setVisible(false);
-		lblClienteRutina.setForeground(new Color(255, 140, 0));
-		lblClienteRutina.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblClienteRutina.setBounds(663, 86, 89, 15);
-		frmGym.getContentPane().add(lblClienteRutina);
-
-		JLabel lblEjercicioRutina = new JLabel("Ejercicio:");
-		lblEjercicioRutina.setVisible(false);
-		lblEjercicioRutina.setForeground(new Color(255, 140, 0));
-		lblEjercicioRutina.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblEjercicioRutina.setBounds(663, 132, 117, 15);
-		frmGym.getContentPane().add(lblEjercicioRutina);
-
-		JLabel lblGrupoMuscularRutina = new JLabel("Grupo Muscular:");
-		lblGrupoMuscularRutina.setVisible(false);
-		lblGrupoMuscularRutina.setForeground(new Color(255, 140, 0));
-		lblGrupoMuscularRutina.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblGrupoMuscularRutina.setBounds(630, 352, 185, 15);
-		frmGym.getContentPane().add(lblGrupoMuscularRutina);
-
-		/*
-		 * txtField de Rutina.
-		 */
-
-		txtEjercicioRutina = new JTextField();
-		txtEjercicioRutina.setVisible(false);
-		txtEjercicioRutina.setEditable(false);
-		txtEjercicioRutina.setForeground(Color.BLACK);
-		txtEjercicioRutina.setFont(new Font("Dialog", Font.BOLD, 16));
-		txtEjercicioRutina.setColumns(10);
-		txtEjercicioRutina.setBorder(null);
-		txtEjercicioRutina.setBackground(new Color(255, 140, 0));
-		txtEjercicioRutina.setBounds(775, 131, 335, 19);
-		frmGym.getContentPane().add(txtEjercicioRutina);
-
-		txtClienteRutina = new JTextField();
-		txtClienteRutina.setVisible(false);
-		txtClienteRutina.setEditable(false);
-		txtClienteRutina.setForeground(Color.BLACK);
-		txtClienteRutina.setFont(new Font("Dialog", Font.BOLD, 16));
-		txtClienteRutina.setColumns(10);
-		txtClienteRutina.setBorder(null);
-		txtClienteRutina.setBackground(new Color(255, 140, 0));
-		txtClienteRutina.setBounds(775, 85, 335, 19);
-		frmGym.getContentPane().add(txtClienteRutina);
-
-		/*
-		 * JComboBox grupo muscular.
-		 */
-
-		JComboBox comboBoxGrupoMuscular = new JComboBox();
-		comboBoxGrupoMuscular.setVisible(false);
-		comboBoxGrupoMuscular.setBounds(825, 350, 285, 24);
-		frmGym.getContentPane().add(comboBoxGrupoMuscular);
-
+		
 		/*
 		 * Tabla Rutina.
 		 */
-
+		
 		DefaultTableModel modelRutina = new DefaultTableModel() {
 			@Override
 			public boolean isCellEditable(int row, int column) {
@@ -1496,30 +1203,7 @@ public class App {
 		headerRendererRutina.setFont(headerRendererRutina.getFont().deriveFont(Font.BOLD, 16));
 		headerRendererRutina.setHorizontalAlignment(SwingConstants.CENTER);
 		headerRutina.setDefaultRenderer(headerRendererRutina);
-
-		/*
-		 * JButton de rutina.
-		 */
-
-		/*
-		 * Botón que sirve para vaciar los txtField de rutina.
-		 */
-
-		JButton btnVaciarRutina = new JButton("");
-		btnVaciarRutina.setVisible(false);
-		btnVaciarRutina.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				txtClienteRutina.setText("");
-				txtEjercicioRutina.setText("");
-			}
-		});
-		btnVaciarRutina.setOpaque(false);
-		btnVaciarRutina.setBackground(new Color(0, 0, 0));
-		btnVaciarRutina.setBorder(null);
-		btnVaciarRutina.setIcon(new ImageIcon(App.class.getResource("/img/vaciar.png")));
-		btnVaciarRutina.setBounds(955, 22, 59, 48);
-		frmGym.getContentPane().add(btnVaciarRutina);
-
+		
 		/*
 		 * Botón que hace que se rellenen las tablas con los datos de la BD.
 		 */
@@ -1553,6 +1237,490 @@ public class App {
 		btnMostrarRutina.setBounds(846, 478, 89, 23);
 		frmGym.getContentPane().add(btnMostrarRutina);
 
+		
+		/*
+		 * COMBO BOX GRUPO MUSCULAR
+		 */
+		JComboBox comboBoxGrupoMuscular = new JComboBox();
+		((JLabel) comboBoxGrupoMuscular.getRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
+		comboBoxGrupoMuscular.setForeground(Color.BLACK);
+		comboBoxGrupoMuscular.setFont(new Font("Dialog", Font.BOLD, 16));
+		comboBoxGrupoMuscular.setBorder(null);
+		comboBoxGrupoMuscular.setBackground(new Color(255, 140, 0));
+		comboBoxGrupoMuscular.setBounds(1460, 507, 258, 24);
+		frmGym.getContentPane().add(comboBoxGrupoMuscular);
+
+		/*
+		 * Se abre una nuev sesión para listar los grupos musculares
+		 */
+		Session sessionGM = HibernateUtil.getSessionFactory().openSession();
+
+		/*
+		 * Introduce los grupos musculares que haya en la base de datos en la lista,
+		 * creando un objeto con los datos del mismo
+		 */
+		List<Ejercicio> ejercicioGM = sessionGM.createQuery("FROM Ejercicio", Ejercicio.class).getResultList();
+
+		/*
+		 * Introduce los grupos musculares de la lista en un conjunto para eliminar las
+		 * repeticiones
+		 */
+		Set<String> tiposMusculares = new HashSet<>();
+		for (Ejercicio ejercicio : ejercicioGM) {
+			tiposMusculares.add(ejercicio.getTipoMuscular());
+		}
+		
+		/*
+		 * Introduce los grupos musculares del conjunto en el comboBox
+		 */
+		for (String tipoMuscular : tiposMusculares) {
+			comboBoxGrupoMuscular.addItem(tipoMuscular);
+		}
+
+		/**
+		 * Botón para insertar un ejercicio en la BD.
+		 */
+
+		JButton btnInsertarEjercicio = new JButton("  Insertar");
+		btnInsertarEjercicio.setVisible(false);
+		btnInsertarEjercicio.setForeground(Color.BLACK);
+		btnInsertarEjercicio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				boolean camposValidos = true;
+
+				ejercicioNombre = txtEjercicioNombre.getText();
+				if (ejercicioNombre.length() == 0) {
+					JOptionPane.showMessageDialog(null, "El campo NOMBRE está vacío", "ERROR",
+							JOptionPane.ERROR_MESSAGE);
+					camposValidos = false;
+				} else if (ejercicioNombre.matches(".*\\d.*")) {
+					JOptionPane.showMessageDialog(null, "El campo NOMBRE no debe contener números", "ERROR",
+							JOptionPane.ERROR_MESSAGE);
+					camposValidos = false;
+				} else if (!ejercicioNombre.matches("[a-zA-ZñÑáéíóúÁÉÍÓÚ\\s]+")) {
+					JOptionPane.showMessageDialog(null, "El campo NOMBRE no debe contener caracteres especiales",
+							"ERROR", JOptionPane.ERROR_MESSAGE);
+					camposValidos = false;
+				}
+				
+				grupoMuscular = txtGrupoMuscular.getText();
+				if (grupoMuscular.length() == 0) {
+					JOptionPane.showMessageDialog(null, "El campo GRUPO MUSCULAR está vacío", "ERROR",
+							JOptionPane.ERROR_MESSAGE);
+					camposValidos = false;
+				} else if (grupoMuscular.matches(".*\\d.*")) {
+					JOptionPane.showMessageDialog(null, "El campo GRUPO MUSCULAR no debe contener números", "ERROR",
+							JOptionPane.ERROR_MESSAGE);
+					camposValidos = false;
+				} else if (!grupoMuscular.matches("[a-zA-ZñÑáéíóúÁÉÍÓÚ\\s]+")) {
+					JOptionPane.showMessageDialog(null, "El campo GRUPO MUSCULAR no debe contener caracteres especiales",
+							"ERROR", JOptionPane.ERROR_MESSAGE);
+					camposValidos = false;
+				}
+
+
+				String ejercicioNumSeriesStr = txtEjercicioNumSeries.getText();
+				if (ejercicioNumSeriesStr.length() == 0) {
+					JOptionPane.showMessageDialog(null, "El campo NUMERO SERIES está vacío", "ERROR",
+							JOptionPane.ERROR_MESSAGE);
+					camposValidos = false;
+				} else if (!ejercicioNumSeriesStr.matches("[0-9]+")) {
+					JOptionPane.showMessageDialog(null, "El dato introducido en el campo NUMERO SERIES es incorrecto",
+							"ERROR", JOptionPane.ERROR_MESSAGE);
+					camposValidos = false;
+				} else if (!ejercicioNumSeriesStr.matches("\\d+")) {
+					JOptionPane.showMessageDialog(null,
+							"El dato introducido en el campo NUMERO SERIES contiene símbolos", "ERROR",
+							JOptionPane.ERROR_MESSAGE);
+					camposValidos = false;
+				}
+				ejercicioNumSeries = Integer.parseInt(txtEjercicioNumSeries.getText());
+
+				String ejercicioRepeticionesStr = txtEjercicioRepeticiones.getText();
+				if (ejercicioRepeticionesStr.length() == 0) {
+					JOptionPane.showMessageDialog(null, "El campo REPETICIONES está vacío", "ERROR",
+							JOptionPane.ERROR_MESSAGE);
+					camposValidos = false;
+				} else if (!ejercicioRepeticionesStr.matches("\\d+")) {
+					JOptionPane.showMessageDialog(null,
+							"El dato introducido en el campo REPETICIONES contiene símbolos", "ERROR",
+							JOptionPane.ERROR_MESSAGE);
+					camposValidos = false;
+				} else {
+					try {
+						ejercicioRepeticiones = Integer.parseInt(ejercicioRepeticionesStr);
+					} catch (NumberFormatException e) {
+						JOptionPane.showMessageDialog(null, "El dato introducido en el campo REPETICIONES no es válido",
+								"ERROR", JOptionPane.ERROR_MESSAGE);
+						camposValidos = false;
+					}
+				}
+
+				String ejercicioCargaStr = txtEjercicioCarga.getText();
+				if (ejercicioCargaStr.length() == 0) {
+					JOptionPane.showMessageDialog(null, "El campo CARGA está vacío", "ERROR",
+							JOptionPane.ERROR_MESSAGE);
+					camposValidos = false;
+				} else if (!ejercicioCargaStr.matches("^\\d+(\\.\\d+)?$")) {
+					JOptionPane.showMessageDialog(null, "El dato introducido en el campo CARGA es incorrecto", "ERROR",
+							JOptionPane.ERROR_MESSAGE);
+					camposValidos = false;
+				} else {
+					try {
+						ejercicioCarga = Double.parseDouble(ejercicioCargaStr);
+					} catch (NumberFormatException e) {
+						JOptionPane.showMessageDialog(null, "El dato introducido en el campo CARGA es incorrecto",
+								"ERROR", JOptionPane.ERROR_MESSAGE);
+						camposValidos = false;
+					}
+				}
+
+				if (camposValidos) {
+					Ejercicio e = new Ejercicio(grupoMuscular, ejercicioNombre, ejercicioNumSeries,
+							ejercicioRepeticiones, ejercicioCarga);
+					DAOEjercicio.insertEjercicio(e);
+
+					btnMostrarEjercicios.doClick();
+
+					txtEjercicioNombre.setText("");
+					txtEjercicioNumSeries.setText("");
+					txtEjercicioRepeticiones.setText("");
+					txtEjercicioCarga.setText("");
+					
+					btnMostrarRutina.doClick();
+					modelRutina.setRowCount(0);
+					List<Cliente> clientes = DAOCliente.selectAllClientes();
+
+					for (Cliente c : clientes) {
+						List<Ejercicio> ejercicioCliente = c.getEjercicios();
+
+						for (Ejercicio ejer : ejercicioCliente) {
+							Object[] row = new Object[2];
+
+							row[0] = c.getNombreCliente();
+							row[1] = ejer.getNombreEjercicio();
+							modelRutina.addRow(row);
+						}
+
+					}
+
+					comboBoxGrupoMuscular.removeAllItems();
+					Session sessionGM = HibernateUtil.getSessionFactory().openSession();
+					List<Ejercicio> ejercicioGM = sessionGM.createQuery("FROM Ejercicio", Ejercicio.class)
+							.getResultList();
+					Set<String> tiposMusculares = new HashSet<>();
+					for (Ejercicio ejercicio : ejercicioGM) {
+						tiposMusculares.add(ejercicio.getTipoMuscular());
+					}
+					for (String tipoMuscular : tiposMusculares) {
+						comboBoxGrupoMuscular.addItem(tipoMuscular);
+					}
+				}
+			}
+		});
+		btnInsertarEjercicio.setIcon(new ImageIcon(App.class.getResource("/img/guardar.png")));
+		btnInsertarEjercicio.setFont(new Font("Dialog", Font.BOLD, 20));
+		btnInsertarEjercicio.setBackground(new Color(255, 140, 0));
+		btnInsertarEjercicio.setBounds(1204, 315, 514, 48);
+		frmGym.getContentPane().add(btnInsertarEjercicio);
+
+		/**
+		 * Botón para actualizar un ejercicio en la BD.
+		 */
+
+		JButton btnActualizarEjercicio = new JButton("  Actualizar");
+		btnActualizarEjercicio.setVisible(false);
+		btnActualizarEjercicio.setForeground(Color.BLACK);
+		btnActualizarEjercicio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				comboBoxGrupoMuscular.removeAllItems();
+
+				for (Ejercicio ejercicio : ejercicioGM) {
+					comboBoxGrupoMuscular.addItem(ejercicio.getTipoMuscular());
+				}
+
+				ejercicioNombre = txtEjercicioNombre.getText();
+				if (ejercicioNombre.length() == 0) {
+					JOptionPane.showMessageDialog(null, "El campo nombre está vacío", "ERROR", 0);
+				}
+
+				try {
+					ejercicioNumSeries = Integer.parseInt(txtEjercicioNumSeries.getText());
+				} catch (NumberFormatException e) {
+					JOptionPane.showMessageDialog(null, "El campo edad está vacío o el dato introducido es incorrecto",
+							"ERROR", 0);
+				}
+
+				try {
+					ejercicioRepeticiones = Integer.parseInt(txtEjercicioRepeticiones.getText());
+				} catch (NumberFormatException e) {
+					JOptionPane.showMessageDialog(null, "El campo edad está vacío o el dato introducido es incorrecto",
+							"ERROR", 0);
+				}
+
+				try {
+					ejercicioCarga = Double.parseDouble(txtEjercicioCarga.getText());
+				} catch (NumberFormatException e) {
+					JOptionPane.showMessageDialog(null,
+							"El campo altura está vacío o el dato introducido es incorrecto", "ERROR", 0);
+				}
+
+				ejercicioId = Integer.parseInt(txtEjercicioId.getText());
+				Ejercicio e = DAOEjercicio.selectEjercicioById(ejercicioId);
+
+				e.setNombreEjercicio(ejercicioNombre);
+				e.setNumeroSeries(ejercicioNumSeries);
+				e.setNumeroRepeticiones(ejercicioRepeticiones);
+				e.setCargaKg(ejercicioCarga);
+
+				DAOEjercicio.updateEjercicio(e);
+
+				btnMostrarEjercicios.doClick();
+
+				txtEjercicioNombre.setText("");
+				txtEjercicioNumSeries.setText("");
+				txtEjercicioRepeticiones.setText("");
+				txtEjercicioCarga.setText("");
+				
+				btnMostrarRutina.doClick();
+				modelRutina.setRowCount(0);
+				List<Cliente> clientes = DAOCliente.selectAllClientes();
+
+				for (Cliente c : clientes) {
+					List<Ejercicio> ejercicioCliente = c.getEjercicios();
+
+					for (Ejercicio ejer : ejercicioCliente) {
+						Object[] row = new Object[2];
+
+						row[0] = c.getNombreCliente();
+						row[1] = ejer.getNombreEjercicio();
+						modelRutina.addRow(row);
+					}
+
+				}
+
+				comboBoxGrupoMuscular.removeAllItems();
+				Session sessionGM = HibernateUtil.getSessionFactory().openSession();
+				List<Ejercicio> ejercicioGM = sessionGM.createQuery("FROM Ejercicio", Ejercicio.class).getResultList();
+				Set<String> tiposMusculares = new HashSet<>();
+				for (Ejercicio ejercicio : ejercicioGM) {
+					tiposMusculares.add(ejercicio.getTipoMuscular());
+				}
+				for (String tipoMuscular : tiposMusculares) {
+					comboBoxGrupoMuscular.addItem(tipoMuscular);
+				}
+			}
+		});
+		btnActualizarEjercicio.setIcon(new ImageIcon(App.class.getResource("/img/actualizar.png")));
+		btnActualizarEjercicio.setFont(new Font("Dialog", Font.BOLD, 20));
+		btnActualizarEjercicio.setBackground(new Color(255, 140, 0));
+		btnActualizarEjercicio.setBounds(1204, 374, 513, 48);
+		frmGym.getContentPane().add(btnActualizarEjercicio);
+
+		/**
+		 * Botón para eliminar un ejercicio en la BD.
+		 */
+
+		JButton btnEliminarEjercicio = new JButton("Eliminar");
+		btnEliminarEjercicio.setVisible(false);
+		btnEliminarEjercicio.setForeground(Color.BLACK);
+		btnEliminarEjercicio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				ejercicioNombre = txtEjercicioNombre.getText();
+				if (ejercicioNombre.length() == 0) {
+					JOptionPane.showMessageDialog(null, "El campo nombre está vacío", "ERROR", 0);
+				}
+
+				try {
+					ejercicioNumSeries = Integer.parseInt(txtEjercicioNumSeries.getText());
+				} catch (NumberFormatException e) {
+					JOptionPane.showMessageDialog(null, "El campo edad está vacío o el dato introducido es incorrecto",
+							"ERROR", 0);
+				}
+
+				try {
+					ejercicioRepeticiones = Integer.parseInt(txtEjercicioRepeticiones.getText());
+				} catch (NumberFormatException e) {
+					JOptionPane.showMessageDialog(null, "El campo edad está vacío o el dato introducido es incorrecto",
+							"ERROR", 0);
+				}
+
+				try {
+					ejercicioCarga = Double.parseDouble(txtEjercicioCarga.getText());
+				} catch (NumberFormatException e) {
+					JOptionPane.showMessageDialog(null,
+							"El campo altura está vacío o el dato introducido es incorrecto", "ERROR", 0);
+				}
+
+				ejercicioId = Integer.parseInt(txtEjercicioId.getText());
+				Ejercicio e = DAOEjercicio.selectEjercicioById(ejercicioId);
+
+				e.setNombreEjercicio(ejercicioNombre);
+				e.setNumeroSeries(ejercicioNumSeries);
+				e.setNumeroRepeticiones(ejercicioRepeticiones);
+				e.setCargaKg(ejercicioCarga);
+
+				ejercicioId = Integer.parseInt(txtEjercicioId.getText());
+				DAOEjercicio.deleteEjercicio(ejercicioId);
+
+				btnMostrarEjercicios.doClick();
+
+				txtEjercicioNombre.setText("");
+				txtEjercicioNumSeries.setText("");
+				txtEjercicioRepeticiones.setText("");
+				txtEjercicioCarga.setText("");
+				
+				btnMostrarRutina.doClick();
+				modelRutina.setRowCount(0);
+				List<Cliente> clientes = DAOCliente.selectAllClientes();
+
+				for (Cliente c : clientes) {
+					List<Ejercicio> ejercicioCliente = c.getEjercicios();
+
+					for (Ejercicio ejer : ejercicioCliente) {
+						Object[] row = new Object[2];
+
+						row[0] = c.getNombreCliente();
+						row[1] = ejer.getNombreEjercicio();
+						modelRutina.addRow(row);
+					}
+
+				}
+
+				comboBoxGrupoMuscular.removeAllItems();
+				Session sessionGM = HibernateUtil.getSessionFactory().openSession();
+				List<Ejercicio> ejercicioGM = sessionGM.createQuery("FROM Ejercicio", Ejercicio.class).getResultList();
+				Set<String> tiposMusculares = new HashSet<>();
+				for (Ejercicio ejercicio : ejercicioGM) {
+					tiposMusculares.add(ejercicio.getTipoMuscular());
+				}
+				for (String tipoMuscular : tiposMusculares) {
+					comboBoxGrupoMuscular.addItem(tipoMuscular);
+				}
+			}
+		});
+		btnEliminarEjercicio.setIcon(new ImageIcon(App.class.getResource("/img/eliminar.png")));
+		btnEliminarEjercicio.setFont(new Font("Dialog", Font.BOLD, 20));
+		btnEliminarEjercicio.setBackground(new Color(255, 140, 0));
+		btnEliminarEjercicio.setBounds(1205, 433, 513, 48);
+		frmGym.getContentPane().add(btnEliminarEjercicio);
+		
+		/*
+		 * BOTON FITLRAR POR GRUPO MSUCULAR
+		 */
+		JButton btnFiltrar = new JButton("Filtrar");
+		btnFiltrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String tipoMuscularSeleccionado = comboBoxGrupoMuscular.getSelectedItem().toString();
+				List<Ejercicio> grupo = DAOEjercicio.selectEjerciciosByGrupoMuscular(tipoMuscularSeleccionado);
+				modelEjercicio.setRowCount(0);
+				for (Ejercicio ej : grupo) {
+					Object[] row = new Object[6];
+					row[0] = ej.getIdEjercicio();
+					row[1] = ej.getTipoMuscular();
+					row[2] = ej.getNombreEjercicio();
+					row[3] = ej.getNumeroSeries();
+					row[4] = ej.getNumeroRepeticiones();
+					row[5] = ej.getCargaKg();
+					modelEjercicio.addRow(row);
+				}
+			}
+		});
+		btnFiltrar.setBounds(1535, 543, 117, 19);
+		frmGym.getContentPane().add(btnFiltrar);
+
+		/*
+		 * JLabel de Rutina.
+		 */
+
+		JLabel lblRutina = new JLabel("Rutina");
+		lblRutina.setVisible(false);
+		lblRutina.setForeground(new Color(255, 140, 0));
+		lblRutina.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 56));
+		lblRutina.setBounds(756, 11, 230, 54);
+		frmGym.getContentPane().add(lblRutina);
+
+		JLabel lblFiltrar = new JLabel("Filtrar");
+		lblFiltrar.setVisible(false);
+		lblFiltrar.setForeground(new Color(255, 140, 0));
+		lblFiltrar.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 42));
+		lblFiltrar.setBounds(822, 285, 136, 54);
+		frmGym.getContentPane().add(lblFiltrar);
+
+		JLabel lblClienteRutina = new JLabel("Cliente:");
+		lblClienteRutina.setVisible(false);
+		lblClienteRutina.setForeground(new Color(255, 140, 0));
+		lblClienteRutina.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblClienteRutina.setBounds(663, 86, 89, 15);
+		frmGym.getContentPane().add(lblClienteRutina);
+
+		JLabel lblEjercicioRutina = new JLabel("Ejercicio:");
+		lblEjercicioRutina.setVisible(false);
+		lblEjercicioRutina.setForeground(new Color(255, 140, 0));
+		lblEjercicioRutina.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblEjercicioRutina.setBounds(663, 132, 117, 15);
+		frmGym.getContentPane().add(lblEjercicioRutina);
+
+		JLabel lblGrupoMuscularRutina = new JLabel("Grupo Muscular:");
+		lblGrupoMuscularRutina.setVisible(false);
+		lblGrupoMuscularRutina.setForeground(new Color(255, 140, 0));
+		lblGrupoMuscularRutina.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblGrupoMuscularRutina.setBounds(1228, 512, 185, 15);
+		frmGym.getContentPane().add(lblGrupoMuscularRutina);
+
+		/*
+		 * txtField de Rutina.
+		 */
+
+		txtEjercicioRutina = new JTextField();
+		txtEjercicioRutina.setVisible(false);
+		txtEjercicioRutina.setEditable(false);
+		txtEjercicioRutina.setForeground(Color.BLACK);
+		txtEjercicioRutina.setFont(new Font("Dialog", Font.BOLD, 16));
+		txtEjercicioRutina.setColumns(10);
+		txtEjercicioRutina.setBorder(null);
+		txtEjercicioRutina.setBackground(new Color(255, 140, 0));
+		txtEjercicioRutina.setBounds(775, 131, 335, 19);
+		frmGym.getContentPane().add(txtEjercicioRutina);
+
+		txtClienteRutina = new JTextField();
+		txtClienteRutina.setVisible(false);
+		txtClienteRutina.setEditable(false);
+		txtClienteRutina.setForeground(Color.BLACK);
+		txtClienteRutina.setFont(new Font("Dialog", Font.BOLD, 16));
+		txtClienteRutina.setColumns(10);
+		txtClienteRutina.setBorder(null);
+		txtClienteRutina.setBackground(new Color(255, 140, 0));
+		txtClienteRutina.setBounds(775, 85, 335, 19);
+		frmGym.getContentPane().add(txtClienteRutina);
+		
+		
+
+		/*
+		 * JButton de rutina.
+		 */
+
+		/*
+		 * Botón que sirve para vaciar los txtField de rutina.
+		 */
+
+		JButton btnVaciarRutina = new JButton("");
+		btnVaciarRutina.setVisible(false);
+		btnVaciarRutina.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				txtClienteRutina.setText("");
+				txtEjercicioRutina.setText("");
+			}
+		});
+		btnVaciarRutina.setOpaque(false);
+		btnVaciarRutina.setBackground(new Color(0, 0, 0));
+		btnVaciarRutina.setBorder(null);
+		btnVaciarRutina.setIcon(new ImageIcon(App.class.getResource("/img/vaciar.png")));
+		btnVaciarRutina.setBounds(955, 22, 59, 48);
+		frmGym.getContentPane().add(btnVaciarRutina);
 		/*
 		 * Botón que sirve para asiganr los clientes con los ejercicios que deben hacer.
 		 */
@@ -3196,6 +3364,10 @@ public class App {
 					btnInsertarEjercicio.setVisible(true);
 					btnActualizarEjercicio.setVisible(true);
 					btnEliminarEjercicio.setVisible(true);
+					btnMostrarEjercicios.setVisible(true);
+					
+					comboBoxGrupoMuscular.setVisible(true);
+					btnFiltrar.setVisible(true);
 
 					scrollPaneEjercicio.setVisible(true);
 					tableEjercicio.setVisible(true);
@@ -3329,6 +3501,10 @@ public class App {
 					lblFiltrar.setVisible(true);
 					lblGrupoMuscularRutina.setVisible(true);
 					comboBoxGrupoMuscular.setVisible(true);
+					
+					btnMostrarEjercicios.setVisible(true);
+					
+					btnFiltrar.setVisible(true);
 
 					scrollPaneRutina.setVisible(true);
 					tableRutina.setVisible(true);

@@ -8,15 +8,9 @@ package com.hibernate.dao;
  *
  */
 
-import com.hibernate.model.Cliente;
 import com.hibernate.model.Ejercicio;
 import com.hibernate.util.HibernateUtil;
 
-import jakarta.persistence.TypedQuery;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -145,6 +139,23 @@ public class DAOEjercicio {
 			}
 		}
 		return e;
+	}
+	
+	public static List<Ejercicio> selectEjerciciosByGrupoMuscular(String tipoMuscular) {
+		Transaction transaction = null;
+		List<Ejercicio> ejercicios = null;
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			transaction = session.beginTransaction();
+			Query<Ejercicio> query  = session.createQuery("FROM Ejercicio WHERE tipoMuscular = :tipoMuscular", Ejercicio.class);
+			query.setParameter("tipoMuscular", tipoMuscular);
+			ejercicios = query.getResultList();
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+		}
+		return ejercicios;
 	}
 	
 }
