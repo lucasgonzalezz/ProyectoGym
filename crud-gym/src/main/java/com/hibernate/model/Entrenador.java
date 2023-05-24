@@ -29,8 +29,7 @@ import jakarta.persistence.Table;
 public class Entrenador {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "idEntrenador")
+	@Column(name = "idEntrenador",  updatable = false)
 	private int idEntrenador;
 	@Column(name = "nombreEntrenador")
 	private String nombreEntrenador;

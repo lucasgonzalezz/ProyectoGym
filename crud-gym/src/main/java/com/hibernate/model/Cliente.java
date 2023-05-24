@@ -29,8 +29,7 @@ import jakarta.persistence.JoinColumn;
 public class Cliente {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "idCliente")
+	@Column(name = "idCliente", updatable = false)
 	private int idCliente;
 	@Column(name = "nombreCliente")
 	private String nombreCliente;

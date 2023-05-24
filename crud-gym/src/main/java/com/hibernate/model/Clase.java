@@ -29,8 +29,7 @@ import jakarta.persistence.JoinColumn;
 public class Clase {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "idClase")
+	@Column(name = "idClase",  updatable = false)
 	private int idClase;
 	@Column(name = "lugar")
 	private String lugar;
@@ -46,7 +45,8 @@ public class Clase {
 			joinColumns = @JoinColumn(name = "idClase"),
             inverseJoinColumns = @JoinColumn(name = "idEntrenador")
 			  )
-	private List<Entrenador> entrenadores=new ArrayList<Entrenador>();	
+	private List<Entrenador> entrenadores=new ArrayList<Entrenador>();
+	
 	/**
 	 * Constructor.
 	 */

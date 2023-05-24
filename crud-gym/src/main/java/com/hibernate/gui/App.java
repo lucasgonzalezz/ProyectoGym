@@ -107,7 +107,7 @@ public class App {
 	private JTextField txtContraseñaEntrenadorRegistro;
 	private JTextField txtContraseñaUsuarioLogin;
 	private JTextField txtNombreUsuarioLogin;
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -168,7 +168,7 @@ public class App {
 		lblTablaCliente.setVisible(false);
 		lblTablaCliente.setForeground(new Color(255, 140, 0));
 		lblTablaCliente.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 56));
-		lblTablaCliente.setBounds(205, 11, 198, 55);
+		lblTablaCliente.setBounds(173, 11, 230, 55);
 		frmGym.getContentPane().add(lblTablaCliente);
 
 		JLabel lblClienteApellidos = new JLabel("Apellidos:");
@@ -404,7 +404,7 @@ public class App {
 		btnVaciarCliente.setBackground(new Color(0, 0, 0));
 		btnVaciarCliente.setBorder(null);
 		btnVaciarCliente.setIcon(new ImageIcon(App.class.getResource("/img/vaciar.png")));
-		btnVaciarCliente.setBounds(386, 21, 59, 48);
+		btnVaciarCliente.setBounds(388, 18, 59, 48);
 		frmGym.getContentPane().add(btnVaciarCliente);
 
 		/**
@@ -844,7 +844,7 @@ public class App {
 		lblTablaEjercicio.setVisible(false);
 		lblTablaEjercicio.setForeground(new Color(255, 140, 0));
 		lblTablaEjercicio.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 56));
-		lblTablaEjercicio.setBounds(1369, 3, 244, 70);
+		lblTablaEjercicio.setBounds(1337, 3, 276, 70);
 		frmGym.getContentPane().add(lblTablaEjercicio);
 
 		JLabel lblEjercicioNombre = new JLabel("Nombre:");
@@ -1345,7 +1345,7 @@ public class App {
 		lblRutina.setVisible(false);
 		lblRutina.setForeground(new Color(255, 140, 0));
 		lblRutina.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 56));
-		lblRutina.setBounds(786, 11, 185, 54);
+		lblRutina.setBounds(756, 11, 230, 54);
 		frmGym.getContentPane().add(lblRutina);
 
 		JLabel lblFiltrar = new JLabel("Filtrar");
@@ -1373,7 +1373,7 @@ public class App {
 		lblGrupoMuscularRutina.setVisible(false);
 		lblGrupoMuscularRutina.setForeground(new Color(255, 140, 0));
 		lblGrupoMuscularRutina.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblGrupoMuscularRutina.setBounds(663, 352, 152, 15);
+		lblGrupoMuscularRutina.setBounds(630, 352, 185, 15);
 		frmGym.getContentPane().add(lblGrupoMuscularRutina);
 
 		/*
@@ -2697,7 +2697,7 @@ public class App {
 		lblEntreadorImpartirClase.setVisible(false);
 		lblEntreadorImpartirClase.setForeground(new Color(255, 140, 0));
 		lblEntreadorImpartirClase.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblEntreadorImpartirClase.setBounds(663, 778, 108, 15);
+		lblEntreadorImpartirClase.setBounds(663, 778, 117, 15);
 		frmGym.getContentPane().add(lblEntreadorImpartirClase);
 
 		JLabel lblClaseImpartirClase = new JLabel("Clase:");
@@ -2928,7 +2928,7 @@ public class App {
 		JLabel lblRecuadro = new JLabel("");
 		lblRecuadro.setVisible(false);
 		lblRecuadro.setIcon(new ImageIcon(App.class.getResource("/img/_C75617__5_-removebg-preview (4).png")));
-		lblRecuadro.setBounds(542, -50, 568, 500);
+		lblRecuadro.setBounds(536, -43, 568, 500);
 		frmGym.getContentPane().add(lblRecuadro);
 
 		/*
@@ -2975,6 +2975,45 @@ public class App {
 		frmGym.getContentPane().add(btnConfirmarRegistro);
 
 		/*
+		 * JLabel de registro.
+		 */
+		
+		JLabel lblNombreEntrenadorRegistro = new JLabel("Nombre:");
+		lblNombreEntrenadorRegistro.setVisible(false);
+		lblNombreEntrenadorRegistro.setForeground(new Color(255, 140, 0));
+		lblNombreEntrenadorRegistro.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblNombreEntrenadorRegistro.setBounds(662, 87, 102, 14);
+		frmGym.getContentPane().add(lblNombreEntrenadorRegistro);
+
+		JLabel lblApellidosEntrenadorRegistro = new JLabel("Apellidos:");
+		lblApellidosEntrenadorRegistro.setVisible(false);
+		lblApellidosEntrenadorRegistro.setForeground(new Color(255, 140, 0));
+		lblApellidosEntrenadorRegistro.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblApellidosEntrenadorRegistro.setBounds(662, 146, 102, 14);
+		frmGym.getContentPane().add(lblApellidosEntrenadorRegistro);
+
+		JLabel lblEdadEntrenadorRegistro = new JLabel("Edad:");
+		lblEdadEntrenadorRegistro.setVisible(false);
+		lblEdadEntrenadorRegistro.setForeground(new Color(255, 140, 0));
+		lblEdadEntrenadorRegistro.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblEdadEntrenadorRegistro.setBounds(662, 196, 93, 14);
+		frmGym.getContentPane().add(lblEdadEntrenadorRegistro);
+
+		JLabel lblTitulacionEntrenadorRegistro = new JLabel("Titulación:");
+		lblTitulacionEntrenadorRegistro.setVisible(false);
+		lblTitulacionEntrenadorRegistro.setForeground(new Color(255, 140, 0));
+		lblTitulacionEntrenadorRegistro.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblTitulacionEntrenadorRegistro.setBounds(662, 251, 93, 14);
+		frmGym.getContentPane().add(lblTitulacionEntrenadorRegistro);
+
+		JLabel lblContraseñaEntrenadorRegistro = new JLabel("Contraseña:");
+		lblContraseñaEntrenadorRegistro.setVisible(false);
+		lblContraseñaEntrenadorRegistro.setForeground(new Color(255, 140, 0));
+		lblContraseñaEntrenadorRegistro.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblContraseñaEntrenadorRegistro.setBounds(662, 302, 114, 14);
+		frmGym.getContentPane().add(lblContraseñaEntrenadorRegistro);
+		
+		/*
 		 * JLabel del login.
 		 */
 
@@ -2990,6 +3029,7 @@ public class App {
 		lblContraseñaUsuarioLogin.setVisible(false);
 		lblContraseñaUsuarioLogin.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblContraseñaUsuarioLogin.setForeground(new Color(255, 140, 0));
+		frmGym.getContentPane().add(lblContraseñaUsuarioLogin);
 
 		/*
 		 * txtField del login.
@@ -3016,22 +3056,66 @@ public class App {
 		frmGym.getContentPane().add(txtContraseñaUsuarioLogin);
 
 		/*
+		 * Botón para vaciar los txtField del registro.
+		 */
+		
+		JButton btnVaciarLogin = new JButton("");
+		btnVaciarLogin.setVisible(false);
+		btnVaciarLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				txtNombreUsuarioLogin.setText("");
+				txtContraseñaUsuarioLogin.setText("");
+			}
+		});
+		btnVaciarLogin.setOpaque(false);
+		btnVaciarLogin.setBackground(new Color(0, 0, 0));
+		btnVaciarLogin.setBorder(null);
+		btnVaciarLogin.setIcon(new ImageIcon(App.class.getResource("/img/vaciar.png")));
+		btnVaciarLogin.setBounds(930, 366, 59, 48);
+		frmGym.getContentPane().add(btnVaciarLogin);
+		
+		/*
+		 * Botón para volver a la pantalla de inicio desde el apartado de login
+		 */
+		
+		JButton btnVolverInicioLogin = new JButton("Volver");
+		btnVolverInicioLogin.setVisible(false);
+		btnVolverInicioLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				txtNombreUsuarioLogin.setVisible(false);
+				txtContraseñaUsuarioLogin.setVisible(false);
+				lblNombreUsuarioLogin.setVisible(false);
+				lblContraseñaUsuarioLogin.setVisible(false);
+
+				btnLogin.setVisible(true);
+				btnRegistrarse.setVisible(true);
+				btnConfirmarLogin.setVisible(false);
+				btnVolverInicioLogin.setVisible(false);
+				btnVaciarLogin.setVisible(false);
+			}
+		});
+		btnVolverInicioLogin.setBounds(663, 389, 117, 25);
+		frmGym.getContentPane().add(btnVolverInicioLogin);
+		
+		/*
 		 * Botón que te da acceso al login.
 		 */
 
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				lblContraseñaUsuarioLogin.setVisible(true);
-				txtContraseñaUsuarioLogin.setVisible(true);
 				txtNombreUsuarioLogin.setVisible(true);
+				txtContraseñaUsuarioLogin.setVisible(true);
 				lblNombreUsuarioLogin.setVisible(true);
+				lblContraseñaUsuarioLogin.setVisible(true);
 
 				btnLogin.setVisible(false);
 				btnRegistrarse.setVisible(false);
 				btnConfirmarLogin.setVisible(true);
+				btnVolverInicioLogin.setVisible(true);
+				btnVaciarLogin.setVisible(true);
 			}
 		});
-
+		
 		/*
 		 * Botón que confirma que estas resgistrado en el sistemas y si es así muestra
 		 * el programa principal.
@@ -3043,10 +3127,10 @@ public class App {
 						txtContraseñaUsuarioLogin.getText());
 
 				if (txtNombreUsuarioLogin.getText().equals("root")
-						&& txtContraseñaUsuarioLogin.getText().equals("123")) {
+						&& txtContraseñaUsuarioLogin.getText().equals("@u$ias2023")) {
 
 					JOptionPane.showMessageDialog(null, "Bienvenido root", "Acceso Correcto",
-							JOptionPane.ERROR_MESSAGE);
+							JOptionPane.INFORMATION_MESSAGE);
 
 					lblContraseñaUsuarioLogin.setVisible(false);
 					txtContraseñaUsuarioLogin.setVisible(false);
@@ -3169,10 +3253,16 @@ public class App {
 					tableClase.setVisible(true);
 
 				} else if (ent == null) {
+					JOptionPane.showMessageDialog(null, "Usuario no registrado", "Acceso Denegado",
+							JOptionPane.ERROR_MESSAGE);
 
-					lblContraseñaUsuarioLogin.setVisible(false);
+					txtNombreUsuarioLogin.setVisible(false);
+					txtNombreUsuarioLogin.setText("");
 					txtContraseñaUsuarioLogin.setVisible(false);
-
+					txtContraseñaUsuarioLogin.setText("");
+					lblNombreUsuarioLogin.setVisible(false);
+					lblContraseñaUsuarioLogin.setVisible(false);
+										
 					btnConfirmarLogin.setVisible(false);
 
 					txtNombreEntrenadorRegistro.setVisible(true);
@@ -3180,12 +3270,22 @@ public class App {
 					txtEdadEntrenadorRegistro.setVisible(true);
 					txtTitulacionEntrenadorRegistro.setVisible(true);
 					txtContraseñaEntrenadorRegistro.setVisible(true);
-
+					
+					lblNombreEntrenadorRegistro.setVisible(true);
+					lblApellidosEntrenadorRegistro.setVisible(true);
+					lblEdadEntrenadorRegistro.setVisible(true);
+					lblTitulacionEntrenadorRegistro.setVisible(true);
+					lblContraseñaEntrenadorRegistro.setVisible(true);
+					
+					lblRecuadro.setVisible(true);
+					
 					btnConfirmarRegistro.setVisible(true);
+					
+					btnVaciarLogin.setVisible(false);
 
 				} else {
 					JOptionPane.showMessageDialog(null, "Bienvenid@ querid@ entrenador/a", "Acceso Correcto",
-							JOptionPane.ERROR_MESSAGE);
+							JOptionPane.INFORMATION_MESSAGE);
 
 					lblContraseñaUsuarioLogin.setVisible(false);
 					txtContraseñaUsuarioLogin.setVisible(false);
@@ -3311,45 +3411,6 @@ public class App {
 		});
 
 		/*
-		 * JLabel de registro.
-		 */
-
-		JLabel lblNombreEntrenadorRegistro = new JLabel("Nombre:");
-		lblNombreEntrenadorRegistro.setVisible(false);
-		lblNombreEntrenadorRegistro.setForeground(new Color(255, 140, 0));
-		lblNombreEntrenadorRegistro.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblNombreEntrenadorRegistro.setBounds(662, 87, 102, 14);
-		frmGym.getContentPane().add(lblNombreEntrenadorRegistro);
-
-		JLabel lblApellidosEntrenadorRegistro = new JLabel("Apellidos:");
-		lblApellidosEntrenadorRegistro.setVisible(false);
-		lblApellidosEntrenadorRegistro.setForeground(new Color(255, 140, 0));
-		lblApellidosEntrenadorRegistro.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblApellidosEntrenadorRegistro.setBounds(662, 146, 102, 14);
-		frmGym.getContentPane().add(lblApellidosEntrenadorRegistro);
-
-		JLabel lblEdadEntrenadorRegistro = new JLabel("Edad:");
-		lblEdadEntrenadorRegistro.setVisible(false);
-		lblEdadEntrenadorRegistro.setForeground(new Color(255, 140, 0));
-		lblEdadEntrenadorRegistro.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblEdadEntrenadorRegistro.setBounds(662, 196, 93, 14);
-		frmGym.getContentPane().add(lblEdadEntrenadorRegistro);
-
-		JLabel lblTitulacionEntrenadorRegistro = new JLabel("Titulación:");
-		lblTitulacionEntrenadorRegistro.setVisible(false);
-		lblTitulacionEntrenadorRegistro.setForeground(new Color(255, 140, 0));
-		lblTitulacionEntrenadorRegistro.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblTitulacionEntrenadorRegistro.setBounds(662, 251, 93, 14);
-		frmGym.getContentPane().add(lblTitulacionEntrenadorRegistro);
-
-		JLabel lblContraseñaEntrenadorRegistro = new JLabel("Contraseña:");
-		lblContraseñaEntrenadorRegistro.setVisible(false);
-		lblContraseñaEntrenadorRegistro.setForeground(new Color(255, 140, 0));
-		lblContraseñaEntrenadorRegistro.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblContraseñaEntrenadorRegistro.setBounds(662, 302, 114, 14);
-		frmGym.getContentPane().add(lblContraseñaEntrenadorRegistro);
-
-		/*
 		 * txtField de resgitro.
 		 */
 
@@ -3404,6 +3465,61 @@ public class App {
 		frmGym.getContentPane().add(txtContraseñaEntrenadorRegistro);
 
 		/*
+		 * Botón para vaciar los txtField del registro.
+		 */
+		
+		JButton btnVaciarRegistro = new JButton("");
+		btnVaciarRegistro.setVisible(false);
+		btnVaciarRegistro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				txtNombreEntrenadorRegistro.setText("");
+				txtApellidosEntrenadorRegistro.setText("");
+				txtEdadEntrenadorRegistro.setText("");
+				txtTitulacionEntrenadorRegistro.setText("");
+				txtContraseñaEntrenadorRegistro.setText("");
+			}
+		});
+		btnVaciarRegistro.setOpaque(false);
+		btnVaciarRegistro.setBackground(new Color(0, 0, 0));
+		btnVaciarRegistro.setBorder(null);
+		btnVaciarRegistro.setIcon(new ImageIcon(App.class.getResource("/img/vaciar.png")));
+		btnVaciarRegistro.setBounds(1103, 38, 59, 48);
+		frmGym.getContentPane().add(btnVaciarRegistro);
+		
+		/*
+		 * Botón para volver a la pantalla de inicio desde el apartado de registro
+		 */
+		
+		JButton btnVolverInicioRegistro = new JButton("Volver");
+		btnVolverInicioRegistro.setVisible(false);
+		btnVolverInicioRegistro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				txtNombreEntrenadorRegistro.setVisible(false);
+				txtApellidosEntrenadorRegistro.setVisible(false);
+				txtEdadEntrenadorRegistro.setVisible(false);
+				txtTitulacionEntrenadorRegistro.setVisible(false);
+				txtContraseñaEntrenadorRegistro.setVisible(false);
+
+				lblNombreEntrenadorRegistro.setVisible(false);
+				lblApellidosEntrenadorRegistro.setVisible(false);
+				lblEdadEntrenadorRegistro.setVisible(false);
+				lblTitulacionEntrenadorRegistro.setVisible(false);
+				lblContraseñaEntrenadorRegistro.setVisible(false);
+				lblRecuadro.setVisible(true);
+
+				lblRecuadro.setVisible(false);
+				
+				btnLogin.setVisible(true);
+				btnRegistrarse.setVisible(true);
+				btnConfirmarRegistro.setVisible(false);
+				btnVolverInicioRegistro.setVisible(false);
+				btnVaciarRegistro.setVisible(false);
+			}
+		});
+		btnVolverInicioRegistro.setBounds(993, 386, 117, 25);
+		frmGym.getContentPane().add(btnVolverInicioRegistro);
+		
+		/*
 		 * Botón que muestra la interfaz parar resgistrar un nuevo entrenador en la BD.
 		 */
 
@@ -3426,6 +3542,8 @@ public class App {
 				btnLogin.setVisible(false);
 				btnRegistrarse.setVisible(false);
 				btnConfirmarRegistro.setVisible(true);
+				btnVolverInicioRegistro.setVisible(true);
+				btnVaciarRegistro.setVisible(true);
 			}
 		});
 
@@ -3482,9 +3600,9 @@ public class App {
 					camposValidos = false;
 				} else {
 					entrenadorEdad = Integer.parseInt(edadTexto);
-					if (entrenadorEdad < 16 || entrenadorEdad > 90) {
+					if (entrenadorEdad < 18 || entrenadorEdad > 90) {
 						JOptionPane.showMessageDialog(null,
-								"El dato introducido en el campo EDAD está fuera del rango permitido (16 - 90)",
+								"El dato introducido en el campo EDAD está fuera del rango permitido (18 - 90)",
 								"ERROR", JOptionPane.ERROR_MESSAGE);
 						camposValidos = false;
 					}
@@ -3507,20 +3625,15 @@ public class App {
 
 				entrenadorContraseña = txtContraseñaEntrenadorRegistro.getText();
 				if (entrenadorTitulacion.length() == 0) {
-					JOptionPane.showMessageDialog(null, "El campo TITULACION está vacío", "ERROR",
+					JOptionPane.showMessageDialog(null, "El campo COTRASEÑA está vacío", "ERROR",
 							JOptionPane.ERROR_MESSAGE);
-					camposValidos = false;
-				} else if (entrenadorTitulacion.matches(".*\\d.*")) {
-					JOptionPane.showMessageDialog(null, "El campo TITULACION no debe contener números", "ERROR",
-							JOptionPane.ERROR_MESSAGE);
-					camposValidos = false;
-				} else if (!entrenadorTitulacion.matches("[a-zA-ZñÑáéíóúÁÉÍÓÚ\\s]+")) {
-					JOptionPane.showMessageDialog(null, "El campo TITULACION no debe contener caracteres especiales",
-							"ERROR", JOptionPane.ERROR_MESSAGE);
 					camposValidos = false;
 				}
 
 				if (camposValidos) {
+					JOptionPane.showMessageDialog(null, "Usuario resgistrado correctamente en el sistema", "Resgitro Correcto",
+							JOptionPane.INFORMATION_MESSAGE);
+					
 					Entrenador ent = new Entrenador(txtNombreEntrenadorRegistro.getText(),
 							txtApellidosEntrenadorRegistro.getText(),
 							Integer.parseInt(txtEdadEntrenadorRegistro.getText()),
@@ -3535,18 +3648,35 @@ public class App {
 					txtEdadEntrenadorRegistro.setVisible(false);
 					txtTitulacionEntrenadorRegistro.setVisible(false);
 					txtContraseñaEntrenadorRegistro.setVisible(false);
+					
+					lblNombreEntrenadorRegistro.setVisible(false);
+					lblApellidosEntrenadorRegistro.setVisible(false);
+					lblEdadEntrenadorRegistro.setVisible(false);
+					lblTitulacionEntrenadorRegistro.setVisible(false);
+					lblContraseñaEntrenadorRegistro.setVisible(false);
+					
+					lblRecuadro.setVisible(false);
+					
+					txtNombreEntrenadorRegistro.setText("");
+					txtApellidosEntrenadorRegistro.setText("");
+					txtEdadEntrenadorRegistro.setText("");
+					txtTitulacionEntrenadorRegistro.setText("");
+					txtContraseñaEntrenadorRegistro.setText("");
 
 					btnConfirmarRegistro.setVisible(false);
-
-					lblContraseñaUsuarioLogin.setVisible(true);
+					
+					txtNombreUsuarioLogin.setVisible(true);
 					txtContraseñaUsuarioLogin.setVisible(true);
+					lblNombreUsuarioLogin.setVisible(true);
+					lblContraseñaUsuarioLogin.setVisible(true);
 
 					btnConfirmarRegistro.setVisible(false);
 					btnConfirmarLogin.setVisible(true);
+					btnVaciarRegistro.setVisible(false);
 				}
 			}
 		});
-
+		
 		/**
 		 * JLabel del Fondo.
 		 */

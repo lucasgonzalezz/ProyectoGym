@@ -29,8 +29,7 @@ import jakarta.persistence.Table;
 public class Ejercicio {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "idEjercicio")
+	@Column(name = "idEjercicio",  updatable = false)
 	private int idEjercicio;
 	@Column(name = "nombreEjercicio")
 	private String nombreEjercicio;
