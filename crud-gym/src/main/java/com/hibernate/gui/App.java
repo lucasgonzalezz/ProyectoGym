@@ -143,7 +143,7 @@ public class App {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	@SuppressWarnings({ "serial", "rawtypes" })
+	@SuppressWarnings({ "serial", "rawtypes", "unchecked" })
 	private void initialize() {
 
 		frmGym = new JFrame();
@@ -153,7 +153,7 @@ public class App {
 		frmGym.setBounds(500, 500, 2500, 1500);
 		frmGym.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmGym.getContentPane().setLayout(null);
-		frmGym.setSize(1744, 1408);
+		frmGym.setSize(1744, 1135);
 
 		/*
 		 * JLabel del cliente.
@@ -161,51 +161,47 @@ public class App {
 
 		JLabel lblClienteId = new JLabel("Id:");
 		lblClienteId.setVisible(false);
-		lblClienteId.setForeground(new Color(255, 140, 0));
-		lblClienteId.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblClienteId.setBounds(28, 22, 36, 35);
-		frmGym.getContentPane().add(lblClienteId);
-
+		
 		JLabel lblClienteNombre = new JLabel("Nombre:");
 		lblClienteNombre.setVisible(false);
-		lblClienteNombre.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblClienteNombre.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblClienteNombre.setForeground(new Color(255, 140, 0));
-		lblClienteNombre.setBounds(28, 77, 117, 35);
+		lblClienteNombre.setBounds(28, 61, 100, 35);
 		frmGym.getContentPane().add(lblClienteNombre);
 
 		JLabel lblTablaCliente = new JLabel("Cliente");
 		lblTablaCliente.setVisible(false);
 		lblTablaCliente.setForeground(new Color(255, 140, 0));
 		lblTablaCliente.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 56));
-		lblTablaCliente.setBounds(173, 11, 230, 55);
+		lblTablaCliente.setBounds(241, 3, 202, 55);
 		frmGym.getContentPane().add(lblTablaCliente);
 
 		JLabel lblClienteApellidos = new JLabel("Apellidos:");
 		lblClienteApellidos.setVisible(false);
-		lblClienteApellidos.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblClienteApellidos.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblClienteApellidos.setForeground(new Color(255, 140, 0));
-		lblClienteApellidos.setBounds(28, 115, 117, 35);
+		lblClienteApellidos.setBounds(28, 99, 100, 35);
 		frmGym.getContentPane().add(lblClienteApellidos);
 
 		JLabel lblClienteEdad = new JLabel("Edad:");
 		lblClienteEdad.setVisible(false);
-		lblClienteEdad.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblClienteEdad.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblClienteEdad.setForeground(new Color(255, 140, 0));
-		lblClienteEdad.setBounds(28, 152, 117, 35);
+		lblClienteEdad.setBounds(28, 136, 89, 35);
 		frmGym.getContentPane().add(lblClienteEdad);
 
 		JLabel lblClienteAltura = new JLabel("Altura:");
 		lblClienteAltura.setVisible(false);
-		lblClienteAltura.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblClienteAltura.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblClienteAltura.setForeground(new Color(255, 140, 0));
-		lblClienteAltura.setBounds(28, 191, 117, 35);
+		lblClienteAltura.setBounds(28, 175, 100, 35);
 		frmGym.getContentPane().add(lblClienteAltura);
 
 		JLabel lblClientePeso = new JLabel("Peso:");
 		lblClientePeso.setVisible(false);
-		lblClientePeso.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblClientePeso.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblClientePeso.setForeground(new Color(255, 140, 0));
-		lblClientePeso.setBounds(28, 230, 117, 35);
+		lblClientePeso.setBounds(28, 214, 85, 35);
 		frmGym.getContentPane().add(lblClientePeso);
 
 		/**
@@ -220,7 +216,7 @@ public class App {
 		txtClienteId.setColumns(10);
 		txtClienteId.setBorder(null);
 		txtClienteId.setBackground(new Color(255, 140, 0));
-		txtClienteId.setBounds(55, 26, 36, 28);
+		txtClienteId.setBounds(55, 19, 36, 28);
 		txtClienteId.setHorizontalAlignment(SwingConstants.CENTER);
 		frmGym.getContentPane().add(txtClienteId);
 
@@ -230,7 +226,7 @@ public class App {
 		txtClienteNombre.setForeground(new Color(0, 0, 0));
 		txtClienteNombre.setBackground(new Color(255, 140, 0));
 		txtClienteNombre.setBorder(null);
-		txtClienteNombre.setBounds(138, 85, 424, 19);
+		txtClienteNombre.setBounds(147, 69, 404, 19);
 		frmGym.getContentPane().add(txtClienteNombre);
 		txtClienteNombre.setColumns(10);
 
@@ -241,7 +237,7 @@ public class App {
 		txtClienteApellidos.setBackground(new Color(255, 140, 0));
 		txtClienteApellidos.setBorder(null);
 		txtClienteApellidos.setColumns(10);
-		txtClienteApellidos.setBounds(138, 124, 424, 19);
+		txtClienteApellidos.setBounds(147, 108, 404, 19);
 		frmGym.getContentPane().add(txtClienteApellidos);
 
 		txtClienteEdad = new JTextField();
@@ -251,7 +247,7 @@ public class App {
 		txtClienteEdad.setBorder(null);
 		txtClienteEdad.setBackground(new Color(255, 140, 0));
 		txtClienteEdad.setColumns(10);
-		txtClienteEdad.setBounds(138, 161, 424, 19);
+		txtClienteEdad.setBounds(147, 145, 404, 19);
 		frmGym.getContentPane().add(txtClienteEdad);
 
 		txtClienteAltura = new JTextField();
@@ -261,7 +257,7 @@ public class App {
 		txtClienteAltura.setBackground(new Color(255, 140, 0));
 		txtClienteAltura.setBorder(null);
 		txtClienteAltura.setColumns(10);
-		txtClienteAltura.setBounds(138, 200, 424, 19);
+		txtClienteAltura.setBounds(147, 184, 404, 19);
 		frmGym.getContentPane().add(txtClienteAltura);
 
 		txtClientePeso = new JTextField();
@@ -271,7 +267,7 @@ public class App {
 		txtClientePeso.setBorder(null);
 		txtClientePeso.setBackground(new Color(255, 140, 0));
 		txtClientePeso.setColumns(10);
-		txtClientePeso.setBounds(138, 238, 424, 19);
+		txtClientePeso.setBounds(147, 222, 404, 19);
 		frmGym.getContentPane().add(txtClientePeso);
 
 		/**
@@ -335,7 +331,7 @@ public class App {
 		scrollPaneCliente.setVisible(false);
 		scrollPaneCliente.setOpaque(false);
 		scrollPaneCliente.setEnabled(false);
-		scrollPaneCliente.setBounds(28, 456, 534, 235);
+		scrollPaneCliente.setBounds(147, 333, 404, 197);
 		frmGym.getContentPane().add(scrollPaneCliente);
 		scrollPaneCliente.setBorder(null);
 
@@ -413,7 +409,7 @@ public class App {
 		btnVaciarCliente.setBackground(new Color(0, 0, 0));
 		btnVaciarCliente.setBorder(null);
 		btnVaciarCliente.setIcon(new ImageIcon(App.class.getResource("/img/vaciar.png")));
-		btnVaciarCliente.setBounds(388, 18, 59, 48);
+		btnVaciarCliente.setBounds(426, 10, 59, 48);
 		frmGym.getContentPane().add(btnVaciarCliente);
 
 		/**
@@ -451,7 +447,11 @@ public class App {
 		 * Botón para insertar un nuevo cliente en la BD.
 		 */
 
-		JButton btnInsertarCliente = new JButton("  Insertar");
+		JButton btnInsertarCliente = new JButton("");
+		btnInsertarCliente.setOpaque(false);
+		btnInsertarCliente.setBackground(new Color(0, 0, 0));
+		btnInsertarCliente.setBorder(null);
+		btnInsertarCliente.setOpaque(false);
 		btnInsertarCliente.setVisible(false);
 		btnInsertarCliente.setForeground(Color.BLACK);
 		btnInsertarCliente.addActionListener(new ActionListener() {
@@ -566,17 +566,21 @@ public class App {
 				}
 			}
 		});
-		btnInsertarCliente.setIcon(new ImageIcon(App.class.getResource("/img/guardar.png")));
+		btnInsertarCliente.setIcon(new ImageIcon(App.class.getResource("/img/icnGuardar.png")));
 		btnInsertarCliente.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnInsertarCliente.setBackground(new Color(255, 140, 0));
-		btnInsertarCliente.setBounds(28, 277, 534, 48);
+		btnInsertarCliente.setBounds(147, 258, 77, 64);
 		frmGym.getContentPane().add(btnInsertarCliente);
 
 		/**
 		 * Botón para actualizar un cliente en la BD.
 		 */
 
-		JButton btnActualizarCliente = new JButton(" Actualizar");
+		JButton btnActualizarCliente = new JButton("");
+		btnActualizarCliente.setOpaque(false);
+		btnActualizarCliente.setBackground(new Color(0, 0, 0));
+		btnActualizarCliente.setBorder(null);
+		btnActualizarCliente.setOpaque(false);
 		btnActualizarCliente.setVisible(false);
 		btnActualizarCliente.setForeground(Color.BLACK);
 		btnActualizarCliente.addActionListener(new ActionListener() {
@@ -698,17 +702,22 @@ public class App {
 				}
 			}
 		});
-		btnActualizarCliente.setIcon(new ImageIcon(App.class.getResource("/img/actualizar.png")));
+		btnActualizarCliente.setIcon(new ImageIcon(App.class.getResource("/img/icnActu.png")));
 		btnActualizarCliente.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnActualizarCliente.setBackground(new Color(255, 140, 0));
-		btnActualizarCliente.setBounds(28, 337, 534, 48);
+		btnActualizarCliente.setBounds(313, 249, 77, 73);
 		frmGym.getContentPane().add(btnActualizarCliente);
 
 		/**
 		 * Botón para eliminar un cliente en la BD.
 		 */
 
-		JButton btnEliminarCliente = new JButton(" Eliminar");
+		JButton btnEliminarCliente = new JButton("");
+		btnEliminarCliente.setOpaque(false);
+		btnEliminarCliente.setBackground(new Color(0, 0, 0));
+		btnEliminarCliente.setBorder(null);
+		btnEliminarCliente.setOpaque(false);
+		btnEliminarCliente.setVisible(false);
 		btnEliminarCliente.setVisible(false);
 		btnEliminarCliente.setForeground(Color.BLACK);
 		btnEliminarCliente.addActionListener(new ActionListener() {
@@ -832,10 +841,10 @@ public class App {
 				}
 			}
 		});
-		btnEliminarCliente.setIcon(new ImageIcon(App.class.getResource("/img/eliminar.png")));
+		btnEliminarCliente.setIcon(new ImageIcon(App.class.getResource("/img/icnEli.png")));
 		btnEliminarCliente.setBackground(new Color(255, 140, 0));
 		btnEliminarCliente.setFont(new Font("Dialog", Font.BOLD, 20));
-		btnEliminarCliente.setBounds(28, 396, 534, 48);
+		btnEliminarCliente.setBounds(466, 252, 85, 73);
 		frmGym.getContentPane().add(btnEliminarCliente);
 
 		/**
@@ -845,50 +854,50 @@ public class App {
 		JLabel lblEjercicioId = new JLabel("Id:");
 		lblEjercicioId.setVisible(false);
 		lblEjercicioId.setForeground(new Color(255, 140, 0));
-		lblEjercicioId.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblEjercicioId.setBounds(1204, 22, 36, 35);
+		lblEjercicioId.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblEjercicioId.setBounds(1188, 22, 36, 35);
 		frmGym.getContentPane().add(lblEjercicioId);
 
 		JLabel lblTablaEjercicio = new JLabel("Ejercicio");
 		lblTablaEjercicio.setVisible(false);
 		lblTablaEjercicio.setForeground(new Color(255, 140, 0));
 		lblTablaEjercicio.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 56));
-		lblTablaEjercicio.setBounds(1337, 3, 276, 70);
+		lblTablaEjercicio.setBounds(1407, -5, 276, 70);
 		frmGym.getContentPane().add(lblTablaEjercicio);
 
 		JLabel lblEjercicioNombre = new JLabel("Nombre:");
 		lblEjercicioNombre.setVisible(false);
 		lblEjercicioNombre.setForeground(new Color(255, 140, 0));
-		lblEjercicioNombre.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblEjercicioNombre.setBounds(1203, 77, 117, 35);
+		lblEjercicioNombre.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblEjercicioNombre.setBounds(1188, 61, 117, 35);
 		frmGym.getContentPane().add(lblEjercicioNombre);
 
 		JLabel lblEjercicioNumSeries = new JLabel("Nº Series:");
 		lblEjercicioNumSeries.setVisible(false);
 		lblEjercicioNumSeries.setForeground(new Color(255, 140, 0));
-		lblEjercicioNumSeries.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblEjercicioNumSeries.setBounds(1203, 115, 117, 35);
+		lblEjercicioNumSeries.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblEjercicioNumSeries.setBounds(1188, 99, 117, 35);
 		frmGym.getContentPane().add(lblEjercicioNumSeries);
 
 		JLabel lblRepeticiones = new JLabel("Repeticiones:");
 		lblRepeticiones.setVisible(false);
 		lblRepeticiones.setForeground(new Color(255, 140, 0));
-		lblRepeticiones.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblRepeticiones.setBounds(1203, 152, 140, 35);
+		lblRepeticiones.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblRepeticiones.setBounds(1188, 136, 140, 35);
 		frmGym.getContentPane().add(lblRepeticiones);
 
 		JLabel lblEjercicioCarga = new JLabel("Carga (kg):");
 		lblEjercicioCarga.setVisible(false);
 		lblEjercicioCarga.setForeground(new Color(255, 140, 0));
-		lblEjercicioCarga.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblEjercicioCarga.setBounds(1203, 191, 136, 35);
+		lblEjercicioCarga.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblEjercicioCarga.setBounds(1188, 175, 136, 35);
 		frmGym.getContentPane().add(lblEjercicioCarga);
 
 		JLabel lblGrupoMuscular = new JLabel("Grupo Muscular:");
 		lblGrupoMuscular.setVisible(false);
 		lblGrupoMuscular.setForeground(new Color(255, 140, 0));
-		lblGrupoMuscular.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblGrupoMuscular.setBounds(1203, 230, 168, 35);
+		lblGrupoMuscular.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblGrupoMuscular.setBounds(1188, 214, 168, 35);
 		frmGym.getContentPane().add(lblGrupoMuscular);
 
 		/*
@@ -903,7 +912,7 @@ public class App {
 		txtEjercicioId.setColumns(10);
 		txtEjercicioId.setBorder(null);
 		txtEjercicioId.setBackground(new Color(255, 140, 0));
-		txtEjercicioId.setBounds(1233, 26, 36, 28);
+		txtEjercicioId.setBounds(1217, 26, 36, 28);
 		txtEjercicioId.setHorizontalAlignment(SwingConstants.CENTER);
 		frmGym.getContentPane().add(txtEjercicioId);
 
@@ -914,7 +923,7 @@ public class App {
 		txtEjercicioNombre.setColumns(10);
 		txtEjercicioNombre.setBorder(null);
 		txtEjercicioNombre.setBackground(new Color(255, 140, 0));
-		txtEjercicioNombre.setBounds(1369, 85, 348, 20);
+		txtEjercicioNombre.setBounds(1354, 69, 348, 20);
 		frmGym.getContentPane().add(txtEjercicioNombre);
 
 		txtEjercicioNumSeries = new JTextField();
@@ -924,7 +933,7 @@ public class App {
 		txtEjercicioNumSeries.setColumns(10);
 		txtEjercicioNumSeries.setBorder(null);
 		txtEjercicioNumSeries.setBackground(new Color(255, 140, 0));
-		txtEjercicioNumSeries.setBounds(1369, 123, 348, 19);
+		txtEjercicioNumSeries.setBounds(1354, 107, 348, 19);
 		frmGym.getContentPane().add(txtEjercicioNumSeries);
 
 		txtEjercicioRepeticiones = new JTextField();
@@ -934,7 +943,7 @@ public class App {
 		txtEjercicioRepeticiones.setColumns(10);
 		txtEjercicioRepeticiones.setBorder(null);
 		txtEjercicioRepeticiones.setBackground(new Color(255, 140, 0));
-		txtEjercicioRepeticiones.setBounds(1369, 160, 348, 19);
+		txtEjercicioRepeticiones.setBounds(1354, 144, 348, 19);
 		frmGym.getContentPane().add(txtEjercicioRepeticiones);
 
 		txtEjercicioCarga = new JTextField();
@@ -944,7 +953,7 @@ public class App {
 		txtEjercicioCarga.setColumns(10);
 		txtEjercicioCarga.setBorder(null);
 		txtEjercicioCarga.setBackground(new Color(255, 140, 0));
-		txtEjercicioCarga.setBounds(1369, 199, 348, 19);
+		txtEjercicioCarga.setBounds(1354, 183, 348, 19);
 		frmGym.getContentPane().add(txtEjercicioCarga);
 
 		txtGrupoMuscular = new JTextField();
@@ -954,7 +963,7 @@ public class App {
 		txtGrupoMuscular.setColumns(10);
 		txtGrupoMuscular.setBorder(null);
 		txtGrupoMuscular.setBackground(new Color(255, 140, 0));
-		txtGrupoMuscular.setBounds(1369, 238, 348, 19);
+		txtGrupoMuscular.setBounds(1354, 222, 348, 19);
 		frmGym.getContentPane().add(txtGrupoMuscular);
 
 		/**
@@ -1014,7 +1023,7 @@ public class App {
 		JScrollPane scrollPaneEjercicio = new JScrollPane(tableEjercicio);
 		scrollPaneEjercicio.setVisible(false);
 		scrollPaneEjercicio.setOpaque(false);
-		scrollPaneEjercicio.setBounds(1203, 576, 515, 232);
+		scrollPaneEjercicio.setBounds(1354, 345, 348, 185);
 		frmGym.getContentPane().add(scrollPaneEjercicio);
 		scrollPaneEjercicio.setBorder(null);
 
@@ -1089,14 +1098,20 @@ public class App {
 		btnVaciarEjercicio.setBackground(new Color(0, 0, 0));
 		btnVaciarEjercicio.setBorder(null);
 		btnVaciarEjercicio.setIcon(new ImageIcon(App.class.getResource("/img/vaciar.png")));
-		btnVaciarEjercicio.setBounds(1600, 22, 59, 48);
+		btnVaciarEjercicio.setBounds(1643, 10, 59, 48);
 		frmGym.getContentPane().add(btnVaciarEjercicio);
 
 		/**
 		 * Botón para mostrar los ejercicio de la BD en la tabla.
 		 */
 
-		JButton btnMostrarEjercicios = new JButton("Mostrar todos los ejercicios");
+		JButton btnMostrarEjercicios = new JButton("");
+		btnMostrarEjercicios.setBackground(new Color(0, 0, 0));
+		btnMostrarEjercicios.setBorder(null);
+		btnMostrarEjercicios.setOpaque(false);
+		btnMostrarEjercicios.setVisible(false);
+		btnMostrarEjercicios.setVisible(false);
+		btnMostrarEjercicios.setIcon(new ImageIcon(App.class.getResource("/img/icnMostrar.png")));
 		btnMostrarEjercicios.setFont(new Font("Dialog", Font.BOLD, 14));
 		btnMostrarEjercicios.setBackground(UIManager.getColor("Button.background"));
 		btnMostrarEjercicios.addActionListener(new ActionListener() {
@@ -1115,7 +1130,7 @@ public class App {
 				}
 			}
 		});
-		btnMostrarEjercicios.setBounds(1204, 543, 238, 22);
+		btnMostrarEjercicios.setBounds(1156, 431, 89, 88);
 		frmGym.getContentPane().add(btnMostrarEjercicios);
 		
 		/*
@@ -1153,7 +1168,7 @@ public class App {
 		scrollPaneRutina.setOpaque(false);
 		scrollPaneRutina.setEnabled(false);
 		scrollPaneRutina.setBorder(null);
-		scrollPaneRutina.setBounds(663, 443, 447, 205);
+		scrollPaneRutina.setBounds(697, 233, 439, 297);
 		frmGym.getContentPane().add(scrollPaneRutina);
 
 		/*
@@ -1242,12 +1257,13 @@ public class App {
 		 * COMBO BOX GRUPO MUSCULAR
 		 */
 		JComboBox comboBoxGrupoMuscular = new JComboBox();
+		comboBoxGrupoMuscular.setVisible(false);
 		((JLabel) comboBoxGrupoMuscular.getRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
 		comboBoxGrupoMuscular.setForeground(Color.BLACK);
 		comboBoxGrupoMuscular.setFont(new Font("Dialog", Font.BOLD, 16));
 		comboBoxGrupoMuscular.setBorder(null);
 		comboBoxGrupoMuscular.setBackground(new Color(255, 140, 0));
-		comboBoxGrupoMuscular.setBounds(1460, 507, 258, 24);
+		comboBoxGrupoMuscular.setBounds(1160, 396, 145, 24);
 		frmGym.getContentPane().add(comboBoxGrupoMuscular);
 
 		/*
@@ -1281,7 +1297,11 @@ public class App {
 		 * Botón para insertar un ejercicio en la BD.
 		 */
 
-		JButton btnInsertarEjercicio = new JButton("  Insertar");
+		JButton btnInsertarEjercicio = new JButton("");
+		btnInsertarEjercicio.setBackground(new Color(0, 0, 0));
+		btnInsertarEjercicio.setBorder(null);
+		btnInsertarEjercicio.setOpaque(false);
+		btnInsertarEjercicio.setVisible(false);
 		btnInsertarEjercicio.setVisible(false);
 		btnInsertarEjercicio.setForeground(Color.BLACK);
 		btnInsertarEjercicio.addActionListener(new ActionListener() {
@@ -1419,17 +1439,21 @@ public class App {
 				}
 			}
 		});
-		btnInsertarEjercicio.setIcon(new ImageIcon(App.class.getResource("/img/guardar.png")));
+		btnInsertarEjercicio.setIcon(new ImageIcon(App.class.getResource("/img/icnGuardar.png")));
 		btnInsertarEjercicio.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnInsertarEjercicio.setBackground(new Color(255, 140, 0));
-		btnInsertarEjercicio.setBounds(1204, 315, 514, 48);
+		btnInsertarEjercicio.setBounds(1354, 258, 89, 76);
 		frmGym.getContentPane().add(btnInsertarEjercicio);
 
 		/**
 		 * Botón para actualizar un ejercicio en la BD.
 		 */
 
-		JButton btnActualizarEjercicio = new JButton("  Actualizar");
+		JButton btnActualizarEjercicio = new JButton("");
+		btnActualizarEjercicio.setBackground(new Color(0, 0, 0));
+		btnActualizarEjercicio.setBorder(null);
+		btnActualizarEjercicio.setOpaque(false);
+		btnActualizarEjercicio.setVisible(false);
 		btnActualizarEjercicio.setVisible(false);
 		btnActualizarEjercicio.setForeground(Color.BLACK);
 		btnActualizarEjercicio.addActionListener(new ActionListener() {
@@ -1513,17 +1537,21 @@ public class App {
 				}
 			}
 		});
-		btnActualizarEjercicio.setIcon(new ImageIcon(App.class.getResource("/img/actualizar.png")));
+		btnActualizarEjercicio.setIcon(new ImageIcon(App.class.getResource("/img/icnActu.png")));
 		btnActualizarEjercicio.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnActualizarEjercicio.setBackground(new Color(255, 140, 0));
-		btnActualizarEjercicio.setBounds(1204, 374, 513, 48);
+		btnActualizarEjercicio.setBounds(1491, 258, 89, 73);
 		frmGym.getContentPane().add(btnActualizarEjercicio);
 
 		/**
 		 * Botón para eliminar un ejercicio en la BD.
 		 */
 
-		JButton btnEliminarEjercicio = new JButton("Eliminar");
+		JButton btnEliminarEjercicio = new JButton("");
+		btnEliminarEjercicio.setBackground(new Color(0, 0, 0));
+		btnEliminarEjercicio.setBorder(null);
+		btnEliminarEjercicio.setOpaque(false);
+		btnEliminarEjercicio.setVisible(false);
 		btnEliminarEjercicio.setVisible(false);
 		btnEliminarEjercicio.setForeground(Color.BLACK);
 		btnEliminarEjercicio.addActionListener(new ActionListener() {
@@ -1602,16 +1630,22 @@ public class App {
 				}
 			}
 		});
-		btnEliminarEjercicio.setIcon(new ImageIcon(App.class.getResource("/img/eliminar.png")));
+		btnEliminarEjercicio.setIcon(new ImageIcon(App.class.getResource("/img/icnEli.png")));
 		btnEliminarEjercicio.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnEliminarEjercicio.setBackground(new Color(255, 140, 0));
-		btnEliminarEjercicio.setBounds(1205, 433, 513, 48);
+		btnEliminarEjercicio.setBounds(1602, 258, 100, 64);
 		frmGym.getContentPane().add(btnEliminarEjercicio);
 		
 		/*
 		 * BOTON FITLRAR POR GRUPO MSUCULAR
 		 */
-		JButton btnFiltrar = new JButton("Filtrar");
+		JButton btnFiltrar = new JButton("");
+		btnFiltrar.setBackground(new Color(0, 0, 0));
+		btnFiltrar.setBorder(null);
+		btnFiltrar.setOpaque(false);
+		btnFiltrar.setVisible(false);
+		btnFiltrar.setVisible(false);
+		btnFiltrar.setIcon(new ImageIcon(App.class.getResource("/img/icnFilt.png")));
 		btnFiltrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String tipoMuscularSeleccionado = comboBoxGrupoMuscular.getSelectedItem().toString();
@@ -1629,7 +1663,7 @@ public class App {
 				}
 			}
 		});
-		btnFiltrar.setBounds(1535, 543, 117, 19);
+		btnFiltrar.setBounds(1232, 431, 89, 88);
 		frmGym.getContentPane().add(btnFiltrar);
 
 		/*
@@ -1640,35 +1674,28 @@ public class App {
 		lblRutina.setVisible(false);
 		lblRutina.setForeground(new Color(255, 140, 0));
 		lblRutina.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 56));
-		lblRutina.setBounds(756, 11, 230, 54);
+		lblRutina.setBounds(854, 3, 217, 54);
 		frmGym.getContentPane().add(lblRutina);
-
-		JLabel lblFiltrar = new JLabel("Filtrar");
-		lblFiltrar.setVisible(false);
-		lblFiltrar.setForeground(new Color(255, 140, 0));
-		lblFiltrar.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 42));
-		lblFiltrar.setBounds(822, 285, 136, 54);
-		frmGym.getContentPane().add(lblFiltrar);
 
 		JLabel lblClienteRutina = new JLabel("Cliente:");
 		lblClienteRutina.setVisible(false);
 		lblClienteRutina.setForeground(new Color(255, 140, 0));
-		lblClienteRutina.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblClienteRutina.setBounds(663, 86, 89, 15);
+		lblClienteRutina.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblClienteRutina.setBounds(698, 71, 89, 15);
 		frmGym.getContentPane().add(lblClienteRutina);
 
 		JLabel lblEjercicioRutina = new JLabel("Ejercicio:");
 		lblEjercicioRutina.setVisible(false);
 		lblEjercicioRutina.setForeground(new Color(255, 140, 0));
-		lblEjercicioRutina.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblEjercicioRutina.setBounds(663, 132, 117, 15);
+		lblEjercicioRutina.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblEjercicioRutina.setBounds(698, 109, 117, 15);
 		frmGym.getContentPane().add(lblEjercicioRutina);
 
 		JLabel lblGrupoMuscularRutina = new JLabel("Grupo Muscular:");
 		lblGrupoMuscularRutina.setVisible(false);
 		lblGrupoMuscularRutina.setForeground(new Color(255, 140, 0));
 		lblGrupoMuscularRutina.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblGrupoMuscularRutina.setBounds(1228, 512, 185, 15);
+		lblGrupoMuscularRutina.setBounds(1160, 344, 185, 28);
 		frmGym.getContentPane().add(lblGrupoMuscularRutina);
 
 		/*
@@ -1683,7 +1710,7 @@ public class App {
 		txtEjercicioRutina.setColumns(10);
 		txtEjercicioRutina.setBorder(null);
 		txtEjercicioRutina.setBackground(new Color(255, 140, 0));
-		txtEjercicioRutina.setBounds(775, 131, 335, 19);
+		txtEjercicioRutina.setBounds(801, 107, 335, 19);
 		frmGym.getContentPane().add(txtEjercicioRutina);
 
 		txtClienteRutina = new JTextField();
@@ -1694,7 +1721,7 @@ public class App {
 		txtClienteRutina.setColumns(10);
 		txtClienteRutina.setBorder(null);
 		txtClienteRutina.setBackground(new Color(255, 140, 0));
-		txtClienteRutina.setBounds(775, 85, 335, 19);
+		txtClienteRutina.setBounds(801, 69, 335, 19);
 		frmGym.getContentPane().add(txtClienteRutina);
 		
 		
@@ -1719,16 +1746,21 @@ public class App {
 		btnVaciarRutina.setBackground(new Color(0, 0, 0));
 		btnVaciarRutina.setBorder(null);
 		btnVaciarRutina.setIcon(new ImageIcon(App.class.getResource("/img/vaciar.png")));
-		btnVaciarRutina.setBounds(955, 22, 59, 48);
+		btnVaciarRutina.setBounds(1027, 10, 59, 48);
 		frmGym.getContentPane().add(btnVaciarRutina);
 		/*
 		 * Botón que sirve para asiganr los clientes con los ejercicios que deben hacer.
 		 */
 
-		JButton btnAsignarRutina = new JButton("  Asignar");
+		JButton btnAsignarRutina = new JButton("");
+		btnAsignarRutina.setOpaque(false);
+		btnAsignarRutina.setBackground(new Color(0, 0, 0));
+		btnAsignarRutina.setBorder(null);
+		btnAsignarRutina.setOpaque(false);
+		btnAsignarRutina.setVisible(false);
 		btnAsignarRutina.setVisible(false);
 		btnAsignarRutina.setForeground(Color.BLACK);
-		btnAsignarRutina.setIcon(new ImageIcon(App.class.getResource("/img/asignar.png")));
+		btnAsignarRutina.setIcon(new ImageIcon(App.class.getResource("/img/icnAsig.png")));
 		btnAsignarRutina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Cliente c = DAOCliente.selectCliente(txtClienteRutina.getText());
@@ -1742,14 +1774,19 @@ public class App {
 		});
 		btnAsignarRutina.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnAsignarRutina.setBackground(new Color(255, 140, 0));
-		btnAsignarRutina.setBounds(663, 171, 447, 48);
+		btnAsignarRutina.setBounds(759, 145, 124, 73);
 		frmGym.getContentPane().add(btnAsignarRutina);
 
 		/*
 		 * Botón que elimina la relación entre el cliente y el ejercicio.
 		 */
 
-		JButton btnEliminarRutina = new JButton(" Eliminar");
+		JButton btnEliminarRutina = new JButton("");
+		btnEliminarRutina.setOpaque(false);
+		btnEliminarRutina.setBackground(new Color(0, 0, 0));
+		btnEliminarRutina.setBorder(null);
+		btnEliminarRutina.setOpaque(false);
+		btnEliminarRutina.setVisible(false);
 		btnEliminarRutina.setVisible(false);
 		btnEliminarRutina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -1764,10 +1801,10 @@ public class App {
 			}
 		});
 		btnEliminarRutina.setForeground(Color.BLACK);
-		btnEliminarRutina.setIcon(new ImageIcon(App.class.getResource("/img/eliminar.png")));
+		btnEliminarRutina.setIcon(new ImageIcon(App.class.getResource("/img/icnEli.png")));
 		btnEliminarRutina.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnEliminarRutina.setBackground(new Color(255, 140, 0));
-		btnEliminarRutina.setBounds(663, 226, 447, 48);
+		btnEliminarRutina.setBounds(948, 148, 117, 70);
 		frmGym.getContentPane().add(btnEliminarRutina);
 
 		/*
@@ -1778,48 +1815,48 @@ public class App {
 		lblEntrenador.setVisible(false);
 		lblEntrenador.setForeground(new Color(255, 140, 0));
 		lblEntrenador.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 56));
-		lblEntrenador.setBounds(157, 702, 323, 55);
+		lblEntrenador.setBounds(196, 563, 335, 55);
 		frmGym.getContentPane().add(lblEntrenador);
 
 		JLabel lblEntrenadorId = new JLabel("Id:");
 		lblEntrenadorId.setVisible(false);
 		lblEntrenadorId.setForeground(new Color(255, 140, 0));
-		lblEntrenadorId.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblEntrenadorId.setBounds(28, 726, 36, 35);
+		lblEntrenadorId.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblEntrenadorId.setBounds(28, 587, 36, 35);
 		frmGym.getContentPane().add(lblEntrenadorId);
 
 		JLabel lblEntrenadorNombre = new JLabel("Nombre:");
 		lblEntrenadorNombre.setVisible(false);
 		lblEntrenadorNombre.setForeground(new Color(255, 140, 0));
-		lblEntrenadorNombre.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblEntrenadorNombre.setBounds(28, 768, 117, 35);
+		lblEntrenadorNombre.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblEntrenadorNombre.setBounds(28, 629, 117, 35);
 		frmGym.getContentPane().add(lblEntrenadorNombre);
 
 		JLabel lblEntrenadorApellidos = new JLabel("Apellidos:");
 		lblEntrenadorApellidos.setVisible(false);
 		lblEntrenadorApellidos.setForeground(new Color(255, 140, 0));
-		lblEntrenadorApellidos.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblEntrenadorApellidos.setBounds(28, 807, 117, 35);
+		lblEntrenadorApellidos.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblEntrenadorApellidos.setBounds(28, 668, 117, 35);
 		frmGym.getContentPane().add(lblEntrenadorApellidos);
 
 		JLabel lblEntrenadorEdad = new JLabel("Edad:");
 		lblEntrenadorEdad.setVisible(false);
 		lblEntrenadorEdad.setForeground(new Color(255, 140, 0));
-		lblEntrenadorEdad.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblEntrenadorEdad.setBounds(28, 851, 117, 35);
+		lblEntrenadorEdad.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblEntrenadorEdad.setBounds(28, 712, 117, 35);
 		frmGym.getContentPane().add(lblEntrenadorEdad);
 
 		JLabel lblEntrenadorTitulacion = new JLabel("Titulación:");
 		lblEntrenadorTitulacion.setVisible(false);
 		lblEntrenadorTitulacion.setForeground(new Color(255, 140, 0));
-		lblEntrenadorTitulacion.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblEntrenadorTitulacion.setBounds(28, 889, 117, 35);
+		lblEntrenadorTitulacion.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblEntrenadorTitulacion.setBounds(26, 747, 117, 35);
 		frmGym.getContentPane().add(lblEntrenadorTitulacion);
 
 		JLabel lblContraseña = new JLabel("Contraseña:");
 		lblContraseña.setForeground(new Color(255, 140, 0));
-		lblContraseña.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblContraseña.setBounds(28, 943, 117, 14);
+		lblContraseña.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblContraseña.setBounds(28, 795, 117, 22);
 		lblContraseña.setVisible(false);
 		frmGym.getContentPane().add(lblContraseña);
 
@@ -1835,7 +1872,7 @@ public class App {
 		txtEntrenadorId.setColumns(10);
 		txtEntrenadorId.setBorder(null);
 		txtEntrenadorId.setBackground(new Color(255, 140, 0));
-		txtEntrenadorId.setBounds(55, 730, 36, 28);
+		txtEntrenadorId.setBounds(55, 591, 36, 28);
 		txtEntrenadorId.setHorizontalAlignment(SwingConstants.CENTER);
 		frmGym.getContentPane().add(txtEntrenadorId);
 
@@ -1846,7 +1883,7 @@ public class App {
 		txtEntrenadorNombre.setColumns(10);
 		txtEntrenadorNombre.setBorder(null);
 		txtEntrenadorNombre.setBackground(new Color(255, 140, 0));
-		txtEntrenadorNombre.setBounds(138, 777, 424, 19);
+		txtEntrenadorNombre.setBounds(147, 638, 404, 19);
 		frmGym.getContentPane().add(txtEntrenadorNombre);
 
 		txtEntrenadorApellidos = new JTextField();
@@ -1856,7 +1893,7 @@ public class App {
 		txtEntrenadorApellidos.setColumns(10);
 		txtEntrenadorApellidos.setBorder(null);
 		txtEntrenadorApellidos.setBackground(new Color(255, 140, 0));
-		txtEntrenadorApellidos.setBounds(138, 816, 424, 19);
+		txtEntrenadorApellidos.setBounds(147, 677, 404, 19);
 		frmGym.getContentPane().add(txtEntrenadorApellidos);
 
 		txtEntrenadorEdad = new JTextField();
@@ -1866,7 +1903,7 @@ public class App {
 		txtEntrenadorEdad.setColumns(10);
 		txtEntrenadorEdad.setBorder(null);
 		txtEntrenadorEdad.setBackground(new Color(255, 140, 0));
-		txtEntrenadorEdad.setBounds(138, 859, 424, 19);
+		txtEntrenadorEdad.setBounds(147, 720, 404, 19);
 		frmGym.getContentPane().add(txtEntrenadorEdad);
 
 		txtEntrenadorTitulacion = new JTextField();
@@ -1876,7 +1913,7 @@ public class App {
 		txtEntrenadorTitulacion.setColumns(10);
 		txtEntrenadorTitulacion.setBorder(null);
 		txtEntrenadorTitulacion.setBackground(new Color(255, 140, 0));
-		txtEntrenadorTitulacion.setBounds(138, 897, 424, 19);
+		txtEntrenadorTitulacion.setBounds(147, 758, 404, 19);
 		frmGym.getContentPane().add(txtEntrenadorTitulacion);
 
 		txtContraseña = new JTextField();
@@ -1886,7 +1923,7 @@ public class App {
 		txtContraseña.setColumns(10);
 		txtContraseña.setBorder(null);
 		txtContraseña.setBackground(new Color(255, 140, 0));
-		txtContraseña.setBounds(138, 938, 424, 19);
+		txtContraseña.setBounds(147, 799, 404, 19);
 		frmGym.getContentPane().add(txtContraseña);
 
 		/*
@@ -1905,16 +1942,18 @@ public class App {
 		modelEntrenador.addColumn("Apellidos");
 		modelEntrenador.addColumn("Edad");
 		modelEntrenador.addColumn("Titulación");
+		modelEntrenador.addColumn("Contraseña");
 
 		List<Entrenador> listaEntrenador = DAOEntrenador.selectAllEntrenadores();
 
 		for (Entrenador entrenador : listaEntrenador) {
-			Object[] row = new Object[5];
+			Object[] row = new Object[6];
 			row[0] = entrenador.getIdEntrenador();
 			row[1] = entrenador.getNombreEntrenador();
 			row[2] = entrenador.getApellidosEntrenador();
 			row[3] = entrenador.getEdad();
 			row[4] = entrenador.getTitulacion();
+			row[5] = entrenador.getContraseña();
 			modelEntrenador.addRow(row);
 		}
 
@@ -1936,6 +1975,7 @@ public class App {
 				txtEntrenadorApellidos.setText(modelEntrenador.getValueAt(indexEntrenador, 2).toString());
 				txtEntrenadorEdad.setText(modelEntrenador.getValueAt(indexEntrenador, 3).toString());
 				txtEntrenadorTitulacion.setText(modelEntrenador.getValueAt(indexEntrenador, 4).toString());
+				txtContraseña.setText(modelEntrenador.getValueAt(indexEntrenador, 5).toString());
 			}
 		});
 		tableEntrenador.setBounds(81, 45, 1, 1);
@@ -1947,7 +1987,7 @@ public class App {
 		scrollPaneEntrenador.setVisible(false);
 		scrollPaneEntrenador.setOpaque(false);
 		scrollPaneEntrenador.setEnabled(false);
-		scrollPaneEntrenador.setBounds(28, 1155, 534, 205);
+		scrollPaneEntrenador.setBounds(157, 916, 394, 159);
 		scrollPaneEntrenador.setBorder(null);
 		frmGym.getContentPane().add(scrollPaneEntrenador);
 
@@ -1972,7 +2012,9 @@ public class App {
 		columnEntrenador3.setPreferredWidth(30);
 		TableColumn columnEntrenador4 = columnModelEntrenador.getColumn(4);
 		columnEntrenador4.setPreferredWidth(80);
-
+		TableColumn columnEntrenador5 = columnModelEntrenador.getColumn(4);
+		columnEntrenador5.setPreferredWidth(80);
+		
 		/*
 		 * Alinea el texto al centro.
 		 */
@@ -2037,7 +2079,11 @@ public class App {
 		 * Botón que insertar un nuevo entrenador en la BD.
 		 */
 
-		JButton btnInsertarEntrenador = new JButton("  Insertar");
+		JButton btnInsertarEntrenador = new JButton("");
+		btnInsertarEntrenador.setOpaque(false);
+		btnInsertarEntrenador.setBackground(new Color(0, 0, 0));
+		btnInsertarEntrenador.setBorder(null);
+		btnInsertarEntrenador.setOpaque(false);
 		btnInsertarEntrenador.setVisible(false);
 		btnInsertarEntrenador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -2144,18 +2190,22 @@ public class App {
 				}
 			}
 		});
-		btnInsertarEntrenador.setIcon(new ImageIcon(App.class.getResource("/img/guardar.png")));
+		btnInsertarEntrenador.setIcon(new ImageIcon(App.class.getResource("/img/icnGuardar.png")));
 		btnInsertarEntrenador.setForeground(Color.BLACK);
 		btnInsertarEntrenador.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnInsertarEntrenador.setBackground(new Color(255, 140, 0));
-		btnInsertarEntrenador.setBounds(28, 978, 534, 48);
+		btnInsertarEntrenador.setBounds(147, 829, 100, 76);
 		frmGym.getContentPane().add(btnInsertarEntrenador);
 
 		/*
 		 * Botoón que actualiza los datos del entrenador de la BD.
 		 */
 
-		JButton btnActualizarEntrenador = new JButton(" Actualizar");
+		JButton btnActualizarEntrenador = new JButton("");
+		btnActualizarEntrenador.setOpaque(false);
+		btnActualizarEntrenador.setBackground(new Color(0, 0, 0));
+		btnActualizarEntrenador.setBorder(null);
+		btnActualizarEntrenador.setOpaque(false);
 		btnActualizarEntrenador.setVisible(false);
 		btnActualizarEntrenador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -2251,18 +2301,22 @@ public class App {
 				}
 			}
 		});
-		btnActualizarEntrenador.setIcon(new ImageIcon(App.class.getResource("/img/actualizar.png")));
+		btnActualizarEntrenador.setIcon(new ImageIcon(App.class.getResource("/img/icnActu.png")));
 		btnActualizarEntrenador.setForeground(Color.BLACK);
 		btnActualizarEntrenador.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnActualizarEntrenador.setBackground(new Color(255, 140, 0));
-		btnActualizarEntrenador.setBounds(28, 1038, 534, 48);
+		btnActualizarEntrenador.setBounds(314, 829, 89, 76);
 		frmGym.getContentPane().add(btnActualizarEntrenador);
 
 		/*
 		 * Botón que elimina el entrenador de la BD.
 		 */
 
-		JButton btnEliminarEntrenador = new JButton(" Eliminar");
+		JButton btnEliminarEntrenador = new JButton("");
+		btnEliminarEntrenador.setOpaque(false);
+		btnEliminarEntrenador.setBackground(new Color(0, 0, 0));
+		btnEliminarEntrenador.setBorder(null);
+		btnEliminarEntrenador.setOpaque(false);
 		btnEliminarEntrenador.setVisible(false);
 		btnEliminarEntrenador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -2358,11 +2412,11 @@ public class App {
 				}
 			}
 		});
-		btnEliminarEntrenador.setIcon(new ImageIcon(App.class.getResource("/img/eliminar.png")));
+		btnEliminarEntrenador.setIcon(new ImageIcon(App.class.getResource("/img/icnEli.png")));
 		btnEliminarEntrenador.setForeground(Color.BLACK);
 		btnEliminarEntrenador.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnEliminarEntrenador.setBackground(new Color(255, 140, 0));
-		btnEliminarEntrenador.setBounds(28, 1096, 534, 48);
+		btnEliminarEntrenador.setBounds(466, 829, 102, 76);
 		frmGym.getContentPane().add(btnEliminarEntrenador);
 
 		/*
@@ -2373,35 +2427,35 @@ public class App {
 		lblClase.setVisible(false);
 		lblClase.setForeground(new Color(255, 140, 0));
 		lblClase.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 56));
-		lblClase.setBounds(1407, 702, 152, 55);
+		lblClase.setBounds(1428, 563, 152, 55);
 		frmGym.getContentPane().add(lblClase);
 
 		JLabel lblClaseId = new JLabel("Id:");
 		lblClaseId.setVisible(false);
 		lblClaseId.setForeground(new Color(255, 140, 0));
-		lblClaseId.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblClaseId.setBounds(1203, 726, 36, 35);
+		lblClaseId.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblClaseId.setBounds(1203, 587, 36, 35);
 		frmGym.getContentPane().add(lblClaseId);
 
 		JLabel lblNombreClase = new JLabel("Nombre:");
 		lblNombreClase.setVisible(false);
 		lblNombreClase.setForeground(new Color(255, 140, 0));
-		lblNombreClase.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblNombreClase.setBounds(1203, 768, 117, 35);
+		lblNombreClase.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblNombreClase.setBounds(1203, 629, 117, 35);
 		frmGym.getContentPane().add(lblNombreClase);
 
 		JLabel lblLugarClase = new JLabel("Lugar:");
 		lblLugarClase.setVisible(false);
 		lblLugarClase.setForeground(new Color(255, 140, 0));
-		lblLugarClase.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblLugarClase.setBounds(1203, 826, 117, 35);
+		lblLugarClase.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblLugarClase.setBounds(1203, 677, 117, 35);
 		frmGym.getContentPane().add(lblLugarClase);
 
 		JLabel lblTopeClase = new JLabel("Tope:");
 		lblTopeClase.setVisible(false);
 		lblTopeClase.setForeground(new Color(255, 140, 0));
-		lblTopeClase.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblTopeClase.setBounds(1203, 880, 140, 35);
+		lblTopeClase.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblTopeClase.setBounds(1203, 720, 140, 35);
 		frmGym.getContentPane().add(lblTopeClase);
 
 		/*
@@ -2417,7 +2471,7 @@ public class App {
 		txtClaseId.setColumns(10);
 		txtClaseId.setBorder(null);
 		txtClaseId.setBackground(new Color(255, 140, 0));
-		txtClaseId.setBounds(1232, 730, 36, 28);
+		txtClaseId.setBounds(1232, 591, 36, 28);
 		frmGym.getContentPane().add(txtClaseId);
 
 		txtNombreClase = new JTextField();
@@ -2427,7 +2481,7 @@ public class App {
 		txtNombreClase.setColumns(10);
 		txtNombreClase.setBorder(null);
 		txtNombreClase.setBackground(new Color(255, 140, 0));
-		txtNombreClase.setBounds(1311, 776, 406, 20);
+		txtNombreClase.setBounds(1311, 637, 391, 20);
 		frmGym.getContentPane().add(txtNombreClase);
 
 		txtTopeClase = new JTextField();
@@ -2437,7 +2491,7 @@ public class App {
 		txtTopeClase.setColumns(10);
 		txtTopeClase.setBorder(null);
 		txtTopeClase.setBackground(new Color(255, 140, 0));
-		txtTopeClase.setBounds(1311, 888, 406, 19);
+		txtTopeClase.setBounds(1311, 728, 391, 19);
 		frmGym.getContentPane().add(txtTopeClase);
 
 		txtLugarClase = new JTextField();
@@ -2447,7 +2501,7 @@ public class App {
 		txtLugarClase.setColumns(10);
 		txtLugarClase.setBorder(null);
 		txtLugarClase.setBackground(new Color(255, 140, 0));
-		txtLugarClase.setBounds(1311, 834, 406, 19);
+		txtLugarClase.setBounds(1311, 684, 391, 19);
 		frmGym.getContentPane().add(txtLugarClase);
 
 		/*
@@ -2505,7 +2559,7 @@ public class App {
 		scrollPaneClase.setVisible(false);
 		scrollPaneClase.setOpaque(false);
 		scrollPaneClase.setBorder(null);
-		scrollPaneClase.setBounds(1203, 1112, 515, 244);
+		scrollPaneClase.setBounds(1203, 849, 499, 226);
 		frmGym.getContentPane().add(scrollPaneClase);
 
 		/*
@@ -2588,7 +2642,11 @@ public class App {
 		 * Botón que sirve para insertar una clase en la BD.
 		 */
 
-		JButton btnInsertarClase = new JButton("  Insertar");
+		JButton btnInsertarClase = new JButton("");
+		btnInsertarClase.setOpaque(false);
+		btnInsertarClase.setBackground(new Color(0, 0, 0));
+		btnInsertarClase.setBorder(null);
+		btnInsertarClase.setOpaque(false);
 		btnInsertarClase.setVisible(false);
 		btnInsertarClase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -2662,18 +2720,22 @@ public class App {
 				}
 			}
 		});
-		btnInsertarClase.setIcon(new ImageIcon(App.class.getResource("/img/guardar.png")));
+		btnInsertarClase.setIcon(new ImageIcon(App.class.getResource("/img/icnGuardar.png")));
 		btnInsertarClase.setForeground(Color.BLACK);
 		btnInsertarClase.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnInsertarClase.setBackground(new Color(255, 140, 0));
-		btnInsertarClase.setBounds(1203, 937, 514, 48);
+		btnInsertarClase.setBounds(1311, 765, 89, 73);
 		frmGym.getContentPane().add(btnInsertarClase);
 
 		/*
 		 * Botón que sirve para actualizar los datos de la clase en la BD.
 		 */
 
-		JButton btnActualizarClase = new JButton("  Actualizar");
+		JButton btnActualizarClase = new JButton("");
+		btnActualizarClase.setOpaque(false);
+		btnActualizarClase.setBackground(new Color(0, 0, 0));
+		btnActualizarClase.setBorder(null);
+		btnActualizarClase.setOpaque(false);
 		btnActualizarClase.setVisible(false);
 		btnActualizarClase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -2752,18 +2814,22 @@ public class App {
 				}
 			}
 		});
-		btnActualizarClase.setIcon(new ImageIcon(App.class.getResource("/img/actualizar.png")));
+		btnActualizarClase.setIcon(new ImageIcon(App.class.getResource("/img/icnActu.png")));
 		btnActualizarClase.setForeground(Color.BLACK);
 		btnActualizarClase.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnActualizarClase.setBackground(new Color(255, 140, 0));
-		btnActualizarClase.setBounds(1203, 994, 513, 48);
+		btnActualizarClase.setBounds(1472, 765, 88, 73);
 		frmGym.getContentPane().add(btnActualizarClase);
 
 		/*
 		 * Botón que sirve para eliminar una clase.
 		 */
 
-		JButton btnEliminarClase = new JButton("Eliminar");
+		JButton btnEliminarClase = new JButton("");
+		btnEliminarClase.setOpaque(false);
+		btnEliminarClase.setBackground(new Color(0, 0, 0));
+		btnEliminarClase.setBorder(null);
+		btnEliminarClase.setOpaque(false);
 		btnEliminarClase.setVisible(false);
 		btnEliminarClase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -2843,11 +2909,11 @@ public class App {
 				}
 			}
 		});
-		btnEliminarClase.setIcon(new ImageIcon(App.class.getResource("/img/eliminar.png")));
+		btnEliminarClase.setIcon(new ImageIcon(App.class.getResource("/img/icnEli.png")));
 		btnEliminarClase.setForeground(Color.BLACK);
 		btnEliminarClase.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnEliminarClase.setBackground(new Color(255, 140, 0));
-		btnEliminarClase.setBounds(1203, 1053, 513, 48);
+		btnEliminarClase.setBounds(1624, 762, 77, 76);
 		frmGym.getContentPane().add(btnEliminarClase);
 
 		/*
@@ -2858,21 +2924,21 @@ public class App {
 		lblImpartirClase.setVisible(false);
 		lblImpartirClase.setForeground(new Color(255, 140, 0));
 		lblImpartirClase.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 56));
-		lblImpartirClase.setBounds(700, 702, 389, 55);
+		lblImpartirClase.setBounds(686, 563, 389, 55);
 		frmGym.getContentPane().add(lblImpartirClase);
 
 		JLabel lblEntreadorImpartirClase = new JLabel("Entrenador:");
 		lblEntreadorImpartirClase.setVisible(false);
 		lblEntreadorImpartirClase.setForeground(new Color(255, 140, 0));
-		lblEntreadorImpartirClase.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblEntreadorImpartirClase.setBounds(663, 778, 117, 15);
+		lblEntreadorImpartirClase.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblEntreadorImpartirClase.setBounds(663, 638, 117, 15);
 		frmGym.getContentPane().add(lblEntreadorImpartirClase);
 
 		JLabel lblClaseImpartirClase = new JLabel("Clase:");
 		lblClaseImpartirClase.setVisible(false);
 		lblClaseImpartirClase.setForeground(new Color(255, 140, 0));
-		lblClaseImpartirClase.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblClaseImpartirClase.setBounds(663, 824, 117, 15);
+		lblClaseImpartirClase.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblClaseImpartirClase.setBounds(663, 668, 117, 15);
 		frmGym.getContentPane().add(lblClaseImpartirClase);
 
 		/*
@@ -2887,7 +2953,7 @@ public class App {
 		txtEntreadorImpartirClase.setColumns(10);
 		txtEntreadorImpartirClase.setBorder(null);
 		txtEntreadorImpartirClase.setBackground(new Color(255, 140, 0));
-		txtEntreadorImpartirClase.setBounds(787, 777, 323, 19);
+		txtEntreadorImpartirClase.setBounds(778, 638, 323, 19);
 		frmGym.getContentPane().add(txtEntreadorImpartirClase);
 
 		txtClaseImpartirClase = new JTextField();
@@ -2898,7 +2964,7 @@ public class App {
 		txtClaseImpartirClase.setColumns(10);
 		txtClaseImpartirClase.setBorder(null);
 		txtClaseImpartirClase.setBackground(new Color(255, 140, 0));
-		txtClaseImpartirClase.setBounds(787, 823, 323, 19);
+		txtClaseImpartirClase.setBounds(778, 668, 323, 19);
 		frmGym.getContentPane().add(txtClaseImpartirClase);
 
 		/*
@@ -2936,7 +3002,7 @@ public class App {
 		scrollImpartirClase.setOpaque(false);
 		scrollImpartirClase.setEnabled(false);
 		scrollImpartirClase.setBorder(null);
-		scrollImpartirClase.setBounds(663, 984, 448, 376);
+		scrollImpartirClase.setBounds(662, 795, 439, 280);
 		frmGym.getContentPane().add(scrollImpartirClase);
 
 		/*
@@ -3044,7 +3110,11 @@ public class App {
 		 * Botón que permite asignar una clase a un entrenador para que este la imparta.
 		 */
 
-		JButton btnAsignarClase = new JButton("  Asignar");
+		JButton btnAsignarClase = new JButton("");
+		btnAsignarClase.setOpaque(false);
+		btnAsignarClase.setBackground(new Color(0, 0, 0));
+		btnAsignarClase.setBorder(null);
+		btnAsignarClase.setOpaque(false);
 		btnAsignarClase.setVisible(false);
 		btnAsignarClase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -3057,11 +3127,11 @@ public class App {
 				btnMostrarImpartirClase.doClick();
 			}
 		});
-		btnAsignarClase.setIcon(new ImageIcon(App.class.getResource("/img/asignar.png")));
+		btnAsignarClase.setIcon(new ImageIcon(App.class.getResource("/img/icnAsig.png")));
 		btnAsignarClase.setForeground(Color.BLACK);
 		btnAsignarClase.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnAsignarClase.setBackground(new Color(255, 140, 0));
-		btnAsignarClase.setBounds(663, 863, 447, 48);
+		btnAsignarClase.setBounds(788, 702, 89, 88);
 		frmGym.getContentPane().add(btnAsignarClase);
 
 		/*
@@ -3069,7 +3139,11 @@ public class App {
 		 * imparte.
 		 */
 
-		JButton btnEliminarImpartirClase = new JButton(" Eliminar");
+		JButton btnEliminarImpartirClase = new JButton("");
+		btnEliminarImpartirClase.setOpaque(false);
+		btnEliminarImpartirClase.setBackground(new Color(0, 0, 0));
+		btnEliminarImpartirClase.setBorder(null);
+		btnEliminarImpartirClase.setOpaque(false);
 		btnEliminarImpartirClase.setVisible(false);
 		btnEliminarImpartirClase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -3082,21 +3156,36 @@ public class App {
 				btnEliminarImpartirClase.doClick();
 			}
 		});
-		btnEliminarImpartirClase.setIcon(new ImageIcon(App.class.getResource("/img/eliminar.png")));
+		btnEliminarImpartirClase.setIcon(new ImageIcon(App.class.getResource("/img/icnEli.png")));
 		btnEliminarImpartirClase.setForeground(Color.BLACK);
 		btnEliminarImpartirClase.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnEliminarImpartirClase.setBackground(new Color(255, 140, 0));
-		btnEliminarImpartirClase.setBounds(663, 922, 447, 48);
+		btnEliminarImpartirClase.setBounds(936, 712, 89, 83);
 		frmGym.getContentPane().add(btnEliminarImpartirClase);
 
 		/*
 		 * Elementos decorativos.
 		 */
 
+		JLabel lblMarcoLogin = new JLabel("");
+		lblMarcoLogin.setVisible(false);
+		lblMarcoLogin.setIcon(new ImageIcon(App.class.getResource("/img/EL_GYM_L_L__1_-removebg-preview (1).png")));
+		lblMarcoLogin.setBounds(628, 111, 550, 179);
+		frmGym.getContentPane().add(lblMarcoLogin);
+		
+		JLabel lblTituloGym = new JLabel("");
+		lblTituloGym.setIcon(new ImageIcon(App.class.getResource("/img/tituloGym.png")));
+		lblTituloGym.setBounds(663, 42, 422, 207);
+		frmGym.getContentPane().add(lblTituloGym);
+		lblClienteId.setForeground(new Color(255, 140, 0));
+		lblClienteId.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblClienteId.setBounds(28, 15, 20, 35);
+		frmGym.getContentPane().add(lblClienteId);
+		
 		JLabel lblRecuadro = new JLabel("");
 		lblRecuadro.setVisible(false);
-		lblRecuadro.setIcon(new ImageIcon(App.class.getResource("/img/_C75617__5_-removebg-preview (4).png")));
-		lblRecuadro.setBounds(536, -43, 568, 500);
+		lblRecuadro.setIcon(new ImageIcon(App.class.getResource("/img/marcoResgistro.png")));
+		lblRecuadro.setBounds(616, 38, 515, 343);
 		frmGym.getContentPane().add(lblRecuadro);
 
 		/*
@@ -3113,16 +3202,16 @@ public class App {
 		btnLogin.setFont(new Font("Arial", Font.BOLD, 14));
 		btnLogin.setFocusPainted(false);
 		btnLogin.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
-		btnLogin.setBounds(926, 82, 464, 160);
+		btnLogin.setBounds(437, 252, 464, 160);
 		frmGym.getContentPane().add(btnLogin);
 
 		JButton btnConfirmarLogin = new JButton("");
 		btnConfirmarLogin.setOpaque(false);
 		btnConfirmarLogin.setContentAreaFilled(false);
 		btnConfirmarLogin.setBorderPainted(false);
-		btnConfirmarLogin.setIcon(new ImageIcon(App.class.getResource("/img/tic (1).png")));
+		btnConfirmarLogin.setIcon(new ImageIcon(App.class.getResource("/img/btnLoginConfirm.png")));
 		btnConfirmarLogin.setVisible(false);
-		btnConfirmarLogin.setBounds(835, 371, 83, 70);
+		btnConfirmarLogin.setBounds(768, 272, 211, 88);
 		frmGym.getContentPane().add(btnConfirmarLogin);
 
 		JButton btnRegistrarse = new JButton("");
@@ -3130,7 +3219,7 @@ public class App {
 		btnRegistrarse.setContentAreaFilled(false);
 		btnRegistrarse.setBorderPainted(false);
 		btnRegistrarse.setIcon(new ImageIcon(App.class.getResource("/img/2-removebg-preview (1).png")));
-		btnRegistrarse.setBounds(418, 86, 374, 133);
+		btnRegistrarse.setBounds(888, 263, 374, 133);
 		frmGym.getContentPane().add(btnRegistrarse);
 
 		JButton btnConfirmarRegistro = new JButton("");
@@ -3139,8 +3228,11 @@ public class App {
 		btnConfirmarRegistro.setBorderPainted(false);
 		btnConfirmarRegistro.setIcon(new ImageIcon(App.class.getResource("/img/2-removebg-preview (1) (1).png")));
 		btnConfirmarRegistro.setVisible(false);
-		btnConfirmarRegistro.setBounds(756, 374, 230, 70);
+		btnConfirmarRegistro.setBounds(809, 371, 230, 70);
 		frmGym.getContentPane().add(btnConfirmarRegistro);
+		
+		JButton btnVolverInicioRegistro = new JButton("");
+		JButton btnVaciarRegistro = new JButton("");
 
 		/*
 		 * JLabel de registro.
@@ -3150,35 +3242,35 @@ public class App {
 		lblNombreEntrenadorRegistro.setVisible(false);
 		lblNombreEntrenadorRegistro.setForeground(new Color(255, 140, 0));
 		lblNombreEntrenadorRegistro.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblNombreEntrenadorRegistro.setBounds(662, 87, 102, 14);
+		lblNombreEntrenadorRegistro.setBounds(673, 113, 102, 14);
 		frmGym.getContentPane().add(lblNombreEntrenadorRegistro);
 
 		JLabel lblApellidosEntrenadorRegistro = new JLabel("Apellidos:");
 		lblApellidosEntrenadorRegistro.setVisible(false);
 		lblApellidosEntrenadorRegistro.setForeground(new Color(255, 140, 0));
 		lblApellidosEntrenadorRegistro.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblApellidosEntrenadorRegistro.setBounds(662, 146, 102, 14);
+		lblApellidosEntrenadorRegistro.setBounds(673, 157, 102, 14);
 		frmGym.getContentPane().add(lblApellidosEntrenadorRegistro);
 
 		JLabel lblEdadEntrenadorRegistro = new JLabel("Edad:");
 		lblEdadEntrenadorRegistro.setVisible(false);
 		lblEdadEntrenadorRegistro.setForeground(new Color(255, 140, 0));
 		lblEdadEntrenadorRegistro.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblEdadEntrenadorRegistro.setBounds(662, 196, 93, 14);
+		lblEdadEntrenadorRegistro.setBounds(673, 200, 93, 14);
 		frmGym.getContentPane().add(lblEdadEntrenadorRegistro);
 
 		JLabel lblTitulacionEntrenadorRegistro = new JLabel("Titulación:");
 		lblTitulacionEntrenadorRegistro.setVisible(false);
 		lblTitulacionEntrenadorRegistro.setForeground(new Color(255, 140, 0));
 		lblTitulacionEntrenadorRegistro.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblTitulacionEntrenadorRegistro.setBounds(662, 251, 93, 14);
+		lblTitulacionEntrenadorRegistro.setBounds(673, 243, 93, 14);
 		frmGym.getContentPane().add(lblTitulacionEntrenadorRegistro);
 
 		JLabel lblContraseñaEntrenadorRegistro = new JLabel("Contraseña:");
 		lblContraseñaEntrenadorRegistro.setVisible(false);
 		lblContraseñaEntrenadorRegistro.setForeground(new Color(255, 140, 0));
 		lblContraseñaEntrenadorRegistro.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblContraseñaEntrenadorRegistro.setBounds(662, 302, 114, 14);
+		lblContraseñaEntrenadorRegistro.setBounds(673, 286, 114, 14);
 		frmGym.getContentPane().add(lblContraseñaEntrenadorRegistro);
 		
 		/*
@@ -3189,11 +3281,11 @@ public class App {
 		lblNombreUsuarioLogin.setVisible(false);
 		lblNombreUsuarioLogin.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblNombreUsuarioLogin.setForeground(new Color(255, 140, 0));
-		lblNombreUsuarioLogin.setBounds(666, 172, 89, 15);
+		lblNombreUsuarioLogin.setBounds(673, 166, 89, 15);
 		frmGym.getContentPane().add(lblNombreUsuarioLogin);
 
 		JLabel lblContraseñaUsuarioLogin = new JLabel("Contraseña:");
-		lblContraseñaUsuarioLogin.setBounds(666, 251, 117, 15);
+		lblContraseñaUsuarioLogin.setBounds(673, 218, 117, 15);
 		lblContraseñaUsuarioLogin.setVisible(false);
 		lblContraseñaUsuarioLogin.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblContraseñaUsuarioLogin.setForeground(new Color(255, 140, 0));
@@ -3202,19 +3294,19 @@ public class App {
 		/*
 		 * txtField del login.
 		 */
-
+		
 		txtNombreUsuarioLogin = new JTextField();
 		txtNombreUsuarioLogin.setVisible(false);
 		txtNombreUsuarioLogin.setForeground(Color.BLACK);
 		txtNombreUsuarioLogin.setFont(new Font("Dialog", Font.BOLD, 16));
 		txtNombreUsuarioLogin.setBorder(null);
 		txtNombreUsuarioLogin.setBackground(new Color(255, 140, 0));
-		txtNombreUsuarioLogin.setBounds(790, 170, 283, 19);
+		txtNombreUsuarioLogin.setBounds(798, 164, 257, 19);
 		txtNombreUsuarioLogin.setColumns(10);
 		frmGym.getContentPane().add(txtNombreUsuarioLogin);
-
+		
 		txtContraseñaUsuarioLogin = new JTextField();
-		txtContraseñaUsuarioLogin.setBounds(790, 249, 283, 19);
+		txtContraseñaUsuarioLogin.setBounds(798, 216, 257, 19);
 		txtContraseñaUsuarioLogin.setColumns(10);
 		txtContraseñaUsuarioLogin.setVisible(false);
 		txtContraseñaUsuarioLogin.setForeground(Color.BLACK);
@@ -3239,14 +3331,18 @@ public class App {
 		btnVaciarLogin.setBackground(new Color(0, 0, 0));
 		btnVaciarLogin.setBorder(null);
 		btnVaciarLogin.setIcon(new ImageIcon(App.class.getResource("/img/vaciar.png")));
-		btnVaciarLogin.setBounds(930, 366, 59, 48);
+		btnVaciarLogin.setBounds(1095, 133, 59, 48);
 		frmGym.getContentPane().add(btnVaciarLogin);
 		
 		/*
 		 * Botón para volver a la pantalla de inicio desde el apartado de login
 		 */
 		
-		JButton btnVolverInicioLogin = new JButton("Volver");
+		JButton btnVolverInicioLogin = new JButton("");
+		btnVolverInicioLogin.setOpaque(false);
+		btnVolverInicioLogin.setBackground(new Color(0, 0, 0));
+		btnVolverInicioLogin.setBorder(null);
+		btnVolverInicioLogin.setIcon(new ImageIcon(App.class.getResource("/img/icnVolver.png")));
 		btnVolverInicioLogin.setVisible(false);
 		btnVolverInicioLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -3260,9 +3356,11 @@ public class App {
 				btnConfirmarLogin.setVisible(false);
 				btnVolverInicioLogin.setVisible(false);
 				btnVaciarLogin.setVisible(false);
+				lblTituloGym.setVisible(true);
+				lblMarcoLogin.setVisible(false);
 			}
 		});
-		btnVolverInicioLogin.setBounds(663, 389, 117, 25);
+		btnVolverInicioLogin.setBounds(648, 291, 117, 55);
 		frmGym.getContentPane().add(btnVolverInicioLogin);
 		
 		/*
@@ -3281,6 +3379,8 @@ public class App {
 				btnConfirmarLogin.setVisible(true);
 				btnVolverInicioLogin.setVisible(true);
 				btnVaciarLogin.setVisible(true);
+				lblTituloGym.setVisible(false);
+				lblMarcoLogin.setVisible(true);
 			}
 		});
 		
@@ -3294,8 +3394,14 @@ public class App {
 				Entrenador ent = entrenadorDAO.selectEntrenadorByUserAndPasswd(txtNombreUsuarioLogin.getText(),
 						txtContraseñaUsuarioLogin.getText());
 
-				if (txtNombreUsuarioLogin.getText().equals("root")
-						&& txtContraseñaUsuarioLogin.getText().equals("@u$ias2023")) {
+				if (txtNombreUsuarioLogin.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Nombre vacío", "Error",
+							JOptionPane.ERROR_MESSAGE);
+				} else if (txtContraseñaUsuarioLogin.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Contraseña vacía", "Error",
+							JOptionPane.ERROR_MESSAGE);
+				} else if (txtNombreUsuarioLogin.getText().equals("root")
+						&& txtContraseñaUsuarioLogin.getText().equals("123")) {
 
 					JOptionPane.showMessageDialog(null, "Bienvenido root", "Acceso Correcto",
 							JOptionPane.INFORMATION_MESSAGE);
@@ -3339,13 +3445,13 @@ public class App {
 					btnAsignarRutina.setVisible(true);
 					btnEliminarRutina.setVisible(true);
 
-					lblFiltrar.setVisible(true);
 					lblGrupoMuscularRutina.setVisible(true);
 					comboBoxGrupoMuscular.setVisible(true);
 
 					scrollPaneRutina.setVisible(true);
 					tableRutina.setVisible(true);
 
+					lblTablaEjercicio.setVisible(true);
 					lblEjercicioId.setVisible(true);
 					lblEjercicioNombre.setVisible(true);
 					lblEjercicioNumSeries.setVisible(true);
@@ -3397,6 +3503,7 @@ public class App {
 					lblImpartirClase.setVisible(true);
 					lblEntreadorImpartirClase.setVisible(true);
 					lblClaseImpartirClase.setVisible(true);
+					btnEliminarImpartirClase.setVisible(true);
 
 					txtEntreadorImpartirClase.setVisible(true);
 					txtClaseImpartirClase.setVisible(true);
@@ -3423,6 +3530,14 @@ public class App {
 
 					scrollPaneClase.setVisible(true);
 					tableClase.setVisible(true);
+					lblTituloGym.setVisible(false);
+					lblMarcoLogin.setVisible(false);
+					lblMarcoLogin.setVisible(false);
+					btnVolverInicioLogin.setVisible(false);
+					btnVaciarLogin.setVisible(false);
+					txtNombreUsuarioLogin.setVisible(false);
+					lblNombreUsuarioLogin.setVisible(false);
+					lblContraseña.setVisible(true);
 
 				} else if (ent == null) {
 					JOptionPane.showMessageDialog(null, "Usuario no registrado", "Acceso Denegado",
@@ -3454,6 +3569,14 @@ public class App {
 					btnConfirmarRegistro.setVisible(true);
 					
 					btnVaciarLogin.setVisible(false);
+					lblTituloGym.setVisible(false);
+					btnVolverInicioLogin.setVisible(false);
+					btnVaciarLogin.setVisible(false);
+					txtNombreUsuarioLogin.setVisible(false);
+					lblNombreUsuarioLogin.setVisible(false);
+					lblMarcoLogin.setVisible(false);
+					btnVolverInicioRegistro.setVisible(true);
+					btnVaciarRegistro.setVisible(true);
 
 				} else {
 					JOptionPane.showMessageDialog(null, "Bienvenid@ querid@ entrenador/a", "Acceso Correcto",
@@ -3498,7 +3621,6 @@ public class App {
 					btnAsignarRutina.setVisible(true);
 					btnEliminarRutina.setVisible(true);
 
-					lblFiltrar.setVisible(true);
 					lblGrupoMuscularRutina.setVisible(true);
 					comboBoxGrupoMuscular.setVisible(true);
 					
@@ -3509,6 +3631,7 @@ public class App {
 					scrollPaneRutina.setVisible(true);
 					tableRutina.setVisible(true);
 
+					lblTablaEjercicio.setVisible(true);
 					lblEjercicioId.setVisible(true);
 					lblEjercicioNombre.setVisible(true);
 					lblEjercicioNumSeries.setVisible(true);
@@ -3556,6 +3679,7 @@ public class App {
 					lblImpartirClase.setVisible(true);
 					lblEntreadorImpartirClase.setVisible(true);
 					lblClaseImpartirClase.setVisible(true);
+					btnEliminarImpartirClase.setVisible(true);
 
 					txtEntreadorImpartirClase.setVisible(true);
 					txtClaseImpartirClase.setVisible(true);
@@ -3582,6 +3706,12 @@ public class App {
 
 					scrollPaneClase.setVisible(true);
 					tableClase.setVisible(true);
+					lblTituloGym.setVisible(false);
+					lblMarcoLogin.setVisible(false);
+					btnVolverInicioLogin.setVisible(false);btnVaciarLogin.setVisible(false);
+					txtNombreUsuarioLogin.setVisible(false);
+					lblNombreUsuarioLogin.setVisible(false);
+					lblContraseña.setVisible(true);
 				}
 			}
 		});
@@ -3597,7 +3727,7 @@ public class App {
 		txtNombreEntrenadorRegistro.setColumns(10);
 		txtNombreEntrenadorRegistro.setBorder(null);
 		txtNombreEntrenadorRegistro.setBackground(new Color(255, 140, 0));
-		txtNombreEntrenadorRegistro.setBounds(780, 85, 293, 19);
+		txtNombreEntrenadorRegistro.setBounds(796, 111, 280, 19);
 		frmGym.getContentPane().add(txtNombreEntrenadorRegistro);
 
 		txtApellidosEntrenadorRegistro = new JTextField();
@@ -3607,7 +3737,7 @@ public class App {
 		txtApellidosEntrenadorRegistro.setColumns(10);
 		txtApellidosEntrenadorRegistro.setBorder(null);
 		txtApellidosEntrenadorRegistro.setBackground(new Color(255, 140, 0));
-		txtApellidosEntrenadorRegistro.setBounds(780, 141, 293, 19);
+		txtApellidosEntrenadorRegistro.setBounds(796, 155, 280, 19);
 		frmGym.getContentPane().add(txtApellidosEntrenadorRegistro);
 
 		txtEdadEntrenadorRegistro = new JTextField();
@@ -3617,7 +3747,7 @@ public class App {
 		txtEdadEntrenadorRegistro.setColumns(10);
 		txtEdadEntrenadorRegistro.setBorder(null);
 		txtEdadEntrenadorRegistro.setBackground(new Color(255, 140, 0));
-		txtEdadEntrenadorRegistro.setBounds(780, 191, 293, 19);
+		txtEdadEntrenadorRegistro.setBounds(796, 199, 280, 19);
 		frmGym.getContentPane().add(txtEdadEntrenadorRegistro);
 
 		txtTitulacionEntrenadorRegistro = new JTextField();
@@ -3627,7 +3757,7 @@ public class App {
 		txtTitulacionEntrenadorRegistro.setColumns(10);
 		txtTitulacionEntrenadorRegistro.setBorder(null);
 		txtTitulacionEntrenadorRegistro.setBackground(new Color(255, 140, 0));
-		txtTitulacionEntrenadorRegistro.setBounds(780, 242, 293, 19);
+		txtTitulacionEntrenadorRegistro.setBounds(796, 241, 280, 19);
 		frmGym.getContentPane().add(txtTitulacionEntrenadorRegistro);
 
 		txtContraseñaEntrenadorRegistro = new JTextField();
@@ -3637,15 +3767,17 @@ public class App {
 		txtContraseñaEntrenadorRegistro.setColumns(10);
 		txtContraseñaEntrenadorRegistro.setBorder(null);
 		txtContraseñaEntrenadorRegistro.setBackground(new Color(255, 140, 0));
-		txtContraseñaEntrenadorRegistro.setBounds(780, 300, 293, 19);
+		txtContraseñaEntrenadorRegistro.setBounds(796, 284, 280, 19);
 		frmGym.getContentPane().add(txtContraseñaEntrenadorRegistro);
 
 		/*
 		 * Botón para vaciar los txtField del registro.
 		 */
 		
-		JButton btnVaciarRegistro = new JButton("");
 		btnVaciarRegistro.setVisible(false);
+		btnVaciarRegistro.setOpaque(false);
+		btnVaciarRegistro.setBackground(new Color(0, 0, 0));
+		btnVaciarRegistro.setBorder(null);
 		btnVaciarRegistro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				txtNombreEntrenadorRegistro.setText("");
@@ -3659,14 +3791,17 @@ public class App {
 		btnVaciarRegistro.setBackground(new Color(0, 0, 0));
 		btnVaciarRegistro.setBorder(null);
 		btnVaciarRegistro.setIcon(new ImageIcon(App.class.getResource("/img/vaciar.png")));
-		btnVaciarRegistro.setBounds(1103, 38, 59, 48);
+		btnVaciarRegistro.setBounds(1113, 61, 59, 48);
 		frmGym.getContentPane().add(btnVaciarRegistro);
 		
 		/*
 		 * Botón para volver a la pantalla de inicio desde el apartado de registro
 		 */
 		
-		JButton btnVolverInicioRegistro = new JButton("Volver");
+		btnVolverInicioRegistro.setOpaque(false);
+		btnVolverInicioRegistro.setBackground(new Color(0, 0, 0));
+		btnVolverInicioRegistro.setBorder(null);
+		btnVolverInicioRegistro.setIcon(new ImageIcon(App.class.getResource("/img/icnVolver.png")));
 		btnVolverInicioRegistro.setVisible(false);
 		btnVolverInicioRegistro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -3682,7 +3817,7 @@ public class App {
 				lblTitulacionEntrenadorRegistro.setVisible(false);
 				lblContraseñaEntrenadorRegistro.setVisible(false);
 				lblRecuadro.setVisible(true);
-
+				lblTituloGym.setVisible(true);
 				lblRecuadro.setVisible(false);
 				
 				btnLogin.setVisible(true);
@@ -3692,7 +3827,7 @@ public class App {
 				btnVaciarRegistro.setVisible(false);
 			}
 		});
-		btnVolverInicioRegistro.setBounds(993, 386, 117, 25);
+		btnVolverInicioRegistro.setBounds(697, 376, 117, 48);
 		frmGym.getContentPane().add(btnVolverInicioRegistro);
 		
 		/*
@@ -3714,6 +3849,7 @@ public class App {
 				lblTitulacionEntrenadorRegistro.setVisible(true);
 				lblContraseñaEntrenadorRegistro.setVisible(true);
 				lblRecuadro.setVisible(true);
+				lblTituloGym.setVisible(false);
 
 				btnLogin.setVisible(false);
 				btnRegistrarse.setVisible(false);
@@ -3863,7 +3999,7 @@ public class App {
 		lblFondo.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblFondo.setForeground(new Color(0, 0, 0));
 		lblFondo.setIcon(new ImageIcon(App.class.getResource("/img/fondoGymDef.jpg")));
-		lblFondo.setBounds(-19, -199, 1825, 1859);
+		lblFondo.setBounds(0, -199, 1728, 1568);
 		frmGym.getContentPane().add(lblFondo);
 
 	}
