@@ -42,6 +42,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JComboBox;
+import java.awt.Toolkit;
 
 public class App {
 
@@ -116,7 +117,7 @@ public class App {
 	private JTextField txtContraseñaEntrenadorRegistro;
 	private JTextField txtContraseñaUsuarioLogin;
 	private JTextField txtNombreUsuarioLogin;
-	
+
 	/**
 	 * Launch the application.
 	 */
@@ -161,7 +162,7 @@ public class App {
 
 		JLabel lblClienteId = new JLabel("Id:");
 		lblClienteId.setVisible(false);
-		
+
 		JLabel lblClienteNombre = new JLabel("Nombre:");
 		lblClienteNombre.setVisible(false);
 		lblClienteNombre.setFont(new Font("Dialog", Font.BOLD, 16));
@@ -173,7 +174,7 @@ public class App {
 		lblTablaCliente.setVisible(false);
 		lblTablaCliente.setForeground(new Color(255, 140, 0));
 		lblTablaCliente.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 56));
-		lblTablaCliente.setBounds(241, 3, 202, 55);
+		lblTablaCliente.setBounds(163, 3, 280, 55);
 		frmGym.getContentPane().add(lblTablaCliente);
 
 		JLabel lblClienteApellidos = new JLabel("Apellidos:");
@@ -226,7 +227,7 @@ public class App {
 		txtClienteNombre.setForeground(new Color(0, 0, 0));
 		txtClienteNombre.setBackground(new Color(255, 140, 0));
 		txtClienteNombre.setBorder(null);
-		txtClienteNombre.setBounds(147, 69, 404, 19);
+		txtClienteNombre.setBounds(147, 69, 351, 19);
 		frmGym.getContentPane().add(txtClienteNombre);
 		txtClienteNombre.setColumns(10);
 
@@ -237,7 +238,7 @@ public class App {
 		txtClienteApellidos.setBackground(new Color(255, 140, 0));
 		txtClienteApellidos.setBorder(null);
 		txtClienteApellidos.setColumns(10);
-		txtClienteApellidos.setBounds(147, 108, 404, 19);
+		txtClienteApellidos.setBounds(147, 108, 351, 19);
 		frmGym.getContentPane().add(txtClienteApellidos);
 
 		txtClienteEdad = new JTextField();
@@ -247,7 +248,7 @@ public class App {
 		txtClienteEdad.setBorder(null);
 		txtClienteEdad.setBackground(new Color(255, 140, 0));
 		txtClienteEdad.setColumns(10);
-		txtClienteEdad.setBounds(147, 145, 404, 19);
+		txtClienteEdad.setBounds(147, 145, 351, 19);
 		frmGym.getContentPane().add(txtClienteEdad);
 
 		txtClienteAltura = new JTextField();
@@ -257,7 +258,7 @@ public class App {
 		txtClienteAltura.setBackground(new Color(255, 140, 0));
 		txtClienteAltura.setBorder(null);
 		txtClienteAltura.setColumns(10);
-		txtClienteAltura.setBounds(147, 184, 404, 19);
+		txtClienteAltura.setBounds(147, 184, 351, 19);
 		frmGym.getContentPane().add(txtClienteAltura);
 
 		txtClientePeso = new JTextField();
@@ -267,7 +268,7 @@ public class App {
 		txtClientePeso.setBorder(null);
 		txtClientePeso.setBackground(new Color(255, 140, 0));
 		txtClientePeso.setColumns(10);
-		txtClientePeso.setBounds(147, 222, 404, 19);
+		txtClientePeso.setBounds(147, 222, 351, 19);
 		frmGym.getContentPane().add(txtClientePeso);
 
 		/**
@@ -331,7 +332,7 @@ public class App {
 		scrollPaneCliente.setVisible(false);
 		scrollPaneCliente.setOpaque(false);
 		scrollPaneCliente.setEnabled(false);
-		scrollPaneCliente.setBounds(147, 333, 404, 197);
+		scrollPaneCliente.setBounds(94, 333, 404, 197);
 		frmGym.getContentPane().add(scrollPaneCliente);
 		scrollPaneCliente.setBorder(null);
 
@@ -409,7 +410,7 @@ public class App {
 		btnVaciarCliente.setBackground(new Color(0, 0, 0));
 		btnVaciarCliente.setBorder(null);
 		btnVaciarCliente.setIcon(new ImageIcon(App.class.getResource("/img/vaciar.png")));
-		btnVaciarCliente.setBounds(426, 10, 59, 48);
+		btnVaciarCliente.setBounds(395, 10, 59, 48);
 		frmGym.getContentPane().add(btnVaciarCliente);
 
 		/**
@@ -440,7 +441,7 @@ public class App {
 				}
 			}
 		});
-		btnMostrarClientes.setBounds(593, 333, 59, 48);
+		btnMostrarClientes.setBounds(510, 333, 59, 48);
 		frmGym.getContentPane().add(btnMostrarClientes);
 
 		/**
@@ -563,13 +564,17 @@ public class App {
 					txtClienteEdad.setText("");
 					txtClienteAltura.setText("");
 					txtClientePeso.setText("");
+
+					JOptionPane.showMessageDialog(null, "Se ha guardado correctamente", "EXITO",
+							JOptionPane.INFORMATION_MESSAGE);
+
 				}
 			}
 		});
 		btnInsertarCliente.setIcon(new ImageIcon(App.class.getResource("/img/icnGuardar.png")));
 		btnInsertarCliente.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnInsertarCliente.setBackground(new Color(255, 140, 0));
-		btnInsertarCliente.setBounds(147, 258, 77, 64);
+		btnInsertarCliente.setBounds(94, 254, 77, 64);
 		frmGym.getContentPane().add(btnInsertarCliente);
 
 		/**
@@ -699,13 +704,16 @@ public class App {
 					txtClienteEdad.setText("");
 					txtClienteAltura.setText("");
 					txtClientePeso.setText("");
+
+					JOptionPane.showMessageDialog(null, "Se ha actualizado correctamente", "EXITO",
+							JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		});
 		btnActualizarCliente.setIcon(new ImageIcon(App.class.getResource("/img/icnActu.png")));
 		btnActualizarCliente.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnActualizarCliente.setBackground(new Color(255, 140, 0));
-		btnActualizarCliente.setBounds(313, 249, 77, 73);
+		btnActualizarCliente.setBounds(260, 245, 77, 73);
 		frmGym.getContentPane().add(btnActualizarCliente);
 
 		/**
@@ -838,13 +846,18 @@ public class App {
 					txtClienteEdad.setText("");
 					txtClienteAltura.setText("");
 					txtClientePeso.setText("");
+
+					JOptionPane.showMessageDialog(null, "Se ha eliminado correctamente", "EXITO",
+							JOptionPane.INFORMATION_MESSAGE);
+
 				}
+
 			}
 		});
 		btnEliminarCliente.setIcon(new ImageIcon(App.class.getResource("/img/icnEli.png")));
 		btnEliminarCliente.setBackground(new Color(255, 140, 0));
 		btnEliminarCliente.setFont(new Font("Dialog", Font.BOLD, 20));
-		btnEliminarCliente.setBounds(466, 252, 85, 73);
+		btnEliminarCliente.setBounds(413, 248, 85, 73);
 		frmGym.getContentPane().add(btnEliminarCliente);
 
 		/**
@@ -862,42 +875,42 @@ public class App {
 		lblTablaEjercicio.setVisible(false);
 		lblTablaEjercicio.setForeground(new Color(255, 140, 0));
 		lblTablaEjercicio.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 56));
-		lblTablaEjercicio.setBounds(1407, -5, 276, 70);
+		lblTablaEjercicio.setBounds(1354, -5, 276, 70);
 		frmGym.getContentPane().add(lblTablaEjercicio);
 
 		JLabel lblEjercicioNombre = new JLabel("Nombre:");
 		lblEjercicioNombre.setVisible(false);
 		lblEjercicioNombre.setForeground(new Color(255, 140, 0));
 		lblEjercicioNombre.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblEjercicioNombre.setBounds(1188, 61, 117, 35);
+		lblEjercicioNombre.setBounds(1188, 92, 117, 35);
 		frmGym.getContentPane().add(lblEjercicioNombre);
 
 		JLabel lblEjercicioNumSeries = new JLabel("Nº Series:");
 		lblEjercicioNumSeries.setVisible(false);
 		lblEjercicioNumSeries.setForeground(new Color(255, 140, 0));
 		lblEjercicioNumSeries.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblEjercicioNumSeries.setBounds(1188, 99, 117, 35);
+		lblEjercicioNumSeries.setBounds(1188, 130, 117, 35);
 		frmGym.getContentPane().add(lblEjercicioNumSeries);
 
 		JLabel lblRepeticiones = new JLabel("Repeticiones:");
 		lblRepeticiones.setVisible(false);
 		lblRepeticiones.setForeground(new Color(255, 140, 0));
 		lblRepeticiones.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblRepeticiones.setBounds(1188, 136, 140, 35);
+		lblRepeticiones.setBounds(1188, 167, 140, 35);
 		frmGym.getContentPane().add(lblRepeticiones);
 
 		JLabel lblEjercicioCarga = new JLabel("Carga (kg):");
 		lblEjercicioCarga.setVisible(false);
 		lblEjercicioCarga.setForeground(new Color(255, 140, 0));
 		lblEjercicioCarga.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblEjercicioCarga.setBounds(1188, 175, 136, 35);
+		lblEjercicioCarga.setBounds(1188, 206, 136, 35);
 		frmGym.getContentPane().add(lblEjercicioCarga);
 
 		JLabel lblGrupoMuscular = new JLabel("Grupo Muscular:");
 		lblGrupoMuscular.setVisible(false);
 		lblGrupoMuscular.setForeground(new Color(255, 140, 0));
 		lblGrupoMuscular.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblGrupoMuscular.setBounds(1188, 214, 168, 35);
+		lblGrupoMuscular.setBounds(1188, 53, 168, 35);
 		frmGym.getContentPane().add(lblGrupoMuscular);
 
 		/*
@@ -923,7 +936,7 @@ public class App {
 		txtEjercicioNombre.setColumns(10);
 		txtEjercicioNombre.setBorder(null);
 		txtEjercicioNombre.setBackground(new Color(255, 140, 0));
-		txtEjercicioNombre.setBounds(1354, 69, 348, 20);
+		txtEjercicioNombre.setBounds(1354, 100, 348, 20);
 		frmGym.getContentPane().add(txtEjercicioNombre);
 
 		txtEjercicioNumSeries = new JTextField();
@@ -933,7 +946,7 @@ public class App {
 		txtEjercicioNumSeries.setColumns(10);
 		txtEjercicioNumSeries.setBorder(null);
 		txtEjercicioNumSeries.setBackground(new Color(255, 140, 0));
-		txtEjercicioNumSeries.setBounds(1354, 107, 348, 19);
+		txtEjercicioNumSeries.setBounds(1354, 138, 348, 19);
 		frmGym.getContentPane().add(txtEjercicioNumSeries);
 
 		txtEjercicioRepeticiones = new JTextField();
@@ -943,7 +956,7 @@ public class App {
 		txtEjercicioRepeticiones.setColumns(10);
 		txtEjercicioRepeticiones.setBorder(null);
 		txtEjercicioRepeticiones.setBackground(new Color(255, 140, 0));
-		txtEjercicioRepeticiones.setBounds(1354, 144, 348, 19);
+		txtEjercicioRepeticiones.setBounds(1354, 175, 348, 19);
 		frmGym.getContentPane().add(txtEjercicioRepeticiones);
 
 		txtEjercicioCarga = new JTextField();
@@ -953,7 +966,7 @@ public class App {
 		txtEjercicioCarga.setColumns(10);
 		txtEjercicioCarga.setBorder(null);
 		txtEjercicioCarga.setBackground(new Color(255, 140, 0));
-		txtEjercicioCarga.setBounds(1354, 183, 348, 19);
+		txtEjercicioCarga.setBounds(1354, 214, 348, 19);
 		frmGym.getContentPane().add(txtEjercicioCarga);
 
 		txtGrupoMuscular = new JTextField();
@@ -963,7 +976,7 @@ public class App {
 		txtGrupoMuscular.setColumns(10);
 		txtGrupoMuscular.setBorder(null);
 		txtGrupoMuscular.setBackground(new Color(255, 140, 0));
-		txtGrupoMuscular.setBounds(1354, 222, 348, 19);
+		txtGrupoMuscular.setBounds(1354, 61, 348, 19);
 		frmGym.getContentPane().add(txtGrupoMuscular);
 
 		/**
@@ -978,20 +991,22 @@ public class App {
 		};
 
 		modelEjercicio.addColumn("ID");
+		modelEjercicio.addColumn("Grupo Musc");
 		modelEjercicio.addColumn("Nombre");
 		modelEjercicio.addColumn("Series");
-		modelEjercicio.addColumn("Repeticiones");
+		modelEjercicio.addColumn("Rep");
 		modelEjercicio.addColumn("KG");
 
 		List<Ejercicio> listaEjercicios = DAOEjercicio.selectAllEjercicios();
 
 		for (Ejercicio ejercicio : listaEjercicios) {
-			Object[] row = new Object[5];
+			Object[] row = new Object[6];
 			row[0] = ejercicio.getIdEjercicio();
-			row[1] = ejercicio.getNombreEjercicio();
-			row[2] = ejercicio.getNumeroSeries();
-			row[3] = ejercicio.getNumeroRepeticiones();
-			row[4] = ejercicio.getCargaKg();
+			row[1] = ejercicio.getTipoMuscular();
+			row[2] = ejercicio.getNombreEjercicio();
+			row[3] = ejercicio.getNumeroSeries();
+			row[4] = ejercicio.getNumeroRepeticiones();
+			row[5] = ejercicio.getCargaKg();
 			modelEjercicio.addRow(row);
 		}
 
@@ -1008,11 +1023,12 @@ public class App {
 				int indexEjercicio = tableEjercicio.getSelectedRow();
 				TableModel modelEjercicio = tableEjercicio.getModel();
 				txtEjercicioId.setText(modelEjercicio.getValueAt(indexEjercicio, 0).toString());
-				txtEjercicioNombre.setText(modelEjercicio.getValueAt(indexEjercicio, 1).toString());
-				txtEjercicioRutina.setText(modelEjercicio.getValueAt(indexEjercicio, 1).toString());
-				txtEjercicioNumSeries.setText(modelEjercicio.getValueAt(indexEjercicio, 2).toString());
-				txtEjercicioRepeticiones.setText(modelEjercicio.getValueAt(indexEjercicio, 3).toString());
-				txtEjercicioCarga.setText(modelEjercicio.getValueAt(indexEjercicio, 4).toString());
+				txtGrupoMuscular.setText(modelEjercicio.getValueAt(indexEjercicio, 1).toString());
+				txtEjercicioNombre.setText(modelEjercicio.getValueAt(indexEjercicio, 2).toString());
+				txtEjercicioRutina.setText(modelEjercicio.getValueAt(indexEjercicio, 2).toString());
+				txtEjercicioNumSeries.setText(modelEjercicio.getValueAt(indexEjercicio, 3).toString());
+				txtEjercicioRepeticiones.setText(modelEjercicio.getValueAt(indexEjercicio, 4).toString());
+				txtEjercicioCarga.setText(modelEjercicio.getValueAt(indexEjercicio, 5).toString());
 			}
 		});
 		tableEjercicio.setBounds(471, 30, 1, 1);
@@ -1023,7 +1039,7 @@ public class App {
 		JScrollPane scrollPaneEjercicio = new JScrollPane(tableEjercicio);
 		scrollPaneEjercicio.setVisible(false);
 		scrollPaneEjercicio.setOpaque(false);
-		scrollPaneEjercicio.setBounds(1354, 345, 348, 185);
+		scrollPaneEjercicio.setBounds(1243, 345, 459, 185);
 		frmGym.getContentPane().add(scrollPaneEjercicio);
 		scrollPaneEjercicio.setBorder(null);
 
@@ -1041,13 +1057,15 @@ public class App {
 		TableColumn column1Ejer = columnModelEjercicio.getColumn(0);
 		column1Ejer.setPreferredWidth(20);
 		TableColumn column2Ejer = columnModelEjercicio.getColumn(1);
-		column2Ejer.setPreferredWidth(175);
+		column2Ejer.setPreferredWidth(120);
 		TableColumn column3Ejer = columnModelEjercicio.getColumn(2);
-		column3Ejer.setPreferredWidth(30);
+		column3Ejer.setPreferredWidth(90);
 		TableColumn column4Ejer = columnModelEjercicio.getColumn(3);
-		column4Ejer.setPreferredWidth(100);
+		column4Ejer.setPreferredWidth(40);
 		TableColumn column5Ejer = columnModelEjercicio.getColumn(4);
-		column5Ejer.setPreferredWidth(20);
+		column5Ejer.setPreferredWidth(40);
+		TableColumn column6Ejer = columnModelEjercicio.getColumn(5);
+		column6Ejer.setPreferredWidth(30);
 
 		/*
 		 * Alinea el texto al centro.
@@ -1098,7 +1116,7 @@ public class App {
 		btnVaciarEjercicio.setBackground(new Color(0, 0, 0));
 		btnVaciarEjercicio.setBorder(null);
 		btnVaciarEjercicio.setIcon(new ImageIcon(App.class.getResource("/img/vaciar.png")));
-		btnVaciarEjercicio.setBounds(1643, 10, 59, 48);
+		btnVaciarEjercicio.setBounds(1634, 10, 59, 48);
 		frmGym.getContentPane().add(btnVaciarEjercicio);
 
 		/**
@@ -1113,7 +1131,6 @@ public class App {
 		btnMostrarEjercicios.setVisible(false);
 		btnMostrarEjercicios.setIcon(new ImageIcon(App.class.getResource("/img/icnMostrar.png")));
 		btnMostrarEjercicios.setFont(new Font("Dialog", Font.BOLD, 14));
-		btnMostrarEjercicios.setBackground(UIManager.getColor("Button.background"));
 		btnMostrarEjercicios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				modelEjercicio.setRowCount(0);
@@ -1130,13 +1147,13 @@ public class App {
 				}
 			}
 		});
-		btnMostrarEjercicios.setBounds(1156, 431, 89, 88);
+		btnMostrarEjercicios.setBounds(1066, 418, 89, 88);
 		frmGym.getContentPane().add(btnMostrarEjercicios);
-		
+
 		/*
 		 * Tabla Rutina.
 		 */
-		
+
 		DefaultTableModel modelRutina = new DefaultTableModel() {
 			@Override
 			public boolean isCellEditable(int row, int column) {
@@ -1168,7 +1185,7 @@ public class App {
 		scrollPaneRutina.setOpaque(false);
 		scrollPaneRutina.setEnabled(false);
 		scrollPaneRutina.setBorder(null);
-		scrollPaneRutina.setBounds(697, 233, 439, 297);
+		scrollPaneRutina.setBounds(600, 233, 439, 297);
 		frmGym.getContentPane().add(scrollPaneRutina);
 
 		/*
@@ -1218,7 +1235,7 @@ public class App {
 		headerRendererRutina.setFont(headerRendererRutina.getFont().deriveFont(Font.BOLD, 16));
 		headerRendererRutina.setHorizontalAlignment(SwingConstants.CENTER);
 		headerRutina.setDefaultRenderer(headerRendererRutina);
-		
+
 		/*
 		 * Botón que hace que se rellenen las tablas con los datos de la BD.
 		 */
@@ -1252,7 +1269,6 @@ public class App {
 		btnMostrarRutina.setBounds(846, 478, 89, 23);
 		frmGym.getContentPane().add(btnMostrarRutina);
 
-		
 		/*
 		 * COMBO BOX GRUPO MUSCULAR
 		 */
@@ -1263,7 +1279,7 @@ public class App {
 		comboBoxGrupoMuscular.setFont(new Font("Dialog", Font.BOLD, 16));
 		comboBoxGrupoMuscular.setBorder(null);
 		comboBoxGrupoMuscular.setBackground(new Color(255, 140, 0));
-		comboBoxGrupoMuscular.setBounds(1160, 396, 145, 24);
+		comboBoxGrupoMuscular.setBounds(1070, 383, 145, 24);
 		frmGym.getContentPane().add(comboBoxGrupoMuscular);
 
 		/*
@@ -1285,7 +1301,7 @@ public class App {
 		for (Ejercicio ejercicio : ejercicioGM) {
 			tiposMusculares.add(ejercicio.getTipoMuscular());
 		}
-		
+
 		/*
 		 * Introduce los grupos musculares del conjunto en el comboBox
 		 */
@@ -1323,7 +1339,7 @@ public class App {
 							"ERROR", JOptionPane.ERROR_MESSAGE);
 					camposValidos = false;
 				}
-				
+
 				grupoMuscular = txtGrupoMuscular.getText();
 				if (grupoMuscular.length() == 0) {
 					JOptionPane.showMessageDialog(null, "El campo GRUPO MUSCULAR está vacío", "ERROR",
@@ -1334,11 +1350,11 @@ public class App {
 							JOptionPane.ERROR_MESSAGE);
 					camposValidos = false;
 				} else if (!grupoMuscular.matches("[a-zA-ZñÑáéíóúÁÉÍÓÚ\\s]+")) {
-					JOptionPane.showMessageDialog(null, "El campo GRUPO MUSCULAR no debe contener caracteres especiales",
-							"ERROR", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null,
+							"El campo GRUPO MUSCULAR no debe contener caracteres especiales", "ERROR",
+							JOptionPane.ERROR_MESSAGE);
 					camposValidos = false;
 				}
-
 
 				String ejercicioNumSeriesStr = txtEjercicioNumSeries.getText();
 				if (ejercicioNumSeriesStr.length() == 0) {
@@ -1407,7 +1423,7 @@ public class App {
 					txtEjercicioNumSeries.setText("");
 					txtEjercicioRepeticiones.setText("");
 					txtEjercicioCarga.setText("");
-					
+
 					btnMostrarRutina.doClick();
 					modelRutina.setRowCount(0);
 					List<Cliente> clientes = DAOCliente.selectAllClientes();
@@ -1436,6 +1452,10 @@ public class App {
 					for (String tipoMuscular : tiposMusculares) {
 						comboBoxGrupoMuscular.addItem(tipoMuscular);
 					}
+
+					JOptionPane.showMessageDialog(null, "Se ha guardado correctamente", "EXITO",
+							JOptionPane.INFORMATION_MESSAGE);
+
 				}
 			}
 		});
@@ -1458,7 +1478,7 @@ public class App {
 		btnActualizarEjercicio.setForeground(Color.BLACK);
 		btnActualizarEjercicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				comboBoxGrupoMuscular.removeAllItems();
 
 				for (Ejercicio ejercicio : ejercicioGM) {
@@ -1507,7 +1527,7 @@ public class App {
 				txtEjercicioNumSeries.setText("");
 				txtEjercicioRepeticiones.setText("");
 				txtEjercicioCarga.setText("");
-				
+
 				btnMostrarRutina.doClick();
 				modelRutina.setRowCount(0);
 				List<Cliente> clientes = DAOCliente.selectAllClientes();
@@ -1535,6 +1555,10 @@ public class App {
 				for (String tipoMuscular : tiposMusculares) {
 					comboBoxGrupoMuscular.addItem(tipoMuscular);
 				}
+
+				JOptionPane.showMessageDialog(null, "Se ha actualizado correctamente", "EXITO",
+						JOptionPane.INFORMATION_MESSAGE);
+
 			}
 		});
 		btnActualizarEjercicio.setIcon(new ImageIcon(App.class.getResource("/img/icnActu.png")));
@@ -1600,7 +1624,7 @@ public class App {
 				txtEjercicioNumSeries.setText("");
 				txtEjercicioRepeticiones.setText("");
 				txtEjercicioCarga.setText("");
-				
+
 				btnMostrarRutina.doClick();
 				modelRutina.setRowCount(0);
 				List<Cliente> clientes = DAOCliente.selectAllClientes();
@@ -1628,6 +1652,10 @@ public class App {
 				for (String tipoMuscular : tiposMusculares) {
 					comboBoxGrupoMuscular.addItem(tipoMuscular);
 				}
+
+				JOptionPane.showMessageDialog(null, "Se ha eliminado correctamente", "EXITO",
+						JOptionPane.INFORMATION_MESSAGE);
+
 			}
 		});
 		btnEliminarEjercicio.setIcon(new ImageIcon(App.class.getResource("/img/icnEli.png")));
@@ -1635,7 +1663,7 @@ public class App {
 		btnEliminarEjercicio.setBackground(new Color(255, 140, 0));
 		btnEliminarEjercicio.setBounds(1602, 258, 100, 64);
 		frmGym.getContentPane().add(btnEliminarEjercicio);
-		
+
 		/*
 		 * BOTON FITLRAR POR GRUPO MSUCULAR
 		 */
@@ -1661,9 +1689,12 @@ public class App {
 					row[5] = ej.getCargaKg();
 					modelEjercicio.addRow(row);
 				}
+
+				JOptionPane.showMessageDialog(null, "Se ha filtrado correctamente", "EXITO",
+						JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
-		btnFiltrar.setBounds(1232, 431, 89, 88);
+		btnFiltrar.setBounds(1142, 418, 89, 88);
 		frmGym.getContentPane().add(btnFiltrar);
 
 		/*
@@ -1674,28 +1705,28 @@ public class App {
 		lblRutina.setVisible(false);
 		lblRutina.setForeground(new Color(255, 140, 0));
 		lblRutina.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 56));
-		lblRutina.setBounds(854, 3, 217, 54);
+		lblRutina.setBounds(704, 3, 217, 54);
 		frmGym.getContentPane().add(lblRutina);
 
 		JLabel lblClienteRutina = new JLabel("Cliente:");
 		lblClienteRutina.setVisible(false);
 		lblClienteRutina.setForeground(new Color(255, 140, 0));
 		lblClienteRutina.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblClienteRutina.setBounds(698, 71, 89, 15);
+		lblClienteRutina.setBounds(601, 71, 89, 15);
 		frmGym.getContentPane().add(lblClienteRutina);
 
 		JLabel lblEjercicioRutina = new JLabel("Ejercicio:");
 		lblEjercicioRutina.setVisible(false);
 		lblEjercicioRutina.setForeground(new Color(255, 140, 0));
 		lblEjercicioRutina.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblEjercicioRutina.setBounds(698, 109, 117, 15);
+		lblEjercicioRutina.setBounds(601, 109, 117, 15);
 		frmGym.getContentPane().add(lblEjercicioRutina);
 
 		JLabel lblGrupoMuscularRutina = new JLabel("Grupo Muscular:");
 		lblGrupoMuscularRutina.setVisible(false);
 		lblGrupoMuscularRutina.setForeground(new Color(255, 140, 0));
 		lblGrupoMuscularRutina.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblGrupoMuscularRutina.setBounds(1160, 344, 185, 28);
+		lblGrupoMuscularRutina.setBounds(1057, 333, 185, 28);
 		frmGym.getContentPane().add(lblGrupoMuscularRutina);
 
 		/*
@@ -1710,7 +1741,7 @@ public class App {
 		txtEjercicioRutina.setColumns(10);
 		txtEjercicioRutina.setBorder(null);
 		txtEjercicioRutina.setBackground(new Color(255, 140, 0));
-		txtEjercicioRutina.setBounds(801, 107, 335, 19);
+		txtEjercicioRutina.setBounds(704, 107, 335, 19);
 		frmGym.getContentPane().add(txtEjercicioRutina);
 
 		txtClienteRutina = new JTextField();
@@ -1721,10 +1752,8 @@ public class App {
 		txtClienteRutina.setColumns(10);
 		txtClienteRutina.setBorder(null);
 		txtClienteRutina.setBackground(new Color(255, 140, 0));
-		txtClienteRutina.setBounds(801, 69, 335, 19);
+		txtClienteRutina.setBounds(704, 69, 335, 19);
 		frmGym.getContentPane().add(txtClienteRutina);
-		
-		
 
 		/*
 		 * JButton de rutina.
@@ -1746,7 +1775,7 @@ public class App {
 		btnVaciarRutina.setBackground(new Color(0, 0, 0));
 		btnVaciarRutina.setBorder(null);
 		btnVaciarRutina.setIcon(new ImageIcon(App.class.getResource("/img/vaciar.png")));
-		btnVaciarRutina.setBounds(1027, 10, 59, 48);
+		btnVaciarRutina.setBounds(916, 10, 59, 48);
 		frmGym.getContentPane().add(btnVaciarRutina);
 		/*
 		 * Botón que sirve para asiganr los clientes con los ejercicios que deben hacer.
@@ -1770,11 +1799,15 @@ public class App {
 				DAOCliente.updateCliente(c);
 
 				btnMostrarRutina.doClick();
+
+				JOptionPane.showMessageDialog(null, "Se ha asignado correctamente", "EXITO",
+						JOptionPane.INFORMATION_MESSAGE);
+
 			}
 		});
 		btnAsignarRutina.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnAsignarRutina.setBackground(new Color(255, 140, 0));
-		btnAsignarRutina.setBounds(759, 145, 124, 73);
+		btnAsignarRutina.setBounds(662, 145, 124, 73);
 		frmGym.getContentPane().add(btnAsignarRutina);
 
 		/*
@@ -1790,21 +1823,38 @@ public class App {
 		btnEliminarRutina.setVisible(false);
 		btnEliminarRutina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Cliente c = DAOCliente.selectCliente(txtClienteRutina.getText());
-				Ejercicio e = DAOEjercicio.selectEjercicio(txtEjercicioRutina.getText());
 
-				c.quitarEjercicio(e);
+				String comprobarCliente = txtClienteRutina.getText();
+				String comprobarRutina = txtEjercicioRutina.getText();
 
-				DAOCliente.updateCliente(c);
+				if (comprobarCliente.length() == 0) {
+					JOptionPane.showMessageDialog(null, "No hay cliente seleccionado", "EXITO",
+							JOptionPane.INFORMATION_MESSAGE);
 
-				btnMostrarRutina.doClick();
+				} else if (comprobarRutina.length() == 0) {
+					JOptionPane.showMessageDialog(null, "No hay ejercicio seleccionado", "EXITO",
+							JOptionPane.INFORMATION_MESSAGE);
+				} else {
+					Cliente c = DAOCliente.selectCliente(txtClienteRutina.getText());
+					Ejercicio e = DAOEjercicio.selectEjercicio(txtEjercicioRutina.getText());
+
+					c.quitarEjercicio(e);
+
+					DAOCliente.updateCliente(c);
+
+					btnMostrarRutina.doClick();
+
+					JOptionPane.showMessageDialog(null, "Se ha eliminado correctamente", "EXITO",
+							JOptionPane.INFORMATION_MESSAGE);
+				}
+
 			}
 		});
 		btnEliminarRutina.setForeground(Color.BLACK);
 		btnEliminarRutina.setIcon(new ImageIcon(App.class.getResource("/img/icnEli.png")));
 		btnEliminarRutina.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnEliminarRutina.setBackground(new Color(255, 140, 0));
-		btnEliminarRutina.setBounds(948, 148, 117, 70);
+		btnEliminarRutina.setBounds(851, 148, 117, 70);
 		frmGym.getContentPane().add(btnEliminarRutina);
 
 		/*
@@ -1815,7 +1865,7 @@ public class App {
 		lblEntrenador.setVisible(false);
 		lblEntrenador.setForeground(new Color(255, 140, 0));
 		lblEntrenador.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 56));
-		lblEntrenador.setBounds(196, 563, 335, 55);
+		lblEntrenador.setBounds(147, 564, 362, 55);
 		frmGym.getContentPane().add(lblEntrenador);
 
 		JLabel lblEntrenadorId = new JLabel("Id:");
@@ -1883,7 +1933,7 @@ public class App {
 		txtEntrenadorNombre.setColumns(10);
 		txtEntrenadorNombre.setBorder(null);
 		txtEntrenadorNombre.setBackground(new Color(255, 140, 0));
-		txtEntrenadorNombre.setBounds(147, 638, 404, 19);
+		txtEntrenadorNombre.setBounds(147, 638, 351, 19);
 		frmGym.getContentPane().add(txtEntrenadorNombre);
 
 		txtEntrenadorApellidos = new JTextField();
@@ -1893,7 +1943,7 @@ public class App {
 		txtEntrenadorApellidos.setColumns(10);
 		txtEntrenadorApellidos.setBorder(null);
 		txtEntrenadorApellidos.setBackground(new Color(255, 140, 0));
-		txtEntrenadorApellidos.setBounds(147, 677, 404, 19);
+		txtEntrenadorApellidos.setBounds(147, 677, 351, 19);
 		frmGym.getContentPane().add(txtEntrenadorApellidos);
 
 		txtEntrenadorEdad = new JTextField();
@@ -1903,7 +1953,7 @@ public class App {
 		txtEntrenadorEdad.setColumns(10);
 		txtEntrenadorEdad.setBorder(null);
 		txtEntrenadorEdad.setBackground(new Color(255, 140, 0));
-		txtEntrenadorEdad.setBounds(147, 720, 404, 19);
+		txtEntrenadorEdad.setBounds(147, 720, 351, 19);
 		frmGym.getContentPane().add(txtEntrenadorEdad);
 
 		txtEntrenadorTitulacion = new JTextField();
@@ -1913,7 +1963,7 @@ public class App {
 		txtEntrenadorTitulacion.setColumns(10);
 		txtEntrenadorTitulacion.setBorder(null);
 		txtEntrenadorTitulacion.setBackground(new Color(255, 140, 0));
-		txtEntrenadorTitulacion.setBounds(147, 758, 404, 19);
+		txtEntrenadorTitulacion.setBounds(147, 758, 351, 19);
 		frmGym.getContentPane().add(txtEntrenadorTitulacion);
 
 		txtContraseña = new JTextField();
@@ -1923,7 +1973,7 @@ public class App {
 		txtContraseña.setColumns(10);
 		txtContraseña.setBorder(null);
 		txtContraseña.setBackground(new Color(255, 140, 0));
-		txtContraseña.setBounds(147, 799, 404, 19);
+		txtContraseña.setBounds(147, 799, 351, 19);
 		frmGym.getContentPane().add(txtContraseña);
 
 		/*
@@ -1987,7 +2037,7 @@ public class App {
 		scrollPaneEntrenador.setVisible(false);
 		scrollPaneEntrenador.setOpaque(false);
 		scrollPaneEntrenador.setEnabled(false);
-		scrollPaneEntrenador.setBounds(157, 916, 394, 159);
+		scrollPaneEntrenador.setBounds(104, 916, 394, 159);
 		scrollPaneEntrenador.setBorder(null);
 		frmGym.getContentPane().add(scrollPaneEntrenador);
 
@@ -2014,7 +2064,7 @@ public class App {
 		columnEntrenador4.setPreferredWidth(80);
 		TableColumn columnEntrenador5 = columnModelEntrenador.getColumn(4);
 		columnEntrenador5.setPreferredWidth(80);
-		
+
 		/*
 		 * Alinea el texto al centro.
 		 */
@@ -2072,7 +2122,7 @@ public class App {
 				}
 			}
 		});
-		btnMostrarEntrenadores.setBounds(593, 333, 59, 48);
+		btnMostrarEntrenadores.setBounds(510, 371, 59, 48);
 		frmGym.getContentPane().add(btnMostrarEntrenadores);
 
 		/*
@@ -2187,6 +2237,10 @@ public class App {
 					txtEntrenadorEdad.setText("");
 					txtEntrenadorTitulacion.setText("");
 					txtContraseña.setText("");
+
+					JOptionPane.showMessageDialog(null, "Se ha guardado correctamente", "EXITO",
+							JOptionPane.INFORMATION_MESSAGE);
+
 				}
 			}
 		});
@@ -2194,7 +2248,7 @@ public class App {
 		btnInsertarEntrenador.setForeground(Color.BLACK);
 		btnInsertarEntrenador.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnInsertarEntrenador.setBackground(new Color(255, 140, 0));
-		btnInsertarEntrenador.setBounds(147, 829, 100, 76);
+		btnInsertarEntrenador.setBounds(94, 829, 100, 76);
 		frmGym.getContentPane().add(btnInsertarEntrenador);
 
 		/*
@@ -2298,6 +2352,9 @@ public class App {
 					txtEntrenadorApellidos.setText("");
 					txtEntrenadorEdad.setText("");
 					txtEntrenadorTitulacion.setText("");
+
+					JOptionPane.showMessageDialog(null, "Se ha actualizado correctamente", "EXITO",
+							JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		});
@@ -2305,7 +2362,7 @@ public class App {
 		btnActualizarEntrenador.setForeground(Color.BLACK);
 		btnActualizarEntrenador.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnActualizarEntrenador.setBackground(new Color(255, 140, 0));
-		btnActualizarEntrenador.setBounds(314, 829, 89, 76);
+		btnActualizarEntrenador.setBounds(261, 829, 89, 76);
 		frmGym.getContentPane().add(btnActualizarEntrenador);
 
 		/*
@@ -2409,6 +2466,9 @@ public class App {
 					txtEntrenadorApellidos.setText("");
 					txtEntrenadorEdad.setText("");
 					txtEntrenadorTitulacion.setText("");
+
+					JOptionPane.showMessageDialog(null, "Se ha eliminado correctamente", "EXITO",
+							JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		});
@@ -2416,7 +2476,7 @@ public class App {
 		btnEliminarEntrenador.setForeground(Color.BLACK);
 		btnEliminarEntrenador.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnEliminarEntrenador.setBackground(new Color(255, 140, 0));
-		btnEliminarEntrenador.setBounds(466, 829, 102, 76);
+		btnEliminarEntrenador.setBounds(413, 829, 102, 76);
 		frmGym.getContentPane().add(btnEliminarEntrenador);
 
 		/*
@@ -2427,7 +2487,7 @@ public class App {
 		lblClase.setVisible(false);
 		lblClase.setForeground(new Color(255, 140, 0));
 		lblClase.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 56));
-		lblClase.setBounds(1428, 563, 152, 55);
+		lblClase.setBounds(1354, 563, 226, 55);
 		frmGym.getContentPane().add(lblClase);
 
 		JLabel lblClaseId = new JLabel("Id:");
@@ -2635,7 +2695,7 @@ public class App {
 				}
 			}
 		});
-		btnMostrarClases.setBounds(593, 333, 59, 48);
+		btnMostrarClases.setBounds(510, 411, 59, 48);
 		frmGym.getContentPane().add(btnMostrarClases);
 
 		/*
@@ -2717,6 +2777,9 @@ public class App {
 					txtNombreClase.setText("");
 					txtLugarClase.setText("");
 					txtTopeClase.setText("");
+
+					JOptionPane.showMessageDialog(null, "Se ha guardado correctamente", "EXITO",
+							JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		});
@@ -2811,6 +2874,9 @@ public class App {
 					txtNombreClase.setText("");
 					txtLugarClase.setText("");
 					txtTopeClase.setText("");
+
+					JOptionPane.showMessageDialog(null, "Se ha actualizado correctamente", "EXITO",
+							JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		});
@@ -2906,6 +2972,9 @@ public class App {
 					txtNombreClase.setText("");
 					txtLugarClase.setText("");
 					txtTopeClase.setText("");
+
+					JOptionPane.showMessageDialog(null, "Se ha eliminado correctamente", "EXITO",
+							JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		});
@@ -2924,21 +2993,21 @@ public class App {
 		lblImpartirClase.setVisible(false);
 		lblImpartirClase.setForeground(new Color(255, 140, 0));
 		lblImpartirClase.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 56));
-		lblImpartirClase.setBounds(686, 563, 389, 55);
+		lblImpartirClase.setBounds(600, 563, 477, 55);
 		frmGym.getContentPane().add(lblImpartirClase);
 
 		JLabel lblEntreadorImpartirClase = new JLabel("Entrenador:");
 		lblEntreadorImpartirClase.setVisible(false);
 		lblEntreadorImpartirClase.setForeground(new Color(255, 140, 0));
 		lblEntreadorImpartirClase.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblEntreadorImpartirClase.setBounds(663, 638, 117, 15);
+		lblEntreadorImpartirClase.setBounds(600, 639, 117, 15);
 		frmGym.getContentPane().add(lblEntreadorImpartirClase);
 
 		JLabel lblClaseImpartirClase = new JLabel("Clase:");
 		lblClaseImpartirClase.setVisible(false);
 		lblClaseImpartirClase.setForeground(new Color(255, 140, 0));
 		lblClaseImpartirClase.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblClaseImpartirClase.setBounds(663, 668, 117, 15);
+		lblClaseImpartirClase.setBounds(600, 669, 117, 15);
 		frmGym.getContentPane().add(lblClaseImpartirClase);
 
 		/*
@@ -2953,7 +3022,7 @@ public class App {
 		txtEntreadorImpartirClase.setColumns(10);
 		txtEntreadorImpartirClase.setBorder(null);
 		txtEntreadorImpartirClase.setBackground(new Color(255, 140, 0));
-		txtEntreadorImpartirClase.setBounds(778, 638, 323, 19);
+		txtEntreadorImpartirClase.setBounds(715, 639, 323, 19);
 		frmGym.getContentPane().add(txtEntreadorImpartirClase);
 
 		txtClaseImpartirClase = new JTextField();
@@ -2964,7 +3033,7 @@ public class App {
 		txtClaseImpartirClase.setColumns(10);
 		txtClaseImpartirClase.setBorder(null);
 		txtClaseImpartirClase.setBackground(new Color(255, 140, 0));
-		txtClaseImpartirClase.setBounds(778, 668, 323, 19);
+		txtClaseImpartirClase.setBounds(715, 669, 323, 19);
 		frmGym.getContentPane().add(txtClaseImpartirClase);
 
 		/*
@@ -3002,7 +3071,7 @@ public class App {
 		scrollImpartirClase.setOpaque(false);
 		scrollImpartirClase.setEnabled(false);
 		scrollImpartirClase.setBorder(null);
-		scrollImpartirClase.setBounds(662, 795, 439, 280);
+		scrollImpartirClase.setBounds(600, 795, 439, 280);
 		frmGym.getContentPane().add(scrollImpartirClase);
 
 		/*
@@ -3026,6 +3095,7 @@ public class App {
 			}
 		});
 		scrollImpartirClase.setColumnHeaderView(tableImpartirClase);
+
 
 		/*
 		 * Establece el tamaño de las filas.
@@ -3125,13 +3195,16 @@ public class App {
 				DAOClase.updateClase(c);
 
 				btnMostrarImpartirClase.doClick();
+
+				JOptionPane.showMessageDialog(null, "Se ha asignado correctamente", "EXITO",
+						JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		btnAsignarClase.setIcon(new ImageIcon(App.class.getResource("/img/icnAsig.png")));
 		btnAsignarClase.setForeground(Color.BLACK);
 		btnAsignarClase.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnAsignarClase.setBackground(new Color(255, 140, 0));
-		btnAsignarClase.setBounds(788, 702, 89, 88);
+		btnAsignarClase.setBounds(725, 703, 89, 88);
 		frmGym.getContentPane().add(btnAsignarClase);
 
 		/*
@@ -3147,20 +3220,41 @@ public class App {
 		btnEliminarImpartirClase.setVisible(false);
 		btnEliminarImpartirClase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Entrenador entr = DAOEntrenador.selectEntrenador(txtEntreadorImpartirClase.getText());
-				Clase c = DAOClase.selectClase(txtClaseImpartirClase.getText());
+				
+				String comprobarEntrenador = txtEntreadorImpartirClase.getText();
+				String comprobarClase = txtClaseImpartirClase.getText();
 
-				c.quitarEntrenador(entr);
-				DAOClase.updateClase(c);
+				if (comprobarEntrenador.length() == 0) {
+					JOptionPane.showMessageDialog(null, "No hay entrenador seleccionado", "EXITO",
+							JOptionPane.INFORMATION_MESSAGE);
 
-				btnEliminarImpartirClase.doClick();
+				} else if (comprobarClase.length() == 0) {
+					JOptionPane.showMessageDialog(null, "No hay clase seleccionado", "EXITO",
+							JOptionPane.INFORMATION_MESSAGE);
+				} else {
+
+					Entrenador entr = DAOEntrenador.selectEntrenador(txtEntreadorImpartirClase.getText());
+					Clase c = DAOClase.selectClase(txtClaseImpartirClase.getText());
+
+					c.quitarEntrenador(entr);
+					DAOClase.updateClase(c);
+					
+					btnMostrarImpartirClase.doClick();
+
+					JOptionPane.showMessageDialog(null, "Se ha eliminado correctamente", "EXITO",
+							JOptionPane.INFORMATION_MESSAGE);
+					
+					txtEntreadorImpartirClase.setText("");
+					txtClaseImpartirClase.setText("");
+
+				}
 			}
 		});
 		btnEliminarImpartirClase.setIcon(new ImageIcon(App.class.getResource("/img/icnEli.png")));
 		btnEliminarImpartirClase.setForeground(Color.BLACK);
 		btnEliminarImpartirClase.setFont(new Font("Dialog", Font.BOLD, 20));
 		btnEliminarImpartirClase.setBackground(new Color(255, 140, 0));
-		btnEliminarImpartirClase.setBounds(936, 712, 89, 83);
+		btnEliminarImpartirClase.setBounds(873, 713, 89, 83);
 		frmGym.getContentPane().add(btnEliminarImpartirClase);
 
 		/*
@@ -3172,7 +3266,7 @@ public class App {
 		lblMarcoLogin.setIcon(new ImageIcon(App.class.getResource("/img/EL_GYM_L_L__1_-removebg-preview (1).png")));
 		lblMarcoLogin.setBounds(628, 111, 550, 179);
 		frmGym.getContentPane().add(lblMarcoLogin);
-		
+
 		JLabel lblTituloGym = new JLabel("");
 		lblTituloGym.setIcon(new ImageIcon(App.class.getResource("/img/tituloGym.png")));
 		lblTituloGym.setBounds(663, 42, 422, 207);
@@ -3181,7 +3275,7 @@ public class App {
 		lblClienteId.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblClienteId.setBounds(28, 15, 20, 35);
 		frmGym.getContentPane().add(lblClienteId);
-		
+
 		JLabel lblRecuadro = new JLabel("");
 		lblRecuadro.setVisible(false);
 		lblRecuadro.setIcon(new ImageIcon(App.class.getResource("/img/marcoResgistro.png")));
@@ -3230,14 +3324,14 @@ public class App {
 		btnConfirmarRegistro.setVisible(false);
 		btnConfirmarRegistro.setBounds(809, 371, 230, 70);
 		frmGym.getContentPane().add(btnConfirmarRegistro);
-		
+
 		JButton btnVolverInicioRegistro = new JButton("");
 		JButton btnVaciarRegistro = new JButton("");
 
 		/*
 		 * JLabel de registro.
 		 */
-		
+
 		JLabel lblNombreEntrenadorRegistro = new JLabel("Nombre:");
 		lblNombreEntrenadorRegistro.setVisible(false);
 		lblNombreEntrenadorRegistro.setForeground(new Color(255, 140, 0));
@@ -3272,7 +3366,7 @@ public class App {
 		lblContraseñaEntrenadorRegistro.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblContraseñaEntrenadorRegistro.setBounds(673, 286, 114, 14);
 		frmGym.getContentPane().add(lblContraseñaEntrenadorRegistro);
-		
+
 		/*
 		 * JLabel del login.
 		 */
@@ -3294,7 +3388,7 @@ public class App {
 		/*
 		 * txtField del login.
 		 */
-		
+
 		txtNombreUsuarioLogin = new JTextField();
 		txtNombreUsuarioLogin.setVisible(false);
 		txtNombreUsuarioLogin.setForeground(Color.BLACK);
@@ -3304,7 +3398,7 @@ public class App {
 		txtNombreUsuarioLogin.setBounds(798, 164, 257, 19);
 		txtNombreUsuarioLogin.setColumns(10);
 		frmGym.getContentPane().add(txtNombreUsuarioLogin);
-		
+
 		txtContraseñaUsuarioLogin = new JTextField();
 		txtContraseñaUsuarioLogin.setBounds(798, 216, 257, 19);
 		txtContraseñaUsuarioLogin.setColumns(10);
@@ -3318,7 +3412,7 @@ public class App {
 		/*
 		 * Botón para vaciar los txtField del registro.
 		 */
-		
+
 		JButton btnVaciarLogin = new JButton("");
 		btnVaciarLogin.setVisible(false);
 		btnVaciarLogin.addActionListener(new ActionListener() {
@@ -3333,11 +3427,11 @@ public class App {
 		btnVaciarLogin.setIcon(new ImageIcon(App.class.getResource("/img/vaciar.png")));
 		btnVaciarLogin.setBounds(1095, 133, 59, 48);
 		frmGym.getContentPane().add(btnVaciarLogin);
-		
+
 		/*
 		 * Botón para volver a la pantalla de inicio desde el apartado de login
 		 */
-		
+
 		JButton btnVolverInicioLogin = new JButton("");
 		btnVolverInicioLogin.setOpaque(false);
 		btnVolverInicioLogin.setBackground(new Color(0, 0, 0));
@@ -3362,7 +3456,7 @@ public class App {
 		});
 		btnVolverInicioLogin.setBounds(648, 291, 117, 55);
 		frmGym.getContentPane().add(btnVolverInicioLogin);
-		
+
 		/*
 		 * Botón que te da acceso al login.
 		 */
@@ -3383,7 +3477,7 @@ public class App {
 				lblMarcoLogin.setVisible(true);
 			}
 		});
-		
+
 		/*
 		 * Botón que confirma que estas resgistrado en el sistemas y si es así muestra
 		 * el programa principal.
@@ -3395,11 +3489,9 @@ public class App {
 						txtContraseñaUsuarioLogin.getText());
 
 				if (txtNombreUsuarioLogin.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "Nombre vacío", "Error",
-							JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Nombre vacío", "Error", JOptionPane.ERROR_MESSAGE);
 				} else if (txtContraseñaUsuarioLogin.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "Contraseña vacía", "Error",
-							JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Contraseña vacía", "Error", JOptionPane.ERROR_MESSAGE);
 				} else if (txtNombreUsuarioLogin.getText().equals("root")
 						&& txtContraseñaUsuarioLogin.getText().equals("123")) {
 
@@ -3471,7 +3563,7 @@ public class App {
 					btnActualizarEjercicio.setVisible(true);
 					btnEliminarEjercicio.setVisible(true);
 					btnMostrarEjercicios.setVisible(true);
-					
+
 					comboBoxGrupoMuscular.setVisible(true);
 					btnFiltrar.setVisible(true);
 
@@ -3549,7 +3641,7 @@ public class App {
 					txtContraseñaUsuarioLogin.setText("");
 					lblNombreUsuarioLogin.setVisible(false);
 					lblContraseñaUsuarioLogin.setVisible(false);
-										
+
 					btnConfirmarLogin.setVisible(false);
 
 					txtNombreEntrenadorRegistro.setVisible(true);
@@ -3557,17 +3649,17 @@ public class App {
 					txtEdadEntrenadorRegistro.setVisible(true);
 					txtTitulacionEntrenadorRegistro.setVisible(true);
 					txtContraseñaEntrenadorRegistro.setVisible(true);
-					
+
 					lblNombreEntrenadorRegistro.setVisible(true);
 					lblApellidosEntrenadorRegistro.setVisible(true);
 					lblEdadEntrenadorRegistro.setVisible(true);
 					lblTitulacionEntrenadorRegistro.setVisible(true);
 					lblContraseñaEntrenadorRegistro.setVisible(true);
-					
+
 					lblRecuadro.setVisible(true);
-					
+
 					btnConfirmarRegistro.setVisible(true);
-					
+
 					btnVaciarLogin.setVisible(false);
 					lblTituloGym.setVisible(false);
 					btnVolverInicioLogin.setVisible(false);
@@ -3623,9 +3715,9 @@ public class App {
 
 					lblGrupoMuscularRutina.setVisible(true);
 					comboBoxGrupoMuscular.setVisible(true);
-					
+
 					btnMostrarEjercicios.setVisible(true);
-					
+
 					btnFiltrar.setVisible(true);
 
 					scrollPaneRutina.setVisible(true);
@@ -3651,6 +3743,10 @@ public class App {
 					btnActualizarEjercicio.setVisible(true);
 					btnEliminarEjercicio.setVisible(true);
 
+					btnInsertarEjercicio.setEnabled(false);
+					btnActualizarEjercicio.setEnabled(false);
+					btnEliminarEjercicio.setEnabled(false);
+
 					scrollPaneEjercicio.setVisible(true);
 					tableEjercicio.setVisible(true);
 
@@ -3672,6 +3768,10 @@ public class App {
 					btnInsertarEntrenador.setVisible(true);
 					btnActualizarEntrenador.setVisible(true);
 					btnEliminarEntrenador.setVisible(true);
+
+					btnInsertarEntrenador.setEnabled(false);
+					btnActualizarEntrenador.setEnabled(false);
+					btnEliminarEntrenador.setEnabled(false);
 
 					scrollPaneEntrenador.setVisible(true);
 					tableEntrenador.setVisible(true);
@@ -3704,11 +3804,16 @@ public class App {
 					btnActualizarClase.setVisible(true);
 					btnEliminarClase.setVisible(true);
 
+					btnInsertarClase.setEnabled(false);
+					btnActualizarClase.setEnabled(false);
+					btnEliminarClase.setEnabled(false);
+
 					scrollPaneClase.setVisible(true);
 					tableClase.setVisible(true);
 					lblTituloGym.setVisible(false);
 					lblMarcoLogin.setVisible(false);
-					btnVolverInicioLogin.setVisible(false);btnVaciarLogin.setVisible(false);
+					btnVolverInicioLogin.setVisible(false);
+					btnVaciarLogin.setVisible(false);
 					txtNombreUsuarioLogin.setVisible(false);
 					lblNombreUsuarioLogin.setVisible(false);
 					lblContraseña.setVisible(true);
@@ -3773,7 +3878,7 @@ public class App {
 		/*
 		 * Botón para vaciar los txtField del registro.
 		 */
-		
+
 		btnVaciarRegistro.setVisible(false);
 		btnVaciarRegistro.setOpaque(false);
 		btnVaciarRegistro.setBackground(new Color(0, 0, 0));
@@ -3793,11 +3898,11 @@ public class App {
 		btnVaciarRegistro.setIcon(new ImageIcon(App.class.getResource("/img/vaciar.png")));
 		btnVaciarRegistro.setBounds(1113, 61, 59, 48);
 		frmGym.getContentPane().add(btnVaciarRegistro);
-		
+
 		/*
 		 * Botón para volver a la pantalla de inicio desde el apartado de registro
 		 */
-		
+
 		btnVolverInicioRegistro.setOpaque(false);
 		btnVolverInicioRegistro.setBackground(new Color(0, 0, 0));
 		btnVolverInicioRegistro.setBorder(null);
@@ -3819,7 +3924,7 @@ public class App {
 				lblRecuadro.setVisible(true);
 				lblTituloGym.setVisible(true);
 				lblRecuadro.setVisible(false);
-				
+
 				btnLogin.setVisible(true);
 				btnRegistrarse.setVisible(true);
 				btnConfirmarRegistro.setVisible(false);
@@ -3829,7 +3934,7 @@ public class App {
 		});
 		btnVolverInicioRegistro.setBounds(697, 376, 117, 48);
 		frmGym.getContentPane().add(btnVolverInicioRegistro);
-		
+
 		/*
 		 * Botón que muestra la interfaz parar resgistrar un nuevo entrenador en la BD.
 		 */
@@ -3943,9 +4048,9 @@ public class App {
 				}
 
 				if (camposValidos) {
-					JOptionPane.showMessageDialog(null, "Usuario resgistrado correctamente en el sistema", "Resgitro Correcto",
-							JOptionPane.INFORMATION_MESSAGE);
-					
+					JOptionPane.showMessageDialog(null, "Usuario resgistrado correctamente en el sistema",
+							"Resgitro Correcto", JOptionPane.INFORMATION_MESSAGE);
+
 					Entrenador ent = new Entrenador(txtNombreEntrenadorRegistro.getText(),
 							txtApellidosEntrenadorRegistro.getText(),
 							Integer.parseInt(txtEdadEntrenadorRegistro.getText()),
@@ -3960,15 +4065,15 @@ public class App {
 					txtEdadEntrenadorRegistro.setVisible(false);
 					txtTitulacionEntrenadorRegistro.setVisible(false);
 					txtContraseñaEntrenadorRegistro.setVisible(false);
-					
+
 					lblNombreEntrenadorRegistro.setVisible(false);
 					lblApellidosEntrenadorRegistro.setVisible(false);
 					lblEdadEntrenadorRegistro.setVisible(false);
 					lblTitulacionEntrenadorRegistro.setVisible(false);
 					lblContraseñaEntrenadorRegistro.setVisible(false);
-					
+
 					lblRecuadro.setVisible(false);
-					
+
 					txtNombreEntrenadorRegistro.setText("");
 					txtApellidosEntrenadorRegistro.setText("");
 					txtEdadEntrenadorRegistro.setText("");
@@ -3976,7 +4081,7 @@ public class App {
 					txtContraseñaEntrenadorRegistro.setText("");
 
 					btnConfirmarRegistro.setVisible(false);
-					
+
 					txtNombreUsuarioLogin.setVisible(true);
 					txtContraseñaUsuarioLogin.setVisible(true);
 					lblNombreUsuarioLogin.setVisible(true);
@@ -3988,7 +4093,7 @@ public class App {
 				}
 			}
 		});
-		
+
 		/**
 		 * JLabel del Fondo.
 		 */
