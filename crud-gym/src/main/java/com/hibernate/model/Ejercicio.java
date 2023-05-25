@@ -1,19 +1,17 @@
 package com.hibernate.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
 /**
  * Ejercicio: Datos del ejercicio.
  * 
  * @author Lucas & Laura
- * @version 08/05/2023
+ * @version 25/05/2023
  *
  */
 
+import java.util.ArrayList;
+import java.util.List;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -22,12 +20,14 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
+//TODO COMENTAR LAURA (Toda la clase)
+
 @Entity
 @Table(name = "ejercicio")
 public class Ejercicio {
 
 	@Id
-	@Column(name = "idEjercicio",  updatable = false)
+	@Column(name = "idEjercicio", updatable = false)
 	private int idEjercicio;
 	@Column(name = "tipoMuscular")
 	private String tipoMuscular;
@@ -39,15 +39,12 @@ public class Ejercicio {
 	private int numeroRepeticiones;
 	@Column(name = "cargaKg")
 	private double cargaKg;
-	
-	@Fetch(FetchMode.JOIN)	
-	@ManyToMany   //(cascade = CascadeType.ALL)
-	@JoinTable(
-			name = "cliente_ejercicio", 
-			joinColumns = @JoinColumn(name = "idEjercicio"),
-            inverseJoinColumns = @JoinColumn(name = "idCliente")
-			  )
-	private List<Cliente> clientes=new ArrayList<Cliente>();
+
+	@Fetch(FetchMode.JOIN)
+	@ManyToMany // (cascade = CascadeType.ALL)
+	@JoinTable(name = "cliente_ejercicio", joinColumns = @JoinColumn(name = "idEjercicio"), inverseJoinColumns = @JoinColumn(name = "idCliente"))
+	private List<Cliente> clientes = new ArrayList<Cliente>();
+
 	/**
 	 * Constructor.
 	 */
@@ -66,7 +63,8 @@ public class Ejercicio {
 	 * @param cargaKg
 	 */
 
-	public Ejercicio(String tipoMuscular, String nombreEjercicio, int numeroSeries, int numeroRepeticiones, double cargaKg) {
+	public Ejercicio(String tipoMuscular, String nombreEjercicio, int numeroSeries, int numeroRepeticiones,
+			double cargaKg) {
 		super();
 		this.tipoMuscular = tipoMuscular;
 		this.nombreEjercicio = nombreEjercicio;
@@ -94,17 +92,17 @@ public class Ejercicio {
 	public void setIdEjercicio(int idEjercicio) {
 		this.idEjercicio = idEjercicio;
 	}
-	
+
 	/**
 	 * Getter.
 	 * 
 	 * @return tipoMuscular: Devuelve el tipo muscular.
 	 */
-	
+
 	public String getTipoMuscular() {
 		return tipoMuscular;
 	}
-	
+
 	/**
 	 * Setter.
 	 * 
@@ -195,20 +193,20 @@ public class Ejercicio {
 	public void setCargaKg(double cargaKg) {
 		this.cargaKg = cargaKg;
 	}
-	
+
 	public List<Cliente> getClientes() {
 		return clientes;
 	}
-	
+
 	public void setClientes(List<Cliente> clientes) {
 		this.clientes = clientes;
 	}
-	
+
 	public void anyadirCliente(Cliente c) {
 		this.clientes.add(c);
 		c.getEjercicios().add(this);
 	}
-	
+
 	public void quitarPersona(Cliente c) {
 		this.clientes.remove(c);
 		c.getEjercicios().remove(this);

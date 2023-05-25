@@ -1,10 +1,10 @@
 package com.hibernate.dao;
 
 /**
- * GymDAO: Contiene todas la acciones contra la BD.
+ * GymDAO: Contiene las acciones de Cliente contra la BD..
  * 
  * @author Lucas & Laura
- * @version 08/05/2023
+ * @version 25/05/2023
  *
  */
 
@@ -128,6 +128,14 @@ public class DAOCliente {
 		}
 		return clientes;
 	}
+	
+	/**
+	 * Función para seleccionar un cliente en concreto mediante su nombre y contraseña.
+	 * 
+	 * @return c: Devuelve el nombre del cliente y la contrseña que coincide con el parametro
+	 *         pasado.
+	 * @return null: Devuelve el null en caso de no coincidir con el parametro pasado.
+	 */
 
 	public static Cliente selectCliente(String nom) {
 

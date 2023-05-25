@@ -3,7 +3,7 @@ package com.hibernate.util;
 /**
  * 
  * @author Lucas & Laura
- * @version 08/05/2023
+ * @version 25/05/2023
  *
  */
 

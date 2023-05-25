@@ -1,28 +1,26 @@
 package com.hibernate.model;
 
+/**
+ * Cliente: Datos del cliente.
+ * 
+ * @author Lucas & Laura
+ * @version 25/05/2023
+ *
+ */
+
 import java.util.ArrayList;
 import java.util.List;
-
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.JoinColumn;
 
-/**
- * Cliente: Datos del cliente.
- * 
- * @author Lucas & Laura
- * @version 08/05/2023
- *
- */
+//TODO COMENTAR LAURA (Toda la clase)
 
 @Entity
 @Table(name = "cliente")
@@ -41,16 +39,13 @@ public class Cliente {
 	private double altura;
 	@Column(name = "peso")
 	private double peso;
-	
+
 	@Fetch(FetchMode.JOIN)
-	@ManyToMany    //(cascade = CascadeType.ALL)
-	@JoinTable(
-			name="cliente_ejercicio",  //Se crea automaticamente...
-			joinColumns = @JoinColumn(name = "idCliente"),
-		    inverseJoinColumns = @JoinColumn(name = "idEjercicio")
-			  )
-	private List<Ejercicio> ejercicios=new ArrayList<Ejercicio>();
-	
+	@ManyToMany // (cascade = CascadeType.ALL)
+	@JoinTable(name = "cliente_ejercicio", // Se crea automaticamente...
+			joinColumns = @JoinColumn(name = "idCliente"), inverseJoinColumns = @JoinColumn(name = "idEjercicio"))
+	private List<Ejercicio> ejercicios = new ArrayList<Ejercicio>();
+
 	/**
 	 * Constructor.
 	 */
@@ -197,7 +192,7 @@ public class Cliente {
 	public void setPeso(double peso) {
 		this.peso = peso;
 	}
-	
+
 	public List<Ejercicio> getEjercicios() {
 		return ejercicios;
 	}
@@ -205,15 +200,15 @@ public class Cliente {
 	public void setEjercicios(List<Ejercicio> ejercicios) {
 		this.ejercicios = ejercicios;
 	}
-	
+
 	public void anyadirEjercicio(Ejercicio e) {
 		this.ejercicios.add(e);
 		e.getClientes().add(this);
 	}
-	
+
 	public void quitarEjercicio(Ejercicio e) {
-		
-		this.ejercicios.removeIf(ejercicio -> (e.getIdEjercicio()==ejercicio.getIdEjercicio()));
+
+		this.ejercicios.removeIf(ejercicio -> (e.getIdEjercicio() == ejercicio.getIdEjercicio()));
 		e.getClientes().remove(this);
 	}
 

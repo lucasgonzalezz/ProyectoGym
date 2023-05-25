@@ -15,24 +15,6 @@ CREATE SCHEMA IF NOT EXISTS `gym` ;
 USE `gym` ;
 
 -- -----------------------------------------------------
--- Table `gym`.`clase`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `gym`.`clase` (
-  `idClase` INT NOT NULL AUTO_INCREMENT,
-  `nombreClase` VARCHAR(60) NOT NULL,
-  `lugar` VARCHAR(60) NOT NULL,
-  `tope` VARCHAR(45) NULL DEFAULT NULL,
-  PRIMARY KEY (`idClase`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_unicode_ci;
-
-INSERT INTO `clase` VALUES
- (1, 'Zumba', 'Sala 01', 25),
- (2, 'Pilates', 'Sala Especial 1', 50),
- (3, 'Punchimba', 'Exterior 1', 10);
-
--- -----------------------------------------------------
 -- Table `gym`.`cliente`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gym`.`cliente` (
@@ -51,7 +33,9 @@ INSERT INTO `cliente` VALUES
  (3, 'Marcos', 'Angresola Rodriguez', 39, 1.89, 70.8),
  (4, 'Raquel', 'Munoz Esteve', 49, 1.80, 80.0),
  (5, 'Pepa', 'Gonzalez Rius', 59, 1.70, 72.2),
- (6, 'Jordi', 'Postigo Humedo', 9, 1.20, 38.0);
+ (6, 'Jordi', 'Postigo Humedo', 19, 1.20, 38.0),
+ (7, 'Lola', 'Gonzalez Ruiz', 88, 1.60, 89.0),
+ (8, 'Fer', 'Lopez Marin', 75, 1.10, 110.5);
 
 -- -----------------------------------------------------
 -- Table `gym`.`ejercicio`
@@ -76,29 +60,6 @@ INSERT INTO `ejercicio` VALUES
  (7, 'Bíceps', 'Curl de bícps con barra Z', 5, 15, 10),
  (8, 'Tríceps', 'Press francés con barra Z', 5, 15, 10);
  
-/*
--- -----------------------------------------------------
--- Table `gym`.`rutina`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `gym`.`rutina` (
-  `fk_idCliente` INT NOT NULL,
-  `fk_idEjercicio` INT NOT NULL,
-  PRIMARY KEY (`fk_idCliente`, `fk_idEjercicio`),
-  INDEX `fk_cliente_has_ejercicio_ejercicio1_idx` (`fk_idEjercicio` ASC) VISIBLE,
-  INDEX `fk_cliente_has_ejercicio_cliente_idx` (`fk_idCliente` ASC) VISIBLE,
-  CONSTRAINT `fk_cliente_has_ejercicio_cliente`
-    FOREIGN KEY (`fk_idCliente`)
-    REFERENCES `gym`.`cliente` (`idCliente`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_cliente_has_ejercicio_ejercicio1`
-    FOREIGN KEY (`fk_idEjercicio`)
-    REFERENCES `gym`.`ejercicio` (`idEjercicio`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-*/
-
 -- -----------------------------------------------------
 -- Table `gym`.`entrenador`
 -- -----------------------------------------------------
@@ -115,9 +76,37 @@ DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_unicode_ci;
 
 INSERT INTO `entrenador` VALUES
- (1, 'Maria', 'Fernandez Marco', 19, 'Entrenador', '132'),
- (2, 'Pepe', 'Angir Carmilo', 29, 'Entrenador', '132'),
- (3, 'Marcos', 'Angresola Rodriguez', 39, 'Entrenador', '132');
+(1, 'Juan', 'González', 34, 'Educación Física', 'pass123'),
+(2, 'María', 'López', 28, 'Máster Entrenamiento', 'pass'),
+(3, 'Pedro', 'Martínez', 42, 'Ciencias Deporte', '12345'),
+(4, 'Laura', 'García', 31, 'Fisiología', 'passw123'),
+(5, 'Carlos', 'Sánchez', 26, 'Educación Física', 'sec123'),
+(6, 'Ana', 'Rodríguez', 35, 'Entr. Personal', 'pass1234'),
+(7, 'Javier', 'Fernández', 29, 'Ciencias Deporte', 'qwerty'),
+(8, 'Sara', 'Pérez', 33, 'Entr. Personal', 'abc123');
+ 
+ -- -----------------------------------------------------
+-- Table `gym`.`clase`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `gym`.`clase` (
+  `idClase` INT NOT NULL AUTO_INCREMENT,
+  `nombreClase` VARCHAR(60) NOT NULL,
+  `lugar` VARCHAR(60) NOT NULL,
+  `tope` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`idClase`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
+
+INSERT INTO `clase` VALUES
+ (1, 'Zumba', 'Sala Z01', 25),
+ (2, 'Pilates', 'Exterior P01', 50),
+ (3, 'Body Combat', 'Sala B01', 15),
+ (4, 'Body Combat', 'Sala B02', 10),
+ (5, 'Body Pump', 'Sala B03', 25),
+ (6, 'Spinning', 'Sala S01', 20),
+ (7, 'Xcore', 'Exterior X01', 10),
+ (8, 'CrossFit', 'Sala C01', 33);
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

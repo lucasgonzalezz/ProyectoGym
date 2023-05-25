@@ -1,35 +1,33 @@
 package com.hibernate.model;
 
+/**
+ * Clase: Datos de la clase.
+ * 
+ * @author Lucas & Laura
+ * @version 25/05/2023
+ *
+ */
+
 import java.util.ArrayList;
 import java.util.List;
-
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.JoinColumn;
 
-/**
- * Cliente: Datos del cliente.
- * 
- * @author Lucas & Laura
- * @version 08/05/2023
- *
- */
+//TODO COMENTAR LAURA (Toda la clase)
 
 @Entity
 @Table(name = "clase")
 public class Clase {
 
 	@Id
-	@Column(name = "idClase",  updatable = false)
+	@Column(name = "idClase", updatable = false)
 	private int idClase;
 	@Column(name = "lugar")
 	private String lugar;
@@ -37,16 +35,12 @@ public class Clase {
 	private int tope;
 	@Column(name = "nombreClase")
 	private String nombreClase;
-	
-	@Fetch(FetchMode.JOIN)	
-	@ManyToMany   //(cascade = CascadeType.ALL)
-	@JoinTable(
-			name = "entrenador_clase", 
-			joinColumns = @JoinColumn(name = "idClase"),
-            inverseJoinColumns = @JoinColumn(name = "idEntrenador")
-			  )
-	private List<Entrenador> entrenadores=new ArrayList<Entrenador>();
-	
+
+	@Fetch(FetchMode.JOIN)
+	@ManyToMany // (cascade = CascadeType.ALL)
+	@JoinTable(name = "entrenador_clase", joinColumns = @JoinColumn(name = "idClase"), inverseJoinColumns = @JoinColumn(name = "idEntrenador"))
+	private List<Entrenador> entrenadores = new ArrayList<Entrenador>();
+
 	/**
 	 * Constructor.
 	 */
@@ -102,24 +96,23 @@ public class Clase {
 
 	public void setNombreClase(String nombreClase) {
 		this.nombreClase = nombreClase;
-	}	
-	
+	}
 
 	public List<Entrenador> getEntrenador() {
 		return entrenadores;
 	}
-	
+
 	public void setEntrenador(List<Entrenador> entrenadores) {
 		this.entrenadores = entrenadores;
 	}
-	
+
 	public void anyadirEntrenador(Entrenador e) {
 		this.entrenadores.add(e);
 		e.getClases().add(this);
 	}
-	
+
 	public void quitarEntrenador(Entrenador e) {
-		this.entrenadores.removeIf(entrenador -> (e.getIdEntrenador()==entrenador.getIdEntrenador()));
+		this.entrenadores.removeIf(entrenador -> (e.getIdEntrenador() == entrenador.getIdEntrenador()));
 		e.getClases().remove(this);
 	}
 

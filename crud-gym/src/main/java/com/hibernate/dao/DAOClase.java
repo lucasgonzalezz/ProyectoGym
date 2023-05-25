@@ -9,51 +9,50 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 /**
- * GymDAO: Contiene todas la acciones contra la BD.
+ * DAOClase: Contiene las acciones de Clase contra la BD.
  * 
  * @author Lucas & Laura
- * @version 08/05/2023
+ * @version 25/05/2023
  *
  */
-
 
 public class DAOClase {
 
 	/**
-	 * Función para seleccionar un cliente mediante su id.
+	 * Función para seleccionar un clase mediante su id.
 	 * 
-	 * @param id: Id del cliente.
-	 * @return cliente seleccionado.
+	 * @param id: Id del clase.
+	 * @return clase seleccionado.
 	 */
 
 	public static Clase selectClaseById(int id) {
 
 		Transaction transaction = null;
-		Clase cla = null;
+		Clase clase = null;
 
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
-			cla = session.get(Clase.class, id);
+			clase = session.get(Clase.class, id);
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
 			}
 		}
-		return cla;
+		return clase;
 	}
 
 	/**
-	 * Función para insertar un cliente en la base de datos.
+	 * Función para insertar un clase en la base de datos.
 	 * 
-	 * @param c: Objeto cliente con todos sus atributos.
+	 * @param c: Objeto clase con todos sus atributos.
 	 */
 
-	public static void insertClase(Clase cla) {
+	public static void insertClase(Clase clase) {
 		Transaction transaction = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
-			session.persist(cla);
+			session.persist(clase);
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {
@@ -63,16 +62,16 @@ public class DAOClase {
 	}
 
 	/**
-	 * Función para actualizar un cliente en la base de datos.
+	 * Función para actualizar una clase en la BD.
 	 * 
-	 * @param c: Objeto cliente con todos sus atributos.
+	 * @param c: Objeto clase con todos sus atributos.
 	 */
 
-	public static void updateClase(Clase cla) {
+	public static void updateClase(Clase clase) {
 		Transaction transaction = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
-			session.merge(cla);
+			session.merge(clase);
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {
@@ -82,9 +81,9 @@ public class DAOClase {
 	}
 
 	/**
-	 * Función para eliminar un cliente en la base de datos.
+	 * Función para eliminar una clase en la BD.
 	 * 
-	 * @param id: Id del cliente.
+	 * @param id: Id del clase.
 	 */
 
 	public static void deleteClase(int id) {
@@ -103,9 +102,9 @@ public class DAOClase {
 	}
 
 	/**
-	 * Función para mostrar todos los clientes almacenados en la BD.
+	 * Función para mostrar todas las clase almacenados en la BD.
 	 * 
-	 * @return cliente: Lista de todos los cliente que contiene la BD.
+	 * @return clase: Lista de todas las clase que contiene la BD.
 	 */
 
 	public static List<Clase> selectAllClases() {
@@ -123,22 +122,29 @@ public class DAOClase {
 		return clases;
 	}
 
-	public static Clase selectClase(String nom) {
+	/**
+	 * Función para seleccionar una clase en concreto mediante su nombre.
+	 * 
+	 * @return clase: Devuelve el nombre de la clase que coincide con el parametro
+	 *         pasado.
+	 */
+
+	public static Clase selectClase(String nombre) {
 
 		Transaction transaction = null;
-		Clase cla = null;
+		Clase clase = null;
 
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
 			Query<Clase> query = session.createQuery("FROM Clase WHERE nombreClase=:nombre", Clase.class);
-			query.setParameter("nombre", nom);
-			cla = query.uniqueResult();
+			query.setParameter("nombre", nombre);
+			clase = query.uniqueResult();
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
 			}
 		}
-		return cla;
+		return clase;
 	}
 
 }

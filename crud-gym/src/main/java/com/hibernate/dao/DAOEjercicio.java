@@ -1,10 +1,10 @@
 package com.hibernate.dao;
 
 /**
- * GymDAO: Contiene todas la acciones contra la BD.
+ * GymDAO: Contiene las acciones de Ejercicio contra la BD..
  * 
  * @author Lucas & Laura
- * @version 08/05/2023
+ * @version 25/05/2023
  *
  */
 
@@ -122,6 +122,13 @@ public class DAOEjercicio {
 		}
 		return ejercicios;
 	}
+	
+	/**
+	 * Función para seleccionar un ejercicio en concreto mediante su nombre.
+	 * 
+	 * @return ejercicio: Devuelve el nombre del ejercicio que coincide con el parametro
+	 *         pasado.
+	 */
 
 	public static Ejercicio selectEjercicio(String ejer) {
 
@@ -140,6 +147,14 @@ public class DAOEjercicio {
 		}
 		return e;
 	}
+	
+	//TODO COMENTAR LAURA
+	
+	/**
+	 * Función para...
+	 * 
+	 * @return ejercicios: 
+	 */
 	
 	public static List<Ejercicio> selectEjerciciosByGrupoMuscular(String tipoMuscular) {
 		Transaction transaction = null;

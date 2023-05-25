@@ -1,10 +1,10 @@
 package com.hibernate.dao;
 
 /**
- * GymDAO: Contiene todas la acciones contra la BD.
+ * DAOEntrenador: Contiene las acciones de Entrenador contra la BD.
  * 
  * @author Lucas & Laura
- * @version 08/05/2023
+ * @version 25/05/2023
  *
  */
 
@@ -18,40 +18,40 @@ import org.hibernate.query.Query;
 public class DAOEntrenador {
 
 	/**
-	 * Función para seleccionar un ejercicio mediante su id.
+	 * Función para seleccionar un entrenador mediante su id.
 	 * 
-	 * @param id: Id del ejercicio.
-	 * @return ejercicio seleccionado.
+	 * @param id: Id del entrenador.
+	 * @return entrenador seleccionado.
 	 */
 
 	public static Entrenador selectEntrenadorById(int id) {
 
 		Transaction transaction = null;
-		Entrenador ent = null;
+		Entrenador entrenador = null;
 
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
-			ent = session.get(Entrenador.class, id);
+			entrenador = session.get(Entrenador.class, id);
 			transaction.commit();
 		} catch (Exception e1) {
 			if (transaction != null) {
 				transaction.rollback();
 			}
 		}
-		return ent;
+		return entrenador;
 	}
 
 	/**
-	 * Función para insertar un ejercicio en la base de datos.
+	 * Función para insertar un entrenador en la BD.
 	 * 
-	 * @param e: Objeto ejercicio con todos sus atributos.
+	 * @param e: Objeto entrenador con todos sus atributos.
 	 */
 
-	public static void insertEntrenador(Entrenador ent) {
+	public static void insertEntrenador(Entrenador entrenador) {
 		Transaction transaction = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
-			session.persist(ent);
+			session.persist(entrenador);
 			transaction.commit();
 		} catch (Exception e1) {
 			if (transaction != null) {
@@ -61,16 +61,16 @@ public class DAOEntrenador {
 	}
 
 	/**
-	 * Función para actualizar un ejercicio en la base de datos.
+	 * Función para actualizar un entrenador en la BD.
 	 * 
-	 * @param e: Objeto ejercicio con todos sus atributos.
+	 * @param e: Objeto entrenador con todos sus atributos.
 	 */
 
-	public static void updateEntrenador(Entrenador ent) {
+	public static void updateEntrenador(Entrenador entrenador) {
 		Transaction transaction = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
-			session.merge(ent);
+			session.merge(entrenador);
 			transaction.commit();
 		} catch (Exception e1) {
 			if (transaction != null) {
@@ -80,18 +80,18 @@ public class DAOEntrenador {
 	}
 
 	/**
-	 * Función para eliminar un ejercicio en la base de datos.
+	 * Función para eliminar un entrenador en la BD.
 	 * 
-	 * @param id: Id del ejercicio.
+	 * @param id: Id del entrenador.
 	 */
 
 	public static void deleteEntrenador(int id) {
 		Transaction transaction = null;
-		Entrenador ent = null;
+		Entrenador entrenador = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
-			ent = session.get(Entrenador.class, id);
-			session.remove(ent);
+			entrenador = session.get(Entrenador.class, id);
+			session.remove(entrenador);
 			transaction.commit();
 		} catch (Exception e1) {
 			if (transaction != null) {
@@ -101,9 +101,9 @@ public class DAOEntrenador {
 	}
 
 	/**
-	 * Función para mostrar todos los ejercicios almacenados en la BD.
+	 * Función para mostrar todos los entrenador almacenados en la BD.
 	 * 
-	 * @return cliente: Lista de todos los ejercicios que contiene la BD.
+	 * @return entrenador: Lista de todos los entrenador que contiene la BD.
 	 */
 
 	public static List<Entrenador> selectAllEntrenadores() {
@@ -120,8 +120,15 @@ public class DAOEntrenador {
 		}
 		return entrenadores;
 	}
+	
+	/**
+	 * Función para seleccionar un entrenador en concreto mediante su nombre.
+	 * 
+	 * @return ent: Devuelve el nombre del entrenador que coincide con el parametro
+	 *         pasado.
+	 */
 
-	public static Entrenador selectEntrenador(String entre) {
+	public static Entrenador selectEntrenador(String entrenador) {
 
 		Transaction transaction = null;
 		Entrenador ent = null;
@@ -130,7 +137,7 @@ public class DAOEntrenador {
 			transaction = session.beginTransaction();
 			Query<Entrenador> query = session.createQuery("FROM Entrenador WHERE nombreEntrenador=:entrenador",
 					Entrenador.class);
-			query.setParameter("entrenador", entre);
+			query.setParameter("entrenador", entrenador);
 			ent = query.uniqueResult();
 		} catch (Exception e1) {
 			if (transaction != null) {
@@ -139,6 +146,14 @@ public class DAOEntrenador {
 		}
 		return ent;
 	}
+	
+	/**
+	 * Función para seleccionar un entrenador en concreto mediante su nombre y contraseña.
+	 * 
+	 * @return ent: Devuelve el nombre del entrenador y la contrseña que coincide con el parametro
+	 *         pasado.
+	 * @return null: Devuelve el null en caso de no coincidir con el parametro pasado.
+	 */
 
 	public Entrenador selectEntrenadorByUserAndPasswd(String nombre, String contraseña) {
 
@@ -152,6 +167,37 @@ public class DAOEntrenador {
 		} catch (Exception e1) {
 		}
 		return null;
+	}
+	
+	/**
+	 * Función para averiguar si existe en entrenador en la BD.
+	 * 
+	 * @return existe: Devuelve true or false dependiendo si existe o no el entrenador en la BD.
+	 */
+
+	public boolean existeEntrenador(Entrenador entrenador) {
+		Transaction transaction = null;
+		boolean existe = false;
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			transaction = session.beginTransaction();
+			Query<Entrenador> query = session.createQuery(
+					"FROM Entrenador where lower(trim(nombreEntrenador)) = lower(trim(:nombre)) "
+							+ "and lower(trim(apellidosEntrenador)) = lower(trim(:apellidos))"
+							+ "and edad = :edad and lower(trim(titulacion)) = lower(trim(:titulacion)) and lower(trim(contraseña)) = lower(trim(:contraseña))",
+					Entrenador.class);
+			query.setParameter("nombre", entrenador.getNombreEntrenador());
+			query.setParameter("apellidos", entrenador.getApellidosEntrenador());
+			query.setParameter("edad", entrenador.getEdad());
+			query.setParameter("titulacion", entrenador.getTitulacion());
+			query.setParameter("contraseña", entrenador.getContraseña());
+			existe = query.uniqueResult() != null;
+			transaction.commit();
+		} catch (Exception e1) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+		}
+		return existe;
 	}
 
 }
