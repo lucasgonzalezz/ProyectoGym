@@ -417,7 +417,7 @@ public class App {
 		btnVaciarCliente.setBackground(new Color(0, 0, 0));
 		btnVaciarCliente.setBorder(null);
 		btnVaciarCliente.setIcon(new ImageIcon(App.class.getResource("/img/vaciar.png")));
-		btnVaciarCliente.setBounds(370, 10, 59, 48);
+		btnVaciarCliente.setBounds(385, 10, 59, 48);
 		frmGym.getContentPane().add(btnVaciarCliente);
 
 		/**
@@ -1083,11 +1083,9 @@ public class App {
 		btnAsignarRutina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (txtClienteRutina.getText() == "") {
-					JOptionPane.showMessageDialog(null, "Campo NOMBRE vacío", "ERROR",
-							JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Campo NOMBRE vacío", "ERROR", JOptionPane.ERROR_MESSAGE);
 				} else if (txtEjercicioRutina.getText() == "") {
-					JOptionPane.showMessageDialog(null, "Campo EJERCICIO vacío", "ERROR",
-							JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Campo EJERCICIO vacío", "ERROR", JOptionPane.ERROR_MESSAGE);
 				} else {
 					Cliente c = DAOCliente.selectCliente(txtClienteRutina.getText());
 					Ejercicio e = DAOEjercicio.selectEjercicio(txtEjercicioRutina.getText());
@@ -1140,7 +1138,7 @@ public class App {
 					DAOCliente.updateCliente(c);
 
 					btnMostrarRutina.doClick();
-					
+
 					txtClienteRutina.setText("");
 					txtEjercicioRutina.setText("");
 
@@ -2116,8 +2114,6 @@ public class App {
 		/*
 		 * JButton entrenador.
 		 */
-		
-		
 
 		/*
 		 * Botón que muestra los datos de la BD en la tabla.
@@ -2148,6 +2144,29 @@ public class App {
 		});
 		btnMostrarEntrenadores.setBounds(510, 371, 59, 48);
 		frmGym.getContentPane().add(btnMostrarEntrenadores);
+
+		/**
+		 * Botón para vaciar los txtField del entrenador.
+		 */
+
+		JButton btnVaciarEntrenador = new JButton("");
+		btnVaciarEntrenador.setVisible(false);
+		btnVaciarEntrenador.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				txtEntrenadorId.setText("");
+				txtEntrenadorNombre.setText("");
+				txtEntrenadorApellidos.setText("");
+				txtEntrenadorEdad.setText("");
+				txtEntrenadorTitulacion.setText("");
+				txtContraseña.setText("");
+			}
+		});
+		btnVaciarEntrenador.setOpaque(false);
+		btnVaciarEntrenador.setBackground(new Color(0, 0, 0));
+		btnVaciarEntrenador.setBorder(null);
+		btnVaciarEntrenador.setIcon(new ImageIcon(App.class.getResource("/img/vaciar.png")));
+		btnVaciarEntrenador.setBounds(510, 564, 59, 48);
+		frmGym.getContentPane().add(btnVaciarEntrenador);
 
 		/*
 		 * Botón que insertar un nuevo entrenador en la BD.
@@ -2513,7 +2532,7 @@ public class App {
 		lblClase.setVisible(false);
 		lblClase.setForeground(new Color(255, 140, 0));
 		lblClase.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 56));
-		lblClase.setBounds(1354, 563, 226, 55);
+		lblClase.setBounds(1354, 563, 195, 55);
 		frmGym.getContentPane().add(lblClase);
 
 		JLabel lblClaseId = new JLabel("Id:");
@@ -3177,6 +3196,46 @@ public class App {
 		btnMostrarImpartirClase.setBounds(846, 478, 89, 23);
 		frmGym.getContentPane().add(btnMostrarImpartirClase);
 
+		/**
+		 * Botón para vaciar los txtField del entrenador.
+		 */
+
+		JButton btnVaciarImpartirClase = new JButton("");
+		btnVaciarImpartirClase.setVisible(false);
+		btnVaciarImpartirClase.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				txtEntreadorImpartirClase.setText("");
+				txtClaseImpartirClase.setText("");
+			}
+		});
+		btnVaciarImpartirClase.setOpaque(false);
+		btnVaciarImpartirClase.setBackground(new Color(0, 0, 0));
+		btnVaciarImpartirClase.setBorder(null);
+		btnVaciarImpartirClase.setIcon(new ImageIcon(App.class.getResource("/img/vaciar.png")));
+		btnVaciarImpartirClase.setBounds(1045, 564, 59, 48);
+		frmGym.getContentPane().add(btnVaciarImpartirClase);
+
+		/**
+		 * Botón para vaciar los txtField del entrenador.
+		 */
+
+		JButton btnVaciarClase = new JButton("");
+		btnVaciarClase.setVisible(false);
+		btnVaciarClase.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				txtClaseId.setText("");
+				txtNombreClase.setText("");
+				txtLugarClase.setText("");
+				txtTopeClase.setText("");
+			}
+		});
+		btnVaciarClase.setOpaque(false);
+		btnVaciarClase.setBackground(new Color(0, 0, 0));
+		btnVaciarClase.setBorder(null);
+		btnVaciarClase.setIcon(new ImageIcon(App.class.getResource("/img/vaciar.png")));
+		btnVaciarClase.setBounds(1521, 564, 59, 48);
+		frmGym.getContentPane().add(btnVaciarClase);
+
 		/*
 		 * Botón que permite asignar una clase a un entrenador para que este la imparta.
 		 */
@@ -3190,11 +3249,9 @@ public class App {
 		btnAsignarClase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (txtEntreadorImpartirClase.getText() == "") {
-					JOptionPane.showMessageDialog(null, "Campo ENTRENADOR vacío", "ERROR",
-							JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Campo ENTRENADOR vacío", "ERROR", JOptionPane.ERROR_MESSAGE);
 				} else if (txtClaseImpartirClase.getText() == "") {
-					JOptionPane.showMessageDialog(null, "Campo CLASE vacío", "ERROR",
-							JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Campo CLASE vacío", "ERROR", JOptionPane.ERROR_MESSAGE);
 				} else {
 					Entrenador entr = DAOEntrenador.selectEntrenador(txtEntreadorImpartirClase.getText());
 					Clase c = DAOClase.selectClase(txtClaseImpartirClase.getText());
@@ -3203,7 +3260,7 @@ public class App {
 					DAOClase.updateClase(c);
 
 					btnMostrarImpartirClase.doClick();
-					
+
 					JOptionPane.showMessageDialog(null, "Se ha asignado correctamente", "EXITO",
 							JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -3215,7 +3272,7 @@ public class App {
 		btnAsignarClase.setBackground(new Color(255, 140, 0));
 		btnAsignarClase.setBounds(736, 694, 89, 88);
 		frmGym.getContentPane().add(btnAsignarClase);
-				
+
 		/*
 		 * Botón que sirve para eliminar la relación entre el entrenador y la clase que
 		 * imparte.
@@ -3673,6 +3730,10 @@ public class App {
 					lblHombreCorriendo.setVisible(false);
 					lblHombreBoxeo.setVisible(false);
 
+					btnVaciarEntrenador.setVisible(true);
+					btnVaciarImpartirClase.setVisible(true);
+					btnVaciarClase.setVisible(true);
+
 				} else if (ent == null) {
 
 					JOptionPane.showMessageDialog(null, "Usuario no registrado", "Acceso Denegado",
@@ -3867,6 +3928,10 @@ public class App {
 					lblHombreFlexiones.setVisible(false);
 					lblHombreCorriendo.setVisible(false);
 					lblHombreBoxeo.setVisible(false);
+
+					btnVaciarEntrenador.setVisible(true);
+					btnVaciarImpartirClase.setVisible(true);
+					btnVaciarClase.setVisible(true);
 				}
 			}
 		});

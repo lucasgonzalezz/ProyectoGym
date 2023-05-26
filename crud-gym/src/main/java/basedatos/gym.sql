@@ -83,7 +83,7 @@ INSERT INTO `entrenador` VALUES
 (5, 'Carlos', 'Sánchez', 26, 'Educación Física', 'sec123'),
 (6, 'Ana', 'Rodríguez', 35, 'Entr. Personal', 'pass1234'),
 (7, 'Javier', 'Fernández', 29, 'Ciencias Deporte', 'qwerty'),
-(8, 'Sara', 'Pérez', 33, 'Entr. Personal', 'abc123');
+(8, 'moi', 'moi', 33, 'profe', 'moi');
  
  -- -----------------------------------------------------
 -- Table `gym`.`clase`
@@ -102,7 +102,7 @@ INSERT INTO `clase` VALUES
  (1, 'Zumba', 'Sala Z01', 25),
  (2, 'Pilates', 'Exterior P01', 50),
  (3, 'Body Combat', 'Sala B01', 15),
- (4, 'Body Combat', 'Sala B02', 10),
+ (4, 'Body Compact', 'Sala B02', 10),
  (5, 'Body Pump', 'Sala B03', 25),
  (6, 'Spinning', 'Sala S01', 20),
  (7, 'Xcore', 'Exterior X01', 10),

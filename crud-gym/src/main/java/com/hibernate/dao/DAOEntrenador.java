@@ -168,36 +168,5 @@ public class DAOEntrenador {
 		}
 		return null;
 	}
-	
-	/**
-	 * Función para averiguar si existe en entrenador en la BD.
-	 * 
-	 * @return existe: Devuelve true or false dependiendo si existe o no el entrenador en la BD.
-	 */
-
-	public boolean existeEntrenador(Entrenador entrenador) {
-		Transaction transaction = null;
-		boolean existe = false;
-		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-			transaction = session.beginTransaction();
-			Query<Entrenador> query = session.createQuery(
-					"from Entrenador where lower(trim(nombreEntrenador)) = lower(trim(:nombre)) "
-							+ "and lower(trim(apellidosEntrenador)) = lower(trim(:apellidos))"
-							+ "and edad = :edad and lower(trim(titulacion)) = lower(trim(:titulacion)) and lower(trim(contraseña)) = lower(trim(:contraseña))",
-					Entrenador.class);
-			query.setParameter("nombre", entrenador.getNombreEntrenador());
-			query.setParameter("apellidos", entrenador.getApellidosEntrenador());
-			query.setParameter("edad", entrenador.getEdad());
-			query.setParameter("titulacion", entrenador.getTitulacion());
-			query.setParameter("contraseña", entrenador.getContraseña());
-			existe = query.uniqueResult() != null;
-			transaction.commit();
-		} catch (Exception e1) {
-			if (transaction != null) {
-				transaction.rollback();
-			}
-		}
-		return existe;
-	}
 
 }
