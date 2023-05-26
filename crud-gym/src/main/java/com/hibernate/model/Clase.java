@@ -20,7 +20,6 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.JoinColumn;
 
-//TODO COMENTAR LAURA (Toda la clase)
 
 @Entity
 @Table(name = "clase")
@@ -66,51 +65,107 @@ public class Clase {
 		this.nombreClase = nombreClase;
 	}
 
+	/*
+	 * Getter
+	 * 
+	 * @return idClase: Devuelve el ID de la clase
+	 */
 	public int getIdClase() {
 		return idClase;
 	}
 
+	/*
+	 * Setter
+	 * 
+	 * @param: Establece el valor id de la clase
+	 */
 	public void setIdClase(int idClase) {
 		this.idClase = idClase;
 	}
 
+	/*
+	 * Getter
+	 * 
+	 * @return lugar: Devuelve el lugar de la clase
+	 */
 	public String getLugar() {
 		return lugar;
 	}
 
+	/*
+	 * Setter
+	 * 
+	 * @param: Establece el valor lugar de la clase
+	 */
 	public void setLugar(String lugar) {
 		this.lugar = lugar;
 	}
 
+	/*
+	 * Getter
+	 * 
+	 * @return tope: Devuelve el tope de la clase
+	 */
 	public int getTope() {
 		return tope;
 	}
 
+	/*
+	 * Setter
+	 * 
+	 * @param: Establece el valor tope de la clase
+	 */
 	public void setTope(int tope) {
 		this.tope = tope;
 	}
 
+	/*
+	 * Getter
+	 * 
+	 * @return nombreClase: Devuelve el nombre de la clase
+	 */
 	public String getNombreClase() {
 		return nombreClase;
 	}
 
+	/*
+	 * Setter
+	 * 
+	 * @param: Establece el valor nombre de la clase
+	 */
 	public void setNombreClase(String nombreClase) {
 		this.nombreClase = nombreClase;
 	}
 
+	/*
+	 * Getter
+	 * 
+	 * @return entrenadores: Devuelve una lista con los entrenadores
+	 */
 	public List<Entrenador> getEntrenador() {
 		return entrenadores;
 	}
 
+	/*
+	 * Setter
+	 * 
+	 *@param entrenadores: Establece los entrenadores de la clase
+	 */
 	public void setEntrenador(List<Entrenador> entrenadores) {
 		this.entrenadores = entrenadores;
 	}
 
+	/*
+	 * Añade entrenadores a la clase
+	 */
 	public void anyadirEntrenador(Entrenador e) {
 		this.entrenadores.add(e);
 		e.getClases().add(this);
 	}
 
+	/*
+	 * Quita los entradores de la clase
+	 */
 	public void quitarEntrenador(Entrenador e) {
 		this.entrenadores.removeIf(entrenador -> (e.getIdEntrenador() == entrenador.getIdEntrenador()));
 		e.getClases().remove(this);

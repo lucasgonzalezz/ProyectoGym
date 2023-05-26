@@ -1,7 +1,6 @@
 package com.hibernate.dao;
 
 import com.hibernate.model.Clase;
-import com.hibernate.model.Cliente;
 import com.hibernate.util.HibernateUtil;
 import java.util.List;
 import org.hibernate.Session;

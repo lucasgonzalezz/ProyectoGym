@@ -20,7 +20,6 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.JoinColumn;
 
-//TODO COMENTAR LAURA (Toda la clase)
 
 @Entity
 @Table(name = "cliente")
@@ -193,19 +192,35 @@ public class Cliente {
 		this.peso = peso;
 	}
 
+	/*
+	 * Getter
+	 * 
+	 * @return ejercicios: Devuelve una lista con todos los ejercicios del cliente
+	 */
 	public List<Ejercicio> getEjercicios() {
 		return ejercicios;
 	}
 
+	/*
+	 * Setter
+	 * 
+	 * @param ejercicios: Establece una lista con todos los ejercicios del cleinte
+	 */
 	public void setEjercicios(List<Ejercicio> ejercicios) {
 		this.ejercicios = ejercicios;
 	}
 
+	/*
+	 * Añade ejercicios a clientes
+	 */
 	public void anyadirEjercicio(Ejercicio e) {
 		this.ejercicios.add(e);
 		e.getClientes().add(this);
 	}
 
+	/*
+	 * Quita ejercicios a clientes
+	 */
 	public void quitarEjercicio(Ejercicio e) {
 
 		this.ejercicios.removeIf(ejercicio -> (e.getIdEjercicio() == ejercicio.getIdEjercicio()));

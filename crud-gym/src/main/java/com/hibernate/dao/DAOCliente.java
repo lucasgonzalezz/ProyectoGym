@@ -9,14 +9,8 @@ package com.hibernate.dao;
  */
 
 import com.hibernate.model.Cliente;
-import com.hibernate.model.Ejercicio;
 import com.hibernate.util.HibernateUtil;
 
-import jakarta.persistence.TypedQuery;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
