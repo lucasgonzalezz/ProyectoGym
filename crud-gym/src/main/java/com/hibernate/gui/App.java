@@ -2778,10 +2778,6 @@ public class App {
 					JOptionPane.showMessageDialog(null, "El campo LUGAR está vacío", "ERROR",
 							JOptionPane.ERROR_MESSAGE);
 					camposValidos = false;
-				} else if (!claseLugar.matches("[a-zA-ZñÑáéíóúÁÉÍÓÚ\\s]+")) {
-					JOptionPane.showMessageDialog(null, "El campo LUGAR no debe contener caracteres especiales",
-							"ERROR", JOptionPane.ERROR_MESSAGE);
-					camposValidos = false;
 				}
 
 				String topeTexto = txtTopeClase.getText();
@@ -2865,10 +2861,6 @@ public class App {
 				if (claseLugar.length() == 0) {
 					JOptionPane.showMessageDialog(null, "El campo LUGAR está vacío", "ERROR",
 							JOptionPane.ERROR_MESSAGE);
-					camposValidos = false;
-				} else if (!claseLugar.matches("[a-zA-ZñÑáéíóúÁÉÍÓÚ\\s]+")) {
-					JOptionPane.showMessageDialog(null, "El campo LUGAR no debe contener caracteres especiales",
-							"ERROR", JOptionPane.ERROR_MESSAGE);
 					camposValidos = false;
 				}
 
@@ -2958,10 +2950,6 @@ public class App {
 				if (claseLugar.length() == 0) {
 					JOptionPane.showMessageDialog(null, "El campo LUGAR está vacío", "ERROR",
 							JOptionPane.ERROR_MESSAGE);
-					camposValidos = false;
-				} else if (!claseLugar.matches("[a-zA-ZñÑáéíóúÁÉÍÓÚ\\s]+")) {
-					JOptionPane.showMessageDialog(null, "El campo LUGAR no debe contener caracteres especiales",
-							"ERROR", JOptionPane.ERROR_MESSAGE);
 					camposValidos = false;
 				}
 
