@@ -1,7 +1,7 @@
 package com.hibernate.dao;
 
 /**
- * GymDAO: Contiene las acciones de Cliente contra la BD..
+ * GymDAO: Contiene las acciones de Cliente contra la BD.
  * 
  * @author Lucas & Laura
  * @version 25/05/2023

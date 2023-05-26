@@ -122,12 +122,12 @@ public class DAOEjercicio {
 		}
 		return ejercicios;
 	}
-	
+
 	/**
 	 * Función para seleccionar un ejercicio en concreto mediante su nombre.
 	 * 
-	 * @return ejercicio: Devuelve el nombre del ejercicio que coincide con el parametro
-	 *         pasado.
+	 * @return ejercicio: Devuelve el nombre del ejercicio que coincide con el
+	 *         parametro pasado.
 	 */
 
 	public static Ejercicio selectEjercicio(String ejer) {
@@ -137,7 +137,8 @@ public class DAOEjercicio {
 
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
-			Query<Ejercicio> query = session.createQuery("FROM Ejercicio WHERE nombreEjercicio=:ejercicio", Ejercicio.class);
+			Query<Ejercicio> query = session.createQuery("FROM Ejercicio WHERE nombreEjercicio=:ejercicio",
+					Ejercicio.class);
 			query.setParameter("ejercicio", ejer);
 			e = query.uniqueResult();
 		} catch (Exception e1) {
@@ -147,21 +148,22 @@ public class DAOEjercicio {
 		}
 		return e;
 	}
-	
-	//TODO COMENTAR LAURA
-	
+
+	// TODO COMENTAR LAURA
+
 	/**
 	 * Función para...
 	 * 
-	 * @return ejercicios: 
+	 * @return ejercicios:
 	 */
-	
+
 	public static List<Ejercicio> selectEjerciciosByGrupoMuscular(String tipoMuscular) {
 		Transaction transaction = null;
 		List<Ejercicio> ejercicios = null;
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
-			Query<Ejercicio> query  = session.createQuery("FROM Ejercicio WHERE tipoMuscular = :tipoMuscular", Ejercicio.class);
+			Query<Ejercicio> query = session.createQuery("FROM Ejercicio WHERE tipoMuscular = :tipoMuscular",
+					Ejercicio.class);
 			query.setParameter("tipoMuscular", tipoMuscular);
 			ejercicios = query.getResultList();
 			transaction.commit();
@@ -172,5 +174,5 @@ public class DAOEjercicio {
 		}
 		return ejercicios;
 	}
-	
+
 }

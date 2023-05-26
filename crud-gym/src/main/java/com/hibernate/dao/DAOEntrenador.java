@@ -181,7 +181,7 @@ public class DAOEntrenador {
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
 			Query<Entrenador> query = session.createQuery(
-					"FROM Entrenador where lower(trim(nombreEntrenador)) = lower(trim(:nombre)) "
+					"from Entrenador where lower(trim(nombreEntrenador)) = lower(trim(:nombre)) "
 							+ "and lower(trim(apellidosEntrenador)) = lower(trim(:apellidos))"
 							+ "and edad = :edad and lower(trim(titulacion)) = lower(trim(:titulacion)) and lower(trim(contraseña)) = lower(trim(:contraseña))",
 					Entrenador.class);

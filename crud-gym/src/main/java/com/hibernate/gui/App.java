@@ -1082,17 +1082,24 @@ public class App {
 		btnAsignarRutina.setIcon(new ImageIcon(App.class.getResource("/img/icnAsig.png")));
 		btnAsignarRutina.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Cliente c = DAOCliente.selectCliente(txtClienteRutina.getText());
-				Ejercicio e = DAOEjercicio.selectEjercicio(txtEjercicioRutina.getText());
+				if (txtClienteRutina.getText() == "") {
+					JOptionPane.showMessageDialog(null, "Campo NOMBRE vacío", "ERROR",
+							JOptionPane.ERROR_MESSAGE);
+				} else if (txtEjercicioRutina.getText() == "") {
+					JOptionPane.showMessageDialog(null, "Campo EJERCICIO vacío", "ERROR",
+							JOptionPane.ERROR_MESSAGE);
+				} else {
+					Cliente c = DAOCliente.selectCliente(txtClienteRutina.getText());
+					Ejercicio e = DAOEjercicio.selectEjercicio(txtEjercicioRutina.getText());
 
-				c.anyadirEjercicio(e);
-				DAOCliente.updateCliente(c);
+					c.anyadirEjercicio(e);
+					DAOCliente.updateCliente(c);
 
-				btnMostrarRutina.doClick();
+					btnMostrarRutina.doClick();
 
-				JOptionPane.showMessageDialog(null, "Se ha asignado correctamente", "EXITO",
-						JOptionPane.INFORMATION_MESSAGE);
-
+					JOptionPane.showMessageDialog(null, "Se ha asignado correctamente", "EXITO",
+							JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		});
 		btnAsignarRutina.setFont(new Font("Dialog", Font.BOLD, 20));
@@ -1133,6 +1140,9 @@ public class App {
 					DAOCliente.updateCliente(c);
 
 					btnMostrarRutina.doClick();
+					
+					txtClienteRutina.setText("");
+					txtEjercicioRutina.setText("");
 
 					JOptionPane.showMessageDialog(null, "Se ha eliminado correctamente", "EXITO",
 							JOptionPane.INFORMATION_MESSAGE);
@@ -2234,12 +2244,11 @@ public class App {
 					camposValidos = false;
 				}
 
-				Entrenador ent = new Entrenador(entrenadorNombre, entrenadorApellido, entrenadorEdad,
-						entrenadorTitulacion, entrenadorContraseña);
+				if (camposValidos) {
 
-				boolean existe = entrenadorDAO.existeEntrenador(ent);
+					Entrenador ent = new Entrenador(entrenadorNombre, entrenadorApellido, entrenadorEdad,
+							entrenadorTitulacion, entrenadorContraseña);
 
-				if (camposValidos && existe) {
 					DAOEntrenador.insertEntrenador(ent);
 
 					btnMostrarEntrenadores.doClick();
@@ -2748,10 +2757,6 @@ public class App {
 					JOptionPane.showMessageDialog(null, "El campo LUGAR está vacío", "ERROR",
 							JOptionPane.ERROR_MESSAGE);
 					camposValidos = false;
-				} else if (claseLugar.matches(".*\\d.*")) {
-					JOptionPane.showMessageDialog(null, "El campo LUGAR no debe contener números", "ERROR",
-							JOptionPane.ERROR_MESSAGE);
-					camposValidos = false;
 				} else if (!claseLugar.matches("[a-zA-ZñÑáéíóúÁÉÍÓÚ\\s]+")) {
 					JOptionPane.showMessageDialog(null, "El campo LUGAR no debe contener caracteres especiales",
 							"ERROR", JOptionPane.ERROR_MESSAGE);
@@ -2825,7 +2830,7 @@ public class App {
 					JOptionPane.showMessageDialog(null, "El campo NOMBRE está vacío", "ERROR",
 							JOptionPane.ERROR_MESSAGE);
 					camposValidos = false;
-				} else if (claseNombre.matches(".*\\d.*")) {
+				} else if (claseLugar.matches(".*\\d.*")) {
 					JOptionPane.showMessageDialog(null, "El campo NOMBRE no debe contener números", "ERROR",
 							JOptionPane.ERROR_MESSAGE);
 					camposValidos = false;
@@ -2838,10 +2843,6 @@ public class App {
 				claseLugar = txtLugarClase.getText();
 				if (claseLugar.length() == 0) {
 					JOptionPane.showMessageDialog(null, "El campo LUGAR está vacío", "ERROR",
-							JOptionPane.ERROR_MESSAGE);
-					camposValidos = false;
-				} else if (claseLugar.matches(".*\\d.*")) {
-					JOptionPane.showMessageDialog(null, "El campo LUGAR no debe contener números", "ERROR",
 							JOptionPane.ERROR_MESSAGE);
 					camposValidos = false;
 				} else if (!claseLugar.matches("[a-zA-ZñÑáéíóúÁÉÍÓÚ\\s]+")) {
@@ -2935,10 +2936,6 @@ public class App {
 				claseLugar = txtLugarClase.getText();
 				if (claseLugar.length() == 0) {
 					JOptionPane.showMessageDialog(null, "El campo LUGAR está vacío", "ERROR",
-							JOptionPane.ERROR_MESSAGE);
-					camposValidos = false;
-				} else if (claseLugar.matches(".*\\d.*")) {
-					JOptionPane.showMessageDialog(null, "El campo LUGAR no debe contener números", "ERROR",
 							JOptionPane.ERROR_MESSAGE);
 					camposValidos = false;
 				} else if (!claseLugar.matches("[a-zA-ZñÑáéíóúÁÉÍÓÚ\\s]+")) {
@@ -3087,15 +3084,18 @@ public class App {
 		scrollImpartirClase.setEnabled(false);
 		scrollImpartirClase.setBorder(null);
 		scrollImpartirClase.setBounds(600, 794, 439, 280);
+		scrollImpartirClase.setColumnHeaderView(tableImpartirClase);
+		scrollImpartirClase.setViewportView(tableImpartirClase);
+		scrollImpartirClase.setViewportView(tableImpartirClase);
 		frmGym.getContentPane().add(scrollImpartirClase);
+		scrollImpartirClase.setViewportView(tableImpartirClase);
 
 		/*
 		 * Evento para que al clicar en las celdas se rellenen los txtField
 		 * correspondientes.
 		 */
 
-		tableImpartirClase = new JTable(modelImpartirClase);
-		tableImpartirClase.getTableHeader().setBackground(Color.red);
+		JTable tableImpartirClase = new JTable(modelImpartirClase);
 		tableImpartirClase.setFont(new Font("Dialog", Font.BOLD, 16));
 		tableImpartirClase.setShowVerticalLines(false);
 		tableImpartirClase.setRowHeight(25);
@@ -3112,22 +3112,6 @@ public class App {
 		scrollImpartirClase.setColumnHeaderView(tableImpartirClase);
 
 		/*
-		 * Establece el tamaño de las filas.
-		 */
-
-		tableImpartirClase.setRowHeight(25);
-
-		/*
-		 * Estable el ancho de las columnas.
-		 */
-
-		TableColumnModel columnModelImpartirClase = tableImpartirClase.getColumnModel();
-		TableColumn columnImpartirClase0 = columnModelImpartirClase.getColumn(0);
-		columnImpartirClase0.setPreferredWidth(30);
-		TableColumn columnImpartirClase1 = columnModelImpartirClase.getColumn(1);
-		columnImpartirClase1.setPreferredWidth(100);
-
-		/*
 		 * Alinea el texto al centro.
 		 */
 
@@ -3141,6 +3125,7 @@ public class App {
 
 		JTableHeader headerImpartirClase = tableImpartirClase.getTableHeader();
 		headerImpartirClase.setPreferredSize(new java.awt.Dimension(headerImpartirClase.getWidth(), 35));
+		headerRutina.setFont(headerRutina.getFont().deriveFont(Font.BOLD, 16));
 
 		/*
 		 * Aplica estilo al las celdas de la tabla.
@@ -3202,16 +3187,24 @@ public class App {
 		btnAsignarClase.setVisible(false);
 		btnAsignarClase.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Entrenador entr = DAOEntrenador.selectEntrenador(txtEntreadorImpartirClase.getText());
-				Clase c = DAOClase.selectClase(txtClaseImpartirClase.getText());
+				if (txtEntreadorImpartirClase.getText() == "") {
+					JOptionPane.showMessageDialog(null, "Campo ENTRENADOR vacío", "ERROR",
+							JOptionPane.ERROR_MESSAGE);
+				} else if (txtClaseImpartirClase.getText() == "") {
+					JOptionPane.showMessageDialog(null, "Campo CLASE vacío", "ERROR",
+							JOptionPane.ERROR_MESSAGE);
+				} else {
+					Entrenador entr = DAOEntrenador.selectEntrenador(txtEntreadorImpartirClase.getText());
+					Clase c = DAOClase.selectClase(txtClaseImpartirClase.getText());
 
-				c.anyadirEntrenador(entr);
-				DAOClase.updateClase(c);
+					c.anyadirEntrenador(entr);
+					DAOClase.updateClase(c);
 
-				btnMostrarImpartirClase.doClick();
-
-				JOptionPane.showMessageDialog(null, "Se ha asignado correctamente", "EXITO",
-						JOptionPane.INFORMATION_MESSAGE);
+					btnMostrarImpartirClase.doClick();
+					
+					JOptionPane.showMessageDialog(null, "Se ha asignado correctamente", "EXITO",
+							JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 		});
 		btnAsignarClase.setIcon(new ImageIcon(App.class.getResource("/img/icnAsig.png")));
@@ -3220,7 +3213,7 @@ public class App {
 		btnAsignarClase.setBackground(new Color(255, 140, 0));
 		btnAsignarClase.setBounds(736, 694, 89, 88);
 		frmGym.getContentPane().add(btnAsignarClase);
-
+				
 		/*
 		 * Botón que sirve para eliminar la relación entre el entrenador y la clase que
 		 * imparte.

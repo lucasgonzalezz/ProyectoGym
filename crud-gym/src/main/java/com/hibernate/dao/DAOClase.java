@@ -129,22 +129,22 @@ public class DAOClase {
 	 *         pasado.
 	 */
 
-	public static Clase selectClase(String nombre) {
+	public static Clase selectClase(String nom) {
 
 		Transaction transaction = null;
-		Clase clase = null;
+		Clase cla = null;
 
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
 			Query<Clase> query = session.createQuery("FROM Clase WHERE nombreClase=:nombre", Clase.class);
-			query.setParameter("nombre", nombre);
-			clase = query.uniqueResult();
+			query.setParameter("nombre", nom);
+			cla = query.uniqueResult();
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
 			}
 		}
-		return clase;
+		return cla;
 	}
 
 }
