@@ -2116,6 +2116,8 @@ public class App {
 		/*
 		 * JButton entrenador.
 		 */
+		
+		
 
 		/*
 		 * Botón que muestra los datos de la BD en la tabla.
